@@ -61,7 +61,7 @@
 (with-eval-after-load 'lua-mode
   (require 'hydra-lua))
 
-(autoload 'hydra-magit/body "hydra-magit.el" nil t)
+(autoload 'hydra-magit/body "hydra-magit" nil t)
 (with-eval-after-load 'magit
   (require 'hydra-magit))
 
@@ -71,7 +71,7 @@
 (with-eval-after-load 'omnisharp
   (require 'hydra-csharp))
 
-(autoload 'hydra-p4/body "hydra-p4.el" nil t)
+(autoload 'hydra-p4/body "hydra-p4" nil t)
 (with-eval-after-load 'p4
   (require 'hydra-p4))
 
