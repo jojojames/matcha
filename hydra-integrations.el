@@ -68,6 +68,9 @@
 (with-eval-after-load 'motion-mode
   (require 'hydra-motion))
 
+(with-eval-after-load 'notmuch
+  (require 'hydra-notmuch))
+
 (with-eval-after-load 'omnisharp
   (require 'hydra-csharp))
 
