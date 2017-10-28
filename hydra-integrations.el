@@ -40,6 +40,9 @@
 (with-eval-after-load 'cider
   (require 'hydra-clojure))
 
+(with-eval-after-load 'dired
+  (require 'hydra-dired))
+
 (with-eval-after-load 'lisp-mode
   (require 'hydra-commonlisp))
 
@@ -57,6 +60,9 @@
 
 (with-eval-after-load 'js2-mode
   (require 'hydra-javascript))
+
+(with-eval-after-load 'json-mode
+  (require 'hydra-json))
 
 (with-eval-after-load 'lua-mode
   (require 'hydra-lua))
@@ -81,8 +87,15 @@
 (with-eval-after-load 'pass
   (require 'hydra-pass))
 
+(autoload 'hydra-projectile/body "hydra-projectile" nil t)
+(with-eval-after-load 'projectile
+  (require 'hydra-projectile))
+
 (with-eval-after-load 'python
   (require 'hydra-python))
+
+(with-eval-after-load 'restclient
+  (require 'hydra-restclient))
 
 (with-eval-after-load 'rjsx-mode
   (require 'hydra-javascript))
