@@ -1,4 +1,4 @@
-;;; hydra-integrations.el --- Integration with Hydra. -*- lexical-binding: t -*-
+;;; hydra-swift.el --- Integration with Hydra. -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2017 James Nguyen
 
@@ -28,53 +28,19 @@
 
 ;;; Code:
 (require 'hydra-integration-base)
+(require 'swift-mode)
 
-(with-eval-after-load 'android-mode
-  (require 'hydra-android))
+(defhydra hydra-swift-mode (:color blue :columns 4)
+  "Swift"
+  ("ez" swift-mode:run-repl "Run REPL")
+  ("eb" swift-mode:send-buffer "Send Buffer")
+  ("er" swift-mode:send-region "Send Region"))
 
-(with-eval-after-load 'erlang
-  (require 'hydra-erlang))
+(+add-major-mode-command 'hydra-swift-mode/body
+                         '(swift-mode))
 
-(with-eval-after-load 'java-mode
-  (require 'hydra-java))
-
-(with-eval-after-load 'js-mode
-  (require 'hydra-javascript))
-
-(with-eval-after-load 'js2-mode
-  (require 'hydra-javascript))
-
-(with-eval-after-load 'lua-mode
-  (require 'hydra-lua))
-
-(autoload 'hydra-magit/body "hydra-magit.el" nil t)
-(with-eval-after-load 'magit
-  (require 'hydra-magit))
-
-(autoload 'hydra-p4/body "hydra-p4.el" nil t)
-(with-eval-after-load 'p4
-  (require 'hydra-p4))
-
-(with-eval-after-load 'pass
-  (require 'hydra-pass))
-
-(with-eval-after-load 'rjsx-mode
-  (require 'hydra-javascript))
-
-(with-eval-after-load 'smerge-mode
-  (require 'hydra-smerge))
-
-(with-eval-after-load 'swift-mode
-  (require 'hydra-swift))
-
-(with-eval-after-load 'term
-  (require 'hydra-term))
-
-(with-eval-after-load 'typescript-mode
-  (require 'hydra-typescript))
-
-(provide 'hydra-integrations)
-;;; hydra-integrations.el ends here
+(provide 'hydra-swift)
+;;; hydra-swift.el ends here
 ;; Local Variables:
 ;; byte-compile-warnings: (not free-vars unresolved noruntime cl-functions obsolete)
 ;; End:

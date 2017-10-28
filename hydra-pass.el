@@ -1,4 +1,4 @@
-;;; hydra-integrations.el --- Integration with Hydra. -*- lexical-binding: t -*-
+;;; hydra-pass.el --- Integration with Hydra. -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2017 James Nguyen
 
@@ -28,53 +28,35 @@
 
 ;;; Code:
 (require 'hydra-integration-base)
+(require 'password-store)
 
-(with-eval-after-load 'android-mode
-  (require 'hydra-android))
+(defhydra hydra-pass-mode (:color blue :hint nil)
+  "
 
-(with-eval-after-load 'erlang
-  (require 'hydra-erlang))
+   Password Store:
 
-(with-eval-after-load 'java-mode
-  (require 'hydra-java))
+    Get                     Manage                       Misc
+  ------------------------------------------------------------------------------
+    [_e_] Edit              [_i_] Insert Entry           [_._] Go To URL
+    [_l_] Clear Password    [_g_] Generate Password      [_v_] Pass Version
+    [_y_] Copy Password     [_x_] Remove Entry
+                          ^^[_r_] Rename Entry
 
-(with-eval-after-load 'js-mode
-  (require 'hydra-javascript))
+        "
+  ("e" password-store-edit)
+  ("l" password-store-clear)
+  ("y" password-store-copy)
+  ("i" password-store-insert)
+  ("g" password-store-generate)
+  ("x" password-store-remove)
+  ("r" password-store-rename)
+  ("." password-store-url)
+  ("v" password-store-version))
 
-(with-eval-after-load 'js2-mode
-  (require 'hydra-javascript))
+(+add-mode-command #'hydra-pass-mode/body '(pass-mode))
 
-(with-eval-after-load 'lua-mode
-  (require 'hydra-lua))
-
-(autoload 'hydra-magit/body "hydra-magit.el" nil t)
-(with-eval-after-load 'magit
-  (require 'hydra-magit))
-
-(autoload 'hydra-p4/body "hydra-p4.el" nil t)
-(with-eval-after-load 'p4
-  (require 'hydra-p4))
-
-(with-eval-after-load 'pass
-  (require 'hydra-pass))
-
-(with-eval-after-load 'rjsx-mode
-  (require 'hydra-javascript))
-
-(with-eval-after-load 'smerge-mode
-  (require 'hydra-smerge))
-
-(with-eval-after-load 'swift-mode
-  (require 'hydra-swift))
-
-(with-eval-after-load 'term
-  (require 'hydra-term))
-
-(with-eval-after-load 'typescript-mode
-  (require 'hydra-typescript))
-
-(provide 'hydra-integrations)
-;;; hydra-integrations.el ends here
+(provide 'hydra-pass)
+;;; hydra-pass.el ends here
 ;; Local Variables:
 ;; byte-compile-warnings: (not free-vars unresolved noruntime cl-functions obsolete)
 ;; End:

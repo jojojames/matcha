@@ -1,4 +1,4 @@
-;;; hydra-integrations.el --- Integration with Hydra. -*- lexical-binding: t -*-
+;;; hydra-java.el --- Integration with Hydra. -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2017 James Nguyen
 
@@ -29,52 +29,29 @@
 ;;; Code:
 (require 'hydra-integration-base)
 
-(with-eval-after-load 'android-mode
-  (require 'hydra-android))
+;; https://stackoverflow.com/questions/19953924/how-do-you-run-java-codes-in-emacs
+(defun java-eval-nofocus ()
+  "Run current program (that requires no input)."
+  (interactive)
+  (let* ((source (file-name-nondirectory buffer-file-name))
+         (out (file-name-sans-extension source))
+         (class (concat out ".class")))
+    (save-buffer)
+    (shell-command (format "rm -f %s && javac %s" class source))
+    (if (file-exists-p class)
+        (compile (format "java %s" out))
+      (progn
+        (set (make-local-variable 'compile-command)
+             (format "javac %s" source))
+        (command-execute 'compile)))))
 
-(with-eval-after-load 'erlang
-  (require 'hydra-erlang))
+(defhydra hydra-java-mode (:color blue)
+  ("u" java-eval-nofocus "Eval"))
 
-(with-eval-after-load 'java-mode
-  (require 'hydra-java))
+(+add-mode-command #'hydra-java-mode/body '(java-mode))
 
-(with-eval-after-load 'js-mode
-  (require 'hydra-javascript))
-
-(with-eval-after-load 'js2-mode
-  (require 'hydra-javascript))
-
-(with-eval-after-load 'lua-mode
-  (require 'hydra-lua))
-
-(autoload 'hydra-magit/body "hydra-magit.el" nil t)
-(with-eval-after-load 'magit
-  (require 'hydra-magit))
-
-(autoload 'hydra-p4/body "hydra-p4.el" nil t)
-(with-eval-after-load 'p4
-  (require 'hydra-p4))
-
-(with-eval-after-load 'pass
-  (require 'hydra-pass))
-
-(with-eval-after-load 'rjsx-mode
-  (require 'hydra-javascript))
-
-(with-eval-after-load 'smerge-mode
-  (require 'hydra-smerge))
-
-(with-eval-after-load 'swift-mode
-  (require 'hydra-swift))
-
-(with-eval-after-load 'term
-  (require 'hydra-term))
-
-(with-eval-after-load 'typescript-mode
-  (require 'hydra-typescript))
-
-(provide 'hydra-integrations)
-;;; hydra-integrations.el ends here
+(provide 'hydra-java)
+;;; hydra-java.el ends here
 ;; Local Variables:
 ;; byte-compile-warnings: (not free-vars unresolved noruntime cl-functions obsolete)
 ;; End:
