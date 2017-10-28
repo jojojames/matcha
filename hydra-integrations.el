@@ -29,11 +29,20 @@
 ;;; Code:
 (require 'hydra-integration-base)
 
+(with-eval-after-load 'alchemist
+  (require 'hydra-elixir))
+
 (with-eval-after-load 'android-mode
   (require 'hydra-android))
 
+(with-eval-after-load 'lisp-mode
+  (require 'hydra-commonlisp))
+
 (with-eval-after-load 'erlang
   (require 'hydra-erlang))
+
+(with-eval-after-load 'geiser
+  (require 'hydra-scheme))
 
 (with-eval-after-load 'java-mode
   (require 'hydra-java))
@@ -51,6 +60,9 @@
 (with-eval-after-load 'magit
   (require 'hydra-magit))
 
+(with-eval-after-load 'motion-mode
+  (require 'hydra-motion))
+
 (autoload 'hydra-p4/body "hydra-p4.el" nil t)
 (with-eval-after-load 'p4
   (require 'hydra-p4))
@@ -58,8 +70,14 @@
 (with-eval-after-load 'pass
   (require 'hydra-pass))
 
+(with-eval-after-load 'python
+  (require 'hydra-python))
+
 (with-eval-after-load 'rjsx-mode
   (require 'hydra-javascript))
+
+(with-eval-after-load 'ruby-mode
+  (require 'hydra-ruby))
 
 (with-eval-after-load 'smerge-mode
   (require 'hydra-smerge))
