@@ -29,11 +29,16 @@
 ;;; Code:
 (require 'hydra-integration-base)
 
+(require 'hydra-elisp)
+
 (with-eval-after-load 'alchemist
   (require 'hydra-elixir))
 
 (with-eval-after-load 'android-mode
   (require 'hydra-android))
+
+(with-eval-after-load 'cider
+  (require 'hydra-clojure))
 
 (with-eval-after-load 'lisp-mode
   (require 'hydra-commonlisp))
@@ -62,6 +67,9 @@
 
 (with-eval-after-load 'motion-mode
   (require 'hydra-motion))
+
+(with-eval-after-load 'omnisharp
+  (require 'hydra-csharp))
 
 (autoload 'hydra-p4/body "hydra-p4.el" nil t)
 (with-eval-after-load 'p4
