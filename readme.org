@@ -1,0 +1,6 @@
+* Quick Setup
+  #+begin_src emacs-lisp :tangle yes
+    (use-package hydra-integrations
+      :load-path "~/.emacs.d/fork/hydra-integrations/"
+      :ensure nil)
+  #+end_src
