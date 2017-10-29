@@ -43,6 +43,9 @@
 (with-eval-after-load 'dired
   (require 'hydra-dired))
 
+(with-eval-after-load 'gud-lldb
+  (require 'hydra-gud-lldb))
+
 (with-eval-after-load 'lisp-mode
   (require 'hydra-commonlisp))
 
@@ -80,6 +83,9 @@
 (with-eval-after-load 'omnisharp
   (require 'hydra-csharp))
 
+(with-eval-after-load 'org
+  (require 'hydra-org))
+
 (autoload 'hydra-p4/body "hydra-p4" nil t)
 (with-eval-after-load 'p4
   (require 'hydra-p4))
@@ -103,6 +109,9 @@
 (with-eval-after-load 'ruby-mode
   (require 'hydra-ruby))
 
+(with-eval-after-load 'rtags
+  (require 'hydra-rtags))
+
 (with-eval-after-load 'smerge-mode
   (require 'hydra-smerge))
 
@@ -114,6 +123,9 @@
 
 (with-eval-after-load 'typescript-mode
   (require 'hydra-typescript))
+
+(with-eval-after-load 'xcode-mode
+  (require 'hydra-xcode))
 
 (provide 'hydra-integrations)
 ;;; hydra-integrations.el ends here
