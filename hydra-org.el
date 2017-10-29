@@ -71,13 +71,84 @@
   ("k" org-shiftup "1 ... Later")
   ("j" org-shiftdown "1 ... Before"))
 
-(defhydra hydra-org-mode (:color blue :columns 4)
-  "Org"
-  ("b" hydra-org-babel/body "Babel")
-  ("t" hydra-org-time/body "Time and Scheduling")
-  ("h" hydra-org-hyperlink/body "Hyperlinks"))
+(defhydra hydra-org-editing (:color blue :hint nil)
+  "
+
+    Org: %s(+hydra-heading-current-file)
+
+
+    Insert                       Promotion                   Mark
+  ------------------------------------------------------------------------------
+    [_m_] Heading          [_<left>_] Promote Heading      [_e_] Element
+    [_M_] Heading Under    [_<right>_] Demote Heading      [_@_] Subtree
+    [_t_] Todo             [_s<left>_] Promote Subtree
+    [_T_] Todo Under       [_s<right>_] Demote Subtree
+                         ^^[_<up>_] Move Subtree Up
+                         ^^[_<down>_] Move Subtree Down
+
+
+    Subtree            Modify                   Narrow
+  ------------------------------------------------------------------------------
+    [_x_] Cut        [_r_] Refile             [_ns_] Narrow to Subtree
+    [_w_] Copy       [_\^_] Sort             [_nb_] Narrow to Block
+    [_y_] Paste      [_*_] Toggle Heading     [_nw_] Widen
+    [_Y_] Yank
+    [_W_] Clone
+
+"
+  ("m" org-meta-return)
+  ("M" org-insert-heading-respect-content)
+  ("t" org-insert-todo-heading)
+  ("T" org-insert-todo-heading-respect-content)
+  ("<left>" org-do-promote)
+  ("<right>" org-do-demote)
+  ("s<left>" org-promote-subtree)
+  ("s<right>" org-demote-subtree)
+  ("<up>" org-move-subtree-up)
+  ("<down>" org-move-subtree-down)
+  ("e" org-mark-element :color red)
+  ("@" org-mark-subtree :color red)
+  ("x" org-cut-subtree)
+  ("w" org-copy-subtree)
+  ("y" org-paste-subtree)
+  ("Y" org-yank)
+  ("W" org-clone-subtree-with-time-shift)
+  ("r" org-refile)
+  ("^" org-sort)
+  ("*" org-toggle-heading)
+  ("ns" org-narrow-to-subtree)
+  ("nb" org-narrow-to-block)
+  ("nw" widen))
+
+(defhydra hydra-org-mode (:color blue :hint nil)
+  "
+
+    Org: %s(+hydra-heading-current-file)
+
+    Motion                    Misc
+  ------------------------------------------------------------------------------
+    [_n_] Next Heading        [_e_] Editing
+    [_p_] Previous Heading    [_B_] Babel
+    [_f_] Forward Level       [_t_] Time
+    [_b_] Backward Level      [_l_] Links
+    [_u_] Up Heading
+    [_j_] Goto
+
+"
+  ("n" org-next-visible-heading :color red)
+  ("p" org-previous-visible-heading :color red)
+  ("f" org-forward-heading-same-level :color red)
+  ("b" org-backward-heading-same-level :color red)
+  ("u" outline-up-heading :color red)
+  ("j" org-goto)
+
+  ("e" hydra-org-editing/body)
+  ("B" hydra-org-babel/body)
+  ("t" hydra-org-time/body)
+  ("l" hydra-org-hyperlink/body))
 
 (+add-mode-command #'hydra-org-mode/body '(org-mode))
+(+add-eval-command #'hydra-org-editing/body '(org-mode))
 
 (provide 'hydra-org)
 ;;; hydra-org.el ends here
