@@ -27,6 +27,7 @@
 ;;; Integration with Hydra.
 
 ;;; Code:
+(eval-when-compile (require 'subr-x))
 
 (defun +projectile-hydra-root ()
   "Return path `hydra-projectile' can print in heading."
@@ -128,9 +129,40 @@ mode pointed at FN. Add it to `%s' or `%s'." (symbol-name minor-mode-fn-alist)
                       (funcall (car commands)))
                      (:default
                       (funcall
-                       (intern (completing-read
-                                "Minor Mode Function?"
-                                commands))))))))))))))
+                       (+normalized-title-to-hydra-command
+                        (completing-read
+                         "Which Hydra? "
+                         (mapcar
+                          (lambda (command)
+                            (+hydra-command-to-normalized-title command))
+                          ;; We want the major mode to be first in the list.
+                          (reverse commands))))))))))))))))
+
+
+(defun +hydra-command-to-normalized-title (hydra-command)
+  "Takes in a function symbol and converts it to a human readable string.
+
+`hydra-elisp-mode/body' -> Elisp Mode"
+  (let* ((name (symbol-name hydra-command))
+         (tokens (split-string name "-" t)))
+    (car (split-string
+          (string-trim
+           (mapconcat (lambda (token)
+                        (cond
+                         ((string-equal token "hydra") nil)
+                         (t
+                          (capitalize token))))
+                      tokens " "))
+          "/body"))))
+
+(defun +normalized-title-to-hydra-command (title)
+  "Takes in a string and returns a `hydra' function symbol.
+
+Elisp Mode -> `hydra-elisp-mode/body'."
+  (let* ((downcase (downcase title))
+         (tokens (split-string downcase " ")))
+    (intern (concat "hydra-" (mapconcat (lambda (token)
+                                          token) tokens "-") "/body"))))
 
 (+make-editing-commands indent debug mode eval test)
 
