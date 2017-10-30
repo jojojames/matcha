@@ -124,6 +124,9 @@
 (with-eval-after-load 'typescript-mode
   (require 'hydra-typescript))
 
+(with-eval-after-load 'web-mode
+  (require 'hydra-web))
+
 (with-eval-after-load 'xcode-mode
   (require 'hydra-xcode))
 
