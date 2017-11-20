@@ -61,7 +61,7 @@
     [_t_] Test    [_n_] Rename       [_k_] Show Doc           [_z_] Restart Server
     [_e_] Eval    [_f_] Apply Fix    [_?_] Find References    [_E_] Errors
                 ^^[_=_] Format       [_._] GoTo Definition    [_P_] Playground
-                ^^[_p_] Prettier     [_/_] Pop Definition
+                ^^[_p_] Prettier     [_/_] Pop Definition     [_j_] Add JSDoc
                 ^^[_r_] Refactor
 
 "
@@ -78,7 +78,8 @@
   ("k" tide-documentation-at-point)
   ("?" tide-references)
   ("." tide-jump-to-definition)
-  ("/" tide-jump-back))
+  ("/" tide-jump-back)
+  ("j" tide-jsdoc-template))
 
 (+add-minor-test-command #'hydra-mocha/body
                          '(tide-mode))
