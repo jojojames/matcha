@@ -30,18 +30,35 @@
 (require 'hydra-integration-base)
 (require 'restclient)
 
-(defhydra hydra-restclient-mode (:color blue)
-  "HTTP"
-  ("e" restclient-http-send-current "Send Current")
-  ("r" restclient-http-send-current-raw "Send Raw")
-  ("v" restclient-http-send-current-stay-in-window "Send Current Stay")
-  ("n" restclient-jump-next "Jump Next")
-  ("p" restclient-jump-prev "Jump Prev")
-  ("c" restclient-copy-curl-command "Copy Curl"))
+(defhydra hydra-restclient-mode (:color blue :hint nil)
+  "
+
+    Restclient:
+
+    Query (Under Cursor)                 Navigation            Misc
+  ------------------------------------------------------------------------------
+    [_e_] Run Query                     [_n_] Next
+    [_r_] Run Query Raw                 [_p_] Previous
+    [_v_] Run Query (Stay in Window)
+
+    Misc
+  ------------------------------------------------------------------------------
+    [_m_] Mark Query
+    [_c_] Copy as CURL Command
+    [_n_] Narrow to Current
+
+"
+  ("e" restclient-http-send-current)
+  ("r" restclient-http-send-current-raw)
+  ("v" restclient-http-send-current-stay-in-window)
+  ("n" restclient-jump-next)
+  ("p" restclient-jump-prev)
+  ("m" restclient-mark-current)
+  ("c" restclient-copy-curl-command)
+  ("n" restclient-narrow-to-current))
 
 (+add-mode-command #'hydra-restclient-mode/body '(restclient-mode))
 
-(provide 'hydra-restclient)
 ;;; hydra-restclient.el ends here
 ;; Local Variables:
 ;; byte-compile-warnings: (not free-vars unresolved noruntime cl-functions obsolete)
