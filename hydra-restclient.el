@@ -35,7 +35,7 @@
 
     Restclient:
 
-    Query (Under Cursor)                 Navigation            Misc
+    Query (Under Cursor)                 Navigation
   ------------------------------------------------------------------------------
     [_e_] Run Query                     [_n_] Next
     [_r_] Run Query Raw                 [_p_] Previous
