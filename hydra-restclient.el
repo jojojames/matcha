@@ -59,6 +59,7 @@
 
 (+add-mode-command #'hydra-restclient-mode/body '(restclient-mode))
 
+(provide 'hydra-restclient)
 ;;; hydra-restclient.el ends here
 ;; Local Variables:
 ;; byte-compile-warnings: (not free-vars unresolved noruntime cl-functions obsolete)
