@@ -136,8 +136,8 @@
   ("mo" slime-macroexpand-1)
   ("Af" slime-toggle-fancy-trace))
 
-(+add-mode-command #'hydra-slime-mode/body '(slime-mode))
-(+add-eval-command #'hydra-slime-eval/body '(slime-mode))
+(+add-minor-mode-command #'hydra-slime-mode/body '(slime-mode))
+(+add-minor-eval-command #'hydra-slime-eval/body '(slime-mode))
 
 (defun +call-stump-hydra ()
   "Call stump hydra if `stumpwm-mode' is active."
