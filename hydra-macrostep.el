@@ -28,7 +28,7 @@
 
 ;;; Code:
 (require 'hydra-integration-base)
-(require 'macrostep)
+(require 'macrostep nil t)
 
 (defun +macrostep-expand-or-hydra ()
   "Run `macrostep-expand' if not already. Open hydra otherwise."
