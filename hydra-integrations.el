@@ -74,6 +74,9 @@
 (with-eval-after-load 'magit
   (require 'hydra-magit))
 
+(with-eval-after-load 'meghanada
+  (require 'hydra-meghanada))
+
 (with-eval-after-load 'motion-mode
   (require 'hydra-motion))
 
