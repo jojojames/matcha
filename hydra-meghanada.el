@@ -71,8 +71,8 @@
 (defhydra hydra-meghanada-compile (:color blue :columns 3)
   "Compile"
   ("f" meghanada-compile-file "File")
-  ("p" meghanada-project-compile "Project")
-  ("c" meghanada-project-compile "Project"))
+  ("p" meghanada-compile-project "Project")
+  ("c" meghanada-compile-project "Project"))
 
 (defhydra hydra-meghanada-test (:color blue :columns 3)
   "Test"
