@@ -1,4 +1,4 @@
-;;; matcha-elixir.el --- Integration with Hydra. -*- lexical-binding: t -*-
+;;; matcha-alchemist.el --- Integration with Hydra. -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2017 James Nguyen
 
@@ -28,7 +28,7 @@
 
 ;;; Code:
 (require 'matcha-base)
-(require 'alchemist)
+(require 'alchemist nil t)
 
 (defmacro +define-alchemist-function (&rest mix-commands)
   "Create a command that wraps `alchemist-mix-execute'.
@@ -215,12 +215,14 @@ If `mix-command' is \"phoenix.server\", then the resulting `defun' will be:
   ("cf" alchemist-compile-file)
   ("cc" alchemist-compile))
 
-(+add-minor-mode-command #'matcha-alchemist-mode/body '(alchemist-mode))
-(+add-minor-eval-command #'matcha-alchemist-eval/body '(alchemist-mode))
-(+add-minor-test-command #'matcha-alchemist-test/body '(alchemist-mode))
+(defun matcha-alchemist-set-launcher ()
+  "Set up `elixir-mode' with `hydra'."
+  (+add-minor-mode-command #'matcha-alchemist-mode/body '(alchemist-mode))
+  (+add-minor-eval-command #'matcha-alchemist-eval/body '(alchemist-mode))
+  (+add-minor-test-command #'matcha-alchemist-test/body '(alchemist-mode)))
 
-(provide 'matcha-elixir)
-;;; matcha-elixir.el ends here
+(provide 'matcha-alchemist)
+;;; matcha-elixir-mode.el ends here
 ;; Local Variables:
 ;; byte-compile-warnings: (not free-vars unresolved noruntime cl-functions obsolete)
 ;; End:

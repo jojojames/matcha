@@ -40,8 +40,39 @@
 (require 'matcha-base)
 (require 'matcha-elisp)
 
-(with-eval-after-load 'alchemist
-  (require 'matcha-elixir))
+(defgroup matcha nil
+  "Collection of hydras and a common way to launch them."
+  :group 'tools
+  :group 'convenience)
+
+(defcustom matcha-mode-list
+  '(alchemist)
+  "The list of modes for which a hydra will be defined."
+  :type '(repeat (choice symbol sexp))
+  :group 'matcha)
+
+(defcustom matcha-use-launcher-p t
+  "Whether or not to use hydra launcher."
+  :type 'bool
+  :group 'matcha)
+
+;;;###autoload
+(defun matcha-setup ()
+  "Set up hydras."
+  (interactive)
+  (dolist (mode matcha-mode-list)
+    (let ((m mode)
+          (reqs (list mode)))
+      (when (listp mode)
+        (setq m (car mode)
+              reqs (cdr mode)))
+      (dolist (req reqs)
+        (with-eval-after-load req
+          (require
+           (intern (concat "matcha-" (symbol-name m))))
+          (when matcha-use-launcher-p
+            (funcall
+             (intern (concat "matcha-" (symbol-name m) "-set-launcher")))))))))
 
 (with-eval-after-load 'android-mode
   (require 'matcha-android))
