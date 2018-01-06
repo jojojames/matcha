@@ -207,7 +207,9 @@ one specified by listing header."
   ("ii" image-dired-dired-display-image)
   ("it" image-dired-dired-toggle-marked-thumbs))
 
-(+add-mode-command #'matcha-dired-mode/body '(dired-mode))
+(defun matcha-dired-set-launcher ()
+  "Set up `dired' with `hydra'."
+  (+add-mode-command #'matcha-dired-mode/body '(dired-mode)))
 
 (provide 'matcha-dired)
 ;;; matcha-dired.el ends here

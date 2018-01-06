@@ -1,4 +1,4 @@
-;;; matcha-android.el --- Integration with Hydra. -*- lexical-binding: t -*-
+;;; matcha-android-mode.el --- Integration with Hydra. -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2017 James Nguyen
 
@@ -43,10 +43,12 @@
   ("r" android-build-reinstall "Reinstall")
   ("i" android-build-uninstall "Uninstall"))
 
-(+add-minor-mode-command #'matcha-android-mode/body '(android-mode))
+(defun matcha-android-mode-set-launcher ()
+  "Set up `android-mode' with `hydra'."
+  (+add-minor-mode-command #'matcha-android-mode/body '(android-mode)))
 
-(provide 'matcha-android)
-;;; matcha-android.el ends here
+(provide 'matcha-android-mode)
+;;; matcha-android-mode.el ends here
 ;; Local Variables:
 ;; byte-compile-warnings: (not free-vars unresolved noruntime cl-functions obsolete)
 ;; End:

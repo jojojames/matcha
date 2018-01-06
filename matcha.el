@@ -46,7 +46,9 @@
   :group 'convenience)
 
 (defcustom matcha-mode-list
-  '(alchemist)
+  '(alchemist
+    android-mode
+    dired)
   "The list of modes for which a hydra will be defined."
   :type '(repeat (choice symbol sexp))
   :group 'matcha)
@@ -74,14 +76,8 @@
             (funcall
              (intern (concat "matcha-" (symbol-name m) "-set-launcher")))))))))
 
-(with-eval-after-load 'android-mode
-  (require 'matcha-android))
-
 (with-eval-after-load 'cider
   (require 'matcha-clojure))
-
-(with-eval-after-load 'dired
-  (require 'matcha-dired))
 
 (with-eval-after-load 'gud-lldb
   (require 'matcha-gud-lldb))
