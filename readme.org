@@ -1,11 +1,11 @@
 * Quick Setup
   #+begin_src emacs-lisp :tangle yes
-    (use-package hydra-integrations
-      :load-path "~/.emacs.d/fork/hydra-integrations/"
+    (use-package matcha
+      :load-path "~/.emacs.d/fork/matcha/"
       :ensure nil
       :config
       ;; Example Usage
-      (defhydra hydra-space (:color blue)
+      (defhydra matcha-space (:color blue)
         "SPACE"
         ("=" +run-indent-command)
         ("d" +run-debug-command)
@@ -13,5 +13,5 @@
         ("e" +run-eval-command)
         ("t" +run-test-command))
 
-      (define-key global-map (kbd "<SPC>") #'hydra-space/body))
+      (define-key global-map (kbd "<SPC>") #'matcha-space/body))
   #+end_src
