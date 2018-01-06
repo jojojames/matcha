@@ -1,4 +1,4 @@
-;;; matcha-web.el --- Integration with Hydra. -*- lexical-binding: t -*-
+;;; matcha-web-mode.el --- Integration with Hydra. -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2017 James Nguyen
 
@@ -176,10 +176,12 @@
   ("p" web-mode-tag-previous)
   ("s" web-mode-tag-select))
 
-(+add-major-mode-command #'matcha-web-mode/body '(web-mode))
+(defun matcha-web-mode-set-launcher ()
+  "Set up `web-mode' with `hydra'."
+  (+add-major-mode-command #'matcha-web-mode/body '(web-mode)))
 
-(provide 'matcha-web)
-;;; matcha-web.el ends here
+(provide 'matcha-web-mode)
+;;; matcha-web-mode.el ends here
 ;; Local Variables:
 ;; byte-compile-warnings: (not free-vars unresolved noruntime cl-functions obsolete)
 ;; End:

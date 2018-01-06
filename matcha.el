@@ -48,7 +48,9 @@
 (defcustom matcha-mode-list
   '(alchemist
     android-mode
-    dired)
+    dired
+    swift-mode
+    web-mode)
   "The list of modes for which a hydra will be defined."
   :type '(repeat (choice symbol sexp))
   :group 'matcha)
@@ -154,17 +156,11 @@
 (with-eval-after-load 'smerge-mode
   (require 'matcha-smerge))
 
-(with-eval-after-load 'swift-mode
-  (require 'matcha-swift))
-
 (with-eval-after-load 'term
   (require 'matcha-term))
 
 (with-eval-after-load 'typescript-mode
   (require 'matcha-typescript))
-
-(with-eval-after-load 'web-mode
-  (require 'matcha-web))
 
 (with-eval-after-load 'xcode-mode
   (require 'matcha-xcode))

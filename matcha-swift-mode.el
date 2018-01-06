@@ -1,4 +1,4 @@
-;;; matcha-swift.el --- Integration with Hydra. -*- lexical-binding: t -*-
+;;; matcha-swift-mode.el --- Integration with Hydra. -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2017 James Nguyen
 
@@ -36,11 +36,13 @@
   ("eb" swift-mode:send-buffer "Send Buffer")
   ("er" swift-mode:send-region "Send Region"))
 
-(+add-major-mode-command 'matcha-swift-mode/body
-                         '(swift-mode))
+(defun matcha-swift-mode-set-launcher ()
+  "Set up `swift-mode' with `hydra'."
+  (+add-major-mode-command 'matcha-swift-mode/body
+                           '(swift-mode)))
 
-(provide 'matcha-swift)
-;;; matcha-swift.el ends here
+(provide 'matcha-swift-mode)
+;;; matcha-swift-mode.el ends here
 ;; Local Variables:
 ;; byte-compile-warnings: (not free-vars unresolved noruntime cl-functions obsolete)
 ;; End:
