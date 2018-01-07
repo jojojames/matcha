@@ -48,7 +48,9 @@
 (defhydra matcha-java-mode (:color blue)
   ("u" java-eval-nofocus "Eval"))
 
-(+add-mode-command #'matcha-java-mode/body '(java-mode))
+(defun matcha-java-mode-set-launcher ()
+  "Set up `hydra' launcher for `java-mode'."
+  (+add-mode-command #'matcha-java-mode/body '(java-mode)))
 
 (provide 'matcha-java)
 ;;; matcha-java.el ends here

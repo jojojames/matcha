@@ -93,6 +93,7 @@
 (with-eval-after-load 'geiser
   (require 'matcha-scheme))
 
+;; FIXME: This needs to go into a `cc-mode'.
 (with-eval-after-load 'java-mode
   (require 'matcha-java))
 
