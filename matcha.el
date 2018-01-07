@@ -49,6 +49,8 @@
   '(alchemist
     android-mode
     dired
+    erlang
+    gud-lldb
     ruby-mode
     swift-mode
     web-mode)
@@ -76,20 +78,17 @@
           (require
            (intern (concat "matcha-" (symbol-name m))))
           (when matcha-use-launcher-p
-            (funcall
-             (intern (concat "matcha-" (symbol-name m) "-set-launcher")))))))))
+            (let ((setup-function
+                   (intern
+                    (concat "matcha-" (symbol-name m) "-set-launcher"))))
+              (when (fboundp setup-function)
+                (funcall setup-function)))))))))
 
 (with-eval-after-load 'cider
   (require 'matcha-clojure))
 
-(with-eval-after-load 'gud-lldb
-  (require 'matcha-gud-lldb))
-
 (with-eval-after-load 'lisp-mode
   (require 'matcha-commonlisp))
-
-(with-eval-after-load 'erlang
-  (require 'matcha-erlang))
 
 (with-eval-after-load 'geiser
   (require 'matcha-scheme))

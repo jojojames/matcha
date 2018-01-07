@@ -77,9 +77,11 @@
   ("u" erlang-compile "Compile")
   ("z" erlang-shell-display "Shell"))
 
-(+add-mode-command #'matcha-erlang-mode/body '(erlang-mode))
-(+add-eval-command #'matcha-erlang-eval/body '(erlang-mode))
-(+add-debug-command #'matcha-erlang-debug/body '(erlang-mode))
+(defun matcha-erlang-set-launcher ()
+  "Set up `hydra' launcher for `erlang'."
+  (+add-mode-command #'matcha-erlang-mode/body '(erlang-mode))
+  (+add-eval-command #'matcha-erlang-eval/body '(erlang-mode))
+  (+add-debug-command #'matcha-erlang-debug/body '(erlang-mode)))
 
 (provide 'matcha-erlang)
 ;;; matcha-erlang.el ends here
