@@ -50,9 +50,13 @@
     android-mode
     dired
     erlang
+    geiser
     gud-lldb
     json-mode
+    motion-mode
+    python
     ruby-mode
+    smerge-mode
     swift-mode
     web-mode)
   "The list of modes for which a hydra will be defined."
@@ -91,9 +95,6 @@
 (with-eval-after-load 'lisp-mode
   (require 'matcha-commonlisp))
 
-(with-eval-after-load 'geiser
-  (require 'matcha-scheme))
-
 ;; FIXME: This needs to go into a `cc-mode'.
 (with-eval-after-load 'java-mode
   (require 'matcha-java))
@@ -113,9 +114,6 @@
 
 (with-eval-after-load 'meghanada
   (require 'matcha-meghanada))
-
-(with-eval-after-load 'motion-mode
-  (require 'matcha-motion))
 
 (with-eval-after-load 'notmuch
   (require 'matcha-notmuch))
@@ -137,9 +135,6 @@
 (with-eval-after-load 'projectile
   (require 'matcha-projectile))
 
-(with-eval-after-load 'python
-  (require 'matcha-python))
-
 (with-eval-after-load 'restclient
   (require 'matcha-restclient))
 
@@ -148,9 +143,6 @@
 
 (with-eval-after-load 'rtags
   (require 'matcha-rtags))
-
-(with-eval-after-load 'smerge-mode
-  (require 'matcha-smerge))
 
 (with-eval-after-load 'term
   (require 'matcha-term))

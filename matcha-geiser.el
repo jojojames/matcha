@@ -1,4 +1,4 @@
-;;; matcha-scheme.el --- Integration with Hydra. -*- lexical-binding: t -*-
+;;; matcha-geiser.el --- Integration with Hydra. -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2017 James Nguyen
 
@@ -122,11 +122,13 @@
   ("c" scheme-compile-definition "Compile Definition")
   ("r" scheme-send-region-and-go "Send Region and Go"))
 
-(+add-minor-mode-command #'matcha-geiser-scheme/body '(geiser-mode))
-(+add-minor-eval-command #'matcha-geiser-eval/body '(geiser-mode))
+(defun matcha-geiser-set-launcher ()
+  "Set up `hydra' launcher for `geiser'."
+  (+add-minor-mode-command #'matcha-geiser-scheme/body '(geiser-mode))
+  (+add-minor-eval-command #'matcha-geiser-eval/body '(geiser-mode)))
 
-(provide 'matcha-scheme)
-;;; matcha-scheme.el ends here
+(provide 'matcha-geiser)
+;;; matcha-geiser.el ends here
 ;; Local Variables:
 ;; byte-compile-warnings: (not free-vars unresolved noruntime cl-functions obsolete)
 ;; End:

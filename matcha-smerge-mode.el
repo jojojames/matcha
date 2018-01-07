@@ -1,4 +1,4 @@
-;;; matcha-smerge.el --- Integration with Hydra. -*- lexical-binding: t -*-
+;;; matcha-smerge-mode.el --- Integration with Hydra. -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2017 James Nguyen
 
@@ -64,10 +64,12 @@
   ("=>" smerge-diff-base-lower)
   ("==" smerge-diff-upper-lower))
 
-(+add-minor-mode-command 'matcha-smerge-mode/body '(smerge-mode))
+(defun matcha-smerge-mode-set-launcher ()
+  "Set up `hydra' launcher for `smerge-mode'."
+  (+add-minor-mode-command 'matcha-smerge-mode/body '(smerge-mode)))
 
-(provide 'matcha-smerge)
-;;; matcha-smerge.el ends here
+(provide 'matcha-smerge-mode)
+;;; matcha-smerge-mode.el ends here
 ;; Local Variables:
 ;; byte-compile-warnings: (not free-vars unresolved noruntime cl-functions obsolete)
 ;; End:

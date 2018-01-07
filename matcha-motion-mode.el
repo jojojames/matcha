@@ -1,4 +1,4 @@
-;;; matcha-motion.el --- Integration with Hydra. -*- lexical-binding: t -*-
+;;; matcha-motion-mode.el --- Integration with Hydra. -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2017 James Nguyen
 
@@ -79,10 +79,12 @@ If failure, run rake instead."
   ("t" +rake-spec "Rake Spec")
   ("r" motion-execute-rake "Execute Rake"))
 
-(+add-mode-command #'matcha-motion-mode/body '(motion-mode))
+(defun matcha-motion-mode-set-launcher ()
+  "Set up `hydra' launcher for `motion-mode'."
+  (+add-mode-command #'matcha-motion-mode/body '(motion-mode)))
 
-(provide 'matcha-motion)
-;;; matcha-motion.el ends here
+(provide 'matcha-motion-mode)
+;;; matcha-motion-mode.el ends here
 ;; Local Variables:
 ;; byte-compile-warnings: (not free-vars unresolved noruntime cl-functions obsolete)
 ;; End:
