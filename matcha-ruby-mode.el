@@ -1,4 +1,4 @@
-;;; matcha-ruby.el --- Integration with Hydra. -*- lexical-binding: t -*-
+;;; matcha-ruby-mode.el --- Integration with Hydra. -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2017 James Nguyen
 
@@ -48,14 +48,10 @@
   "Ruby"
   ("B" matcha-bundler-mode/body "Bundler"))
 
-(+add-mode-command #'matcha-ruby-mode/body '(ruby-mode))
-
 (defhydra matcha-robe-mode (:color blue)
   "Robe"
   ("K" robe-rails-refresh "Rails Refresh")
   ("B" matcha-bundler-mode/body "Bundler"))
-
-(+add-minor-mode-command #'matcha-robe-mode/body '(robe-mode))
 
 (defhydra matcha-rails-mode (:color blue :columns 4)
   "Rails"
@@ -103,10 +99,14 @@
   ("@" projectile-rails-find-mailer "Mailer")
   ("<RET>" projectile-rails-goto-file-at-point "File At Point"))
 
-(+add-minor-mode-command #'matcha-rails-mode/body '(projectile-rails-mode))
+(defun matcha-ruby-mode-set-launcher ()
+  "Set up `hydra' launcher for `ruby-mode'."
+  (+add-mode-command #'matcha-ruby-mode/body '(ruby-mode))
+  (+add-minor-mode-command #'matcha-robe-mode/body '(robe-mode))
+  (+add-minor-mode-command #'matcha-rails-mode/body '(projectile-rails-mode)))
 
-(provide 'matcha-ruby)
-;;; matcha-ruby.el ends here
+(provide 'matcha-ruby-mode)
+;;; matcha-ruby-mode.el ends here
 ;; Local Variables:
 ;; byte-compile-warnings: (not free-vars unresolved noruntime cl-functions obsolete)
 ;; End:

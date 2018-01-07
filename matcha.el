@@ -49,6 +49,7 @@
   '(alchemist
     android-mode
     dired
+    ruby-mode
     swift-mode
     web-mode)
   "The list of modes for which a hydra will be defined."
@@ -146,9 +147,6 @@
 
 (with-eval-after-load 'rjsx-mode
   (require 'matcha-javascript))
-
-(with-eval-after-load 'ruby-mode
-  (require 'matcha-ruby))
 
 (with-eval-after-load 'rtags
   (require 'matcha-rtags))
