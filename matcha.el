@@ -60,7 +60,8 @@
     ruby-mode
     smerge-mode
     swift-mode
-    web-mode)
+    web-mode
+    xcode-mode)
   "The list of modes for which a hydra will be defined."
   :type '(repeat (choice symbol sexp))
   :group 'matcha)
@@ -145,9 +146,6 @@
 
 (with-eval-after-load 'typescript-mode
   (require 'matcha-typescript))
-
-(with-eval-after-load 'xcode-mode
-  (require 'matcha-xcode))
 
 (provide 'matcha)
 ;;; matcha.el ends here

@@ -1,4 +1,4 @@
-;;; matcha-xcode.el --- Integration with Hydra. -*- lexical-binding: t -*-
+;;; matcha-xcode-mode.el --- Integration with Hydra. -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2017 James Nguyen
 
@@ -60,10 +60,12 @@
   ("tt" xcode-xctool-test)
   ("q" nil "Cancel"))
 
-(+add-minor-mode-command #'matcha-xcode-mode/body '(xcode-mode))
+(defun matcha-xcode-mode-set-launcher ()
+  "Set `hydra' launcher for `xcode-mode'."
+  (+add-minor-mode-command #'matcha-xcode-mode/body '(xcode-mode)))
 
-(provide 'matcha-xcode)
-;;; matcha-xcode.el ends here
+(provide 'matcha-xcode-mode)
+;;; matcha-xcode-mode.el ends here
 ;; Local Variables:
 ;; byte-compile-warnings: (not free-vars unresolved noruntime cl-functions obsolete)
 ;; End:
