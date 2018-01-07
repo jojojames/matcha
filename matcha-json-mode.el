@@ -1,4 +1,4 @@
-;;; matcha-json.el --- Integration with Hydra. -*- lexical-binding: t -*-
+;;; matcha-json-mode.el --- Integration with Hydra. -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2017 James Nguyen
 
@@ -34,10 +34,12 @@
   "Json"
   ("u" json-mode-beautify "Beautify"))
 
-(+add-mode-command #'matcha-json-mode/body '(json-mode))
+(defun matcha-json-mode-set-launcher ()
+  "Set up `hydra' launcher for `json-mode'."
+  (+add-mode-command #'matcha-json-mode/body '(json-mode)))
 
-(provide 'matcha-json)
-;;; matcha-json.el ends here
+(provide 'matcha-json-mode)
+;;; matcha-json-mode.el ends here
 ;; Local Variables:
 ;; byte-compile-warnings: (not free-vars unresolved noruntime cl-functions obsolete)
 ;; End:

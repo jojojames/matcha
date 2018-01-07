@@ -51,6 +51,7 @@
     dired
     erlang
     gud-lldb
+    json-mode
     ruby-mode
     swift-mode
     web-mode)
@@ -102,9 +103,6 @@
 
 (with-eval-after-load 'js2-mode
   (require 'matcha-javascript))
-
-(with-eval-after-load 'json-mode
-  (require 'matcha-json))
 
 (with-eval-after-load 'lua-mode
   (require 'matcha-lua))
