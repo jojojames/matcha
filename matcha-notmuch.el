@@ -28,7 +28,7 @@
 
 ;;; Code:
 (require 'matcha-base)
-(require 'notmuch)
+(require 'notmuch nil t)
 
 (defhydra matcha-notmuch-tree-mode (:color blue :columns 4)
   "Tree"
@@ -209,13 +209,12 @@
   ("Z" notmuch-tree-from-show-current-query)
   ("c" matcha-notmuch-show-stash-command/body))
 
-(+add-mode-command #'matcha-notmuch-hello-mode/body '(notmuch-hello-mode))
-
-(+add-mode-command #'matcha-notmuch-show-mode/body '(notmuch-show-mode))
-
-(+add-mode-command #'matcha-notmuch-tree-mode/body '(notmuch-tree-mode))
-
-(+add-mode-command #'matcha-notmuch-search-mode/body '(notmuch-search-mode))
+(defun matcha-notmuch-set-launcher ()
+  "Set `hydra' launcher for `notmuch'."
+  (+add-mode-command #'matcha-notmuch-hello-mode/body '(notmuch-hello-mode))
+  (+add-mode-command #'matcha-notmuch-show-mode/body '(notmuch-show-mode))
+  (+add-mode-command #'matcha-notmuch-tree-mode/body '(notmuch-tree-mode))
+  (+add-mode-command #'matcha-notmuch-search-mode/body '(notmuch-search-mode)))
 
 (provide 'matcha-notmuch)
 ;;; matcha-notmuch.el ends here
