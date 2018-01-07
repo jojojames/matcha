@@ -53,8 +53,10 @@
     geiser
     gud-lldb
     json-mode
+    lua-mode
     motion-mode
     python
+    restclient
     ruby-mode
     smerge-mode
     swift-mode
@@ -105,9 +107,6 @@
 (with-eval-after-load 'js2-mode
   (require 'matcha-javascript))
 
-(with-eval-after-load 'lua-mode
-  (require 'matcha-lua))
-
 (autoload 'matcha-magit/body "matcha-magit" nil t)
 (with-eval-after-load 'magit
   (require 'matcha-magit))
@@ -134,9 +133,6 @@
 (autoload 'matcha-projectile/body "matcha-projectile" nil t)
 (with-eval-after-load 'projectile
   (require 'matcha-projectile))
-
-(with-eval-after-load 'restclient
-  (require 'matcha-restclient))
 
 (with-eval-after-load 'rjsx-mode
   (require 'matcha-javascript))

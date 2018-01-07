@@ -28,7 +28,7 @@
 
 ;;; Code:
 (require 'matcha-base)
-(require 'restclient)
+(require 'restclient nil t)
 
 (defhydra matcha-restclient-mode (:color blue :hint nil)
   "
@@ -57,7 +57,9 @@
   ("c" restclient-copy-curl-command)
   ("n" restclient-narrow-to-current))
 
-(+add-mode-command #'matcha-restclient-mode/body '(restclient-mode))
+(defun matcha-restclient-set-launcher ()
+  "Set `hydra' launcher for `restclient'."
+  (+add-mode-command #'matcha-restclient-mode/body '(restclient-mode)))
 
 (provide 'matcha-restclient)
 ;;; matcha-restclient.el ends here

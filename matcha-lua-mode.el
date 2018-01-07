@@ -1,4 +1,4 @@
-;;; matcha-lua.el --- Integration with Hydra. -*- lexical-binding: t -*-
+;;; matcha-lua-mode.el --- Integration with Hydra. -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2017 James Nguyen
 
@@ -84,13 +84,13 @@
           (message "Couldn't find `function-name'.")))
     (message "`buffer-file-name' is nil.")))
 
-(defhydra matcha-lua-test (:color blue :columns 4)
+(defhydra matcha-lua-mode-test (:color blue :columns 4)
   "Lua Test"
   ("p" +lua-run-test-at-point "Test at Point")
   ("f" +lua-run-test-file "Test File")
   ("t" +lua-run-test-suite "Test Suite"))
 
-(defhydra matcha-lua-eval (:color blue :columns 4)
+(defhydra matcha-lua-mode-eval (:color blue :columns 4)
   "Lua Eval"
   ("b" lua-send-buffer "Send Buffer")
   ("l" lua-send-current-line "Send Current Line")
@@ -105,8 +105,8 @@
 (defhydra matcha-lua-mode (:color blue :columns 4)
   "Lua"
   ("l" matcha-love-mode/body "Love")
-  ("e" matcha-lua-eval/body "Eval")
-  ("t" matcha-lua-test/body "Test")
+  ("e" matcha-lua-mode-eval/body "Eval")
+  ("t" matcha-lua-mode-test/body "Test")
   ("z" lua-show-process-buffer "Show Repl")
   ("h" lua-search-documentation "Search Documentation"))
 
@@ -129,12 +129,14 @@
   ("f" love/search-forums "Search Forums")
   ("h" love/browse-documentation "Browse Documentation"))
 
-(+add-mode-command #'matcha-lua-mode/body '(lua-mode))
-(+add-eval-command #'matcha-lua-eval/body '(lua-mode))
-(+add-test-command #'matcha-lua-test/body '(lua-mode))
+(defun matcha-lua-mode-set-launcher ()
+  "Set up `hydra' launcher for `lua-mode'."
+  (+add-mode-command #'matcha-lua-mode/body '(lua-mode))
+  (+add-eval-command #'matcha-lua-mode-eval/body '(lua-mode))
+  (+add-test-command #'matcha-lua-mode-test/body '(lua-mode)))
 
-(provide 'matcha-lua)
-;;; matcha-lua.el ends here
+(provide 'matcha-lua-mode)
+;;; matcha-lua-mode.el ends here
 ;; Local Variables:
 ;; byte-compile-warnings: (not free-vars unresolved noruntime cl-functions obsolete)
 ;; End:
