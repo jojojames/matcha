@@ -53,6 +53,7 @@
     erlang
     geiser
     gud-lldb
+    (js js2-mode rjsx-mode)
     json-mode
     lua-mode
     motion-mode
@@ -103,12 +104,6 @@
 (with-eval-after-load 'java-mode
   (require 'matcha-java))
 
-(with-eval-after-load 'js-mode
-  (require 'matcha-javascript))
-
-(with-eval-after-load 'js2-mode
-  (require 'matcha-javascript))
-
 (autoload 'matcha-magit/body "matcha-magit" nil t)
 (with-eval-after-load 'magit
   (require 'matcha-magit))
@@ -126,9 +121,6 @@
 (autoload 'matcha-projectile/body "matcha-projectile" nil t)
 (with-eval-after-load 'projectile
   (require 'matcha-projectile))
-
-(with-eval-after-load 'rjsx-mode
-  (require 'matcha-javascript))
 
 (with-eval-after-load 'rtags
   (require 'matcha-rtags))
