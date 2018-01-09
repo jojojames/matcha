@@ -1,4 +1,4 @@
-;;; matcha-clojure.el --- Integration with Hydra. -*- lexical-binding: t -*-
+;;; matcha-cider.el --- Integration with Hydra. -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2017 James Nguyen
 
@@ -29,7 +29,7 @@
 ;;; Code:
 (require 'matcha-base)
 (require 'matcha-clj-refactor)
-(require 'cider)
+(require 'cider nil t)
 
 ;; https://gist.github.com/ddellacosta/4967694b765b91e9d687
 (defun cider-jack-in-with-profile (profile)
@@ -286,17 +286,19 @@ for user input.
   ("m" cider-macroexpand-1)
   ("M" cider-macroexpand-all))
 
-(+add-debug-command 'matcha-cider-debug/body
-                    '(cider-mode cider-repl-mode cider-clojure-interaction-mode))
-(+add-eval-command 'matcha-cider-eval/body
-                   '(cider-mode cider-repl-mode cider-clojure-interaction-mode))
-(+add-mode-command 'matcha-cider-mode/body
-                   '(cider-mode cider-repl-mode cider-clojure-interaction-mode))
-(+add-test-command 'matcha-cider-test/body
-                   '(cider-mode cider-repl-mode cider-clojure-interaction-mode))
+(defun matcha-cider-set-launcher ()
+  "Set `hydra' launcher for `cider'."
+  (+add-debug-command 'matcha-cider-debug/body
+                      '(cider-mode cider-repl-mode cider-clojure-interaction-mode))
+  (+add-eval-command 'matcha-cider-eval/body
+                     '(cider-mode cider-repl-mode cider-clojure-interaction-mode))
+  (+add-mode-command 'matcha-cider-mode/body
+                     '(cider-mode cider-repl-mode cider-clojure-interaction-mode))
+  (+add-test-command 'matcha-cider-test/body
+                     '(cider-mode cider-repl-mode cider-clojure-interaction-mode)))
 
-(provide 'matcha-clojure)
-;;; matcha-clojure.el ends here
+(provide 'matcha-cider)
+;;; matcha-cider.el ends here
 ;; Local Variables:
 ;; byte-compile-warnings: (not free-vars unresolved noruntime cl-functions obsolete)
 ;; End:

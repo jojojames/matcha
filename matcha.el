@@ -48,6 +48,7 @@
 (defcustom matcha-mode-list
   '(alchemist
     android-mode
+    cider
     dired
     erlang
     geiser
@@ -97,9 +98,6 @@
                     (concat "matcha-" (symbol-name m) "-set-launcher"))))
               (when (fboundp setup-function)
                 (funcall setup-function)))))))))
-
-(with-eval-after-load 'cider
-  (require 'matcha-clojure))
 
 ;; FIXME: This needs to go into a `cc-mode'.
 (with-eval-after-load 'java-mode
