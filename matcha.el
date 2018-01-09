@@ -61,6 +61,7 @@
     python
     restclient
     ruby-mode
+    slime
     smerge-mode
     swift-mode
     tide
@@ -99,9 +100,6 @@
 
 (with-eval-after-load 'cider
   (require 'matcha-clojure))
-
-(with-eval-after-load 'lisp-mode
-  (require 'matcha-commonlisp))
 
 ;; FIXME: This needs to go into a `cc-mode'.
 (with-eval-after-load 'java-mode

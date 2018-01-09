@@ -1,4 +1,4 @@
-;;; matcha-commonlisp.el --- Integration with Hydra. -*- lexical-binding: t -*-
+;;; matcha-slime.el --- Integration with Hydra. -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2017 James Nguyen
 
@@ -28,7 +28,7 @@
 
 ;;; Code:
 (require 'matcha-base)
-;; (require 'stumpwm-mode)
+(require 'slime nil t)
 
 ;; TODO: Add Debug Hydra
 
@@ -97,7 +97,7 @@
     [_wl_] Specializes      [_ap_] Apropos Package    [_Af_] Toggle Fancy Trace
     [_wc_] Calls            [_h_] Describe Symbol     [_gn_] Next Note
     [_wb_] Binds            [_H_] Hyperspec Lookup    [_gp_] Previous Note
-    [_ww_] Calls Who        [_d_] Disassemble         [_W_] StumpWM
+    [_ww_] Calls Who        [_d_] Disassemble
     [_lc_] List Callers
     [_le_] List Callees
 
@@ -130,32 +130,18 @@
   ("x" slime-scratch)
   ("ss" slime)
   ("sq" slime-quit-lisp)
-  ("W" +call-stump-hydra)
   ("e" matcha-slime-eval/body)
   ("ma" slime-macroexpand-all)
   ("mo" slime-macroexpand-1)
   ("Af" slime-toggle-fancy-trace))
 
-(+add-minor-mode-command #'matcha-slime-mode/body '(slime-mode))
-(+add-minor-eval-command #'matcha-slime-eval/body '(slime-mode))
+(defun matcha-slime-set-launcher ()
+  "Set `hydra' launcher for `slime'."
+  (+add-minor-mode-command #'matcha-slime-mode/body '(slime-mode))
+  (+add-minor-eval-command #'matcha-slime-eval/body '(slime-mode)))
 
-(defun +call-stump-hydra ()
-  "Call stump hydra if `stumpwm-mode' is active."
-  (interactive)
-  (if stumpwm-mode
-      (matcha-stumpwm/body)
-    (message "`stumpwm-mode' is not active.")))
-
-;; These can be used, but the regular `slime-mode' evals should be fine too.
-(defhydra matcha-stumpwm (:color blue)
-  "Stumpwm"
-  ("e" stumpwm-eval-last-sexp "Eval Last S-exp")
-  ("r" stumpwm-eval-region "Eval Region")
-  ("d" stumpwm-eval-defun "Eval Defun")
-  ("f" stumpwm-eval-defun "Eval Defun"))
-
-(provide 'matcha-commonlisp)
-;;; matcha-commonlisp.el ends here
+(provide 'matcha-slime)
+;;; matcha-slime.el ends here
 ;; Local Variables:
 ;; byte-compile-warnings: (not free-vars unresolved noruntime cl-functions obsolete)
 ;; End:
