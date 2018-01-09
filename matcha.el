@@ -57,6 +57,7 @@
     motion-mode
     notmuch
     omnisharp
+    org
     python
     restclient
     ruby-mode
@@ -118,9 +119,6 @@
 
 (with-eval-after-load 'meghanada
   (require 'matcha-meghanada))
-
-(with-eval-after-load 'org
-  (require 'matcha-org))
 
 (autoload 'matcha-p4/body "matcha-p4" nil t)
 (with-eval-after-load 'p4

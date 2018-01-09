@@ -147,8 +147,10 @@
   ("t" matcha-org-time/body)
   ("l" matcha-org-hyperlink/body))
 
-(+add-mode-command #'matcha-org-mode/body '(org-mode))
-(+add-eval-command #'matcha-org-editing/body '(org-mode))
+(defun matcha-org-set-launcher ()
+  "Set `hydra' launcher for `org'."
+  (+add-mode-command #'matcha-org-mode/body '(org-mode))
+  (+add-eval-command #'matcha-org-editing/body '(org-mode)))
 
 (provide 'matcha-org)
 ;;; matcha-org.el ends here
