@@ -1,4 +1,4 @@
-;;; matcha-csharp.el --- Integration with Hydra. -*- lexical-binding: t -*-
+;;; matcha-omnisharp.el --- Integration with Hydra. -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2017 James Nguyen
 
@@ -30,7 +30,7 @@
 (require 'matcha-base)
 (require 'omnisharp)
 
-(defhydra matcha-csharp-project (:color blue)
+(defhydra matcha-omnisharp-project (:color blue)
   "Project"
   ("a" omnisharp-add-to-solution-current-file "Add To Solution")
   ("A" omnisharp-add-to-solution-dired-selected-files "Add to Solution Dired")
@@ -38,13 +38,13 @@
   ("R" omnisharp-remove-from-project-dired-selected-files "Remove From Solution Dired")
   ("l" omnisharp-add-reference "Add Reference"))
 
-(defhydra matcha-csharp-refactor (:color blue)
+(defhydra matcha-omnisharp-refactor (:color blue)
   "Refactor"
   ("m" omnisharp-rename "Rename")
   ("i" omnisharp-rename-interactively "Rename Interactively")
   ("r" omnisharp-run-code-action-refactoring "Code Action Refactoring"))
 
-(defhydra matcha-csharp-navigation (:color blue :columns 4)
+(defhydra matcha-omnisharp-navigation (:color blue :columns 4)
   "Navigation"
   ("g" omnisharp-go-to-definition "Go To Definition")
   ("G" omnisharp-go-to-definition-other-window "Go To Definition Other")
@@ -58,13 +58,13 @@
   ("F" omnisharp-navigate-to-solution-file-then-file-member "Solution Then File Member")
   ("c" omnisharp-navigate-to-current-file-member "Current File Member"))
 
-(defhydra matcha-csharp-test (:color blue)
+(defhydra matcha-omnisharp-test (:color blue)
   "Test"
   ("a" omnisharp-unit-test-all "All")
   ("b" omnisharp-unit-test-fixture "Fixture")
   ("t" omnisharp-unit-test-single "Single"))
 
-(defhydra matcha-csharp-help (:color blue)
+(defhydra matcha-omnisharp-help (:color blue)
   "Help"
   ("t" omnisharp-current-type-information "Current Type Information")
   ("T" omnisharp-current-type-information-to-kill-ring "Current Type To Kill Ring")
@@ -72,14 +72,14 @@
   ("S" omnisharp-stop-server "Stop Server")
   ("r" omnisharp-reload-solution "Reload Solution"))
 
-(defhydra matcha-csharp-mode (:color blue :columns 4)
+(defhydra matcha-omnisharp-mode (:color blue :columns 4)
   "CSharp"
   ("m" omnisharp-build-in-emacs "Build")
-  ("p" matcha-csharp-project/body "Manage")
-  ("r" matcha-csharp-refactor/body "Refactor")
-  ("g" matcha-csharp-navigation/body "Navigate")
-  ("t" matcha-csharp-test/body "Test")
-  ("h" matcha-csharp-help/body "Help")
+  ("p" matcha-omnisharp-project/body "Manage")
+  ("r" matcha-omnisharp-refactor/body "Refactor")
+  ("g" matcha-omnisharp-navigation/body "Navigate")
+  ("t" matcha-omnisharp-test/body "Test")
+  ("h" matcha-omnisharp-help/body "Help")
   ("u" omnisharp-auto-complete-overrides "Autocomplete Overrides")
   ("i" omnisharp-fix-usings "Fix Usings")
   ("=" omnisharp-code-format-entire-file "Code Format"))
@@ -96,12 +96,14 @@
       (omnisharp-code-format-region)
     (omnisharp-code-format-entire-file)))
 
-(+add-indent-command #'+csharp-indent-dwim '(csharp-mode))
-(+add-test-command #'matcha-csharp-test/body '(csharp-mode))
-(+add-mode-command #'matcha-csharp-mode/body '(csharp-mode))
+(defun matcha-omnisharp-set-launcher ()
+  "Set `hydra' launcher for `omnisharp'."
+  (+add-indent-command #'+csharp-indent-dwim '(csharp-mode))
+  (+add-test-command #'matcha-omnisharp-test/body '(csharp-mode))
+  (+add-mode-command #'matcha-omnisharp-mode/body '(csharp-mode)))
 
-(provide 'matcha-csharp)
-;;; matcha-csharp.el ends here
+(provide 'matcha-omnisharp)
+;;; matcha-omnisharp.el ends here
 ;; Local Variables:
 ;; byte-compile-warnings: (not free-vars unresolved noruntime cl-functions obsolete)
 ;; End:

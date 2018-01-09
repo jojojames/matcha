@@ -56,6 +56,7 @@
     lua-mode
     motion-mode
     notmuch
+    omnisharp
     python
     restclient
     ruby-mode
@@ -117,9 +118,6 @@
 
 (with-eval-after-load 'meghanada
   (require 'matcha-meghanada))
-
-(with-eval-after-load 'omnisharp
-  (require 'matcha-csharp))
 
 (with-eval-after-load 'org
   (require 'matcha-org))
