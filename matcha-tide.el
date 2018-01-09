@@ -1,4 +1,4 @@
-;;; matcha-typescript.el --- Integration with Hydra. -*- lexical-binding: t -*-
+;;; matcha-tide.el --- Integration with Hydra. -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2017 James Nguyen
 
@@ -30,7 +30,7 @@
 (require 'matcha-base)
 (require 'matcha-mocha)
 (require 'matcha-prettier)
-(require 'tide)
+;; (require 'tide nil t)
 ;; (require 'ts-comint)
 
 (defun spacemacs/typescript-open-region-in-playground (start end)
@@ -42,7 +42,7 @@
   (browse-url (concat "http://www.typescriptlang.org/Playground#src="
                       (url-hexify-string (buffer-substring-no-properties start end)))))
 
-(defhydra matcha-typescript-eval (:color blue :columns 4)
+(defhydra matcha-tide-eval (:color blue :columns 4)
   "Typescript Eval"
   ("z" run-ts "Run REPL")
   ("e" ts-send-last-sexp "Send S-exp")
@@ -68,7 +68,7 @@
   ("p" +prettier-or-indent-region-or-buffer)
   ("P" spacemacs/typescript-open-region-in-playground)
   ("t" matcha-mocha/body)
-  ("e" matcha-typescript-eval/body)
+  ("e" matcha-tide-eval/body)
   ("n" tide-rename-symbol)
   ("r" tide-refactor)
   ("=" tide-format)
@@ -81,20 +81,21 @@
   ("/" tide-jump-back)
   ("j" tide-jsdoc-template))
 
-(+add-minor-test-command #'matcha-mocha/body
-                         '(tide-mode))
-
-(+add-minor-eval-command #'matcha-typescript-eval/body
-                         '(tide-mode))
-
-(+add-minor-indent-command #'tide-format
+(defun matcha-tide-set-launcher ()
+  "Set `hydra' launcher for `tide'."
+  (+add-minor-test-command #'matcha-mocha/body
                            '(tide-mode))
 
-(+add-minor-mode-command #'matcha-tide-mode/body '(tide-mode))
+  (+add-minor-eval-command #'matcha-tide-eval/body
+                           '(tide-mode))
 
+  (+add-minor-indent-command #'tide-format
+                             '(tide-mode))
 
-(provide 'matcha-typescript)
-;;; matcha-typescript.el ends here
+  (+add-minor-mode-command #'matcha-tide-mode/body '(tide-mode)))
+
+(provide 'matcha-tide)
+;;; matcha-tide.el ends here
 ;; Local Variables:
 ;; byte-compile-warnings: (not free-vars unresolved noruntime cl-functions obsolete)
 ;; End:
