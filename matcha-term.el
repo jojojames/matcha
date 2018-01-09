@@ -30,12 +30,14 @@
 (require 'matcha-base)
 (require 'term)
 
-(defhydra matcha-term-mode (:color blue :columns 2)
+(defhydra matcha-term (:color blue :columns 2)
   "Term"
   ("j" term-line-mode "Line Mode")
   ("k" term-char-mode "Char Mode"))
 
-(+add-mode-command #'matcha-term-mode/body '(term-mode))
+(defun matcha-term-set-launcher ()
+  "Set `hydra' launcher for `term'."
+  (+add-mode-command #'matcha-term/body '(term-mode)))
 
 (provide 'matcha-term)
 ;;; matcha-term.el ends here
