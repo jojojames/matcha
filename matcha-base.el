@@ -149,7 +149,7 @@ mode pointed at FN. Add it to `%s' or `%s'." (symbol-name minor-mode-fn-alist)
           (string-trim
            (mapconcat (lambda (token)
                         (cond
-                         ((string-equal token "hydra") nil)
+                         ((string-equal token "matcha") nil)
                          (t
                           (capitalize token))))
                       tokens " "))
