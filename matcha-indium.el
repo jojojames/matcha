@@ -30,12 +30,12 @@
 
 (defhydra matcha-indium-mode (:color blue :columns 4)
   "Javascript"
-  ("t" matcha-js2-test/body "Test")
+  ("t" matcha-mocha/body "Test")
   ("i" matcha-js-import/body "Import")
   ("x" indium-run-node "Run Node")
   ("c" indium-scratch "Scratch")
-  ("d" matcha-js2-debug/body "Debug")
-  ("e" matcha-js2-eval/body "Eval")
+  ("d" matcha-indium-debug/body "Debug")
+  ("e" matcha-indium-eval/body "Eval")
   ("r" matcha-js2-refactor/body)
   ("z" indium-switch-to-repl-buffer "Switch to REPL")
   ("k" indium-update-script-source "Update Source"))
