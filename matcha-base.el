@@ -160,9 +160,14 @@ mode pointed at FN. Add it to `%s' or `%s'." (symbol-name minor-mode-fn-alist)
 
 Elisp Mode -> `matcha-elisp-mode/body'."
   (let* ((downcase (downcase title))
-         (tokens (split-string downcase " ")))
-    (intern (concat "matcha-" (mapconcat (lambda (token)
-                                          token) tokens "-") "/body"))))
+         (tokens (split-string downcase " "))
+         (base-f (mapconcat (lambda (token)
+                              token) tokens "-"))
+         (f-hydra (intern (format (concat "matcha-" base-f "/body"))))
+         (f-func (intern (format (concat "matcha-" base-f)))))
+    ;; Handle commands added that aren't hydras.
+    ;; For example, `matcha-prettier-or-indent-region-or-buffer'.
+    (if (fboundp f-hydra) f-hydra f-func)))
 
 (+make-editing-commands indent debug mode eval test)
 

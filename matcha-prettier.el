@@ -1,7 +1,7 @@
 (require 'matcha-base)
 ;; (require 'prettier-js)
 
-(defun +prettier-or-indent-region-or-buffer ()
+(defun matcha-prettier-or-indent-region-or-buffer ()
   "Format with `prettier-js' or use `indent-region-or-buffer'."
   (interactive)
   (cond

@@ -19,7 +19,7 @@
   (+add-major-test-command #'matcha-mocha/body
                            '(js2-mode rjsx-mode))
 
-  (+add-major-indent-command #'+prettier-or-indent-region-or-buffer
+  (+add-major-indent-command #'matcha-prettier-or-indent-region-or-buffer
                              '(js-mode
                                js2-mode
                                rjsx-mode)))
