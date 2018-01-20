@@ -137,8 +137,10 @@
 
 (defun matcha-slime-set-launcher ()
   "Set `hydra' launcher for `slime'."
-  (matcha-add-minor-mode-command #'matcha-slime-mode/body '(slime-mode))
-  (matcha-add-minor-eval-command #'matcha-slime-eval/body '(slime-mode)))
+  (matcha-set-mode-command
+   :mode 'slime-mode :command #'matcha-slime-mode/body :minor-p t)
+  (matcha-set-eval-command
+   :mode 'slime-mode :command #'matcha-slime-eval/body :minor-p t))
 
 (provide 'matcha-slime)
 ;;; matcha-slime.el ends here

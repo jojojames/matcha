@@ -7,22 +7,21 @@
 
 (defun matcha-js-set-launcher ()
   "Set `hydra' launcher for `js'."
-  (matcha-add-major-debug-command 'matcha-indium-debug/body
-                                  '(js2-mode rjsx-mode))
+  (matcha-set-debug-command
+   :mode '(js-mode js2-mode rjsx-mode) :command #'matcha-indium-debug/body)
 
-  (matcha-add-major-eval-command 'matcha-indium-eval/body
-                                 '(js2-mode rjsx-mode))
+  (matcha-set-eval-command
+   :mode '(js-mode js2-mode rjsx-mode) :command #'matcha-indium-eval/body)
 
-  (matcha-add-major-mode-command 'matcha-indium-mode/body
-                                 '(js2-mode rjsx-mode))
+  (matcha-set-mode-command
+   :mode '(js-mode js2-mode rjsx-mode) :command #'matcha-indium-mode/body)
 
-  (matcha-add-major-test-command #'matcha-mocha/body
-                                 '(js2-mode rjsx-mode))
+  (matcha-set-test-command
+   :mode '(js-mode js2-mode rjsx-mode) :command #'matcha-mocha/body)
 
-  (matcha-add-major-format-command #'matcha-prettier-or-indent-region-or-buffer
-                                   '(js-mode
-                                     js2-mode
-                                     rjsx-mode)))
+  (matcha-set-format-command
+   :mode '(js-mode js2-mode rjsx-mode)
+   :command #'matcha-prettier-or-indent-region-or-buffer))
 
 (provide 'matcha-js)
 ;; Local Variables:

@@ -79,9 +79,12 @@
 
 (defun matcha-erlang-set-launcher ()
   "Set up `hydra' launcher for `erlang'."
-  (matcha-add-mode-command #'matcha-erlang-mode/body '(erlang-mode))
-  (matcha-add-eval-command #'matcha-erlang-eval/body '(erlang-mode))
-  (matcha-add-debug-command #'matcha-erlang-debug/body '(erlang-mode)))
+  (matcha-set-mode-command
+   :mode 'erlang-mode :command #'matcha-erlang-mode/body)
+  (matcha-set-eval-command
+   :mode 'erlang-mode :command #'matcha-erlang-eval/body)
+  (matcha-set-debug-command
+   :mode 'erlang-mode :command #'matcha-erlang-debug/body))
 
 (provide 'matcha-erlang)
 ;;; matcha-erlang.el ends here

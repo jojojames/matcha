@@ -81,7 +81,7 @@ If failure, run rake instead."
 
 (defun matcha-motion-mode-set-launcher ()
   "Set up `hydra' launcher for `motion-mode'."
-  (matcha-add-mode-command #'matcha-motion-mode/body '(motion-mode)))
+  (matcha-set-mode-command :mode 'motion-mode :command #'matcha-motion-mode/body))
 
 (provide 'matcha-motion-mode)
 ;;; matcha-motion-mode.el ends here

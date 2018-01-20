@@ -149,8 +149,8 @@
 
 (defun matcha-org-set-launcher ()
   "Set `hydra' launcher for `org'."
-  (matcha-add-mode-command #'matcha-org-mode/body '(org-mode))
-  (matcha-add-eval-command #'matcha-org-editing/body '(org-mode)))
+  (matcha-set-mode-command :mode 'org-mode :command #'matcha-org-mode/body)
+  (matcha-set-eval-command :mode 'org-mode :command #'matcha-org-editing/body))
 
 (provide 'matcha-org)
 ;;; matcha-org.el ends here

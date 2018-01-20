@@ -55,7 +55,8 @@
 
 (defun matcha-pass-set-launcher ()
   "Set up `pass' with `hydra'."
-  (matcha-add-mode-command #'matcha-pass-mode/body '(pass-mode)))
+  (matcha-set-mode-command :mode 'pass-mode
+                           :command #'matcha-pass-mode/body))
 
 (provide 'matcha-pass)
 ;;; matcha-pass.el ends here

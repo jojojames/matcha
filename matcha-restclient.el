@@ -59,7 +59,8 @@
 
 (defun matcha-restclient-set-launcher ()
   "Set `hydra' launcher for `restclient'."
-  (matcha-add-mode-command #'matcha-restclient-mode/body '(restclient-mode)))
+  (matcha-set-mode-command :mode 'restclient-mode
+                           :command #'matcha-restclient-mode/body))
 
 (provide 'matcha-restclient)
 ;;; matcha-restclient.el ends here

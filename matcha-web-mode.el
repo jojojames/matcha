@@ -178,7 +178,7 @@
 
 (defun matcha-web-mode-set-launcher ()
   "Set up `web-mode' with `hydra'."
-  (matcha-add-major-mode-command #'matcha-web-mode/body '(web-mode)))
+  (matcha-set-mode-command :mode 'web-mode :command #'matcha-web-mode/body))
 
 (provide 'matcha-web-mode)
 ;;; matcha-web-mode.el ends here

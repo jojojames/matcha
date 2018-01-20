@@ -38,8 +38,8 @@
 
 (defun matcha-swift-mode-set-launcher ()
   "Set up `swift-mode' with `hydra'."
-  (matcha-add-major-mode-command 'matcha-swift-mode/body
-                           '(swift-mode)))
+  (matcha-set-mode-command :mode 'swift-mode
+                           :command #'matcha-swift-mode/body))
 
 (provide 'matcha-swift-mode)
 ;;; matcha-swift-mode.el ends here

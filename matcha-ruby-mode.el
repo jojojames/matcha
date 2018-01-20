@@ -101,9 +101,12 @@
 
 (defun matcha-ruby-mode-set-launcher ()
   "Set up `hydra' launcher for `ruby-mode'."
-  (matcha-add-mode-command #'matcha-ruby-mode/body '(ruby-mode))
-  (matcha-add-minor-mode-command #'matcha-robe-mode/body '(robe-mode))
-  (matcha-add-minor-mode-command #'matcha-rails-mode/body '(projectile-rails-mode)))
+  (matcha-set-mode-command
+   :mode 'ruby-mode :command #'matcha-ruby-mode/body)
+  (matcha-set-mode-command
+   :mode 'robe-mode :command #'matcha-robe-mode/body :minor-p t)
+  (matcha-set-mode-command
+   :mode 'projectile-rails-mode :command #'matcha-rails-mode/body :minor-p t))
 
 (provide 'matcha-ruby-mode)
 ;;; matcha-ruby-mode.el ends here

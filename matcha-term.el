@@ -37,7 +37,7 @@
 
 (defun matcha-term-set-launcher ()
   "Set `hydra' launcher for `term'."
-  (matcha-add-mode-command #'matcha-term/body '(term-mode)))
+  (matcha-set-mode-command :mode 'term-mode :command #'matcha-term/body))
 
 (provide 'matcha-term)
 ;;; matcha-term.el ends here

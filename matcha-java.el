@@ -50,7 +50,7 @@
 
 (defun matcha-cc-mode-mode-set-launcher ()
   "Set up `hydra' launcher for `java-mode'."
-  (matcha-add-mode-command #'matcha-java-mode/body '(java-mode)))
+  (matcha-set-mode-command :mode 'java-mode :command #'matcha-java-mode/body))
 
 (provide 'matcha-cc-mode)
 ;;; matcha-cc-mode.el ends here

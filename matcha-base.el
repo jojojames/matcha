@@ -103,6 +103,30 @@ mode pointed at FN. Add it to `%s' or `%s'." (symbol-name minor-mode-fn-alist)
                         (push `(,mode . ,fn) ,major-mode-fn-alist)))
                     modes))
 
+            (cl-defun ,(intern (format "matcha-set-%s-command" cmd-name))
+                (&key
+                 mode
+                 command
+                 (minor-p nil))
+              ,(format "Loop over MODE and make an alist of each mode\
+pointed at COMMAND.
+
+MODE may be a single symbol or a list of symbols.
+
+Add it to `%s' or `%s'.
+
+If MINOR-P is t, COMMAND will be added to `%s'."
+                       (symbol-name minor-mode-fn-alist)
+                       (symbol-name major-mode-fn-alist)
+                       (symbol-name minor-mode-fn-alist))
+              (mapc (lambda (mode)
+                      (if (or (memq mode minor-mode-list) minor-p)
+                          (push `(,mode . ,command) ,minor-mode-fn-alist)
+                        (push `(,mode . ,command) ,major-mode-fn-alist)))
+                    (if (consp mode)
+                        mode
+                      (list mode))))
+
             (defun ,(intern (format "matcha-run-%s-command" cmd-name)) ()
               ,(format "Run major or minor mode command for %s." cmd-name)
               (interactive)
