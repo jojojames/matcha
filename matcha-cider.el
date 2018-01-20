@@ -239,62 +239,55 @@ for user input.
 
     Cider: %s(matcha-projectile-root)
 
-      Do               Jack In                   Connections
+        Do               Jack In                   Connections
   ------------------------------------------------------------------------------
-    [_e_] Eval     [_jj_] Jack In                 [_jc_] Connect To
-    [_t_] Test     [_ju_] Jack In -No Autorun     [_jd_] Connect DWIM
-    [_d_] Debug    [_jp_] Jack In -With Profile   [_jr_] Rotate Connection
-    [_n_] Lein     [_jt_] Jack In -With Test      [_jb_] Connection Browser
-    [_k_] Doc      [_js_] Jack In -ClojureScript
-    [_z_] REPL
+    [_e_] Eval       [_jj_] J.I.                  [_cc_] Connect To
+    [_t_] Test       [_ju_] J.I. -No Autorun      [_cd_] Connect DWIM
+    [_d_] Debug      [_jp_] J.I. -With Profile    [_cr_] Rotate Connection
+    [_r_] Refactor   [_jt_] J.I. -With Test       [_cb_] Connection Browser
+    [_k_] Doc        [_js_] J.I. -ClojureScript
+    [_z_] REPL       [_A_] Run -main
 
-    Refactor                  Misc                      Macroexpand
+         Misc                      Macroexpand
   ------------------------------------------------------------------------------
-    [_rn_] Namespace       [_c_] Scratch              [_m_] Macroexpand-1
-    [_rp_] Project         [_R_] Reload Namespaces    [_M_] Macroexpand all
-    [_rs_] Info            [_jR_] Run -main
-    [_rc_] Code            [_q_] Quit
-    [_rt_] Top Level
+    [_x_] Scratch              [_m_] Macroexpand-1
+    [_R_] Reload Namespaces    [_M_] Macroexpand all
+    [_l_] Lein
+    [_q_] Quit
 
 "
 
   ("z" matcha-cider-repl/body)
   ("k" matcha-cider-doc/body)
-  ("jc" cider-connect)
-  ("c" cider-scratch)
+  ("cc" cider-connect)
+  ("x" cider-scratch)
   ("e" matcha-cider-eval/body)
   ("t" matcha-cider-test/body)
   ("d" matcha-cider-debug/body)
-  ("n" matcha-cider-lein/body)
-  ("jr" cider-rotate-default-connection)
-  ("jb" cider-connection-browser)
+  ("l" matcha-cider-lein/body)
+  ("r" matcha-clj-refactor/body)
+  ("cr" cider-rotate-default-connection)
+  ("cb" cider-connection-browser)
   ("jj" cider-jack-in)
   ("js" cider-jack-in-clojurescript)
   ("ju" cider-jack-in-dont-auto-run)
   ("jp" cider-jack-in-with-profile)
   ("jt" cider-jack-in-with-profile-test)
   ("R" cider-refresh)
-  ("jd" +cider-connect-dwim)
-  ("jR" cider-run)
+  ("cd" +cider-connect-dwim)
+  ("A" cider-run)
   ("q" cider-quit)
-  ("rn" matcha-cljr-ns-menu/body)
-  ("rc" matcha-cljr-code-menu/body)
-  ("rp" matcha-cljr-project-menu/body)
-  ("rt" matcha-cljr-toplevel-form-menu/body)
-  ("rs" matcha-cljr-cljr-menu/body)
   ("m" cider-macroexpand-1)
   ("M" cider-macroexpand-all))
 
 (defun matcha-cider-set-launcher ()
   "Set `hydra' launcher for `cider'."
-  (matcha-add-debug-command 'matcha-cider-debug/body
-                      '(cider-mode cider-repl-mode cider-clojure-interaction-mode))
-  (matcha-add-eval-command 'matcha-cider-eval/body
-                     '(cider-mode cider-repl-mode cider-clojure-interaction-mode))
-  (matcha-add-mode-command 'matcha-cider-mode/body
-                     '(cider-mode cider-repl-mode cider-clojure-interaction-mode))
-  (matcha-add-test-command 'matcha-cider-test/body
-                     '(cider-mode cider-repl-mode cider-clojure-interaction-mode)))
+  (let ((modes '(cider-mode cider-repl-mode cider-clojure-interaction-mode)))
+    (matcha-add-debug-command 'matcha-cider-debug/body modes)
+    (matcha-add-eval-command 'matcha-cider-eval/body modes)
+    (matcha-add-mode-command 'matcha-cider-mode/body modes)
+    (matcha-add-test-command 'matcha-cider-test/body modes)
+    (matcha-add-refactor-command 'matcha-clj-refactor/body modes)))
 
 (provide 'matcha-cider)
 ;;; matcha-cider.el ends here

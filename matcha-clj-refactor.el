@@ -126,6 +126,21 @@
   ("sc" cljr-show-changelog)
   ("?" cljr-describe-refactoring))
 
+(defhydra matcha-clj-refactor (:color blue :hint nil)
+  "
+
+    Cider Refactor
+  ------------------------------------------------------------------------------
+    [_n_] Namespaces    [_c_] Code    [_p_] Project
+    [_f_] Form          [_s_] CLJR
+
+"
+  ("n" matcha-cljr-ns-menu/body)
+  ("c" matcha-cljr-code-menu/body)
+  ("p" matcha-cljr-project-menu/body)
+  ("f" matcha-cljr-toplevel-form-menu/body)
+  ("s" matcha-cljr-cljr-menu/body))
+
 (provide 'matcha-clj-refactor)
 ;;; matcha-clj-refactor.el ends here
 ;; Local Variables:
