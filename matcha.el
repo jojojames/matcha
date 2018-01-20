@@ -27,6 +27,7 @@
 ;;; Integration with Hydra.
 
 ;;; Code:
+(require 'matcha-base)
 
 ;; Compatibility
 (eval-and-compile
@@ -36,9 +37,6 @@
       (defalias 'when-let* #'when-let)
       (function-put #'if-let* 'lisp-indent-function 2)
       (function-put #'when-let* 'lisp-indent-function 1))))
-
-(require 'matcha-base)
-(require 'matcha-elisp)
 
 (defgroup matcha nil
   "Collection of hydras and a common way to launch them."
@@ -91,6 +89,9 @@
 (defun matcha-setup ()
   "Set up hydras."
   (interactive)
+  ;; Require `elisp' by default.
+  ;; It contains a lot of default functions.
+  (require 'matcha-elisp)
   (dolist (entry matcha-mode-list)
     (pcase entry
       ;; '(:modes a :autoloads b)

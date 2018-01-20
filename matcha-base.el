@@ -169,7 +169,7 @@ Elisp Mode -> `matcha-elisp-mode/body'."
     ;; For example, `matcha-prettier-or-indent-region-or-buffer'.
     (if (fboundp f-hydra) f-hydra f-func)))
 
-(matcha-make format debug mode eval test)
+(matcha-make debug eval format mode test)
 
 (provide 'matcha-base)
 ;;; matcha-base.el ends here
