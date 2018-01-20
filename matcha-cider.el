@@ -157,8 +157,7 @@ for user input.
       Macroexpand                 REPL
   ------------------------------------------------------------------------------
     [_m_] Macroexpand-1      [_z_] Switch to REPl
-    [_M_] Macroexpand all
-                           ^^[_I_] Insert S-exp in REPL
+    [_M_] Macroexpand all    [_I_] Insert S-exp in REPL
 
 "
   ("z" cider-switch-to-repl-buffer)
