@@ -65,7 +65,7 @@
                 ^^[_r_] Refactor
 
 "
-  ("p" +prettier-or-indent-region-or-buffer)
+  ("p" matcha-prettier-or-indent-region-or-buffer)
   ("P" spacemacs/typescript-open-region-in-playground)
   ("t" matcha-mocha/body)
   ("e" matcha-tide-eval/body)
