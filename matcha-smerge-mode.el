@@ -33,7 +33,7 @@
 (defhydra matcha-smerge-mode (:color blue :hint nil)
   "
 
-   Smerge: %(+projectile-matcha-root)
+   Smerge: %(matcha-projectile-root)
 
     Move               Keep                         Diff
   ------------------------------------------------------------------------------

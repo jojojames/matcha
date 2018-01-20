@@ -40,7 +40,7 @@
 (defhydra matcha-macro-step (:color red :hint nil)
   "
 
-   Macrostep: %s(+projectile-matcha-root)
+   Macrostep: %s(matcha-projectile-root)
 
      ^^Expand^^               ^^Navigate^^
   ------------------------------------------------------------------------------

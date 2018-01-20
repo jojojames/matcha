@@ -237,7 +237,7 @@ for user input.
 (defhydra matcha-cider-mode (:color blue :hint nil)
   "
 
-    Cider: %s(+projectile-matcha-root)
+    Cider: %s(matcha-projectile-root)
 
       Do               Jack In                   Connections
   ------------------------------------------------------------------------------

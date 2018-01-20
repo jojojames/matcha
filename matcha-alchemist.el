@@ -56,7 +56,7 @@ If `mix-command' is \"phoenix.server\", then the resulting `defun' will be:
 (defhydra matcha-alchemist-iex (:color blue :hint nil)
   "
 
-    Alchemist IEX: %(+projectile-matcha-root)
+    Alchemist IEX: %(matcha-projectile-root)
 
     Run                     Send                   Loading
   ------------------------------------------------------------------------------
@@ -79,7 +79,7 @@ If `mix-command' is \"phoenix.server\", then the resulting `defun' will be:
 (defhydra matcha-alchemist-eval (:color blue :hint nil)
   "
 
-    Alchemist Eval: %(+projectile-matcha-root)
+    Alchemist Eval: %(matcha-projectile-root)
 
     Eval                Eval & Print               IEX
   ------------------------------------------------------------------------------
@@ -111,7 +111,7 @@ If `mix-command' is \"phoenix.server\", then the resulting `defun' will be:
 (defhydra matcha-alchemist-test (:color blue :hint nil)
   "
 
-    Alchemist Test: %(+projectile-matcha-root)
+    Alchemist Test: %(matcha-projectile-root)
 
     Test                   Navigate               Rerun
   ------------------------------------------------------------------------------
@@ -147,7 +147,7 @@ If `mix-command' is \"phoenix.server\", then the resulting `defun' will be:
 (defhydra matcha-alchemist-help (:color blue :hint nil)
   "
 
-    Alchemist Help: %(+projectile-matcha-root)
+    Alchemist Help: %(matcha-projectile-root)
   ------------------------------------------------------------------------------
     [_:_] Help            [_m_] Mix Help    [_H_] History Help
     [_h_] Help at Point
@@ -163,7 +163,7 @@ If `mix-command' is \"phoenix.server\", then the resulting `defun' will be:
 (defhydra matcha-alchemist-phoenix (:color blue :hint nil)
   "
 
-   Phoenix: %(+projectile-matcha-root)
+   Phoenix: %(matcha-projectile-root)
 
     ^Routes^             ^Model^              ^Resources^
   ------------------------------------------------------------------------------
@@ -186,7 +186,7 @@ If `mix-command' is \"phoenix.server\", then the resulting `defun' will be:
 (defhydra matcha-alchemist-mode (:color blue :hint nil)
   "
 
-    Alchemist: %(+projectile-matcha-root)
+    Alchemist: %(matcha-projectile-root)
 
     ^Do^             ^Run^               ^Execute^        ^Compile^
   ------------------------------------------------------------------------------

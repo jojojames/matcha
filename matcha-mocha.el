@@ -4,7 +4,7 @@
 (defhydra matcha-mocha (:color blue :hint nil)
   "
 
-   Mocha: %s(+projectile-matcha-root)
+   Mocha: %s(matcha-projectile-root)
 
     Test               Debug
   ------------------------------------------------------------------------------

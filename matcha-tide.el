@@ -54,7 +54,7 @@
 (defhydra matcha-tide-mode (:color blue :hint nil)
   "
 
-   Typescript: %(+projectile-matcha-root)
+   Typescript: %(matcha-projectile-root)
 
     ^Do^           ^Refactor^             ^Info^                  ^Misc^
   ------------------------------------------------------------------------------

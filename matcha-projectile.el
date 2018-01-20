@@ -30,7 +30,7 @@
 (require 'matcha-base)
 (require 'projectile)
 
-(defun +projectile-matcha-root ()
+(defun matcha-projectile-root ()
   "Return path `matcha-projectile' can print in heading."
   (if (projectile-project-p)
       (file-name-nondirectory
@@ -41,7 +41,7 @@
 (defhydra matcha-projectile (:color blue :hint nil :idle 0)
   "
 
-    Projectile: %s(+projectile-matcha-root)
+    Projectile: %s(matcha-projectile-root)
 
     Files             Search          Buffer             Do
   ------------------------------------------------------------------------------

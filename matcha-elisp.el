@@ -126,7 +126,7 @@ Requires smartparens because all movement is done using `sp-forward-symbol'."
 (defhydra matcha-emacs-lisp-mode (:color blue :hint nil)
   "
 
-    Elisp: %s(+projectile-matcha-root)
+    Elisp: %s(matcha-projectile-root)
 
     ^^Do^^              ^^Find^^                  ^^Describe^^
   ------------------------------------------------------------------------------

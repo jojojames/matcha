@@ -30,7 +30,7 @@
 (eval-when-compile (require 'subr-x))
 (require 'hydra)
 
-(defun +projectile-matcha-root ()
+(defun matcha-projectile-root ()
   "Return path `matcha-projectile' can print in heading."
   (if (projectile-project-p)
       (file-name-nondirectory

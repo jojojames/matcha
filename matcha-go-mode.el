@@ -52,7 +52,7 @@
 (defhydra matcha-go-mode (:color blue :hint nil)
   "
 
-    Go: %s(+projectile-matcha-root)
+    Go: %s(matcha-projectile-root)
 
       Do                       Doc                  Play
   ------------------------------------------------------------------------------
