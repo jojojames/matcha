@@ -28,7 +28,7 @@
 
 ;;; Code:
 (require 'matcha-base)
-(require 'password-store)
+(require 'password-store nil t)
 
 (defhydra matcha-pass-mode (:color blue :hint nil)
   "
@@ -53,7 +53,9 @@
   ("." password-store-url)
   ("v" password-store-version))
 
-(+add-mode-command #'matcha-pass-mode/body '(pass-mode))
+(defun matcha-pass-set-launcher ()
+  "Set up `pass' with `hydra'."
+  (+add-mode-command #'matcha-pass-mode/body '(pass-mode)))
 
 (provide 'matcha-pass)
 ;;; matcha-pass.el ends here

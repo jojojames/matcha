@@ -62,6 +62,7 @@
     notmuch
     omnisharp
     org
+    pass
     python
     restclient
     ruby-mode
@@ -114,9 +115,6 @@
 (autoload 'matcha-p4/body "matcha-p4" nil t)
 (with-eval-after-load 'p4
   (require 'matcha-p4))
-
-(with-eval-after-load 'pass
-  (require 'matcha-pass))
 
 (autoload 'matcha-projectile/body "matcha-projectile" nil t)
 (with-eval-after-load 'projectile
