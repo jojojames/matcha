@@ -86,12 +86,12 @@ pointed at COMMAND.
 
 MODE may be a single symbol or a list of symbols.
 
-Add it to `%s' or `%s'.
+Add it to `%S' or `%S'.
 
-If MINOR-P is t, COMMAND will be added to `%s'."
-                       (symbol-name minor-mode-fn-alist)
-                       (symbol-name major-mode-fn-alist)
-                       (symbol-name minor-mode-fn-alist))
+If MINOR-P is t, COMMAND will be added to `%S'."
+                       minor-mode-fn-alist
+                       major-mode-fn-alist
+                       minor-mode-fn-alist)
               (mapc (lambda (mode)
                       (if (or (memq mode minor-mode-list) minor-p)
                           (push `(,mode . ,command) ,minor-mode-fn-alist)
