@@ -30,6 +30,17 @@
 (require 'matcha-base)
 (require 'go-mode nil t)
 
+(defhydra matcha-go-mode-eval (:color blue :hint nil)
+  "
+        Go Eval
+  ------------------------------------------------------------------------------
+   [_b_] Play Buffer    [_r_] Play Region    [_d_] Download Play
+
+"
+  ("b" go-play-buffer)
+  ("r" go-play-region)
+  ("d" go-download-play))
+
 (defhydra matcha-go-mode-goto (:color blue :hint nil)
   "
 
@@ -54,11 +65,13 @@
 
     Go: %s(matcha-projectile-root)
 
-      Do                       Doc                  Play
+      Do                       Doc                       Misc
   ------------------------------------------------------------------------------
-    [_=_] Format           [_dd_] GoDoc            [_pb_] Play Buffer
-    [_ia_] Add Import      [_dp_] GoDoc at Point   [_pr_] Play Region
-    [_ir_] Remove Imports                        ^^[_pd_] Download Play
+    [_=_] Format             [_dd_] GoDoc              [_m_] Guru
+    [_e_] Eval               [_dp_] GoDoc at Point     [_d_] Doctor
+    [_ia_] Add Import
+    [_ir_] Remove Imports
+
 
     Goto                  Manage
   ------------------------------------------------------------------------------
@@ -71,19 +84,66 @@
   ("dd" godoc)
   ("dp" godoc-at-point)
   ("ia" go-import-add)
+  ("e" matcha-go-mode-eval/body)
   ("ir" go-remove-unused-imports)
-  ("pb" go-play-buffer)
-  ("pr" go-play-region)
-  ("pd" go-download-play)
   ("?" godef-describe)
   ("g" matcha-go-mode-goto/body)
   ("j" godef-jump)
   ("c" go-coverage)
   ("ps" go-set-project)
-  ("pR" go-reset-gopath))
+  ("pR" go-reset-gopath)
+  ("m" matcha-go-mode-guru/body)
+  ("d" matcha-go-mode-godoctor/body))
+
+(defhydra matcha-go-mode-guru (:color blue :hint nil)
+  "
+
+        Go Guru
+  ------------------------------------------------------------------------------
+    [_d_] Describe    [_f_] Free Vars    [_i_] Implements    [_c_] Peers
+    [_r_] Referrers   [_j_] Definition   [_p_] Points To     [_s_] Callstack
+    [_e_] Errors      [_<_] Callers      [_>_] Callees       [_x_] Expand Region
+
+"
+  ("d" go-guru-describe)
+  ("f" go-guru-freevars)
+  ("i" go-guru-implements)
+  ("c" go-guru-peers)
+  ("r" go-guru-referrers)
+  ("j" go-guru-definition)
+  ("p" go-guru-pointsto)
+  ("s" go-guru-callstack)
+  ("e" go-guru-whicherrs)
+  ("<" go-guru-callers)
+  (">" go-guru-callees)
+  ("x" go-guru-expand-region))
+
+(defhydra matcha-go-mode-godoctor (:color blue :hint nil)
+  "
+
+        Go Doctor
+  ------------------------------------------------------------------------------
+    [_r_] Rename       [_R_] Rename (Dry Run)      [_S_] Set Scope
+    [_e_] Extract      [_E_] Extract (Dry Run)
+    [_t_] Toggle       [_T_] Toggle (Dry Run)
+    [_d_] GoDoc        [_D_] GoDoc (Dry Run)
+
+"
+  ("r" godoctor-rename)
+  ("R" godoctor-rename-dry-run)
+  ("e" godoctor-extract)
+  ("E" godoctor-extract-dry-run)
+  ("t" godoctor-toggle)
+  ("T" godoctor-toggle-dry-run)
+  ("d" godoctor-godoc)
+  ("D" godoctor-godoc-dry-run)
+  ("S" godoctor-set-scope))
 
 (defun matcha-go-mode-set-launcher ()
   "Set up `go-mode' with `hydra'."
+  (matcha-set-refactor-command
+   :mode 'go-mode :command 'matcha-go-mode-godoctor/body)
+  (matcha-set-eval-command :mode 'go-mode :command 'matcha-go-mode-eval/body)
   (matcha-set-format-command :mode 'go-mode :command 'gofmt)
   (matcha-set-mode-command :mode 'go-mode :command 'matcha-go-mode/body))
 
