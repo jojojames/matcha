@@ -76,33 +76,6 @@
             (defvar ,minor-mode-fn-alist nil
               (format "Alist of minor commands for %s." ,cmd-name))
 
-            (defun ,(intern (format "matcha-add-major-%s-command" cmd-name))
-                (fn major-modes)
-              ,(format "Loop over MAJOR-MODES and make an alist of each
-major mode pointed at FN. Add it to `%s'." (symbol-name major-mode-fn-alist))
-              (mapc (lambda (mode)
-                      (push `(,mode . ,fn) ,major-mode-fn-alist))
-                    major-modes))
-
-            (defun ,(intern (format "matcha-add-minor-%s-command" cmd-name))
-                (fn minor-modes)
-              ,(format "Loop over MINOR-MODES and make an alist of each
-minor mode pointed at FN. Add it to `%s'." (symbol-name minor-mode-fn-alist))
-              (mapc (lambda (mode)
-                      (push `(,mode . ,fn) ,minor-mode-fn-alist))
-                    minor-modes))
-
-            (defun ,(intern (format "matcha-add-%s-command" cmd-name))
-                (fn modes)
-              ,(format "Loop over MODES and make an alist of each
-mode pointed at FN. Add it to `%s' or `%s'." (symbol-name minor-mode-fn-alist)
-(symbol-name major-mode-fn-alist))
-              (mapc (lambda (mode)
-                      (if (memq mode minor-mode-list)
-                          (push `(,mode . ,fn) ,minor-mode-fn-alist)
-                        (push `(,mode . ,fn) ,major-mode-fn-alist)))
-                    modes))
-
             (cl-defun ,(intern (format "matcha-set-%s-command" cmd-name))
                 (&key
                  mode
