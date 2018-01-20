@@ -45,6 +45,11 @@
   :group 'tools
   :group 'convenience)
 
+(defcustom matcha-use-launcher-p t
+  "Whether or not to use hydra launcher."
+  :type 'bool
+  :group 'matcha)
+
 (defcustom matcha-mode-list
   '(alchemist
     android-mode
@@ -80,11 +85,6 @@
     xcode-mode)
   "The list of modes for which a hydra will be defined."
   :type '(repeat (choice symbol sexp))
-  :group 'matcha)
-
-(defcustom matcha-use-launcher-p t
-  "Whether or not to use hydra launcher."
-  :type 'bool
   :group 'matcha)
 
 ;;;###autoload
