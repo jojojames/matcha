@@ -48,6 +48,7 @@
 (defcustom matcha-mode-list
   '(alchemist
     android-mode
+    cc-mode ;; `java-mode'
     cider
     dired
     erlang
@@ -103,10 +104,6 @@
                     (concat "matcha-" (symbol-name m) "-set-launcher"))))
               (when (fboundp setup-function)
                 (funcall setup-function)))))))))
-
-;; FIXME: This needs to go into a `cc-mode'.
-(with-eval-after-load 'java-mode
-  (require 'matcha-java))
 
 (autoload 'matcha-magit/body "matcha-magit" nil t)
 (with-eval-after-load 'magit

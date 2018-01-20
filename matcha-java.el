@@ -1,4 +1,4 @@
-;;; matcha-java.el --- Integration with Hydra. -*- lexical-binding: t -*-
+;;; matcha-cc-mode.el --- Integration with Hydra. -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2017 James Nguyen
 
@@ -48,12 +48,12 @@
 (defhydra matcha-java-mode (:color blue)
   ("u" java-eval-nofocus "Eval"))
 
-(defun matcha-java-mode-set-launcher ()
+(defun matcha-cc-mode-mode-set-launcher ()
   "Set up `hydra' launcher for `java-mode'."
   (+add-mode-command #'matcha-java-mode/body '(java-mode)))
 
-(provide 'matcha-java)
-;;; matcha-java.el ends here
+(provide 'matcha-cc-mode)
+;;; matcha-cc-mode.el ends here
 ;; Local Variables:
 ;; byte-compile-warnings: (not free-vars unresolved noruntime cl-functions obsolete)
 ;; End:
