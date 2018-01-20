@@ -46,6 +46,7 @@ Requires smartparens because all movement is done using `sp-up-sexp'."
   (require 'smartparens)
   (let ((evil-move-beyond-eol t))
     ;; evil-move-beyond-eol disables the evil advices around eval-last-sexp
+    (ignore evil-move-beyond-eol)
     (save-excursion
       (let ((max 10))
         (while (and (> max 0)
@@ -61,6 +62,7 @@ Requires smartparens because all movement is done using `sp-forward-symbol'."
   (interactive)
   (require 'smartparens)
   (let ((evil-move-beyond-eol t))
+    (ignore evil-move-beyond-eol)
     ;; evil-move-beyond-eol disables the evil advices around eval-last-sexp
     (save-excursion
       (sp-forward-symbol)
