@@ -103,7 +103,7 @@ mode pointed at FN. Add it to `%s' or `%s'." (symbol-name minor-mode-fn-alist)
                         (push `(,mode . ,fn) ,major-mode-fn-alist)))
                     modes))
 
-            (defun ,(intern (format "+run-%s-command" cmd-name)) ()
+            (defun ,(intern (format "matcha-run-%s-command" cmd-name)) ()
               ,(format "Run major or minor mode command for %s." cmd-name)
               (interactive)
               (let ((major-f (cdr (assq major-mode ,major-mode-fn-alist)))

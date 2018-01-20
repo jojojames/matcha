@@ -7,11 +7,11 @@
       ;; Example Usage
       (defhydra matcha-space (:color blue)
         "SPACE"
-        ("=" +run-indent-command)
-        ("d" +run-debug-command)
-        ("m" +run-mode-command)
-        ("e" +run-eval-command)
-        ("t" +run-test-command))
+        ("=" matcha-run-indent-command)
+        ("d" matcha-run-debug-command)
+        ("m" matcha-run-mode-command)
+        ("e" matcha-run-eval-command)
+        ("t" matcha-run-test-command))
 
       (define-key global-map (kbd "<SPC>") #'matcha-space/body))
   #+end_src
