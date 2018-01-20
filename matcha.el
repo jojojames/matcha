@@ -65,6 +65,7 @@
     python
     restclient
     ruby-mode
+    rtags
     slime
     smerge-mode
     swift-mode
@@ -120,9 +121,6 @@
 (autoload 'matcha-projectile/body "matcha-projectile" nil t)
 (with-eval-after-load 'projectile
   (require 'matcha-projectile))
-
-(with-eval-after-load 'rtags
-  (require 'matcha-rtags))
 
 (provide 'matcha)
 ;;; matcha.el ends here
