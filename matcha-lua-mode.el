@@ -30,7 +30,7 @@
 (require 'matcha-base)
 (require 'lua-mode)
 
-(defun +lua-run-test-suite ()
+(defun matcha-lua-mode-run-test-suite ()
   "Run test_suite.lua."
   (interactive)
   (let ((default-directory (locate-dominating-file
@@ -43,7 +43,7 @@
        "*lua test results*")
      t)))
 
-(defun +lua-run-test-file ()
+(defun matcha-lua-run-test-file ()
   "Run test file using buffer as file."
   (interactive)
   (if-let (buffer-file (buffer-file-name))
@@ -57,7 +57,7 @@
                            t))
     (message "`buffer-file-name' is nil.")))
 
-(defun +lua-run-test-at-point ()
+(defun matcha-lua-run-test-at-point ()
   "Run test at point."
   (interactive)
   (if-let (buffer-file (buffer-file-name))
@@ -86,9 +86,9 @@
 
 (defhydra matcha-lua-mode-test (:color blue :columns 4)
   "Lua Test"
-  ("p" +lua-run-test-at-point "Test at Point")
-  ("f" +lua-run-test-file "Test File")
-  ("t" +lua-run-test-suite "Test Suite"))
+  ("p" matcha-lua-run-test-at-point "Test at Point")
+  ("f" matcha-lua-run-test-file "Test File")
+  ("t" matcha-lua-mode-run-test-suite "Test Suite"))
 
 (defhydra matcha-lua-mode-eval (:color blue :columns 4)
   "Lua Eval"

@@ -36,13 +36,13 @@
       (magit-toplevel)
     "Not yet loaded."))
 
-(defun +magit-status-pick-repository ()
+(defun matcha-magit-status-pick-repository ()
   "Calls `magit-status' with a prefix argument to allow picking the repository."
   (interactive)
   (let ((current-prefix-arg '(4))) ; C-u
     (call-interactively 'magit-status)))
 
-(defun +magit-status-or-switch-buffer ()
+(defun matcha-magit-status-or-switch-buffer ()
   "Switch to existing `magit-status' without updating or run `magit-status'.
 If `magit' is not yet loaded yet, just call `magit-status' directly."
   (interactive)
@@ -109,8 +109,8 @@ If `magit' is not yet loaded yet, just call `magit-status' directly."
   ("b" magit-blame)
   ("l" matcha-magit-log/body)
   ("p" magit-list-repositories)
-  ("r" +magit-status-pick-repository)
-  ("g" +magit-status-or-switch-buffer)
+  ("r" matcha-magit-status-pick-repository)
+  ("g" matcha-magit-status-or-switch-buffer)
   ("s" magit-status)
   ("ef" ediff-files)
   ("eF" ediff-files3)

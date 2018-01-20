@@ -30,7 +30,7 @@
 (require 'matcha-base)
 (require 'dired)
 
-(defun +dired-find-file ()
+(defun matcha-dired-find-file ()
   "Like `find-file' but with `default-directory' set to the
 one specified by listing header."
   (interactive)
@@ -50,7 +50,7 @@ one specified by listing header."
                           ^^[_i_] Immediate
 
 "
-  ("f" +dired-find-file)
+  ("f" matcha-dired-find-file)
   ("+" dired-create-directory)
   ("q" wdired-change-to-wdired-mode)
   ("m" matcha-dired-mark/body)

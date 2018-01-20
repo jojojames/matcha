@@ -30,7 +30,7 @@
 (require 'matcha-base)
 (require 'geiser)
 
-(defmacro +define-geiser-eval--and-print-functions (&rest geiser-evals)
+(defmacro matcha-geiser-define-eval-and-print-functions (&rest geiser-evals)
   "Define eval functions that prints to the buffer after."
   `(progn
      ,@(cl-loop
@@ -43,7 +43,7 @@
              (let ((current-prefix-arg 4)) ; C-u
                (call-interactively ',eval)))))))
 
-(+define-geiser-eval--and-print-functions geiser-eval-last-sexp)
+(matcha-geiser-define-eval-and-print-functions geiser-eval-last-sexp)
 
 ;; TODO geiser-debug
 ;; TODO geiser-company

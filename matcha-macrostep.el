@@ -30,7 +30,7 @@
 (require 'matcha-base)
 (require 'macrostep nil t)
 
-(defun +macrostep-expand-or-hydra ()
+(defun matcha-macrostep-expand-or-open-hydra ()
   "Run `macrostep-expand' if not already. Open hydra otherwise."
   (interactive)
   (if (bound-and-true-p macrostep-mode)

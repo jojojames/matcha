@@ -31,7 +31,7 @@
 (require 'matcha-macrostep)
 ;; (require 'elisp-refs)
 
-(defun +goto-to-scratch-buffer ()
+(defun matcha-goto-scratch ()
   "Move to *scratch* buffer."
   (interactive)
   (pop-to-buffer "*scratch*"))
@@ -55,7 +55,7 @@ Requires smartparens because all movement is done using `sp-up-sexp'."
       (sp-up-sexp arg)
       (call-interactively 'eval-last-sexp))))
 
-(defun spacemacs/eval-current-symbol-sp ()
+(defun matcha-eval-current-symbol-sp ()
   "Call `eval-last-sexp' on the symbol around point.
 Requires smartparens because all movement is done using `sp-forward-symbol'."
   (interactive)
@@ -68,7 +68,7 @@ Requires smartparens because all movement is done using `sp-forward-symbol'."
 
 ;; https://github.com/jwiegley/use-package/issues/152
 ;; Edebug a defun or defmacro
-(defvar modi/fns-in-edebug nil
+(defvar matcha-fns-in-edebug nil
   "List of functions for which `edebug' is instrumented.")
 (defconst modi/fns-regexp (concat "(\\s-*"
                                   "\\(defun\\|defmacro\\)\\s-+"
@@ -83,17 +83,17 @@ Requires smartparens because all movement is done using `sp-forward-symbol'."
       (setq fn (match-string 1))
       (mark-sexp)
       (narrow-to-region (point) (mark))
-      (if (member fn modi/fns-in-edebug)
+      (if (member fn matcha-fns-in-edebug)
           ;; If the function is already being edebugged, uninstrument it
           (progn
-            (setq modi/fns-in-edebug (delete fn modi/fns-in-edebug))
+            (setq matcha-fns-in-edebug (delete fn matcha-fns-in-edebug))
             (eval-region (point) (mark))
             (setq-default eval-expression-print-length 12)
             (setq-default eval-expression-print-level  4)
             (message "Edebug disabled: %s" fn))
         ;; If the function is not being edebugged, instrument it
         (progn
-          (add-to-list 'modi/fns-in-edebug fn)
+          (add-to-list 'matcha-fns-in-edebug fn)
           (setq-default eval-expression-print-length nil)
           (setq-default eval-expression-print-level  nil)
           (edebug-defun)
@@ -115,7 +115,7 @@ Requires smartparens because all movement is done using `sp-forward-symbol'."
 (defhydra matcha-emacs-lisp-eval (:color blue :columns 4)
   "Elisp Eval"
   ("c" spacemacs/eval-current-form-sp "Current Form")
-  ("s" spacemacs/eval-current-symbol-sp "Current Symbol")
+  ("s" matcha-eval-current-symbol-sp "Current Symbol")
   ("r" eval-region "Region")
   ("e" eval-last-sexp "Sexp")
   ("f" eval-defun "Defun")
@@ -155,7 +155,7 @@ Requires smartparens because all movement is done using `sp-forward-symbol'."
   ("U" emacs-lisp-byte-compile-and-load)
   ("rd" byte-recompile-directory)
   ("rD" disassemble)
-  ("c" +goto-to-scratch-buffer)
+  ("c" matcha-goto-scratch)
   ("z" ielm)
   ("sf" describe-function)
   ("sv" describe-variable)
@@ -166,7 +166,7 @@ Requires smartparens because all movement is done using `sp-forward-symbol'."
   ("l" find-library)
   ("f" find-function)
   ("v" find-variable)
-  ("m" +macrostep-expand-or-hydra)
+  ("m" matcha-macrostep-expand-or-open-hydra)
   ("e" matcha-emacs-lisp-eval/body)
   ("d" matcha-emacs-lisp-debug/body))
 

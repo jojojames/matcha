@@ -60,14 +60,14 @@ This method assumes we've done something like this below.
               (add-hook 'cider-connected-hook #'cider-run)))
   (cider-jack-in))
 
-(defun +cider-connect-dwim ()
+(defun matcha-cider-connect-dwim ()
   "Connect with cider-jack-in if not connected or restart if it is."
   (interactive)
   (if (cider-connected-p)
       (cider-restart)
     (cider-jack-in)))
 
-(defmacro +define-lein-command (&rest lein-commands)
+(defmacro matcha-cider-define-lein-command (&rest lein-commands)
   "Create a command that interfaces with lein.
 If the command contains a %s, it will be an interactive command that asks
 for user input.
@@ -96,13 +96,13 @@ for user input.
                   (concat "lein " clj-command))
                 'compilation-mode (lambda (_) "*lein*") t)))))))
 
-(+define-lein-command "run"
-                      "migratus migrate"
-                      "migratus rollback"
-                      "migratus down"
-                      "migratus up"
-                      "migratus reset"
-                      "migratus create %s")
+(matcha-cider-define-lein-command "run"
+                                  "migratus migrate"
+                                  "migratus rollback"
+                                  "migratus down"
+                                  "migratus up"
+                                  "migratus reset"
+                                  "migratus create %s")
 
 (defhydra matcha-cider-lein
   (:color blue :columns 4)
@@ -274,7 +274,7 @@ for user input.
   ("jp" cider-jack-in-with-profile)
   ("jt" cider-jack-in-with-profile-test)
   ("R" cider-refresh)
-  ("cd" +cider-connect-dwim)
+  ("cd" matcha-cider-connect-dwim)
   ("A" cider-run)
   ("q" cider-quit)
   ("m" cider-macroexpand-1)
