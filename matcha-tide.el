@@ -33,15 +33,6 @@
 ;; (require 'tide nil t)
 ;; (require 'ts-comint)
 
-(defun spacemacs/typescript-open-region-in-playground (start end)
-  "Open selected region in http://www.typescriptlang.org/Playground
-                 If nothing is selected - open the whole current buffer."
-  (interactive (if (use-region-p)
-                   (list (region-beginning) (region-end))
-                 (list (point-min) (point-max))))
-  (browse-url (concat "http://www.typescriptlang.org/Playground#src="
-                      (url-hexify-string (buffer-substring-no-properties start end)))))
-
 (defhydra matcha-tide-eval (:color blue :columns 4)
   "Typescript Eval"
   ("z" run-ts "Run REPL")
@@ -60,13 +51,12 @@
   ------------------------------------------------------------------------------
     [_t_] Test    [_n_] Rename       [_k_] Show Doc           [_z_] Restart Server
     [_e_] Eval    [_f_] Apply Fix    [_?_] Find References    [_E_] Errors
-                ^^[_=_] Format       [_._] GoTo Definition    [_P_] Playground
-                ^^[_p_] Prettier     [_/_] Pop Definition     [_j_] Add JSDoc
+                ^^[_=_] Format       [_._] GoTo Definition    [_j_] Add JSDoc
+                ^^[_p_] Prettier     [_/_] Pop Definition
                 ^^[_r_] Refactor
 
 "
   ("p" matcha-prettier-or-indent-region-or-buffer)
-  ("P" spacemacs/typescript-open-region-in-playground)
   ("t" matcha-mocha/body)
   ("e" matcha-tide-eval/body)
   ("n" tide-rename-symbol)
