@@ -89,7 +89,7 @@
   (matcha-add-minor-eval-command #'matcha-tide-eval/body
                                  '(tide-mode))
 
-  (matcha-add-minor-indent-command #'tide-format
+  (matcha-add-minor-format-command #'tide-format
                                    '(tide-mode))
 
   (matcha-add-minor-mode-command #'matcha-tide-mode/body '(tide-mode)))

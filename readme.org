@@ -7,7 +7,7 @@
       ;; Example Usage
       (defhydra matcha-space (:color blue)
         "SPACE"
-        ("=" matcha-run-indent-command)
+        ("=" matcha-run-format-command)
         ("d" matcha-run-debug-command)
         ("m" matcha-run-mode-command)
         ("e" matcha-run-eval-command)

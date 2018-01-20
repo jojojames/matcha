@@ -93,7 +93,7 @@
 
 (defun matcha-omnisharp-set-launcher ()
   "Set `hydra' launcher for `omnisharp'."
-  (matcha-add-indent-command #'matcha-omnisharp-indent-region-or-buffer '(csharp-mode))
+  (matcha-add-format-command #'matcha-omnisharp-indent-region-or-buffer '(csharp-mode))
   (matcha-add-test-command #'matcha-omnisharp-test/body '(csharp-mode))
   (matcha-add-mode-command #'matcha-omnisharp-mode/body '(csharp-mode)))
 
