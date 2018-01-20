@@ -58,8 +58,8 @@
 
 (defun matcha-python-set-launcher ()
   "Set up `hydra' launcher for `python'."
-  (+add-mode-command #'matcha-python-mode/body '(python-mode))
-  (+add-mode-command #'matcha-python-eval/body '(python-mode)))
+  (matcha-add-mode-command #'matcha-python-mode/body '(python-mode))
+  (matcha-add-mode-command #'matcha-python-eval/body '(python-mode)))
 
 (provide 'matcha-python)
 ;;; matcha-python.el ends here

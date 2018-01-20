@@ -84,9 +84,9 @@
 
 (defun matcha-meghanada-set-launcher ()
   "Set up `meghanada' with `hydra'."
-  (+add-mode-command 'matcha-meghanada-mode/body '(meghanada-mode java-mode))
-  (+add-eval-command 'matcha-meghanada-compile/body '(meghanada-mode java-mode))
-  (+add-test-command 'matcha-meghanada-test/body '(meghanada-mode java-mode)))
+  (matcha-add-mode-command 'matcha-meghanada-mode/body '(meghanada-mode java-mode))
+  (matcha-add-eval-command 'matcha-meghanada-compile/body '(meghanada-mode java-mode))
+  (matcha-add-test-command 'matcha-meghanada-test/body '(meghanada-mode java-mode)))
 
 (provide 'matcha-meghanada)
 ;;; matcha-meghanada.el ends here

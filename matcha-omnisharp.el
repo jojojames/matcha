@@ -98,9 +98,9 @@
 
 (defun matcha-omnisharp-set-launcher ()
   "Set `hydra' launcher for `omnisharp'."
-  (+add-indent-command #'+csharp-indent-dwim '(csharp-mode))
-  (+add-test-command #'matcha-omnisharp-test/body '(csharp-mode))
-  (+add-mode-command #'matcha-omnisharp-mode/body '(csharp-mode)))
+  (matcha-add-indent-command #'+csharp-indent-dwim '(csharp-mode))
+  (matcha-add-test-command #'matcha-omnisharp-test/body '(csharp-mode))
+  (matcha-add-mode-command #'matcha-omnisharp-mode/body '(csharp-mode)))
 
 (provide 'matcha-omnisharp)
 ;;; matcha-omnisharp.el ends here

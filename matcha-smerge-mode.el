@@ -66,7 +66,7 @@
 
 (defun matcha-smerge-mode-set-launcher ()
   "Set up `hydra' launcher for `smerge-mode'."
-  (+add-minor-mode-command 'matcha-smerge-mode/body '(smerge-mode)))
+  (matcha-add-minor-mode-command 'matcha-smerge-mode/body '(smerge-mode)))
 
 (provide 'matcha-smerge-mode)
 ;;; matcha-smerge-mode.el ends here

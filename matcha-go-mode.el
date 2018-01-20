@@ -84,8 +84,8 @@
 
 (defun matcha-go-mode-set-launcher ()
   "Set up `go-mode' with `hydra'."
-  (+add-major-indent-command 'gofmt '(go-mode))
-  (+add-major-mode-command 'matcha-go-mode/body '(go-mode)))
+  (matcha-add-major-indent-command 'gofmt '(go-mode))
+  (matcha-add-major-mode-command 'matcha-go-mode/body '(go-mode)))
 
 (provide 'matcha-go-mode)
 ;;; matcha-go-mode.el ends here

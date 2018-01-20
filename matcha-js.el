@@ -7,19 +7,19 @@
 
 (defun matcha-js-set-launcher ()
   "Set `hydra' launcher for `js'."
-  (+add-major-debug-command 'matcha-indium-debug/body
+  (matcha-add-major-debug-command 'matcha-indium-debug/body
                             '(js2-mode rjsx-mode))
 
-  (+add-major-eval-command 'matcha-indium-eval/body
+  (matcha-add-major-eval-command 'matcha-indium-eval/body
                            '(js2-mode rjsx-mode))
 
-  (+add-major-mode-command 'matcha-indium-mode/body
+  (matcha-add-major-mode-command 'matcha-indium-mode/body
                            '(js2-mode rjsx-mode))
 
-  (+add-major-test-command #'matcha-mocha/body
+  (matcha-add-major-test-command #'matcha-mocha/body
                            '(js2-mode rjsx-mode))
 
-  (+add-major-indent-command #'matcha-prettier-or-indent-region-or-buffer
+  (matcha-add-major-indent-command #'matcha-prettier-or-indent-region-or-buffer
                              '(js-mode
                                js2-mode
                                rjsx-mode)))

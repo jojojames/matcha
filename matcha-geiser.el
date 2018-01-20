@@ -124,8 +124,8 @@
 
 (defun matcha-geiser-set-launcher ()
   "Set up `hydra' launcher for `geiser'."
-  (+add-minor-mode-command #'matcha-geiser-scheme/body '(geiser-mode))
-  (+add-minor-eval-command #'matcha-geiser-eval/body '(geiser-mode)))
+  (matcha-add-minor-mode-command #'matcha-geiser-scheme/body '(geiser-mode))
+  (matcha-add-minor-eval-command #'matcha-geiser-eval/body '(geiser-mode)))
 
 (provide 'matcha-geiser)
 ;;; matcha-geiser.el ends here

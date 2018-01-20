@@ -131,9 +131,9 @@
 
 (defun matcha-lua-mode-set-launcher ()
   "Set up `hydra' launcher for `lua-mode'."
-  (+add-mode-command #'matcha-lua-mode/body '(lua-mode))
-  (+add-eval-command #'matcha-lua-mode-eval/body '(lua-mode))
-  (+add-test-command #'matcha-lua-mode-test/body '(lua-mode)))
+  (matcha-add-mode-command #'matcha-lua-mode/body '(lua-mode))
+  (matcha-add-eval-command #'matcha-lua-mode-eval/body '(lua-mode))
+  (matcha-add-test-command #'matcha-lua-mode-test/body '(lua-mode)))
 
 (provide 'matcha-lua-mode)
 ;;; matcha-lua-mode.el ends here

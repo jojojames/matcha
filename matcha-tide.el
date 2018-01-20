@@ -83,16 +83,16 @@
 
 (defun matcha-tide-set-launcher ()
   "Set `hydra' launcher for `tide'."
-  (+add-minor-test-command #'matcha-mocha/body
+  (matcha-add-minor-test-command #'matcha-mocha/body
                            '(tide-mode))
 
-  (+add-minor-eval-command #'matcha-tide-eval/body
+  (matcha-add-minor-eval-command #'matcha-tide-eval/body
                            '(tide-mode))
 
-  (+add-minor-indent-command #'tide-format
+  (matcha-add-minor-indent-command #'tide-format
                              '(tide-mode))
 
-  (+add-minor-mode-command #'matcha-tide-mode/body '(tide-mode)))
+  (matcha-add-minor-mode-command #'matcha-tide-mode/body '(tide-mode)))
 
 (provide 'matcha-tide)
 ;;; matcha-tide.el ends here

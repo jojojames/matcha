@@ -68,15 +68,15 @@
         appending
         (let* ((cmd-name (symbol-name command))
                (major-mode-fn-alist
-                (intern (format "+local-major-%s-fns" cmd-name)))
+                (intern (format "matcha-local-major-%s-fns" cmd-name)))
                (minor-mode-fn-alist
-                (intern (format "+local-minor-%s-fns" cmd-name))))
+                (intern (format "matcha-local-minor-%s-fns" cmd-name))))
           `((defvar ,major-mode-fn-alist nil
               (format "Alist of major commands for %s." ,cmd-name))
             (defvar ,minor-mode-fn-alist nil
               (format "Alist of minor commands for %s." ,cmd-name))
 
-            (defun ,(intern (format "+add-major-%s-command" cmd-name))
+            (defun ,(intern (format "matcha-add-major-%s-command" cmd-name))
                 (fn major-modes)
               ,(format "Loop over MAJOR-MODES and make an alist of each
 major mode pointed at FN. Add it to `%s'." (symbol-name major-mode-fn-alist))
@@ -84,7 +84,7 @@ major mode pointed at FN. Add it to `%s'." (symbol-name major-mode-fn-alist))
                       (push `(,mode . ,fn) ,major-mode-fn-alist))
                     major-modes))
 
-            (defun ,(intern (format "+add-minor-%s-command" cmd-name))
+            (defun ,(intern (format "matcha-add-minor-%s-command" cmd-name))
                 (fn minor-modes)
               ,(format "Loop over MINOR-MODES and make an alist of each
 minor mode pointed at FN. Add it to `%s'." (symbol-name minor-mode-fn-alist))
@@ -92,7 +92,7 @@ minor mode pointed at FN. Add it to `%s'." (symbol-name minor-mode-fn-alist))
                       (push `(,mode . ,fn) ,minor-mode-fn-alist))
                     minor-modes))
 
-            (defun ,(intern (format "+add-%s-command" cmd-name))
+            (defun ,(intern (format "matcha-add-%s-command" cmd-name))
                 (fn modes)
               ,(format "Loop over MODES and make an alist of each
 mode pointed at FN. Add it to `%s' or `%s'." (symbol-name minor-mode-fn-alist)

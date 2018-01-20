@@ -209,7 +209,7 @@ one specified by listing header."
 
 (defun matcha-dired-set-launcher ()
   "Set up `dired' with `hydra'."
-  (+add-mode-command #'matcha-dired-mode/body '(dired-mode)))
+  (matcha-add-mode-command #'matcha-dired-mode/body '(dired-mode)))
 
 (provide 'matcha-dired)
 ;;; matcha-dired.el ends here

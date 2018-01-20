@@ -217,9 +217,9 @@ If `mix-command' is \"phoenix.server\", then the resulting `defun' will be:
 
 (defun matcha-alchemist-set-launcher ()
   "Set up `elixir-mode' with `hydra'."
-  (+add-minor-mode-command #'matcha-alchemist-mode/body '(alchemist-mode))
-  (+add-minor-eval-command #'matcha-alchemist-eval/body '(alchemist-mode))
-  (+add-minor-test-command #'matcha-alchemist-test/body '(alchemist-mode)))
+  (matcha-add-minor-mode-command #'matcha-alchemist-mode/body '(alchemist-mode))
+  (matcha-add-minor-eval-command #'matcha-alchemist-eval/body '(alchemist-mode))
+  (matcha-add-minor-test-command #'matcha-alchemist-test/body '(alchemist-mode)))
 
 (provide 'matcha-alchemist)
 ;;; matcha-elixir-mode.el ends here

@@ -36,7 +36,7 @@
 
 (defun matcha-json-mode-set-launcher ()
   "Set up `hydra' launcher for `json-mode'."
-  (+add-mode-command #'matcha-json-mode/body '(json-mode)))
+  (matcha-add-mode-command #'matcha-json-mode/body '(json-mode)))
 
 (provide 'matcha-json-mode)
 ;;; matcha-json-mode.el ends here

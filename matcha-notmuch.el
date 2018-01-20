@@ -211,10 +211,10 @@
 
 (defun matcha-notmuch-set-launcher ()
   "Set `hydra' launcher for `notmuch'."
-  (+add-mode-command #'matcha-notmuch-hello-mode/body '(notmuch-hello-mode))
-  (+add-mode-command #'matcha-notmuch-show-mode/body '(notmuch-show-mode))
-  (+add-mode-command #'matcha-notmuch-tree-mode/body '(notmuch-tree-mode))
-  (+add-mode-command #'matcha-notmuch-search-mode/body '(notmuch-search-mode)))
+  (matcha-add-mode-command #'matcha-notmuch-hello-mode/body '(notmuch-hello-mode))
+  (matcha-add-mode-command #'matcha-notmuch-show-mode/body '(notmuch-show-mode))
+  (matcha-add-mode-command #'matcha-notmuch-tree-mode/body '(notmuch-tree-mode))
+  (matcha-add-mode-command #'matcha-notmuch-search-mode/body '(notmuch-search-mode)))
 
 (provide 'matcha-notmuch)
 ;;; matcha-notmuch.el ends here

@@ -62,7 +62,7 @@
 
 (defun matcha-xcode-mode-set-launcher ()
   "Set `hydra' launcher for `xcode-mode'."
-  (+add-minor-mode-command #'matcha-xcode-mode/body '(xcode-mode)))
+  (matcha-add-minor-mode-command #'matcha-xcode-mode/body '(xcode-mode)))
 
 (provide 'matcha-xcode-mode)
 ;;; matcha-xcode-mode.el ends here

@@ -45,7 +45,7 @@
 
 (defun matcha-android-mode-set-launcher ()
   "Set up `android-mode' with `hydra'."
-  (+add-minor-mode-command #'matcha-android-mode/body '(android-mode)))
+  (matcha-add-minor-mode-command #'matcha-android-mode/body '(android-mode)))
 
 (provide 'matcha-android-mode)
 ;;; matcha-android-mode.el ends here
