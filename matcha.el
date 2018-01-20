@@ -57,6 +57,7 @@
     (js js2-mode rjsx-mode)
     json-mode
     lua-mode
+    meghanada
     motion-mode
     notmuch
     omnisharp
@@ -108,9 +109,6 @@
 (autoload 'matcha-magit/body "matcha-magit" nil t)
 (with-eval-after-load 'magit
   (require 'matcha-magit))
-
-(with-eval-after-load 'meghanada
-  (require 'matcha-meghanada))
 
 (autoload 'matcha-p4/body "matcha-p4" nil t)
 (with-eval-after-load 'p4
