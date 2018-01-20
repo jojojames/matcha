@@ -64,7 +64,9 @@
     notmuch
     omnisharp
     org
+    (:modes p4 :autoloads matcha-p4/body)
     pass
+    (:modes projectile :autoloads matcha-projectile/body)
     python
     restclient
     ruby-mode
@@ -131,14 +133,6 @@ AUTOLOADS is a list of functions that can be autoloaded from MODE-file."
                 (when (fboundp setup-function)
                   (funcall setup-function)))))
           requires)))
-
-(autoload 'matcha-p4/body "matcha-p4" nil t)
-(with-eval-after-load 'p4
-  (require 'matcha-p4))
-
-(autoload 'matcha-projectile/body "matcha-projectile" nil t)
-(with-eval-after-load 'projectile
-  (require 'matcha-projectile))
 
 (provide 'matcha)
 ;;; matcha.el ends here
