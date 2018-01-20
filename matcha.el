@@ -58,6 +58,7 @@
     (js js2-mode rjsx-mode)
     json-mode
     lua-mode
+    (:modes magit :autoloads matcha-magit/body)
     meghanada
     motion-mode
     notmuch
@@ -88,26 +89,48 @@
 (defun matcha-setup ()
   "Set up hydras."
   (interactive)
-  (dolist (mode matcha-mode-list)
-    (let ((m mode)
-          (reqs (list mode)))
-      (when (listp mode)
-        (setq m (car mode)
-              reqs (cdr mode)))
-      (dolist (req reqs)
-        (with-eval-after-load req
-          (require
-           (intern (concat "matcha-" (symbol-name m))))
-          (when matcha-use-launcher-p
-            (let ((setup-function
-                   (intern
-                    (concat "matcha-" (symbol-name m) "-set-launcher"))))
-              (when (fboundp setup-function)
-                (funcall setup-function)))))))))
+  (dolist (entry matcha-mode-list)
+    (pcase entry
+      ;; '(:modes a :autoloads b)
+      ;; '(:modes (a b c) :autoloads (d e f))
+      (`(:modes ,modes :autoloads ,autoloads)
+       (let ((list-modes (if (consp modes)
+                             modes
+                           (list modes)))
+             (list-autoloads (if (consp autoloads)
+                                 autoloads
+                               (list autoloads))))
+         (matcha-require-and-setup (car list-modes) list-modes list-autoloads)))
+      ;; '(a b)
+      ;; '(a b c)
+      (`(,mode . ,_)
+       (matcha-require-and-setup mode entry))
+      ;; 'a
+      (`,mode
+       (matcha-require-and-setup mode (list mode))))))
 
-(autoload 'matcha-magit/body "matcha-magit" nil t)
-(with-eval-after-load 'magit
-  (require 'matcha-magit))
+(defun matcha-require-and-setup (mode requires &optional autoloads)
+  "Bootstrap `matcha' `hydra' using MODE as key.
+
+MODE is used to derived where the file/require exists as well as the setup
+function to call.
+
+REQUIRES is the list of packages that will trigger setup to be called.
+
+AUTOLOADS is a list of functions that can be autoloaded from MODE-file."
+  (let ((derived-mode-sym (intern (format "matcha-%S" mode)))
+        (setup-function (intern (format "matcha-%S-set-launcher" mode))))
+    (when autoloads
+      (mapc (lambda (auto)
+              (autoload auto (symbol-name mode) nil t))
+            autoloads))
+    (mapc (lambda (req)
+            (with-eval-after-load req
+              (require derived-mode-sym)
+              (when matcha-use-launcher-p
+                (when (fboundp setup-function)
+                  (funcall setup-function)))))
+          requires)))
 
 (autoload 'matcha-p4/body "matcha-p4" nil t)
 (with-eval-after-load 'p4
