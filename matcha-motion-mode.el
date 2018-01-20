@@ -31,52 +31,52 @@
 
 ;; TODO: This could be one function or macro...
 
-(defun +rake-to-device ()
+(defun matcha-rake-to-device ()
   "Executes rake device."
   (interactive)
   (motion-execute-rake-command "device"))
 
-(defun +rake-pod-install ()
+(defun matcha-rake-pod-install ()
   "Executes rake install."
   (interactive)
   (motion-execute-rake-command "pod:install"))
 
-(defun +rake-pod-update ()
+(defun matcha-rake-pod-update ()
   "Executes rake update."
   (interactive)
   (motion-execute-rake-command "pod:update"))
 
-(defun +rake-clean ()
+(defun matcha-rake-clean ()
   "Executes rake update."
   (interactive)
   (motion-execute-rake-command "clean"))
 
-(defun +rake-spec ()
+(defun matcha-rake-spec ()
   "Executes rake spec."
   (interactive)
   (motion-execute-rake-command "spec"))
 
-(defun +rake-run-sim ()
+(defun matcha-rake-run-sim ()
   "Tries to reload motion app.
 If failure, run rake instead."
   (interactive)
   (unless (ignore-errors (motion-reload-app))
     (motion-execute-rake)))
 
-(defun +rake-execute (command)
+(defun matcha-rake-execute (command)
   "Enter in rake command to execute."
   (interactive "sEnter Rake command:")
   (motion-execute-rake-command command))
 
 (defhydra matcha-motion-mode (:color blue)
   "Motion"
-  ("pi" +rake-pod-install "Pod Install")
-  ("pu" +rake-pod-update "Pod Update")
-  ("c" +rake-clean "Rake Clean")
-  ("d" +rake-to-device "Rake to Device")
-  ("R" +rake-execute "Rake Execute")
-  ("u" +rake-run-sim "Rake Run Sim")
-  ("t" +rake-spec "Rake Spec")
+  ("pi" matcha-rake-pod-install "Pod Install")
+  ("pu" matcha-rake-pod-update "Pod Update")
+  ("c" matcha-rake-clean "Rake Clean")
+  ("d" matcha-rake-to-device "Rake to Device")
+  ("R" matcha-rake-execute "Rake Execute")
+  ("u" matcha-rake-run-sim "Rake Run Sim")
+  ("t" matcha-rake-spec "Rake Spec")
   ("r" motion-execute-rake "Execute Rake"))
 
 (defun matcha-motion-mode-set-launcher ()
