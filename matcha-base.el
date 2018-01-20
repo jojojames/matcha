@@ -28,6 +28,7 @@
 
 ;;; Code:
 (eval-when-compile (require 'subr-x))
+(require 'hydra)
 
 (defun +projectile-matcha-root ()
   "Return path `matcha-projectile' can print in heading."
