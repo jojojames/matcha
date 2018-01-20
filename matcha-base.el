@@ -46,7 +46,7 @@
   "Return path to `default-directory' for use with `hydra' heading."
   default-directory)
 
-(defun indent-region-or-buffer ()
+(defun matcha-indent-region-or-buffer ()
   "Indent a region if selected, otherwise the whole buffer."
   (interactive)
   (save-excursion
@@ -130,7 +130,7 @@ mode pointed at FN. Add it to `%s' or `%s'." (symbol-name minor-mode-fn-alist)
                       (funcall (car commands)))
                      (:default
                       (funcall
-                       (+normalized-title-to-matcha-command
+                       (matcha-normalized-title-to-matcha-command
                         (completing-read
                          "Which Hydra? "
                          (mapcar
@@ -138,7 +138,6 @@ mode pointed at FN. Add it to `%s' or `%s'." (symbol-name minor-mode-fn-alist)
                             (matcha-command-to-normalized-title command))
                           ;; We want the major mode to be first in the list.
                           (reverse commands))))))))))))))))
-
 
 (defun matcha-command-to-normalized-title (matcha-command)
   "Takes in a function symbol and converts it to a human readable string.
@@ -156,7 +155,7 @@ mode pointed at FN. Add it to `%s' or `%s'." (symbol-name minor-mode-fn-alist)
                       tokens " "))
           "/body"))))
 
-(defun +normalized-title-to-matcha-command (title)
+(defun matcha-normalized-title-to-matcha-command (title)
   "Takes in a string and returns a `hydra' function symbol.
 
 Elisp Mode -> `matcha-elisp-mode/body'."

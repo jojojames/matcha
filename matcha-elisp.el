@@ -170,7 +170,7 @@ Requires smartparens because all movement is done using `sp-forward-symbol'."
   ("e" matcha-emacs-lisp-eval/body)
   ("d" matcha-emacs-lisp-debug/body))
 
-(+add-major-indent-command 'indent-region-or-buffer
+(+add-major-indent-command 'matcha-indent-region-or-buffer
                            '(emacs-lisp-mode lisp-interaction-mode))
 (+add-major-debug-command 'matcha-emacs-lisp-debug/body
                           '(emacs-lisp-mode lisp-interaction-mode))
