@@ -52,6 +52,7 @@
     dired
     erlang
     geiser
+    go-mode
     gud-lldb
     (js js2-mode rjsx-mode)
     json-mode
