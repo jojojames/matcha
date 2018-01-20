@@ -60,7 +60,7 @@
         (indent-buffer)
         (message "Indented buffer.")))))
 
-(defmacro +make-editing-commands (&rest commands)
+(defmacro matcha-make (&rest commands)
   "Make a common interface command."
   `(progn
      ,@(cl-loop
@@ -169,7 +169,7 @@ Elisp Mode -> `matcha-elisp-mode/body'."
     ;; For example, `matcha-prettier-or-indent-region-or-buffer'.
     (if (fboundp f-hydra) f-hydra f-func)))
 
-(+make-editing-commands indent debug mode eval test)
+(matcha-make indent debug mode eval test)
 
 (provide 'matcha-base)
 ;;; matcha-base.el ends here
