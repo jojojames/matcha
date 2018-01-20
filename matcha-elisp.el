@@ -36,7 +36,7 @@
   (interactive)
   (pop-to-buffer "*scratch*"))
 
-(defun spacemacs/eval-current-form-sp (&optional arg)
+(defun matcha-elisp-eval-current-form-sp (&optional arg)
   "Call `eval-last-sexp' after moving out of one level of
 parentheses. Will exit any strings and/or comments first.
 An optional ARG can be used which is passed to `sp-up-sexp' to move out of more
@@ -55,7 +55,7 @@ Requires smartparens because all movement is done using `sp-up-sexp'."
       (sp-up-sexp arg)
       (call-interactively 'eval-last-sexp))))
 
-(defun matcha-eval-current-symbol-sp ()
+(defun matcha-elisp-eval-current-symbol-sp ()
   "Call `eval-last-sexp' on the symbol around point.
 Requires smartparens because all movement is done using `sp-forward-symbol'."
   (interactive)
@@ -114,8 +114,8 @@ Requires smartparens because all movement is done using `sp-forward-symbol'."
 
 (defhydra matcha-emacs-lisp-eval (:color blue :columns 4)
   "Elisp Eval"
-  ("c" spacemacs/eval-current-form-sp "Current Form")
-  ("s" matcha-eval-current-symbol-sp "Current Symbol")
+  ("c" matcha-elisp-eval-current-form-sp "Current Form")
+  ("s" matcha-elisp-eval-current-symbol-sp "Current Symbol")
   ("r" eval-region "Region")
   ("e" eval-last-sexp "Sexp")
   ("f" eval-defun "Defun")
