@@ -84,12 +84,7 @@
   ("i" omnisharp-fix-usings "Fix Usings")
   ("=" omnisharp-code-format-entire-file "Code Format"))
 
-(defun +csharp-indent-dwim ()
-  "Indent csharp code."
-  (interactive)
-  (call-interactively #'+csharp-indent-region-or-buffer))
-
-(defun +csharp-indent-region-or-buffer ()
+(defun matcha-omnisharp-indent-region-or-buffer ()
   "Indent a region if selected, otherwise the whole buffer."
   (interactive)
   (if (region-active-p)
@@ -98,7 +93,7 @@
 
 (defun matcha-omnisharp-set-launcher ()
   "Set `hydra' launcher for `omnisharp'."
-  (matcha-add-indent-command #'+csharp-indent-dwim '(csharp-mode))
+  (matcha-add-indent-command #'matcha-omnisharp-indent-region-or-buffer '(csharp-mode))
   (matcha-add-test-command #'matcha-omnisharp-test/body '(csharp-mode))
   (matcha-add-mode-command #'matcha-omnisharp-mode/body '(csharp-mode)))
 
