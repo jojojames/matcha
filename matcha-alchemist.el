@@ -30,19 +30,19 @@
 (require 'matcha-base)
 (require 'alchemist nil t)
 
-(defmacro +define-alchemist-function (&rest mix-commands)
+(defmacro matcha-define-alchemist-function (&rest mix-commands)
   "Create a command that wraps `alchemist-mix-execute'.
 `mix-command' should be a string that will be the mix command to be ran.
 
 If `mix-command' is \"phoenix.server\", then the resulting `defun' will be:
 
-`+alchemist-mix-phoenix-server'."
+`matcha-alchemist-mix-phoenix-server'."
   `(progn
      ,@(cl-loop
         for command in mix-commands
         collect
         (let ((funsymbol
-               (intern (concat "+alchemist-mix-"
+               (intern (concat "matcha-alchemist-mix-"
                                (s-replace "." "-" command)))))
           `(defun ,funsymbol ()
              ,(concat "Run $ mix " command ".")
@@ -51,7 +51,7 @@ If `mix-command' is \"phoenix.server\", then the resulting `defun' will be:
                (set-process-query-on-exit-flag process nil))
              (alchemist-mix-execute (list ,command)))))))
 
-(+define-alchemist-function "phoenix.server" "deps.get")
+(matcha-define-alchemist-function "phoenix.server" "deps.get")
 
 (defhydra matcha-alchemist-iex (:color blue :hint nil)
   "
@@ -205,7 +205,7 @@ If `mix-command' is \"phoenix.server\", then the resulting `defun' will be:
   ("i" matcha-alchemist-iex/body)
   ("m" matcha-alchemist-mix/body)
   ("h" matcha-alchemist-help/body)
-  ("r" +alchemist-mix-phoenix-server)
+  ("r" matcha-alchemist-mix-phoenix-server)
   ("z" alchemist-iex-run)
   ("l" alchemist-goto-list-symbol-definitions)
   ("xb" alchemist-execute-this-buffer)
