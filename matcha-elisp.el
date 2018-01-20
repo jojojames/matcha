@@ -139,7 +139,7 @@ Requires smartparens because all movement is done using `sp-forward-symbol'."
 
     ^^Compile^^                     Find References         ^^Misc^^
   ------------------------------------------------------------------------------
-    [_u_] Byte Compile             [_rf_] Functions     [_c_] Scratch
+    [_u_] Byte Compile             [_rf_] Functions     [_x_] Scratch
     [_U_] Byte Compile and Load    [_rm_] Macros        [_z_] REPL
     [_rd_] Recompile Directory     [_rc_] Special
     [_rD_] Disassemble             [_rv_] Variables
@@ -155,7 +155,7 @@ Requires smartparens because all movement is done using `sp-forward-symbol'."
   ("U" emacs-lisp-byte-compile-and-load)
   ("rd" byte-recompile-directory)
   ("rD" disassemble)
-  ("c" matcha-goto-scratch)
+  ("x" matcha-goto-scratch)
   ("z" ielm)
   ("sf" describe-function)
   ("sv" describe-variable)
