@@ -170,14 +170,17 @@ Requires smartparens because all movement is done using `sp-forward-symbol'."
   ("e" matcha-emacs-lisp-eval/body)
   ("d" matcha-emacs-lisp-debug/body))
 
-(matcha-add-major-format-command 'matcha-indent-region-or-buffer
-                                 '(emacs-lisp-mode lisp-interaction-mode))
-(matcha-add-major-debug-command 'matcha-emacs-lisp-debug/body
-                                '(emacs-lisp-mode lisp-interaction-mode))
-(matcha-add-major-eval-command 'matcha-emacs-lisp-eval/body
-                               '(emacs-lisp-mode lisp-interaction-mode))
-(matcha-add-major-mode-command 'matcha-emacs-lisp-mode/body
-                               '(emacs-lisp-mode lisp-interaction-mode))
+(when matcha-use-launcher-p
+  (matcha-add-major-format-command
+   'matcha-indent-region-or-buffer '(emacs-lisp-mode lisp-interaction-mode))
+  (matcha-add-major-debug-command
+   'matcha-emacs-lisp-debug/body '(emacs-lisp-mode lisp-interaction-mode))
+  (matcha-add-major-eval-command
+   'matcha-emacs-lisp-eval/body '(emacs-lisp-mode lisp-interaction-mode))
+  (matcha-add-major-mode-command
+   'matcha-emacs-lisp-mode/body '(emacs-lisp-mode lisp-interaction-mode))
+  (matcha-add-major-refactor-command
+   'emr-show-refactor-menu '(emacs-lisp-mode lisp-interaction-mode)))
 
 (provide 'matcha-elisp)
 ;;; matcha-elisp.el ends here
