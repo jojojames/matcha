@@ -73,6 +73,7 @@
     python
     restclient
     ruby-mode
+    rust-mode
     rtags
     slime
     smerge-mode
