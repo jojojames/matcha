@@ -79,21 +79,21 @@
 
     Insert                       Promotion                   Mark
   ------------------------------------------------------------------------------
-    [_m_] Heading          [_<left>_] Promote Heading      [_e_] Element
-    [_M_] Heading Under    [_<right>_] Demote Heading      [_@_] Subtree
-    [_t_] Todo             [_s<left>_] Promote Subtree
-    [_T_] Todo Under       [_s<right>_] Demote Subtree
-                         ^^[_<up>_] Move Subtree Up
-                         ^^[_<down>_] Move Subtree Down
+    _m_ Heading          _<left>_ Promote Heading      _e_ Element
+    _M_ Heading Under    _<right>_ Demote Heading      _@_ Subtree
+    _t_ Todo             _s<left>_ Promote Subtree
+    _T_ Todo Under       _s<right>_ Demote Subtree
+                         ^^_<up>_ Move Subtree Up
+                         ^^_<down>_ Move Subtree Down
 
 
     Subtree            Modify                   Narrow
   ------------------------------------------------------------------------------
-    [_x_] Cut        [_r_] Refile             [_ns_] Narrow to Subtree
-    [_w_] Copy       [_\^_] Sort             [_nb_] Narrow to Block
-    [_y_] Paste      [_*_] Toggle Heading     [_nw_] Widen
-    [_Y_] Yank
-    [_W_] Clone
+    _x_ Cut        _r_ Refile             _ns_ Narrow to Subtree
+    _w_ Copy       _\^_ Sort             _nb_ Narrow to Block
+    _y_ Paste      _*_ Toggle Heading     _nw_ Widen
+    _Y_ Yank
+    _W_ Clone
 
 "
   ("m" org-meta-return)
@@ -127,12 +127,12 @@
 
     Motion                    Misc
   ------------------------------------------------------------------------------
-    [_n_] Next Heading        [_e_] Editing
-    [_p_] Previous Heading    [_B_] Babel
-    [_f_] Forward Level       [_t_] Time
-    [_b_] Backward Level      [_l_] Links
-    [_u_] Up Heading
-    [_j_] Goto
+    _n_ Next Heading        _e_ Editing
+    _p_ Previous Heading    _B_ Babel
+    _f_ Forward Level       _t_ Time
+    _b_ Backward Level      _l_ Links
+    _u_ Up Heading
+    _j_ Goto
 
 "
   ("n" org-next-visible-heading :color red)

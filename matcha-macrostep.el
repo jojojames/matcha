@@ -44,9 +44,9 @@
 
      ^^Expand^^               ^^Navigate^^
   ------------------------------------------------------------------------------
-    [_e_]: Expand         [_j_]: Next Macro
-    [_c_]: Collapse       [_k_]: Prev Macro
-    [_C_]: Collapse All
+    _e_: Expand         _j_: Next Macro
+    _c_: Collapse       _k_: Prev Macro
+    _C_: Collapse All
 
 "
   ("e" macrostep-expand)

@@ -39,21 +39,21 @@
 
     Eval                    Print                        Misc
   ------------------------------------------------------------------------------
-    [_e_] Expression     [_j_] Expression          [_l_] Eval Expression in REPL
-    [_r_] Region         [_R_] Region PPrint       [_u_] Undefine Function
-    [_b_] Buffer         [_J_] Expression PPrint   [_n_] Remove Notes
-    [_d_] Defun          [_I_] Eval and Inspect    [_i_] Interrupt Lisp
-    [_v_] Defvar
-    [_i_] Interactively
-    [_E_] Edit Value
+    _e_ Expression     _j_ Expression          _l_ Eval Expression in REPL
+    _r_ Region         _R_ Region PPrint       _u_ Undefine Function
+    _b_ Buffer         _J_ Expression PPrint   _n_ Remove Notes
+    _d_ Defun          _I_ Eval and Inspect    _i_ Interrupt Lisp
+    _v_ Defvar
+    _i_ Interactively
+    _E_ Edit Value
 
     Compile
   ------------------------------------------------------------------------------
-    [_cc_] Compile
-    [_cl_] Compile and Load
-    [_cd_] Compile Defun
-    [_cr_] Compile Region
-    [_L_] Load File
+    _cc_ Compile
+    _cl_ Compile and Load
+    _cd_ Compile Defun
+    _cr_ Compile Region
+    _L_ Load File
 
 "
   ("cc" slime-compile-file)
@@ -84,22 +84,22 @@
 
     Open                 Do                          Connection
   ------------------------------------------------------------------------------
-    [_x_] Scratch       [_e_] Eval                [_ll_] List Connections
-    [_ss_] Slime        [_mo_] Macroexpand One    [_ln_] Next Connection
-    [_sq_] Quit         [_ma_] Macroexpand All    [_lp_] Previous Connection
-    [_?_] Cheatsheet    [_lt_] List Threads
-    [_z_] REPL
+    _x_ Scratch       _e_ Eval                _ll_ List Connections
+    _ss_ Slime        _mo_ Macroexpand One    _ln_ Next Connection
+    _sq_ Quit         _ma_ Macroexpand All    _lp_ Previous Connection
+    _?_ Cheatsheet    _lt_ List Threads
+    _z_ REPL
 
       Who                        Help                     Misc
   ------------------------------------------------------------------------------
-    [_wr_] References       [_aa_] Apropos            [_Af_] Trace Function
-    [_wm_] Macroexpands     [_al_] Apropos All        [_Au_] Untrace All
-    [_wl_] Specializes      [_ap_] Apropos Package    [_Af_] Toggle Fancy Trace
-    [_wc_] Calls            [_h_] Describe Symbol     [_gn_] Next Note
-    [_wb_] Binds            [_H_] Hyperspec Lookup    [_gp_] Previous Note
-    [_ww_] Calls Who        [_d_] Disassemble
-    [_lc_] List Callers
-    [_le_] List Callees
+    _wr_ References       _aa_ Apropos            _Af_ Trace Function
+    _wm_ Macroexpands     _al_ Apropos All        _Au_ Untrace All
+    _wl_ Specializes      _ap_ Apropos Package    _Af_ Toggle Fancy Trace
+    _wc_ Calls            _h_ Describe Symbol     _gn_ Next Note
+    _wb_ Binds            _H_ Hyperspec Lookup    _gp_ Previous Note
+    _ww_ Calls Who        _d_ Disassemble
+    _lc_ List Callers
+    _le_ List Callees
 
 "
   ("z" slime-repl)

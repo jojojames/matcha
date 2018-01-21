@@ -37,15 +37,15 @@
 
     Query (Under Cursor)                 Navigation
   ------------------------------------------------------------------------------
-    [_e_] Run Query                     [_n_] Next
-    [_r_] Run Query Raw                 [_p_] Previous
-    [_v_] Run Query (Stay in Window)
+    _e_ Run Query                     _n_ Next
+    _r_ Run Query Raw                 _p_ Previous
+    _v_ Run Query (Stay in Window)
 
     Misc
   ------------------------------------------------------------------------------
-    [_m_] Mark Query
-    [_c_] Copy as CURL Command
-    [_n_] Narrow to Current
+    _m_ Mark Query
+    _c_ Copy as CURL Command
+    _n_ Narrow to Current
 
 "
   ("e" restclient-http-send-current)

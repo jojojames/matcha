@@ -59,30 +59,30 @@ Fall back to `projectile-project-root'."
 
     Open                 ^^Edit^^              ^^Diff^^
   ------------------------------------------------------------------------------
-    [_e_] Edit            [_E_] Reopen         [_=_] Diff Client against Depot
-    [_K_] Delete          [_u_] User           [_d_] Diff Files..
-    [_p_] Print           [_S_] Submit         [_+_] Diff All Opened
-    [_@_] Depot Find      [_r_] Revert         [_-_] Ediff
-    [_a_] Add             [_:_] Label Sync     [_V_] Annotate
-                        ^^[_LL_] Label         [_fg_] Grep
-                        ^^[_j_] Job
-                        ^^[_b_] Branch
-                        ^^[_cc_] Change
+    _e_ Edit            _E_ Reopen         _=_ Diff Client against Depot
+    _K_ Delete          _u_ User           _d_ Diff Files..
+    _p_ Print           _S_ Submit         _+_ Diff All Opened
+    _@_ Depot Find      _r_ Revert         _-_ Ediff
+    _a_ Add             _:_ Label Sync     _V_ Annotate
+                        ^^_LL_ Label         _fg_ Grep
+                        ^^_j_ Job
+                        ^^_b_ Branch
+                        ^^_cc_ Change
 
 
     Manage                 ^^Info^^             ^^Misc^^
   ------------------------------------------------------------------------------
-    [_s_] Status          [_i_] Info           [_h_] Help
-    [_cl_] Client         [_o_] Opened         [_G_] Client Name
-    [_y_] Resolve         [_fl_] File Log      [_t_] Toggle VC Modeline
-    [_R_] Refresh         [_U_] Users          [_w_] Where
-    [_m_] Move            [_FF_] Files         [_v_] Version
-    [_I_] Integrate       [_LS_] Labels        [_H_] Recently Synced Revisions
-    [_g_] Update          [_D_] Describe       [_FL_] Flush Repository
-    [_C_] Changes         [_B_] Branches
-    [_xx_] Fix            [_xs_] Fixes
-    [_P_] Set Port        [_J_] Jobs
-                        ^^[_FD_] Dump File Info
+    _s_ Status          _i_ Info           _h_ Help
+    _cl_ Client         _o_ Opened         _G_ Client Name
+    _y_ Resolve         _fl_ File Log      _t_ Toggle VC Modeline
+    _R_ Refresh         _U_ Users          _w_ Where
+    _m_ Move            _FF_ Files         _v_ Version
+    _I_ Integrate       _LS_ Labels        _H_ Recently Synced Revisions
+    _g_ Update          _D_ Describe       _FL_ Flush Repository
+    _C_ Changes         _B_ Branches
+    _xx_ Fix            _xs_ Fixes
+    _P_ Set Port        _J_ Jobs
+                        ^^_FD_ Dump File Info
 
 "
   ("fg" p4-grep)

@@ -60,14 +60,14 @@ If `magit' is not yet loaded yet, just call `magit-status' directly."
 
    Magit Log: %s(matcha-magit-dir)
 
-    File                             Branch                  Reflog
+    File                       Branch                  Reflog
   ------------------------------------------------------------------------------
-    [_f_] Current File         [_p_] Pick Branch            [_P_] Pick Branch
-    [_F_] Current File Popup   [_c_] Current Branch         [_C_] Current Branch
-    [_u_] Unmerged Commits     [_h_] Head Branch            [_H_] Head Branch
-                             ^^[_o_] Local + Head
-                             ^^[_a_] Local + Remote + Head
-                             ^^[_A_] Everything
+    _f_ Current File         _p_ Pick Branch            _P_ Pick Branch
+    _F_ Current File Popup   _c_ Current Branch         _C_ Current Branch
+    _u_ Unmerged Commits     _h_ Head Branch            _H_ Head Branch
+                           ^^_o_ Local + Head
+                           ^^_a_ Local + Remote + Head
+                           ^^_A_ Everything
 
 "
   ("f" magit-log-buffer-file)
@@ -88,18 +88,18 @@ If `magit' is not yet loaded yet, just call `magit-status' directly."
 
    Magit: %s(matcha-magit-dir)
 
-    Status                    Blame                     Log
+    Status                    Blame               Log
   ------------------------------------------------------------------------------
-    [_s_] Status            [_b_] Blame                 ^^^^[_l_] Log
-    [_g_] Switch to Status  [_j_] Blob Next
-    [_p_] List Repos        [_k_] Blob Previous
-    [_r_] Pick Repo
+    _s_ Status               _b_ Blame               _l_ Log
+    _g_ Switch to Status     _j_ Blob Next
+    _p_ List Repos           _k_ Blob Previous
+    _r_ Pick Repo
 
     Search                           Diff
   ------------------------------------------------------------------------------
-    [_f_] Find File                [_ef_] Ediff Files
-    [_F_] Find File Other Window   [_eb_] Ediff Buffers
-                                 ^^[_ed_] Ediff Directories
+    _f_ Find File                _ef_ Ediff Files
+    _F_ Find File Other Window   _eb_ Ediff Buffers
+                               ^^_ed_ Ediff Directories
 
 "
   ("f" magit-find-file)

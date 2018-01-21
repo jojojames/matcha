@@ -130,22 +130,22 @@ Requires smartparens because all movement is done using `sp-forward-symbol'."
 
     Elisp: %s(matcha-projectile-root)
 
-    ^^Do^^              ^^Find^^                  ^^Describe^^
+        Do                ^^Find        Describe^^
   ------------------------------------------------------------------------------
-    [_e_] Eval          [_l_] Library        [_sy_] Syntax
-    [_d_] Debug         [_f_] Function       [_sf_] Function
-    [_m_] Macrostep     [_v_] Variable       [_sv_] Variable
-                                         ^^^^[_ss_] Symbol
-                                         ^^^^[_sc_] Categories
+    _e_ Eval          _l_ Library        _sy_ Syntax
+    _d_ Debug         _f_ Function       _sf_ Function
+    _m_ Macrostep     _v_ Variable       _sv_ Variable
+                                     ^^^^_ss_ Symbol
+                                     ^^^^_sc_ Categories
 
 
-    ^^Compile^^                     Find References         ^^Misc^^
+        Compile                  References         Misc
   ------------------------------------------------------------------------------
-    [_u_] Byte Compile             [_rf_] Functions     [_x_] Scratch
-    [_U_] Byte Compile and Load    [_rm_] Macros        [_z_] REPL
-    [_rd_] Recompile Directory     [_rc_] Special
-    [_rD_] Disassemble             [_rv_] Variables
-                                 ^^[_rs_] Symbols
+     _u_ Byte Compile            _rf_ Functions     _x_ Scratch
+     _U_ Byte Compile and Load   _rm_ Macros        _z_ REPL
+    _rd_ Recompile Directory     _rc_ Special
+    _rD_ Disassemble             _rv_ Variables
+                               ^^_rs_ Symbols
 
 "
   ("rf" elisp-refs-function)

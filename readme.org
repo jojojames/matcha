@@ -19,11 +19,11 @@
 
         Find              Manage             Do                Mode
       ------------------------------------------------------------------------------
-        [_f_] File       [_w_] Window      [_s_] Search           [_m_] Mode
-        [_b_] Buffer     [_g_] Git         [_R_] Refactor         [_d_] Debug
-        [_r_] Recent     [_p_] Project     [_v_] Edit Init.el     [_e_] Eval
-        [_n_] Sidebar    [_y_] System      [_o_] Org              [_t_] Test
-        [_SPC_] Any      [_U_] Undo        [_u_] Universal Arg..  [_=_] Format
+        _f_ File       _w_ Window      _s_ Search           _m_ Mode
+        _b_ Buffer     _g_ Git         _R_ Refactor         _d_ Debug
+        _r_ Recent     _p_ Project     _v_ Edit Init.el     _e_ Eval
+        _n_ Sidebar    _y_ System      _o_ Org              _t_ Test
+        _SPC_ Any      _U_ Undo        _u_ Universal Arg..  _=_ Format
 
     "
       ("1" digit-argument)

@@ -35,13 +35,13 @@
 
     Web:
   ------------------------------------------------------------------------------
-    [_f_] Fold/Unfold              [_d_] Dom
-    [_h_] Highlight Buffer         [_b_] Block
-    [_i_] Indent Buffer            [_a_] HTML Attribute
-    [_n_] Tag/Block Navigation     [_e_] HTML Element
-    [_m_] Mark and Expand          [_t_] HTML Tag
-    [_w_] Toggle Whitespace
-    [_s_] Insert Snippet
+    _f_ Fold/Unfold              _d_ Dom
+    _h_ Highlight Buffer         _b_ Block
+    _i_ Indent Buffer            _a_ HTML Attribute
+    _n_ Tag/Block Navigation     _e_ HTML Element
+    _m_ Mark and Expand          _t_ HTML Tag
+    _w_ Toggle Whitespace
+    _s_ Insert Snippet
 
 "
   ("d" matcha-web-mode-dom/body)
@@ -65,10 +65,10 @@
 
     Dom:
   ------------------------------------------------------------------------------
-    [_n_] Normalise       [_e_] Replace HTML Entities
-    [_x_] XPath           [_q_] Replace Dumb Quotes
-    [_t_] Traverse        [_a_] Replace Apostrophes
-    [_d_] Show Errors
+    _n_ Normalise       _e_ Replace HTML Entities
+    _x_ XPath           _q_ Replace Dumb Quotes
+    _t_ Traverse        _a_ Replace Apostrophes
+    _d_ Show Errors
 
 "
   ("a" web-mode-dom-apostrophes-replace)
@@ -84,10 +84,10 @@
 
     Block:
   ------------------------------------------------------------------------------
-    [_s_] Select Block     [_c_] Close Block      [_k_] Kill Block
+    _s_ Select Block     _c_ Close Block      _k_ Kill Block
 
-    [_p_] Previous Block        [_n_] Next Block
-    [_b_] Beginning of Block    [_e_] End of Block
+    _p_ Previous Block        _n_ Next Block
+    _b_ Beginning of Block    _e_ End of Block
 
 "
   ("b" web-mode-block-beginning)
@@ -103,11 +103,11 @@
 
     HTML Attribute:
   ------------------------------------------------------------------------------
-    [_s_] Select Attribute          [_t_] Transpose Attribute
-    [_i_] Insert Attribute          [_k_] Kill Attribute
+    _s_ Select Attribute          _t_ Transpose Attribute
+    _i_ Insert Attribute          _k_ Kill Attribute
 
-    [_p_] Previous Attribute        [_n_] Next Attribute
-    [_b_] Beginning of Attribute    [_e_] End of Attribute
+    _p_ Previous Attribute        _n_ Next Attribute
+    _b_ Beginning of Attribute    _e_ End of Attribute
 
 "
   ("b" web-mode-attribute-beginning)
@@ -124,17 +124,17 @@
 
     HTML Element:
   ------------------------------------------------------------------------------
-    [_s_] Select Element          [_t_] Transpose Element
-    [_i_] Insert Element          [_k_] Kill Element
-    [_w_] Wrap Element            [_v_] Vanish Element
-    [_r_] Rename Element          [_c_] Clone Element
-    [_/_] Close Element           [_m_] Mute Blanks
+    _s_ Select Element          _t_ Transpose Element
+    _i_ Insert Element          _k_ Kill Element
+    _w_ Wrap Element            _v_ Vanish Element
+    _r_ Rename Element          _c_ Clone Element
+    _/_ Close Element           _m_ Mute Blanks
 
-    [_p_] Previous Element        [_n_] Next Element
-    [_b_] Beginning of Element    [_e_] End of Element
+    _p_ Previous Element        _n_ Next Element
+    _b_ Beginning of Element    _e_ End of Element
 
-    [_u_] Parent Element          [_d_] Child Element
-    [_a_] Select Content          [_f_] Fold Child Element
+    _u_ Parent Element          _d_ Child Element
+    _a_ Select Content          _f_ Fold Child Element
 
 "
 
@@ -162,10 +162,10 @@
 
     HTML Tag:
   ------------------------------------------------------------------------------
-    [_s_] Select Tag     [_a_] Sort Tag Attributes
+    _s_ Select Tag     _a_ Sort Tag Attributes
 
-    [_p_] Previous Tag        [_n_] Next Tag
-    [_b_] Beginning of Tag    [_e_] End of Tag
+    _p_ Previous Tag        _n_ Next Tag
+    _b_ Beginning of Tag    _e_ End of Tag
 
 "
   ("a" web-mode-tag-attributes-sort)

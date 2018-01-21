@@ -120,10 +120,10 @@ for user input.
 
     Cider Documentation
   ------------------------------------------------------------------------------
-    [_d_] CiderDoc               [_j_] JavaDoc in browser
-    [_a_] Search symbols         [_s_] Search symbols & select
-    [_A_] Search documentation   [_e_] Search documentation & select
-    [_r_] Grimoire               [_h_] Grimoire in browser
+    _d_ CiderDoc               _j_ JavaDoc in browser
+    _a_ Search symbols         _s_ Search symbols & select
+    _A_ Search documentation   _e_ Search documentation & select
+    _r_ Grimoire               _h_ Grimoire in browser
 
 "
   ;; CiderDoc
@@ -146,18 +146,18 @@ for user input.
 
        Eval                 Eval and Print        Load
   ------------------------------------------------------------------------------
-    [_e_] S-exp               [_p_] S-exp          [_k_] Buffer
-    [_w_] S-exp and Replace   [_f_] Defun          [_l_] File
-    [_d_] Defun at Point      [_i_] Inspect        [_p_] Project Namespaces
-    [_r_] Region
-    [_n_] NS Form
-    [_b_] Buffer
-    [_:_] Read and Eval
+    _e_ S-exp               _p_ S-exp          _k_ Buffer
+    _w_ S-exp and Replace   _f_ Defun          _l_ File
+    _d_ Defun at Point      _i_ Inspect        _p_ Project Namespaces
+    _r_ Region
+    _n_ NS Form
+    _b_ Buffer
+    _:_ Read and Eval
 
       Macroexpand                 REPL
   ------------------------------------------------------------------------------
-    [_m_] Macroexpand-1      [_z_] Switch to REPl
-    [_M_] Macroexpand all    [_I_] Insert S-exp in REPL
+    _m_ Macroexpand-1      _z_ Switch to REPl
+    _M_ Macroexpand all    _I_ Insert S-exp in REPL
 
 "
   ("z" cider-switch-to-repl-buffer)
@@ -188,9 +188,9 @@ for user input.
 
     Cider Test
   ------------------------------------------------------------------------------
-    [_t_] Run Test           [_r_] Rerun Test
-    [_n_] Run NS Tests       [_l_] Run Loaded Tests
-    [_p_] Run Project Tests  [_b_] Show Report
+    _t_ Run Test           _r_ Rerun Test
+    _n_ Run NS Tests       _l_ Run Loaded Tests
+    _p_ Run Project Tests  _b_ Show Report
 
 "
   ("t" cider-test-run-test)
@@ -212,11 +212,11 @@ for user input.
 
     Cider REPL
   ------------------------------------------------------------------------------
-    [_d_] Display connection info          [_r_] Rotate default connection
-    [_z_] Switch to REPL                   [_n_] Set REPL ns
-    [_p_] Insert last sexp in REPL         [_x_] Reload namespaces
-    [_o_] Clear REPL output                [_O_] Clear entire REPL
-    [_b_] Interrupt pending evaluations    [_Q_] Quit CIDER
+    _d_ Display connection info          _r_ Rotate default connection
+    _z_ Switch to REPL                   _n_ Set REPL ns
+    _p_ Insert last sexp in REPL         _x_ Reload namespaces
+    _o_ Clear REPL output                _O_ Clear entire REPL
+    _b_ Interrupt pending evaluations    _Q_ Quit CIDER
 
 "
   ;; Connection
@@ -241,19 +241,19 @@ for user input.
 
         Do               Jack In                   Connections
   ------------------------------------------------------------------------------
-    [_e_] Eval       [_jj_] J.I.                  [_cc_] Connect To
-    [_t_] Test       [_ju_] J.I. -No Autorun      [_cd_] Connect DWIM
-    [_d_] Debug      [_jp_] J.I. -With Profile    [_cr_] Rotate Connection
-    [_r_] Refactor   [_jt_] J.I. -With Test       [_cb_] Connection Browser
-    [_k_] Doc        [_js_] J.I. -ClojureScript
-    [_z_] REPL       [_A_] Run -main
+    _e_ Eval       _jj_ J.I.                  _cc_ Connect To
+    _t_ Test       _ju_ J.I. -No Autorun      _cd_ Connect DWIM
+    _d_ Debug      _jp_ J.I. -With Profile    _cr_ Rotate Connection
+    _r_ Refactor   _jt_ J.I. -With Test       _cb_ Connection Browser
+    _k_ Doc        _js_ J.I. -ClojureScript
+    _z_ REPL       _A_ Run -main
 
          Misc                      Macroexpand
   ------------------------------------------------------------------------------
-    [_x_] Scratch              [_m_] Macroexpand-1
-    [_R_] Reload Namespaces    [_M_] Macroexpand all
-    [_l_] Lein
-    [_q_] Quit
+    _x_ Scratch              _m_ Macroexpand-1
+    _R_ Reload Namespaces    _M_ Macroexpand all
+    _l_ Lein
+    _q_ Quit
 
 "
 

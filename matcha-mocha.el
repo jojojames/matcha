@@ -8,9 +8,9 @@
 
     Test               Debug
   ------------------------------------------------------------------------------
-    [_p_] Project    [_dp_] Project
-    [_f_] File       [_df_] File
-    [_t_] Point      [_dt_] Point
+    _p_ Project    _dp_ Project
+    _f_ File       _df_ File
+    _t_ Point      _dt_ Point
 
 "
   ("p" mocha-test-project)

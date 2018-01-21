@@ -34,7 +34,7 @@
   "
         Go Eval
   ------------------------------------------------------------------------------
-   [_b_] Play Buffer    [_r_] Play Region    [_d_] Download Play
+   _b_ Play Buffer    _r_ Play Region    _d_ Download Play
 
 "
   ("b" go-play-buffer)
@@ -46,10 +46,10 @@
 
     Go Goto
   ------------------------------------------------------------------------------
-    [_a_] Arguments        [_i_] Imports
-    [_d_] Docstring        [_r_] Return
-    [_f_] Function         [_m_] Method Receivers
-    [_n_] Function Name
+    _a_ Arguments        _i_ Imports
+    _d_ Docstring        _r_ Return
+    _f_ Function         _m_ Method Receivers
+    _n_ Function Name
 
 "
   ("a" go-goto-arguments)
@@ -67,17 +67,17 @@
 
       Do                       Doc                       Misc
   ------------------------------------------------------------------------------
-    [_=_] Format             [_dd_] GoDoc              [_m_] Guru
-    [_e_] Eval               [_dp_] GoDoc at Point     [_d_] Doctor
-    [_ia_] Add Import
-    [_ir_] Remove Imports
+    _=_ Format             _dd_ GoDoc              _m_ Guru
+    _e_ Eval               _dp_ GoDoc at Point     _d_ Doctor
+    _ia_ Add Import
+    _ir_ Remove Imports
 
 
     Goto                  Manage
   ------------------------------------------------------------------------------
-    [_?_] Describe      [_c_] Coverage
-    [_g_] Goto          [_ps_] Set Project
-    [_j_] GoDef Jump    [_pR_] Reset GoPath
+    _?_ Describe      _c_ Coverage
+    _g_ Goto          _ps_ Set Project
+    _j_ GoDef Jump    _pR_ Reset GoPath
 
 "
   ("=" gofmt)
@@ -100,9 +100,9 @@
 
         Go Guru
   ------------------------------------------------------------------------------
-    [_d_] Describe    [_f_] Free Vars    [_i_] Implements    [_c_] Peers
-    [_r_] Referrers   [_j_] Definition   [_p_] Points To     [_s_] Callstack
-    [_e_] Errors      [_<_] Callers      [_>_] Callees       [_x_] Expand Region
+    _d_ Describe    _f_ Free Vars    _i_ Implements    _c_ Peers
+    _r_ Referrers   _j_ Definition   _p_ Points To     _s_ Callstack
+    _e_ Errors      _<_ Callers      _>_ Callees       _x_ Expand Region
 
 "
   ("d" go-guru-describe)
@@ -123,10 +123,10 @@
 
         Go Doctor
   ------------------------------------------------------------------------------
-    [_r_] Rename       [_R_] Rename (Dry Run)      [_S_] Set Scope
-    [_e_] Extract      [_E_] Extract (Dry Run)
-    [_t_] Toggle       [_T_] Toggle (Dry Run)
-    [_d_] GoDoc        [_D_] GoDoc (Dry Run)
+    _r_ Rename       _R_ Rename (Dry Run)      _S_ Set Scope
+    _e_ Extract      _E_ Extract (Dry Run)
+    _t_ Toggle       _T_ Toggle (Dry Run)
+    _d_ GoDoc        _D_ GoDoc (Dry Run)
 
 "
   ("r" godoctor-rename)

@@ -38,12 +38,12 @@
 
     Ns related refactorings
   ------------------------------------------------------------------------------
-    [_ai_] Add Import               [_cn_] Clean ns
-    [_ar_] Add Require              [_sr_] Stop Referring
-    [_rm_] Require a Macro
-    [_am_] Add Missing Libspec
-    [_au_] Add Use to ns
-    [_ap_] Add Project Dependency
+    _ai_ Add Import               _cn_ Clean ns
+    _ar_ Add Require              _sr_ Stop Referring
+    _rm_ Require a Macro
+    _am_ Add Missing Libspec
+    _au_ Add Use to ns
+    _ap_ Add Project Dependency
 
 "
   ("ai" cljr-add-import-to-ns) ("am" cljr-add-missing-libspec)
@@ -56,12 +56,12 @@
 
     Code related refactorings
   ------------------------------------------------------------------------------
-    [_ci_] Cycle if          [_ct_] Cycle thread
-    [_dk_] Destructure keys  [_el_] Expand let     [_fu_] Find usages
-    [_il_] Introduce let     [_is_] Inline symbol  [_ml_] Move to let
-    [_pf_] Promote function  [_rl_] Remove let     [_rs_] Rename symbol
-    [_tf_] Thread first all  [_th_] Thread         [_tl_] Thread last all
-    [_ua_] Unwind all        [_uw_] Unwind
+    _ci_ Cycle if          _ct_ Cycle thread
+    _dk_ Destructure keys  _el_ Expand let     _fu_ Find usages
+    _il_ Introduce let     _is_ Inline symbol  _ml_ Move to let
+    _pf_ Promote function  _rl_ Remove let     _rs_ Rename symbol
+    _tf_ Thread first all  _th_ Thread         _tl_ Thread last all
+    _ua_ Unwind all        _uw_ Unwind
 
 "
   ("ci" clojure-cycle-if) ("ct" cljr-cycle-thread)
@@ -78,12 +78,12 @@
 
     Project related refactorings
   ------------------------------------------------------------------------------
-    [_ap_] Add Project dependency         [_cs_] Change function signature
-    [_hd_] Hotload dependency             [_is_] Inline symbol
-    [_pc_] Project clean                  [_rf_] Rename file-or-dir
-    [_up_] Update Project dependencies    [_rs_] Rename symbol
-    [_sp_] Sort Project dependencies      [_mf_] Move form
-                                        ^^[_fu_] Find Usages
+    _ap_ Add Project dependency         _cs_ Change function signature
+    _hd_ Hotload dependency             _is_ Inline symbol
+    _pc_ Project clean                  _rf_ Rename file-or-dir
+    _up_ Update Project dependencies    _rs_ Rename symbol
+    _sp_ Sort Project dependencies      _mf_ Move form
+                                        ^^_fu_ Find Usages
 
 "
   ("ap" cljr-add-project-dependency) ("cs" cljr-change-function-signature)
@@ -98,13 +98,13 @@
 
     Toplevel form related refactorings
   ------------------------------------------------------------------------------
-    [_ef_] Extract function            [_cp_] Cycle privacy
-    [_ec_] Extract constant            [_cs_] Change function signature
-    [_ed_] Extract form as def         [_is_] Inline symbol
-    [_pf_] Promote function            [_ad_] Add declaration
-    [_rf_] Rename file-or-dir          [_mf_] Move form
-    [_fe_] Create function from example
-    [_as_] Add stubs for the interface/protocol at point
+    _ef_ Extract function            _cp_ Cycle privacy
+    _ec_ Extract constant            _cs_ Change function signature
+    _ed_ Extract form as def         _is_ Inline symbol
+    _pf_ Promote function            _ad_ Add declaration
+    _rf_ Rename file-or-dir          _mf_ Move form
+    _fe_ Create function from example
+    _as_ Add stubs for the interface/protocol at point
 
 "
   ("as" cljr-add-stubs) ("cp" clojure-cycle-privacy)
@@ -119,8 +119,8 @@
 
     Cljr related refactorings
   ------------------------------------------------------------------------------
-    [_sc_] Show the project's changelog
-    [_?_] Describe refactoring
+    _sc_ Show the project's changelog
+    _?_ Describe refactoring
 
 "
   ("sc" cljr-show-changelog)
@@ -131,8 +131,8 @@
 
     Cider Refactor
   ------------------------------------------------------------------------------
-    [_n_] Namespaces    [_c_] Code    [_p_] Project
-    [_f_] Form          [_s_] CLJR
+    _n_ Namespaces    _c_ Code    _p_ Project
+    _f_ Form          _s_ CLJR
 
 "
   ("n" matcha-cljr-ns-menu/body)

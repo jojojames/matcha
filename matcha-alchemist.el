@@ -58,12 +58,12 @@ If `mix-command' is \"phoenix.server\", then the resulting `defun' will be:
 
     Alchemist IEX: %(matcha-projectile-root)
 
-    Run                     Send                   Loading
+    Run                 Send               Loading
   ------------------------------------------------------------------------------
-    [_I_] Run            [_l_] Line            [_c_] Compile Buffer
-    [_i_] Run Project    [_L_] Line and Go     [_m_] Reload Module
-                       ^^[_r_] Region
-                       ^^[_R_] Region and Go
+    _I_ Run            _l_ Line            _c_ Compile Buffer
+    _i_ Run Project    _L_ Line and Go     _m_ Reload Module
+                     ^^_r_ Region
+                     ^^_R_ Region and Go
 
 "
 
@@ -83,15 +83,15 @@ If `mix-command' is \"phoenix.server\", then the resulting `defun' will be:
 
     Eval                Eval & Print               IEX
   ------------------------------------------------------------------------------
-    [_l_] Line           [_L_] Line                [_i_] IEX
-    [_r_] Region         [_R_] Region
-    [_b_] Buffer         [_B_] Buffer
+    _l_ Line           _L_ Line                _i_ IEX
+    _r_ Region         _R_ Region
+    _b_ Buffer         _B_ Buffer
 
     Eval (Quoted)       Eval & Print (Quoted)
   ------------------------------------------------------------------------------
-    [_j_] Line           [_J_] Line
-    [_u_] Region         [_U_] Region
-    [_v_] Buffer         [_V_] Buffer
+    _j_ Line           _J_ Line
+    _u_ Region         _U_ Region
+    _v_ Buffer         _V_ Buffer
 
 "
   ("i" matcha-alchemist-iex/body)
@@ -115,11 +115,11 @@ If `mix-command' is \"phoenix.server\", then the resulting `defun' will be:
 
     Test                   Navigate               Rerun
   ------------------------------------------------------------------------------
-    [_t_] Test           [_._] Next Test         [_r_] Rerun Test
-    [_S_] Stale          [_,_] Previous Test
-    [_b_] Buffer
-    [_p_] At Point
-    [_f_] File
+    _t_ Test           _._ Next Test         _r_ Rerun Test
+    _S_ Stale          _,_ Previous Test
+    _b_ Buffer
+    _p_ At Point
+    _f_ File
 
 "
   ("t" alchemist-mix-test)
@@ -136,7 +136,7 @@ If `mix-command' is \"phoenix.server\", then the resulting `defun' will be:
 
     Alchemist Mix
   ------------------------------------------------------------------------------
-    [_m_] Mix     [_c_] Mix Compile    [_r_] Mix Run    [_h_] Mix Help
+    _m_ Mix     _c_ Mix Compile    _r_ Mix Run    _h_ Mix Help
 
 "
   ("m" alchemist-mix)
@@ -149,9 +149,9 @@ If `mix-command' is \"phoenix.server\", then the resulting `defun' will be:
 
     Alchemist Help: %(matcha-projectile-root)
   ------------------------------------------------------------------------------
-    [_:_] Help            [_m_] Mix Help    [_H_] History Help
-    [_h_] Help at Point
-    [_r_] Help for Region
+    _:_ Help            _m_ Mix Help    _H_ History Help
+    _h_ Help at Point
+    _r_ Help for Region
 
 "
   ("m" alchemist-mix-help)
@@ -167,10 +167,10 @@ If `mix-command' is \"phoenix.server\", then the resulting `defun' will be:
 
     ^Routes^             ^Model^              ^Resources^
   ------------------------------------------------------------------------------
-    [_r_] Routes       [_c_] Controllers     [_s_] Static
-    [_R_] Router       [_l_] Channels        [_t_] Template
-                     ^^[_m_] Models          [_v_] View
-                                         ^^^^[_w_] Web
+    _r_ Routes       _c_ Controllers     _s_ Static
+    _R_ Router       _l_ Channels        _t_ Template
+                     ^^_m_ Models          _v_ View
+                                         ^^^^_w_ Web
 
 "
   ("R" alchemist-phoenix-routes)
@@ -190,13 +190,13 @@ If `mix-command' is \"phoenix.server\", then the resulting `defun' will be:
 
     ^Do^             ^Run^               ^Execute^        ^Compile^
   ------------------------------------------------------------------------------
-    [_p_] Phoenix   [_r_] Phx Server   [_xb_] Buffer     [_cb_] Buffer
-    [_e_] Eval      [_z_] IEX          [_xf_] File       [_cf_] File
-    [_t_] Test                       ^^[_xx_] Execute    [_cc_] Compile
-    [_i_] IEX
-    [_m_] Mix
-    [_h_] Help
-    [_l_] List Definitions
+    _p_ Phoenix   _r_ Phx Server   _xb_ Buffer     _cb_ Buffer
+    _e_ Eval      _z_ IEX          _xf_ File       _cf_ File
+    _t_ Test                       ^^_xx_ Execute    _cc_ Compile
+    _i_ IEX
+    _m_ Mix
+    _h_ Help
+    _l_ List Definitions
 
 "
   ("p" matcha-alchemist-phoenix/body)

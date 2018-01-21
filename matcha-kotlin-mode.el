@@ -35,7 +35,7 @@
 
     Kotlin Evaluation
   ------------------------------------------------------------------------------
-    [_e_] Line    [_r_] Region    [_k_] Block    [_b_] Buffer
+    _e_ Line    _r_ Region    _k_ Block    _b_ Buffer
 
 "
   ("e" kotlin-send-line)
@@ -48,7 +48,7 @@
 
     Kotlin: %s(matcha-projectile-root)
   ------------------------------------------------------------------------------
-    [_z_] REPL    [_e_] Eval
+    _z_ REPL    _e_ Eval
 
 "
   ("z" kotlin-repl)

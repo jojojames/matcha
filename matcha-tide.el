@@ -38,7 +38,7 @@
 
     Tide Refactor
   ------------------------------------------------------------------------------
-    [_n_] Rename    [_r_] Refactor    [_f_] Apply Fix
+    _n_ Rename    _r_ Refactor    _f_ Apply Fix
 
 "
   ("n" tide-rename-symbol)
@@ -61,11 +61,11 @@
 
     ^Do^                   ^Info^                      ^Misc^
   ------------------------------------------------------------------------------
-    [_t_] Test          [_k_] Show Doc                [_z_] Restart Server
-    [_e_] Eval          [_?_] Find References         [_E_] Errors
-    [_r_] Refactor      [_._] GoTo Definition         [_j_] Add JSDoc
-    [_=_] Format        [_/_] Pop Definition
-    [_p_] Prettier
+    _t_ Test          _k_ Show Doc                _z_ Restart Server
+    _e_ Eval          _?_ Find References         _E_ Errors
+    _r_ Refactor      _._ GoTo Definition         _j_ Add JSDoc
+    _=_ Format        _/_ Pop Definition
+    _p_ Prettier
 
 "
   ("p" matcha-prettier-or-indent-region-or-buffer)

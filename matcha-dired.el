@@ -44,10 +44,10 @@ one specified by listing header."
 
       Shortcuts               Menu
   ------------------------------------------------------------------------------
-    [_f_] Find File         [_o_] Operate
-    [_+_] Create Directory  [_m_] Marks
-    [_q_] WDired            [_%_] Regexp
-                          ^^[_i_] Immediate
+    _f_ Find File         _o_ Operate
+    _+_ Create Directory  _m_ Marks
+    _q_ WDired            _%_ Regexp
+                          ^^_i_ Immediate
 
 "
   ("f" matcha-dired-find-file)
@@ -65,19 +65,19 @@ one specified by listing header."
 
     Do                       Ownership               Encrypt
   ------------------------------------------------------------------------------
-    [_d_] Delete            [_cw_] Chown          [_zz_] Compress (No Encryption)
-    [_r_] Rename            [_cm_] Chmod          [_ze_] Encrypt
-    [_y_] Copy              [_cg_] Change Group   [_zd_] Decrypt
-    [_@_] Shell Command     [_t_] Touch           [_zv_] Verify
-    [_!_] Async Shell                           ^^[_zs_] Sign
+    _d_ Delete            _cw_ Chown          _zz_ Compress (No Encryption)
+    _r_ Rename            _cm_ Chmod          _ze_ Encrypt
+    _y_ Copy              _cg_ Change Group   _zd_ Decrypt
+    _@_ Shell Command     _t_ Touch           _zv_ Verify
+    _!_ Async Shell                           ^^_zs_ Sign
 
     Search                    Misc                  Images
   ------------------------------------------------------------------------------
-    [_f_] Search            [_p_] Print           [_id_] Delete Tag
-    [_ss_] Isearch          [_h_] Hardlink        [_it_] Tag Files
-    [_sr_] Isearch Regexp   [_l_] Symlink         [_ic_] Comment Files
-    [_q_] Query Replace     [_el_] Elisp Load     [_is_] Display Thumbs
-                          ^^[_eb_] Elisp Compile
+    _f_ Search            _p_ Print           _id_ Delete Tag
+    _ss_ Isearch          _h_ Hardlink        _it_ Tag Files
+    _sr_ Isearch Regexp   _l_ Symlink         _ic_ Comment Files
+    _q_ Query Replace     _el_ Elisp Load     _is_ Display Thumbs
+                          ^^_eb_ Elisp Compile
 
 "
   ("el" dired-do-load)
@@ -115,16 +115,16 @@ one specified by listing header."
 
     Mark                  Flag (For Deletion)      Mark All
   ------------------------------------------------------------------------------
-    [_m_] Mark            [_d_] Mark             [_S_] Symlinks
-    [_u_] Unmark          [_g_] Garbage          [_D_] Directories
-    [_U_] Unmark All      [_b_] Backup           [_X_] Executables
-    [_T_] Toggle Marks    [_s_] Autosave
-    [_C_] Change Marks    [_c_] Clean Directory
+    _m_ Mark            _d_ Mark             _S_ Symlinks
+    _u_ Unmark          _g_ Garbage          _D_ Directories
+    _U_ Unmark All      _b_ Backup           _X_ Executables
+    _T_ Toggle Marks    _s_ Autosave
+    _C_ Change Marks    _c_ Clean Directory
 
     Move
   ------------------------------------------------------------------------------
-    [_P_] Previous Mark
-    [_N_] Next Mark
+    _P_ Previous Mark
+    _N_ Next Mark
 
 "
   ("P" dired-prev-marked-file)
@@ -149,11 +149,11 @@ one specified by listing header."
 
     Mark                        Apply                         Link
   ------------------------------------------------------------------------------
-    [_*_] Mark...               [_r_] Rename...             [_h_] Hardlink...
-    [_g_] Mark Containing...    [_c_] Copy...               [_s_] Symlink...
-    [_t_] Mark From Image Tag   [_d_] Flag for Deletion...
-                              ^^[_u_] Upcase
-                              ^^[_l_] Downcase
+    _*_ Mark...               _r_ Rename...             _h_ Hardlink...
+    _g_ Mark Containing...    _c_ Copy...               _s_ Symlink...
+    _t_ Mark From Image Tag   _d_ Flag for Deletion...
+                              ^^_u_ Upcase
+                              ^^_l_ Downcase
 
 "
   ("h" dired-do-hardlink-regexp)
@@ -174,18 +174,18 @@ one specified by listing header."
 
     Edit Filenames        Open                           Misc
   ------------------------------------------------------------------------------
-    [_ww_] WDired        [_ff_] Find File                [_hd_] Hide Details
-    [_wq_] Quit Wdired   [_fp_] Find at Point            [_r_] Refresh
-                       ^^[_fo_] Find in Other Window
-                       ^^[_fd_] Display in Other Window
-                       ^^[_fv_] View File in Readonly
-                       ^^[_d_] Create Directory
+    _ww_ WDired        _ff_ Find File                _hd_ Hide Details
+    _wq_ Quit Wdired   _fp_ Find at Point            _r_ Refresh
+                       ^^_fo_ Find in Other Window
+                       ^^_fd_ Display in Other Window
+                       ^^_fv_ View File in Readonly
+                       ^^_d_ Create Directory
 
        Compare                   Search               Images
   ------------------------------------------------------------------------------
-    [_cd_] Directories         [_ss_] Isearch         [_ii_] Display
-    [_cb_] with Backup         [_sr_] Isearch Regexp  [_ie_] Display Externally
-    [_cf_] With another File                        ^^[_it_] Toggle Thumbnails
+    _cd_ Directories         _ss_ Isearch         _ii_ Display
+    _cb_ with Backup         _sr_ Isearch Regexp  _ie_ Display Externally
+    _cf_ With another File                        ^^_it_ Toggle Thumbnails
 
 "
   ("ww" wdired-change-to-wdired-mode)

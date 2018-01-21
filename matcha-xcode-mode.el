@@ -36,12 +36,12 @@
 
    Build                     Run                     Open
 ------------------------------------------------------------------------------------
-  [_ba_] Archive             [_pi_] Run Pod Install   [_op_] Open Project
-  [_bb_] Build               [_rr_] Run               [_os_] Open Storyboard
-  [_br_] Build and Run       [_rt_] Run Tests         [_ow_] Open Workspace
-  [_bt_] Builds Tests        [_tt_] Run Test
-  [_bT_] Builds Tests Only
-  [_cc_] Clean
+  _ba_ Archive             _pi_ Run Pod Install   _op_ Open Project
+  _bb_ Build               _rr_ Run               _os_ Open Storyboard
+  _br_ Build and Run       _rt_ Run Tests         _ow_ Open Workspace
+  _bt_ Builds Tests        _tt_ Run Test
+  _bT_ Builds Tests Only
+  _cc_ Clean
 
   "
   ("ba" xcode-xctool-archive)

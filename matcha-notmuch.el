@@ -151,22 +151,22 @@
 
     ^^Compose^^             ^^Tags^^         ^^Archive Then^^       ^^Misc^^
   ------------------------------------------------------------------------------
-  [_F_] Forward Open      ^[_d_] Delete    ^^[_A_] -> Message     ^[_l_] Filter Thread
-  [_R_] Reply             ^[_K_] Jump      ^^[_a_] Msg Or Thread  ^[_m_] Common
-  [_r_] Reply Sender      ^[_-_] Remove    ^^[_X_] -> Exit        ^[_w_] Save Attachments
-  [_S_] Resend Message    ^[_+_] Add       ^^[_x_] Msg Or Exit    ^[_._] Attachments
-  [_e_] Resume Draft      ^[_*_] Tag All                      ^^^^^[_|_] Pipe
-  [_f_] Forward Message
+  _F_ Forward Open      ^_d_ Delete    ^^_A_ -> Message     ^_l_ Filter Thread
+  _R_ Reply             ^_K_ Jump      ^^_a_ Msg Or Thread  ^_m_ Common
+  _r_ Reply Sender      ^_-_ Remove    ^^_X_ -> Exit        ^_w_ Save Attachments
+  _S_ Resend Message    ^_+_ Add       ^^_x_ Msg Or Exit    ^_._ Attachments
+  _e_ Resume Draft      ^_*_ Tag All                      ^^^^^_|_ Pipe
+  _f_ Forward Message
 
     ^^Navigate^^                ^^View^^                ^^Toggle^^
   ------------------------------------------------------------------------------
-  [_j_] Next Thread         ^^[_N_] Next Message      ^^[_h_] Headers
-  [_k_] Previous Thread     ^^[_P_] Previous Message  ^^[_t_] Truncate Lines
-  [_n_] Next Message        ^^[_V_] Raw Message       ^^[_!_] Elide Non Matching
-  [_p_] Previous Message    ^^[_#_] Print Message     ^^[_$_] Process Crypto
-  [_y_] Rewind              ^^[_Z_] Tree              ^^[_<_] Thread Indentation
-  [_z_] Advance             ^^[_c_] Stash             ^^[_T_] All Messages
-                                                ^^^^^^^^[_RET_] Message
+  _j_ Next Thread         ^^_N_ Next Message      ^^_h_ Headers
+  _k_ Previous Thread     ^^_P_ Previous Message  ^^_t_ Truncate Lines
+  _n_ Next Message        ^^_V_ Raw Message       ^^_!_ Elide Non Matching
+  _p_ Previous Message    ^^_#_ Print Message     ^^_$_ Process Crypto
+  _y_ Rewind              ^^_Z_ Tree              ^^_<_ Thread Indentation
+  _z_ Advance             ^^_c_ Stash             ^^_T_ All Messages
+                                                ^^^^^^^^_RET_ Message
 
 "
   ("l" notmuch-show-filter-thread)

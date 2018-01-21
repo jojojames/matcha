@@ -45,21 +45,21 @@
 
     Files             Search          Buffer             Do
   ------------------------------------------------------------------------------
-    [_f_] File          [_a_] Ag          [_b_] Switch        [_g_] Magit
-    [_l_] File dwim     [_A_] Grep        [_v_] Display       [_P_] Commander
-    [_r_] Recent file   [_s_] Occur       [_i_] IBuffer       [_I_] Info
-    [_d_] Dir           [_S_] Replace     [_K_] Kill all      [_p_] Switch Project
-    [_o_] Other         [_t_] Find Tag
-    [_u_] Test file     [_T_] Make Tags
-    [_h_] Root          [_R_] Replace Regexp
+    _f_ File          _a_ Ag          _b_ Switch        _g_ Magit
+    _l_ File dwim     _A_ Grep        _v_ Display       _P_ Commander
+    _r_ Recent file   _s_ Occur       _i_ IBuffer       _I_ Info
+    _d_ Dir           _S_ Replace     _K_ Kill all      _p_ Switch Project
+    _o_ Other         _t_ Find Tag
+    _u_ Test file     _T_ Make Tags
+    _h_ Root          _R_ Replace Regexp
 
     Other Window      Run             Cache
   ------------------------------------------------------------------------------
-    [_F_] File          [_U_] Test        [_kc_] Clear
-    [_L_] Dwim          [_m_] Compile     [_kk_] Add Current
-    [_D_] Dir           [_c_] Shell       [_ks_] Cleanup
-    [_O_] Other         [_C_] Command     [_kd_] Remove
-    [_B_] Buffer
+    _F_ File          _U_ Test        _kc_ Clear
+    _L_ Dwim          _m_ Compile     _kk_ Add Current
+    _D_ Dir           _c_ Shell       _ks_ Cleanup
+    _O_ Other         _C_ Command     _kd_ Remove
+    _B_ Buffer
 
 "
   ("a" projectile-ag)
