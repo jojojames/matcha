@@ -7,13 +7,13 @@
 
     ^Functions^                    ^Variables                  ^Debugging^
   ------------------------------------------------------------------------------
-    _lp_ Localize Parameter      _ev_ Extract variable     _lt_ Log this
-    _ef_ Extract function        _iv_ Inline variable      _dt_ Debug this
-    _ip_ Introduce parameter     _rv_ Rename variable
-    _em_ Extract method          _vt_ Var to this
-    _ao_ Arguments to object     _sv_ Split var decl.
-    _tf_ Toggle fun exp and decl _ag_ Add var to globals
-    _ta_ Toggle fun expr and =>  _ti_ Ternary to if
+    _lp_ Localize Parameter        _ev_ Extract variable     _lt_ Log this
+    _ef_ Extract function          _iv_ Inline variable      _dt_ Debug this
+    _ip_ Introduce parameter       _rv_ Rename variable
+    _em_ Extract method            _vt_ Var to this
+    _ao_ Arguments to object       _sv_ Split var decl.
+    _tf_ Toggle fun exp and decl   _ag_ Add var to globals
+    _ta_ Toggle fun expr and =>    _ti_ Ternary to if
                                  ^^_wl_ Wrap in For Loop
 
     ^Sexp^                   ^Buffer^
@@ -22,7 +22,7 @@
     _ss_ Split String      _ig_ Inject global in IIFE
     _sl_ Forward Slurp     _ee_ Expand node at point
     _ba_ Forward Barf      _cc_ Contract node at point
-                           ^^_uw_ Unwrap
+                         ^^_uw_ Unwrap
 
 "
   ("ee" js2r-expand-node-at-point)
