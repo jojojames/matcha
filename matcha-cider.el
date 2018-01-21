@@ -283,11 +283,11 @@ for user input.
 (defun matcha-cider-set-launcher ()
   "Set `hydra' launcher for `cider'."
   (let ((modes '(cider-mode cider-repl-mode cider-clojure-interaction-mode)))
-    (matcha-set-debug-command :modes modes :command 'matcha-cider-debug/body)
-    (matcha-set-eval-command :modes modes :command 'matcha-cider-eval/body)
-    (matcha-set-mode-command :modes modes :command 'matcha-cider-mode/body)
-    (matcha-set-test-command :modes modes :command 'matcha-cider-test/body)
-    (matcha-set-refactor-command :modes modes :command 'matcha-clj-refactor/body)))
+    (matcha-set-debug-command :mode modes :command 'matcha-cider-debug/body)
+    (matcha-set-eval-command :mode modes :command 'matcha-cider-eval/body)
+    (matcha-set-mode-command :mode modes :command 'matcha-cider-mode/body)
+    (matcha-set-test-command :mode modes :command 'matcha-cider-test/body)
+    (matcha-set-refactor-command :mode modes :command 'matcha-clj-refactor/body)))
 
 (provide 'matcha-cider)
 ;;; matcha-cider.el ends here
