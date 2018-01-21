@@ -48,9 +48,25 @@
 (defhydra matcha-java-mode (:color blue)
   ("u" java-eval-nofocus "Eval"))
 
+(defun matcha-cc-mode-clang-format-region-or-buffer ()
+  "If clang-format is not available, do the default indenting.
+Otherwise try to use clang-format. Indents region if there's a selection,
+otherwise buffer is formatted."
+  (interactive)
+  (if (and (executable-find "clang-format")
+           (locate-dominating-file default-directory ".clang-format"))
+      (if (region-active-p)
+          (call-interactively 'clang-format-region)
+        (clang-format-buffer))
+    (indent-region-or-buffer)))
+
 (defun matcha-cc-mode-mode-set-launcher ()
   "Set up `hydra' launcher for `java-mode'."
-  (matcha-set-mode-command :mode 'java-mode :command #'matcha-java-mode/body))
+  (matcha-set-mode-command :mode 'java-mode :command #'matcha-java-mode/body)
+
+  (matcha-set-format-command
+   :mode '(c-mode c++-mode objc-mode)
+   :command #'matcha-cc-mode-clang-format-region-or-buffer))
 
 (provide 'matcha-cc-mode)
 ;;; matcha-cc-mode.el ends here
