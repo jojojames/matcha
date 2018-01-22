@@ -31,12 +31,15 @@
 
 ;; Compatibility
 (eval-and-compile
-  (when (version< emacs-version "26")
-    (with-no-warnings
-      (defalias 'if-let* #'if-let)
-      (defalias 'when-let* #'when-let)
-      (function-put #'if-let* 'lisp-indent-function 2)
-      (function-put #'when-let* 'lisp-indent-function 1))))
+  (with-no-warnings
+    (if (version< emacs-version "26")
+        (progn
+          (defalias 'matcha-if-let* #'if-let)
+          (defalias 'matcha-when-let* #'when-let)
+          (function-put #'matcha-if-let* 'lisp-indent-function 2)
+          (function-put #'matcha-when-let* 'lisp-indent-function 1))
+      (defalias 'matcha-if-let* #'if-let*)
+      (defalias 'matcha-when-let* #'when-let*))))
 
 (defgroup matcha nil
   "Collection of hydras and a common way to launch them."
