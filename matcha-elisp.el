@@ -102,28 +102,49 @@ Requires smartparens because all movement is done using `sp-forward-symbol'."
           (message "Edebug: %s" fn)))
       (widen))))
 
-(defhydra matcha-emacs-lisp-debug (:color blue :columns 4)
-  "Elisp Debug"
-  ("w" debug-watch "Debug Watch")
-  ("W" cancel-debug-watch "Cancel Debug Watch")
-  ("t" edebug-x-modify-breakpoint-wrapper "Toggle Breakpoint")
-  ("s" edebug-x-show-breakpoints "Show Breakpoints")
-  ("i" edebug-x-show-instrumented "Show Instrumented")
-  ("a" edebug-x-show-data "Show Data")
-  ("q" cancel-debug-on-entry "Cancel")
-  ("f" debug-on-entry "Debug On Entry")
-  ("d" modi/toggle-edebug-defun "Toggle Modi"))
+(defhydra matcha-emacs-lisp-debug (:color blue :hint nil)
+  "
 
-(defhydra matcha-emacs-lisp-eval (:color blue :columns 4)
-  "Elisp Eval"
-  ("c" matcha-elisp-eval-current-form-sp "Current Form")
-  ("s" matcha-elisp-eval-current-symbol-sp "Current Symbol")
-  ("r" eval-region "Region")
-  ("e" eval-last-sexp "Sexp")
-  ("f" eval-defun "Defun")
-  ("j" eval-print-last-sexp "Sexp Print")
-  ("x" eval-last-sexp-and-replace "Sexp And Replace")
-  ("b" eval-buffer "Buffer"))
+    Elisp Debug
+
+    Debug                       ^^Watch              Edebug-X
+  ------------------------------------------------------------------------------
+    _d_ Debug                    _w_ Watch            _t_ Toggle Breakpoint
+    _f_ Debug on Entry           _W_ Cancel Watch     _s_ Show Breakpoints
+    _q_ Cancel Debug on Entry                       ^^_i_ Show Instrumented
+                                                  ^^^^_a_ Show Data
+
+"
+  ("w" debug-watch)
+  ("W" cancel-debug-watch)
+  ("t" edebug-x-modify-breakpoint-wrapper)
+  ("s" edebug-x-show-breakpoints)
+  ("i" edebug-x-show-instrumented)
+  ("a" edebug-x-show-data)
+  ("q" cancel-debug-on-entry)
+  ("f" debug-on-entry)
+  ("d" modi/toggle-edebug-defun))
+
+(defhydra matcha-emacs-lisp-eval (:color blue :hint nil)
+  "
+
+    Elisp Eval
+  ------------------------------------------------------------------------------
+    _e_ Last Sexp    _r_ Region    _f_ Defun    _b_ Buffer
+
+    _c_ Current Form    _s_ Current Symbol
+
+    _j_ Eval & Print    _x_ Eval & Replace
+
+"
+  ("e" eval-last-sexp)
+  ("r" eval-region)
+  ("f" eval-defun)
+  ("b" eval-buffer)
+  ("c" matcha-elisp-eval-current-form-sp)
+  ("s" matcha-elisp-eval-current-symbol-sp)
+  ("j" eval-print-last-sexp)
+  ("x" eval-last-sexp-and-replace))
 
 (defhydra matcha-emacs-lisp-mode (:color blue :hint nil)
   "
