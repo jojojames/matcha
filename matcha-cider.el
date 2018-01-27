@@ -248,10 +248,10 @@ for user input.
     _k_ Doc        _js_ J.I. -ClojureScript
     _z_ REPL       _A_ Run -main
 
-         Misc                      Macroexpand
+         Misc                    ^^Macroexpand
   ------------------------------------------------------------------------------
-    _x_ Scratch              _m_ Macroexpand-1
-    _R_ Reload Namespaces    _M_ Macroexpand all
+    _x_ Scratch                  ^^_m_ Macroexpand-1
+    _R_ Reload Namespaces        ^^_M_ Macroexpand all
     _l_ Lein
     _q_ Quit
 
