@@ -30,36 +30,56 @@
 (require 'matcha-base)
 (require 'python)
 
-(defhydra matcha-python-skelaton (:color blue :columns 4)
-  "Skeleton"
-  ("c" python-skeleton-class "Class")
-  ("d" python-skeleton-def "Def")
-  ("f" python-skeleton-for "For")
-  ("i" python-skeleton-if "If")
-  ("I" python-skeleton-import "Import")
-  ("t" python-skeleton-try "Try")
-  ("w" python-skeleton-while "While"))
+(defhydra matcha-python-skelaton (:color blue :hint nil)
+  "
 
-(defhydra matcha-python-eval (:color blue)
-  "Python Eval"
-  ("r" python-shell-send-region "Send Region")
-  ("b" python-shell-send-buffer "Send Buffer")
-  ("s" python-shell-send-string "Send String")
-  ("l" python-shell-send-file "Send File")
-  ("e" python-shell-send-defun "Send Function"))
+    Python Skeleton
+  ------------------------------------------------------------------------------
+    _i_ If    _f_ For    _w_ While    _t_ Try
 
-(defhydra matcha-python-mode (:color blue)
-  "Python"
-  ("e" matcha-python-eval/body "Eval")
-  ("z" python-shell-switch-to-shell "Shell")
-  ("u" run-python "Run")
-  ("s" matcha-python-skelaton/body "Skeleton")
-  ("p" pdb "Pdb"))
+    _d_ Def    _I_ Import   _c_ Class
+
+"
+  ("i" python-skeleton-if)
+  ("f" python-skeleton-for)
+  ("w" python-skeleton-while)
+  ("t" python-skeleton-try)
+  ("c" python-skeleton-class)
+  ("d" python-skeleton-def)
+  ("I" python-skeleton-import))
+
+(defhydra matcha-python-eval (:color blue :hint nil)
+  "
+
+    Python Eval
+  ------------------------------------------------------------------------------
+    _s_ String    _e_ Function    _r_ Region    _b_ Buffer    _f_ File
+
+"
+  ("r" python-shell-send-region)
+  ("b" python-shell-send-buffer)
+  ("s" python-shell-send-string)
+  ("f" python-shell-send-file)
+  ("e" python-shell-send-defun))
+
+(defhydra matcha-python-mode (:color blue :hint nil)
+  "
+
+    Python
+  ------------------------------------------------------------------------------
+    _e_ Eval   _z_ Shell    _s_ Skeleton    _p_ Debug    _u_ Run
+
+"
+  ("e" matcha-python-eval/body)
+  ("z" python-shell-switch-to-shell)
+  ("u" run-python)
+  ("s" matcha-python-skelaton/body)
+  ("p" pdb))
 
 (defun matcha-python-set-launcher ()
   "Set up `hydra' launcher for `python'."
   (matcha-set-mode-command :mode 'python-mode :command #'matcha-python-mode/body)
-  (matcha-set-mode-command :mode 'python-mode :command #'matcha-python-eval/body))
+  (matcha-set-eval-command :mode 'python-mode :command #'matcha-python-eval/body))
 
 (provide 'matcha-python)
 ;;; matcha-python.el ends here

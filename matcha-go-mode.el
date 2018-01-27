@@ -32,7 +32,7 @@
 
 (defhydra matcha-go-mode-eval (:color blue :hint nil)
   "
-        Go Eval
+    Go Eval
   ------------------------------------------------------------------------------
    _b_ Play Buffer    _r_ Play Region    _d_ Download Play
 
