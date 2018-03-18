@@ -40,7 +40,7 @@
     _e_ Edit              _i_ Insert Entry           _._ Go To URL
     _l_ Clear Password    _g_ Generate Password      _v_ Pass Version
     _y_ Copy Password     _x_ Remove Entry
-                          ^^_r_ Rename Entry
+                        ^^_r_ Rename Entry
 
         "
   ("e" password-store-edit)
