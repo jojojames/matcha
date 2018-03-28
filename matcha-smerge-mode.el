@@ -39,10 +39,10 @@
   ------------------------------------------------------------------------------
     _n_ Next        _j_ Current Under Point     _e_ Ediff
     _p_ Previous    _u_ Upper / Mine            _=<_ Base against Upper
-                    ^^_l_ Lower / Other           _=>_ Base against Lower
-                    ^^_c_ Combine                 _==_ Upper against Lower
-                    ^^_b_ Revert to Base
-                    ^^_a_ All
+                  ^^_l_ Lower / Other           _=>_ Base against Lower
+                  ^^_c_ Combine                 _==_ Upper against Lower
+                  ^^_b_ Revert to Base
+                  ^^_a_ All
     Misc
   ------------------------------------------------------------------------------
     _r_ Automatically Resolve
