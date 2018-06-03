@@ -66,7 +66,6 @@
     lua-mode
     (:modes magit :autoloads matcha-magit/body)
     meghanada
-    motion-mode
     notmuch
     omnisharp
     org
