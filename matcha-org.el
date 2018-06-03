@@ -35,17 +35,26 @@
   ("e" org-babel-execute-src-block "Execute Source Block")
   ("'" org-edit-src-code "Edit Source"))
 
-(defhydra matcha-org-hyperlink (:color blue :columns 4)
-  "Links"
-  ("l" org-store-link "Store Link")
-  ("s" org-store-link "Store Link")
-  ("r" org-occur-link-in-agenda-files "Occur Links")
-  ("i" org-insert-link "Insert Link")
-  ("g" org-open-at-point "Follow Link")
-  ("n" org-next-link "Next Link")
-  ("p" org-previous-link "Previous Link")
-  ("t" org-toggle-link-display "Toggle Link Display")
-  ("d" org-toggle-link-display "Toggle Link Display"))
+(defhydra matcha-org-hyperlink (:color blue :hint nil)
+  "
+
+    Org Links
+  ------------------------------------------------------------------------------
+    _l_ Store Link    _i_ Insert Link    _g_ Follow Link
+
+    _n_ Next Link     _p_ Previous Link
+
+    _t_ Toggle Link Display    _r_ Occur Links
+
+"
+  ("l" org-store-link)
+  ("s" org-store-link)
+  ("r" org-occur-link-in-agenda-files)
+  ("i" org-insert-link)
+  ("g" org-open-at-point)
+  ("n" org-next-link)
+  ("p" org-previous-link)
+  ("t" org-toggle-link-display))
 
 (defhydra matcha-org-time (:color blue :columns 4)
   "Time"
