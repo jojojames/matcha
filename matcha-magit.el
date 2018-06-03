@@ -88,11 +88,11 @@ If `magit' is not yet loaded yet, just call `magit-status' directly."
 
    Magit: %s(matcha-magit-dir)
 
-    Status                    Blame               Log
+    Status                    Blame                 ?
   ------------------------------------------------------------------------------
-    _s_ Status               _b_ Blame               _l_ Log
-    _g_ Switch to Status     _j_ Blob Next
-    _p_ List Repos           _k_ Blob Previous
+    _s_ Status               _b_ Blame               _p_ File Popup
+    _g_ Switch to Status     _j_ Blob Next           _d_ Dispatch
+    _L_ List Repos           _k_ Blob Previous       _l_ Log
     _r_ Pick Repo
 
     Search                           Diff
@@ -102,13 +102,15 @@ If `magit' is not yet loaded yet, just call `magit-status' directly."
                                ^^_ed_ Ediff Directories
 
 "
+  ("p" magit-file-popup)
+  ("d" magit-dispatch-popup)
   ("f" magit-find-file)
   ("F" magit-find-file-other-window)
   ("j" magit-blob-next)
   ("k" magit-blob-previous)
   ("b" magit-blame)
   ("l" matcha-magit-log/body)
-  ("p" magit-list-repositories)
+  ("L" magit-list-repositories)
   ("r" matcha-magit-status-pick-repository)
   ("g" matcha-magit-status-or-switch-buffer)
   ("s" magit-status)
