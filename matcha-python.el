@@ -67,7 +67,7 @@
 
     Python
   ------------------------------------------------------------------------------
-    _e_ Eval   _z_ Shell    _s_ Skeleton    _p_ Debug    _u_ Run
+    _e_ Eval   _z_ Shell    _s_ Skeleton    _p_ Debug    _u_ Run Python
 
 "
   ("e" matcha-python-eval/body)
