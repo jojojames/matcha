@@ -30,6 +30,9 @@
 (require 'matcha-base)
 (require 'python)
 
+(declare-function 'lispy-eval "lispy")
+(declare-function 'lispy-eval-and-insert "lispy")
+
 (defhydra matcha-python-skelaton (:color blue :hint nil)
   "
 
@@ -53,14 +56,18 @@
 
     Python Eval
   ------------------------------------------------------------------------------
-    _s_ String    _e_ Function    _r_ Region    _b_ Buffer    _f_ File
+    _s_ String    _f_ Function    _r_ Region    _b_ Buffer    _F_ File
+
+    _e_ Lispy Eval    _i_ Lispy Eval and Insert
 
 "
+  ("e" lispy-eval)
+  ("i" lispy-eval-and-insert)
   ("r" python-shell-send-region)
   ("b" python-shell-send-buffer)
   ("s" python-shell-send-string)
-  ("f" python-shell-send-file)
-  ("e" python-shell-send-defun))
+  ("F" python-shell-send-file)
+  ("f" python-shell-send-defun))
 
 (defhydra matcha-python-mode (:color blue :hint nil)
   "
