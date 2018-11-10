@@ -73,7 +73,7 @@ If `magit' is not yet loaded yet, just call `magit-status' directly."
   ("f" magit-log-buffer-file)
   ("F" magit-log-buffer-file-popup)
   ("u" magit-cherry)
-  ("p" magit-log)
+  ("p" magit-log-other)
   ("c" magit-log-current)
   ("h" magit-log-head)
   ("o" magit-log-branches)
@@ -95,9 +95,9 @@ If `magit' is not yet loaded yet, just call `magit-status' directly."
     _L_ List Repos           _k_ Blob Previous       _l_ Log
     _r_ Pick Repo
 
-    Search                           Diff
+    Search                           Diff            Repository
   ------------------------------------------------------------------------------
-    _f_ Find File                _ef_ Ediff Files
+    _f_ Find File                _ef_ Ediff Files        ^^_c_ Clone
     _F_ Find File Other Window   _eb_ Ediff Buffers
                                ^^_ed_ Ediff Directories
 
@@ -108,12 +108,13 @@ If `magit' is not yet loaded yet, just call `magit-status' directly."
   ("F" magit-find-file-other-window)
   ("j" magit-blob-next)
   ("k" magit-blob-previous)
-  ("b" magit-blame)
+  ("b" magit-blame-addition)
   ("l" matcha-magit-log/body)
   ("L" magit-list-repositories)
   ("r" matcha-magit-status-pick-repository)
   ("g" matcha-magit-status-or-switch-buffer)
   ("s" magit-status)
+  ("c" magit-clone)
   ("ef" ediff-files)
   ("eF" ediff-files3)
   ("eb" ediff-buffers)
