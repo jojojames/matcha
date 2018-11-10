@@ -43,7 +43,7 @@ If `mix-command' is \"phoenix.server\", then the resulting `defun' will be:
         collect
         (let ((funsymbol
                (intern (concat "matcha-alchemist-mix-"
-                               (s-replace "." "-" command)))))
+                               (replace-regexp-in-string "\\." "-" command)))))
           `(defun ,funsymbol ()
              ,(concat "Run $ mix " command ".")
              (interactive)
