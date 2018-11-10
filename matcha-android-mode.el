@@ -28,7 +28,7 @@
 
 ;;; Code:
 (require 'matcha-base)
-(require 'android-mode)
+(require 'android-mode nil t)
 
 (defhydra matcha-android-mode (:color blue)
   "Android"

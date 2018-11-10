@@ -28,7 +28,7 @@
 
 ;;; Code:
 (require 'matcha-base)
-(require 'geiser)
+;; (require 'geiser)
 
 (defmacro matcha-geiser-define-eval-and-print-functions (&rest geiser-evals)
   "Define eval functions that prints to the buffer after."

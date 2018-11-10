@@ -28,7 +28,7 @@
 
 ;;; Code:
 (require 'matcha-base)
-(require 'omnisharp)
+;; (require 'omnisharp)
 
 (defhydra matcha-omnisharp-project (:color blue)
   "Project"

@@ -28,7 +28,7 @@
 
 ;;; Code:
 (require 'matcha-base)
-(require 'gud-lldb)
+;; (require 'gud-lldb)
 
 (defhydra matcha-gud-lldb (:color blue :columns 4)
   "LLDB"

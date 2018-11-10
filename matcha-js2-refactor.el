@@ -1,5 +1,5 @@
 (require 'matcha-base)
-(require 'js2-refactor nil t)
+;; (require 'js2-refactor nil t)
 
 (defhydra matcha-js2-refactor (:color blue :hint nil)
   "

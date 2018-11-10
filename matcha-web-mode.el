@@ -28,7 +28,7 @@
 
 ;;; Code:
 (require 'matcha-base)
-(require 'web-mode)
+;; (require 'web-mode)
 
 (defhydra matcha-web-mode (:color blue :hint nil)
   "

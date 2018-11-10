@@ -1,7 +1,7 @@
 (require 'matcha-base)
 (require 'matcha-js2-refactor)
-(require 'indium nil t)
-(require 'js-import nil t)
+;; (require 'indium nil t)
+;; (require 'js-import nil t)
 
 (defhydra matcha-js-import (:color blue)
   "Import"

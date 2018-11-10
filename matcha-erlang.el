@@ -28,7 +28,7 @@
 
 ;;; Code:
 (require 'matcha-base)
-(require 'erlang)
+;; (require 'erlang)
 
 (defhydra matcha-erlang-debug (:color blue)
   "Debug"

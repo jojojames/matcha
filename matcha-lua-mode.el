@@ -28,7 +28,7 @@
 
 ;;; Code:
 (require 'matcha-base)
-(require 'lua-mode)
+;; (require 'lua-mode)
 
 (defun matcha-lua-mode-run-test-suite ()
   "Run test_suite.lua."

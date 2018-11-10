@@ -28,7 +28,7 @@
 
 ;;; Code:
 (require 'matcha-base)
-(require 'projectile)
+;; (require 'projectile)
 
 (defun matcha-projectile-root ()
   "Return path `matcha-projectile' can print in heading."

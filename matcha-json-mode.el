@@ -28,7 +28,7 @@
 
 ;;; Code:
 (require 'matcha-base)
-(require 'json-mode)
+;; (require 'json-mode)
 
 (defhydra matcha-json-mode (:color blue)
   "Json"

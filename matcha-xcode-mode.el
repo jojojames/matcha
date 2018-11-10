@@ -28,7 +28,7 @@
 
 ;;; Code:
 (require 'matcha-base)
-(require 'xcode-mode)
+;; (require 'xcode-mode)
 
 (defhydra matcha-xcode-mode (:color teal :hint nil)
   "

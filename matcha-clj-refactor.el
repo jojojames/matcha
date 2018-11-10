@@ -28,7 +28,7 @@
 
 ;;; Code:
 (require 'matcha-base)
-(require 'clj-refactor)
+;; (require 'clj-refactor nil t)
 
 ;; Redefine hydras to be consistent.
 ;; This will be a maintenance burden but better to be consistent...

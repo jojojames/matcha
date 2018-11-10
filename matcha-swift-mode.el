@@ -28,7 +28,7 @@
 
 ;;; Code:
 (require 'matcha-base)
-(require 'swift-mode)
+;; (require 'swift-mode)
 
 (defhydra matcha-swift-mode (:color blue :columns 4)
   "Swift"
