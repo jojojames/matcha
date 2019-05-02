@@ -80,28 +80,26 @@
 (defhydra matcha-evil-mc (:color red :hint nil)
   "
 
-    Multiple Cursors:
-  ------------------------------------------------------------------------------
-    _m_ Make all Cursors    _u_ Undo all Cursors
-    _s_ Pause Cursors       _r_ Resume Cursors
+    Multiple Cursors: %(evil-mc-get-cursor-count)
+  ^^^^^^----------------------------------------------------------------
+    _m_ Make all Cursors   _u_ Undo all Cursors   _U_ Undo last Cursor
+    _s_ Pause Cursors      _r_ Resume Cursors
 
-    _f_ Make & Goto First Cursor  _l_ Make & Goto Last Cursor
-    _h_ Make Here
-    _j_ Make & Goto Next Line     _k_ Make & Goto Prev Line
-
-    _n_ Make & Goto Next Cursor   _p_ Make & Goto Previous Cursor
-    _S_ Skip & Goto Next Match
-    _N_ Make & Goto Next Match    _P_ Make & Goto Previous Match
+      ^^          first _f_
+        _k_             _p_                  _P_
+      ^LINE^         CURSOR _h_ here       ^MATCH
+        _j_             _n_                  _N_
+      ^^           last _l_             skip _S_
 
     _=_ Make in Defun
     _<_ Insert Vertical Cursors   _>_ Append Vertical Cursors
-
 "
   ("=" evil-mc-make-cursors-in-defun)
   ("<" evil-mc-insert-vertical-cursors)
   (">" evil-mc-append-vertical-cursors)
   ("m" evil-mc-make-all-cursors)
-  ("u" evil-mc-undo-all-cursors)
+  ("u" evil-mc-undo-all-cursors :color blue)
+  ("U" evil-mc-undo-last-added-cursor)
   ("s" evil-mc-pause-cursors)
   ("r" evil-mc-resume-cursors)
   ("f" evil-mc-make-and-goto-first-cursor)
