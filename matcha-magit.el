@@ -79,7 +79,7 @@ If `magit' is not yet loaded yet, just call `magit-status' directly."
   ("o" magit-log-branches)
   ("a" magit-log-all-branches)
   ("A" magit-log-all)
-  ("P" magit-reflog)
+  ("P" magit-reflog-other)
   ("C" magit-reflog-current)
   ("H" magit-reflog-head))
 
