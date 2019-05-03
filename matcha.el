@@ -95,6 +95,7 @@
   (interactive)
   ;; Require `elisp' by default.
   ;; It contains a lot of default functions.
+  ;; (require 'matcha-me) ;; FIXME: In the future uncomment this.
   (require 'matcha-elisp)
   (dolist (entry matcha-mode-list)
     (pcase entry
