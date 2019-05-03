@@ -71,7 +71,7 @@ If `magit' is not yet loaded yet, just call `magit-status' directly."
 
 "
   ("f" magit-log-buffer-file)
-  ("F" magit-log-buffer-file-popup)
+  ("F" magit-log)
   ("u" magit-cherry)
   ("p" magit-log-other)
   ("c" magit-log-current)
@@ -102,8 +102,8 @@ If `magit' is not yet loaded yet, just call `magit-status' directly."
                                ^^_ed_ Ediff Directories
 
 "
-  ("p" magit-file-popup)
-  ("d" magit-dispatch-popup)
+  ("p" magit-file-dispatch)
+  ("d" magit-dispatch)
   ("f" magit-find-file)
   ("F" magit-find-file-other-window)
   ("j" magit-blob-next)
