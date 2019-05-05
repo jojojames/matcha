@@ -51,6 +51,11 @@
   :type 'bool
   :group 'matcha)
 
+(defcustom matcha-use-transient-p t
+  "Whether or not to use `transient' instead of `hydra'."
+  :type 'bool
+  :group 'matcha)
+
 (defcustom matcha-mode-list
   '(alchemist
     android-mode
