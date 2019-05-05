@@ -24,11 +24,17 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-;;; Integration with Hydra.
+;;;
+;;;  USAGE:
+;;;
+;;;  (general-define-key
+;;;   :states '(normal visual motion)
+;;;   :keymaps 'override
+;;;   "SPC" 'matcha-me-space)
+;;;
 
 ;;; Code:
-
-(require 'transient)
+(require 'matcha-base)
 
 (defun matcha-me-find-init ()
   "Visit init file."
@@ -45,7 +51,6 @@
     ("SPC" "In Project" j|search)]
    ["Manage"
     ("w" "Window" matcha-me-window)
-    ;; ("g" "Git" matcha-magit/body)
     ("g" "Git" matcha-magit)
     ("p" "Project" matcha-projectile/body)
     ("y" "System" matcha-me-system)
@@ -137,6 +142,17 @@
 
 (define-transient-command matcha-me-window ()
   "Window"
+  [["Narrow/Widen"
+    ("n" "Narrow" narrow-to-region)
+    ("w" "Widen" widen)
+    ("ND" "Narrow to Defun" narrow-to-defun)
+    ("NP" "Narrow to Page" narrow-to-page)]
+   ["Layout"
+    ("." "Redo" winner-redo)
+    ("," "Undo" winner-undo)]
+   ["Text"
+    ("+" "Increase" text-scale-increase)
+    ("_" "Decrease" text-scale-decrease)]]
   [["Frame"
     ("m" "Maximize" toggle-frame-maximized)
     ("F" "Toggle Fullscreen" toggle-frame-fullscreen)
@@ -144,11 +160,6 @@
     ("1" "Delete other Frames" delete-other-frames)
     ("2" "Make Frame" make-frame-command)
     ("o" "Other Frame" other-frame)]
-   ["Narrow/Widen"
-    ("n" "Narrow" narrow-to-region)
-    ("w" "Widen" widen)
-    ("ND" "Narrow to Defun" narrow-to-defun)
-    ("NP" "Narrow to Page" narrow-to-page)]
    ["Window"
     ("=" "Balance" balance-windows)
     ("r" "Resize Windows" j|resize-window)
@@ -158,25 +169,11 @@
     ("<right>" "->" shrink-window-horizontally)
     ("<left>" "<-" enlarge-window-horizontally)
     ("<down>" "Down" shrink-window)
-    ("<up>" "Up" enlarge-window)]
-   ["Layout"
-    ("." "Redo" winner-redo)
-    ("," "Undo" winner-undo)]
-   ["Text"
-    ("+" "Increase" text-scale-increase)
-    ("_" "Decrease" text-scale-decrease)]]
+    ("<up>" "Up" enlarge-window)]]
   [:hide (lambda () t)
          ("-" split-window-below)
          ("|" split-window-right)
          ("\\" split-window-right)])
-
-;; USAGE:
-;;
-;; (general-define-key
-;;  :states '(normal visual motion)
-;;  :keymaps 'override
-;;  "SPC" 'matcha-me-space)
-;;
 
 (provide 'matcha-me)
 ;;; matcha-me.el ends here
