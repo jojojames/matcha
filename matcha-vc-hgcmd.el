@@ -43,13 +43,41 @@
   (vc-hgcmd-command commands)
   (vc-dir-refresh))
 
+(defun matcha-vc-hgcmd-unshelve (name)
+  "Restore a shelve named NAME."
+  (interactive "sShelve name: ")
+  (let ((commands '("unshelve")))
+    (when (member "--keep" (transient-args))
+      (push "--keep" commands))
+    (if (string-equal name "")
+        (message "No shelve name...")
+      (progn
+        (push name commands)
+        (setq commands (nreverse commands))
+        (vc-hgcmd-command commands)
+        (vc-dir-refresh)))))
+
+(defun matcha-vc-hgcmd-delete (name)
+  "Delete a shelve named NAMED."
+  (interactive "sShelve name: ")
+  (let ((commands '("--delete" "shelve")))
+    (if (string-equal name "")
+        (message "No shelve name...")
+      (progn
+        (push name commands)
+        (setq commands (nreverse commands))
+        (vc-hgcmd-command commands)
+        (vc-dir-refresh)))))
+
 (define-transient-command matcha-vc-hgcmd-stash ()
   "Stash uncommited changes."
   ["Arguments"
    ("-u" "Store unknown files in the shelve" ("-u" "--unknown"))
    ("-k" "Keep shelve after unshelving" ("-k" "--keep"))]
   [["Shelve"
-    ("z" "Shelve" matcha-vc-hgcmd-shelve)]])
+    ("z" "Shelve" matcha-vc-hgcmd-shelve)
+    ("r" "Restore" matcha-vc-hgcmd-unshelve)
+    ("x" "Delete" matcha-vc-hgcmd-delete)]])
 
 (provide 'matcha-vc-hgcmd)
 ;;; matcha-vc-hgcmd.el ends here
