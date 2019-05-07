@@ -56,6 +56,11 @@
   :type 'bool
   :group 'matcha)
 
+(defcustom matcha-me-p t
+  "Whether to load personal `matcha'."
+  :type 'bool
+  :group 'matcha)
+
 (defcustom matcha-mode-list
   '(alchemist
     android-mode
@@ -98,9 +103,10 @@
 (defun matcha-setup ()
   "Set up hydras."
   (interactive)
+  (when matcha-me-p
+    (require 'matcha-me))
   ;; Require `elisp' by default.
   ;; It contains a lot of default functions.
-  ;; (require 'matcha-me) ;; FIXME: In the future uncomment this.
   (require 'matcha-elisp)
   (dolist (entry matcha-mode-list)
     (pcase entry
