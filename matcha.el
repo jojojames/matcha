@@ -75,7 +75,7 @@
     (js js2-mode rjsx-mode)
     json-mode
     lua-mode
-    (:modes magit :autoloads matcha-magit/body)
+    (:modes magit :autoloads (matcha-magit/body matcha-magit))
     meghanada
     notmuch
     omnisharp

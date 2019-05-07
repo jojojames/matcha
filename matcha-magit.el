@@ -122,55 +122,53 @@ If `magit' is not yet loaded yet, just call `magit-status' directly."
   ("ed" ediff-directories)
   ("eD" ediff-directories3))
 
-;; FIXME: Not yet using `transient' yet so keep this blocked.
-(with-eval-after-load 'transient
-  (define-transient-command matcha-magit-log ()
-    "Log"
-    [["File"
-      ("f" "Current" magit-log-buffer-file)
-      ("F" "File Popup" magit-log)
-      ("u" "Unmerged Commits" magit-cherry)]
-     ["Branch"
-      ("p" "Pick..." magit-log-other)
-      ("c" "Current" magit-log-current)
-      ("h" "Head" magit-log-head)
-      ("o" "Local & Head" magit-log-branches)
-      ("a" "Local & Head & Remote" magit-log-all-branches)
-      ("A" "Everything" magit-log-all)]
-     ["Reflog"
-      ("P" "Pick..." magit-reflog-other)
-      ("C" "Current" magit-reflog-current)
-      ("H" "Head" magit-reflog-head)]])
+(define-transient-command matcha-magit-log ()
+  "Log"
+  [["File"
+    ("f" "Current" magit-log-buffer-file)
+    ("F" "File Popup" magit-log)
+    ("u" "Unmerged Commits" magit-cherry)]
+   ["Branch"
+    ("p" "Pick..." magit-log-other)
+    ("c" "Current" magit-log-current)
+    ("h" "Head" magit-log-head)
+    ("o" "Local & Head" magit-log-branches)
+    ("a" "Local & Head & Remote" magit-log-all-branches)
+    ("A" "Everything" magit-log-all)]
+   ["Reflog"
+    ("P" "Pick..." magit-reflog-other)
+    ("C" "Current" magit-reflog-current)
+    ("H" "Head" magit-reflog-head)]])
 
-  (define-transient-command matcha-ediff ()
-    "Ediff"
-    [["Actions"
-      ("f" "Files" ediff-files)
-      ("F" "Files - (3 Way)" ediff-files3)
-      ("b" "Buffers" ediff-buffers)
-      ("B" "Buffers - (3 Way)" ediff-buffers3)
-      ("d" "Directories" ediff-directories)
-      ("D" "Directories - (3 Way)" ediff-directories3)]])
+(define-transient-command matcha-ediff ()
+  "Ediff"
+  [["Actions"
+    ("f" "Files" ediff-files)
+    ("F" "Files - (3 Way)" ediff-files3)
+    ("b" "Buffers" ediff-buffers)
+    ("B" "Buffers - (3 Way)" ediff-buffers3)
+    ("d" "Directories" ediff-directories)
+    ("D" "Directories - (3 Way)" ediff-directories3)]])
 
-  (define-transient-command matcha-magit ()
-    "Magit"
-    [["Repository"
-      ("s" "Status" magit-status)
-      ("g" "Status (Cached)" matcha-magit-status-or-switch-buffer)
-      ("c" "Clone" magit-clone)
-      ("r" "Pick Repository" matcha-magit-status-pick-repository)
-      ("L" "List Repositories" magit-list-repositories)
-      ("d" "Dispatch Popup" magit-dispatch)]
-     ["History"
-      ("l" "Logging" matcha-magit-log)
-      ("b" "Blame" magit-blame-addition)
-      ("e" "Diff" matcha-ediff)
-      ("j" "Blob Next" magit-blob-next)
-      ("k" "Blob Previous" magit-blob-previous)]
-     ["Files"
-      ("p" "File Popup" magit-file-dispatch)
-      ("f" "Find File" magit-find-file)
-      ("F" "Find File in Other Window" magit-find-file-other-window)]]))
+(define-transient-command matcha-magit ()
+  "Magit"
+  [["Repository"
+    ("s" "Status" magit-status)
+    ("g" "Status (Cached)" matcha-magit-status-or-switch-buffer)
+    ("c" "Clone" magit-clone)
+    ("r" "Pick Repository" matcha-magit-status-pick-repository)
+    ("L" "List Repositories" magit-list-repositories)
+    ("d" "Dispatch Popup" magit-dispatch)]
+   ["History"
+    ("l" "Logging" matcha-magit-log)
+    ("b" "Blame" magit-blame-addition)
+    ("e" "Diff" matcha-ediff)
+    ("j" "Blob Next" magit-blob-next)
+    ("k" "Blob Previous" magit-blob-previous)]
+   ["Files"
+    ("p" "File Popup" magit-file-dispatch)
+    ("f" "Find File" magit-find-file)
+    ("F" "Find File in Other Window" magit-find-file-other-window)]])
 
 (provide 'matcha-magit)
 ;;; matcha-magit.el ends here
