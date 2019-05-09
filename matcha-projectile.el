@@ -1,4 +1,4 @@
-;-integration;; matcha-projectile.el --- Integration with Hydra. -*- lexical-binding: t -*-
+;; matcha-projectile.el --- Integration with Hydra. -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2017 James Nguyen
 
