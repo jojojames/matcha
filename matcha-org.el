@@ -156,10 +156,107 @@
   ("t" matcha-org-time/body)
   ("l" matcha-org-hyperlink/body))
 
+(define-transient-command matcha-org-babel ()
+  "Babel"
+  ["Babel"
+   ("e" "Execute Source Block" org-babel-execute-src-block )
+   ("'" "Edit Source" org-edit-src-code )])
+
+(define-transient-command matcha-org-hyperlink ()
+  "Org Links"
+  [["Navigate"
+    ("g" "Follow Link" org-open-at-point)
+    ("n" "Next Link" org-next-link)
+    ("p" "Previous Link" org-previous-link)
+    ("r" "Occur Links" org-occur-link-in-agenda-files)]
+   ["Manage"
+    ("l" "Store Link" org-store-link)
+    ("i" "Insert Link" org-insert-link)
+    ("t" "Toggle Link Display" org-toggle-link-display)]]
+  [:hide (lambda () t)
+         ("s" org-store-link)])
+
+(define-transient-command matcha-org-time ()
+  "Time"
+  [["Insert"
+    ("t" "Timestamp" org-time-stamp)
+    ("T" "Inactive Timestamp" org-time-stamp-inactive)
+    ("s" "Schedule Item" org-schedule)
+    ("d" "Deadline" org-deadline)]
+   ["Calendar"
+    ("c" "Goto Calendar" org-goto-calendar)
+    ("C" "Date from Calendar" org-date-from-calendar)]
+   ["Manage"
+    ("D" "Change Date" matcha-org-change-date)
+    ("y" "Evaluate Time Range" org-evaluate-time-range)
+    ("Z" "Custom Time Format" org-toggle-time-stamp-overlays)]
+   ["Timer"
+    ("0" "Start Timer" org-timer-start)
+    ("9" "Stop Timer" org-timer-stop)
+    ("8" "Pause/Continue Timer" org-timer-pause-or-continue)
+    ("7" "Insert Timer String" org-timer)
+    ("6" "Insert Timer Item" org-timer-item)]])
+
+(define-transient-command matcha-org-change-date ()
+  "Change Date"
+  ["Change Date"
+   ("l" "1 Day Later" org-shiftright)
+   ("h" "1 Day Before" org-shiftleft)
+   ("k" "1 ... Later" org-shiftup)
+   ("j" "1 ... Before" org-shiftdown)])
+
+(define-transient-command matcha-org-editing ()
+  "Edit"
+  [["Insert"
+    ("m" "Heading" org-meta-return)
+    ("M" "Heading Under" org-insert-heading-respect-content)
+    ("t" "Todo" org-insert-todo-heading)
+    ("T" "Todo Under" org-insert-todo-heading-respect-content)]
+   ["Promotion"
+    ("<left>" "Promoto Heading" org-do-promote)
+    ("<right>" "Demote Heading" org-do-demote)
+    ("S-<left>" "Promote Subtree" org-promote-subtree)
+    ("S-<right>" "Demote Subtree" org-demote-subtree)
+    ("<up>" "Move Subtree Up" org-move-subtree-up)
+    ("<down>" "Move Subtree Down" org-move-subtree-down)]
+   ["Mark"
+    ("e" "Element" org-mark-element)
+    ("@" "Subtree" org-mark-subtree)]]
+  [["Subtree"
+    ("x" "Cut" org-cut-subtree)
+    ("w" "Copy" org-copy-subtree)
+    ("y" "Paste" org-paste-subtree)
+    ("Y" "Yank" org-yank)
+    ("W" "Clone" org-clone-subtree-with-time-shift)]
+   ["Modify"
+    ("r" "Refile" org-refile)
+    ("^" "Sort" org-sort)
+    ("*" "Toggle Heading" org-toggle-heading)]
+   ["Narrow"
+    ("ns" "Narrow to Subtree" org-narrow-to-subtree)
+    ("nb" "Narrow to Block" org-narrow-to-block)
+    ("nw" "Widen" widen)]])
+
+(define-transient-command matcha-org-mode ()
+  "Org Mode"
+  ["Motion"
+   ("n" "Next Heading" org-next-visible-heading)
+   ("p" "Previous Heading" org-previous-visible-heading )
+   ("f" "Forward Level" org-forward-heading-same-level)
+   ("b" "Backward Level" org-backward-heading-same-level)
+   ("u" "Up Heading" outline-up-heading)
+   ("j" "Goto" org-goto)]
+  ["Misc"
+   ("e" "Editing" matcha-org-editing)
+   ("B" "Babel" matcha-org-babel)
+   ("t" "Time" matcha-org-time)
+   ("l" "Links" matcha-org-hyperlink)
+   ("r" "Reveal" org-reveal)])
+
 (defun matcha-org-set-launcher ()
   "Set `hydra' launcher for `org'."
-  (matcha-set-mode-command :mode 'org-mode :command #'matcha-org-mode/body)
-  (matcha-set-eval-command :mode 'org-mode :command #'matcha-org-editing/body))
+  (matcha-set-mode-command :mode 'org-mode :command #'matcha-org-mode)
+  (matcha-set-eval-command :mode 'org-mode :command #'matcha-org-editing))
 
 (provide 'matcha-org)
 ;;; matcha-org.el ends here
