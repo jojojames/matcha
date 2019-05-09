@@ -98,6 +98,54 @@
   ("v" projectile-display-buffer)
   ("i" projectile-ibuffer))
 
+(define-transient-command matcha-projectile-cache ()
+  "Cache"
+  [["Cache"
+    ("c" "Invalidate" projectile-invalidate-cache)
+    ("d" "Remove Known Project" projectile-remove-known-project)
+    ("k" "Cache Current File" projectile-cache-current-file)
+    ("s" "Cleanup Known Projects" projectile-cleanup-known-projects)]])
+
+(define-transient-command matcha-projectile ()
+  "Projectile"
+  [["Find"
+    ("f" "File" projectile-find-file)
+    ("F" "File Other Window" projectile-find-file-other-window)
+    ("l" "File DWIM" projectile-find-file-dwim)
+    ("L" "File DWIM Other Window" projectile-find-file-dwim-other-window)
+    ("o" "Other File" projectile-find-other-file)
+    ("O" "Other file Other Window" projectile-find-other-file-other-window)
+    ("r" "Recent File" projectile-recentf)
+    ("u" "Test File" projectile-find-test-file)]
+   ["Buffers & Directories"
+    ("b" "Buffer" projectile-switch-to-buffer)
+    ("B" "Buffer Other Window" projectile-switch-to-buffer-other-window)
+    ("d" "Directory" projectile-find-dir)
+    ("D" "Directory Other Window" projectile-find-dir-other-window)]
+   ["Actions"
+    ("R" "Replace Regexp" projectile-replace-regexp)
+    ("S" "Replace" projectile-replace)
+    ("U" "Run Tests" projectile-test-project)
+    ("m" "Compile Project" projectile-compile-project)
+    ("c" "Run Async Shell Command" projectile-run-async-shell-command-in-root)
+    ("C" "Run Command" projectile-run-command-in-root)]]
+  [["Modes"
+    ("g" "Version Control" projectile-vc)
+    ("h" "Dired" projectile-dired)
+    ("i" "IBuffer" projectile-ibuffer)]
+   ["Search"
+    ("a" "AG" projectile-ag)
+    ("A" "Grep" projectile-grep)
+    ("s" "Multi Occur" projectile-multi-occur)
+    ("t" "Find Tag" projectile-find-tag)
+    ("T" "Regenerate Tags" projectile-regenerate-tags)]
+   ["Manage"
+    ("p" "Switch Project" projectile-switch-project)
+    ("I" "Project Info" projectile-project-info)
+    ("K" "Kill Project Buffers" projectile-kill-buffers)
+    ("k" "Cache..." matcha-projectile-cache)
+    ("P" "Commander" projectile-commander)]])
+
 (provide 'matcha-projectile)
 ;;; matcha-projectile.el ends here
 ;; Local Variables:

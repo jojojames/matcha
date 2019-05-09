@@ -82,7 +82,7 @@
     org
     (:modes p4 :autoloads matcha-p4/body)
     pass
-    (:modes projectile :autoloads matcha-projectile/body)
+    (:modes projectile :autoloads (matcha-projectile/body matcha-projectile))
     python
     restclient
     ruby-mode

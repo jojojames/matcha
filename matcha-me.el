@@ -52,7 +52,7 @@
    ["Manage"
     ("w" "Window" matcha-me-window)
     ("g" "Git" matcha-magit)
-    ("p" "Project" matcha-projectile/body)
+    ("p" "Project" matcha-projectile)
     ("y" "System" matcha-me-system)
     ("U" "Undo Tree" undo-tree-visualize)]
    ["Do"
