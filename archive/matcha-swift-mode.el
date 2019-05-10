@@ -1,4 +1,4 @@
-;;; matcha-swift-mode.el --- Integration with Transient. -*- lexical-binding: t -*-
+;;; matcha-swift-mode.el --- Integration with Hydra. -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2017 James Nguyen
 
@@ -7,7 +7,7 @@
 ;; URL: https://github.com/jojojames/matcha
 ;; Version: 0.0.1
 ;; Package-Requires: ((emacs "25.1"))
-;; Keywords: transient, emacs
+;; Keywords: hydra, emacs
 ;; HomePage: https://github.com/jojojames/matcha
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,23 +24,22 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-;;; Integration with Transient.
+;;; Integration with Hydra.
 
 ;;; Code:
 (require 'matcha-base)
-(require 'swift-mode nil t)
+;; (require 'swift-mode)
 
-(define-transient-command matcha-swift-mode
+(defhydra matcha-swift-mode (:color blue :columns 4)
   "Swift"
-  [["Actions"
-    ("z" "Run REPL" swift-mode:run-repl)
-    ("b" "Send Buffer" swift-mode:send-buffer)
-    ("r" "Send Region" swift-mode:send-region)]])
+  ("ez" swift-mode:run-repl "Run REPL")
+  ("eb" swift-mode:send-buffer "Send Buffer")
+  ("er" swift-mode:send-region "Send Region"))
 
 (defun matcha-swift-mode-set-launcher ()
-  "Set up `swift-mode' with `transient'."
+  "Set up `swift-mode' with `hydra'."
   (matcha-set-mode-command :mode 'swift-mode
-                           :command #'matcha-swift-mode))
+                           :command #'matcha-swift-mode/body))
 
 (provide 'matcha-swift-mode)
 ;;; matcha-swift-mode.el ends here
