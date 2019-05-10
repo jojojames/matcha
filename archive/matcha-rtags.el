@@ -1,4 +1,4 @@
-;;; matcha-kotlin-mode.el --- Integration with Transient. -*- lexical-binding: t -*-
+;;; matcha-rtags.el --- Integration with Hydra. -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2019 James Nguyen
 
@@ -7,7 +7,7 @@
 ;; URL: https://github.com/jojojames/matcha
 ;; Version: 0.0.1
 ;; Package-Requires: ((emacs "25.1"))
-;; Keywords: transient, emacs
+;; Keywords: hydra, emacs
 ;; HomePage: https://github.com/jojojames/matcha
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,35 +24,30 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-;;; Integration with Transient.
+;;; Integration with Hydra.
 
 ;;; Code:
 (require 'matcha-base)
-(require 'kotlin-mode nil t)
+;; (require 'rtags)
 
-(define-transient-command matcha-kotlin-mode-eval
-  "Eval"
-  [["Send"
-    ("e" "Line" kotlin-send-line)
-    ("r" "Region" kotlin-send-region)
-    ("k" "Block" kotlin-send-block)
-    ("b" "Buffer" kotlin-send-buffer)]])
+(defhydra matcha-rtags-print (:color blue :columns 4)
+  "Print"
+  ("s" rtags-print-symbol-info "Symbol Info")
+  ("t" rtags-symbol-type "Symbol Type")
+  ("d" rtags-print-dependencies "Dependencies"))
 
-(define-transient-command matcha-kotlin-mode
-  "Kotlin"
-  [["Actions"
-    ("e" "Eval..." matcha-kotlin-mode-eval)
-    ("z" "REPL" kotlin-repl)]])
+(defhydra matcha-rtags-mode (:color blue :columns 4)
+  "RTags"
+  ("R" rtags-restart-process "Restart Process")
+  ("Q" rtags-quit-rdm "Quit RDM")
+  ("f" rtags-fixit "Fixit")
+  ("p" matcha-rtags-print/body "Print")
+  ("r" rtags-rename-symbol "Rename")
+  ("x" rtags-reparse-file "Reparse File")
+  ("z" rtags-show-rtags-buffer "Show Rtags Buffer"))
 
-(defun matcha-kotlin-mode-set-launcher ()
-  "Set up `kotlin-mode' with `transient'."
-  (matcha-set-mode-command :mode 'kotlin-mode
-                           :command 'matcha-kotlin-mode)
-  (matcha-set-eval-command :mode 'kotlin-mode
-                           :command 'matcha-kotlin-mode-eval))
-
-(provide 'matcha-kotlin-mode)
-;;; matcha-kotlin-mode.el ends here
+(provide 'matcha-rtags)
+;;; matcha-rtags.el ends here
 ;; Local Variables:
 ;; byte-compile-warnings: (not free-vars unresolved noruntime cl-functions obsolete)
 ;; End:

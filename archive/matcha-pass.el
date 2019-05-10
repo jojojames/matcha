@@ -1,4 +1,4 @@
-;;; matcha-rtags.el --- Integration with Hydra. -*- lexical-binding: t -*-
+;;; matcha-pass.el --- Integration with Hydra. -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2017 James Nguyen
 
@@ -28,26 +28,38 @@
 
 ;;; Code:
 (require 'matcha-base)
-;; (require 'rtags)
+(require 'password-store nil t)
 
-(defhydra matcha-rtags-print (:color blue :columns 4)
-  "Print"
-  ("s" rtags-print-symbol-info "Symbol Info")
-  ("t" rtags-symbol-type "Symbol Type")
-  ("d" rtags-print-dependencies "Dependencies"))
+(defhydra matcha-pass-mode (:color blue :hint nil)
+  "
 
-(defhydra matcha-rtags-mode (:color blue :columns 4)
-  "RTags"
-  ("R" rtags-restart-process "Restart Process")
-  ("Q" rtags-quit-rdm "Quit RDM")
-  ("f" rtags-fixit "Fixit")
-  ("p" matcha-rtags-print/body "Print")
-  ("r" rtags-rename-symbol "Rename")
-  ("x" rtags-reparse-file "Reparse File")
-  ("z" rtags-show-rtags-buffer "Show Rtags Buffer"))
+   Password Store:
 
-(provide 'matcha-rtags)
-;;; matcha-rtags.el ends here
+    Get                     Manage                       Misc
+  ------------------------------------------------------------------------------
+    _e_ Edit              _i_ Insert Entry           _._ Go To URL
+    _l_ Clear Password    _g_ Generate Password      _v_ Pass Version
+    _y_ Copy Password     _x_ Remove Entry
+                        ^^_r_ Rename Entry
+
+        "
+  ("e" password-store-edit)
+  ("l" password-store-clear)
+  ("y" password-store-copy)
+  ("i" password-store-insert)
+  ("g" password-store-generate)
+  ("x" password-store-remove)
+  ("r" password-store-rename)
+  ("." password-store-url)
+  ("v" password-store-version))
+
+(defun matcha-pass-set-launcher ()
+  "Set up `pass' with `hydra'."
+  (matcha-set-mode-command :mode 'pass-mode
+                           :command #'matcha-pass-mode/body))
+
+(provide 'matcha-pass)
+;;; matcha-pass.el ends here
 ;; Local Variables:
 ;; byte-compile-warnings: (not free-vars unresolved noruntime cl-functions obsolete)
 ;; End:

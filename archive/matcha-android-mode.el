@@ -1,13 +1,13 @@
-;;; matcha-kotlin-mode.el --- Integration with Transient. -*- lexical-binding: t -*-
+;;; matcha-android-mode.el --- Integration with Hydra. -*- lexical-binding: t -*-
 
-;; Copyright (C) 2019 James Nguyen
+;; Copyright (C) 2017 James Nguyen
 
 ;; Author: James Nguyen <james@jojojames.com>
 ;; Maintainer: James Nguyen <james@jojojames.com>
 ;; URL: https://github.com/jojojames/matcha
 ;; Version: 0.0.1
 ;; Package-Requires: ((emacs "25.1"))
-;; Keywords: transient, emacs
+;; Keywords: hydra, emacs
 ;; HomePage: https://github.com/jojojames/matcha
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,35 +24,32 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-;;; Integration with Transient.
+;;; Integration with Hydra.
 
 ;;; Code:
 (require 'matcha-base)
-(require 'kotlin-mode nil t)
+(require 'android-mode nil t)
 
-(define-transient-command matcha-kotlin-mode-eval
-  "Eval"
-  [["Send"
-    ("e" "Line" kotlin-send-line)
-    ("r" "Region" kotlin-send-region)
-    ("k" "Block" kotlin-send-block)
-    ("b" "Buffer" kotlin-send-buffer)]])
+(defhydra matcha-android-mode (:color blue)
+  "Android"
+  ("a" android-start-app "Start App")
+  ("d" android-start-ddms "DDMS")
+  ("e" android-start-emulator "Start Emulator")
+  ("l" android-logcat "Logcat")
+  ("C" android-build-clean "Clean")
+  ("t" android-build-test "Test")
+  ("c" android-build-debug "Debug")
+  ("u" android-build-install "Install")
+  ("r" android-build-reinstall "Reinstall")
+  ("i" android-build-uninstall "Uninstall"))
 
-(define-transient-command matcha-kotlin-mode
-  "Kotlin"
-  [["Actions"
-    ("e" "Eval..." matcha-kotlin-mode-eval)
-    ("z" "REPL" kotlin-repl)]])
+(defun matcha-android-mode-set-launcher ()
+  "Set up `android-mode' with `hydra'."
+  (matcha-set-mode-command
+   :mode 'android-mode :command 'matcha-android-mode/body :minor-p t))
 
-(defun matcha-kotlin-mode-set-launcher ()
-  "Set up `kotlin-mode' with `transient'."
-  (matcha-set-mode-command :mode 'kotlin-mode
-                           :command 'matcha-kotlin-mode)
-  (matcha-set-eval-command :mode 'kotlin-mode
-                           :command 'matcha-kotlin-mode-eval))
-
-(provide 'matcha-kotlin-mode)
-;;; matcha-kotlin-mode.el ends here
+(provide 'matcha-android-mode)
+;;; matcha-android-mode.el ends here
 ;; Local Variables:
 ;; byte-compile-warnings: (not free-vars unresolved noruntime cl-functions obsolete)
 ;; End:

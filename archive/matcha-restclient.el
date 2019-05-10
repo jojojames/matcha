@@ -1,4 +1,4 @@
-;;; matcha-restclient.el --- Integration with Transient. -*- lexical-binding: t -*-
+;;; matcha-restclient.el --- Integration with Hydra. -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2019 James Nguyen
 
@@ -7,7 +7,7 @@
 ;; URL: https://github.com/jojojames/matcha
 ;; Version: 0.0.1
 ;; Package-Requires: ((emacs "25.1"))
-;; Keywords: transient, emacs
+;; Keywords: hydra, emacs
 ;; HomePage: https://github.com/jojojames/matcha
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,30 +24,43 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-;;; Integration with Transient.
+;;; Integration with Hydra.
 
 ;;; Code:
 (require 'matcha-base)
 (require 'restclient nil t)
 
-(define-transient-command matcha-restclient-mode
-  "Restclient"
-  [["Query (Under Cursor)"
-    ("e" "Run Query" restclient-http-send-current)
-    ("r" "Run Query Raw" restclient-http-send-current-raw)
-    ("v" "Run Query (Stay in Window)" restclient-http-send-current-stay-in-window)]
-   ["Misc"
-    ("m" "Mark Current" restclient-mark-current)
-    ("c" "Copy as CURL Command" restclient-copy-curl-command)
-    ("n" "Narrow to Current" restclient-narrow-to-current)]
-   ["Navigation"
-    ("n" "Next" restclient-jump-next)
-    ("p" "Previous" restclient-jump-prev)]])
+(defhydra matcha-restclient-mode (:color blue :hint nil)
+  "
+
+    Restclient:
+
+    Query (Under Cursor)                 Navigation
+  ------------------------------------------------------------------------------
+    _e_ Run Query                     _n_ Next
+    _r_ Run Query Raw                 _p_ Previous
+    _v_ Run Query (Stay in Window)
+
+    Misc
+  ------------------------------------------------------------------------------
+    _m_ Mark Query
+    _c_ Copy as CURL Command
+    _n_ Narrow to Current
+
+"
+  ("e" restclient-http-send-current)
+  ("r" restclient-http-send-current-raw)
+  ("v" restclient-http-send-current-stay-in-window)
+  ("n" restclient-jump-next)
+  ("p" restclient-jump-prev)
+  ("m" restclient-mark-current)
+  ("c" restclient-copy-curl-command)
+  ("n" restclient-narrow-to-current))
 
 (defun matcha-restclient-set-launcher ()
-  "Set `transient' launcher for `restclient'."
+  "Set `hydra' launcher for `restclient'."
   (matcha-set-mode-command :mode 'restclient-mode
-                           :command #'matcha-restclient-mode))
+                           :command #'matcha-restclient-mode/body))
 
 (provide 'matcha-restclient)
 ;;; matcha-restclient.el ends here

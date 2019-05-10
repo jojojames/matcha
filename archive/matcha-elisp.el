@@ -1,6 +1,6 @@
 ;;; matcha-elisp.el --- Integration with Hydra. -*- lexical-binding: t -*-
 
-;; Copyright (C) 2019 James Nguyen
+;; Copyright (C) 2017 James Nguyen
 
 ;; Author: James Nguyen <james@jojojames.com>
 ;; Maintainer: James Nguyen <james@jojojames.com>
@@ -72,17 +72,16 @@ Requires smartparens because all movement is done using `sp-forward-symbol'."
 ;; Edebug a defun or defmacro
 (defvar matcha-fns-in-edebug nil
   "List of functions for which `edebug' is instrumented.")
-(defconst matcha-elisp-fns-regexp
-  (concat "(\\s-*"
-          "\\(defun\\|defmacro\\)\\s-+"
-          "\\(?1:\\(\\w\\|\\s_\\)+\\)\\_>")
+(defconst modi/fns-regexp (concat "(\\s-*"
+                                  "\\(defun\\|defmacro\\)\\s-+"
+                                  "\\(?1:\\(\\w\\|\\s_\\)+\\)\\_>")
   "Regexp to find defun or defmacro definition.")
 
-(defun matcha-elisp-toggle-edebug-defun ()
+(defun modi/toggle-edebug-defun ()
   (interactive)
   (let (fn)
     (save-mark-and-excursion
-      (search-backward-regexp matcha-elisp-fns-regexp)
+      (search-backward-regexp modi/fns-regexp)
       (setq fn (match-string 1))
       (mark-sexp)
       (narrow-to-region (point) (mark))
@@ -103,32 +102,139 @@ Requires smartparens because all movement is done using `sp-forward-symbol'."
           (message "Edebug: %s" fn)))
       (widen))))
 
+(defhydra matcha-emacs-lisp-debug (:color blue :hint nil)
+  "
+
+    Elisp Debug
+
+    Debug                       ^^Watch              Edebug-X
+  ------------------------------------------------------------------------------
+    _d_ Debug                    _w_ Watch            _t_ Toggle Breakpoint
+    _f_ Debug on Entry           _W_ Cancel Watch     _s_ Show Breakpoints
+    _q_ Cancel Debug on Entry                       ^^_i_ Show Instrumented
+                                                  ^^^^_a_ Show Data
+
+"
+  ("w" debug-watch)
+  ("W" cancel-debug-watch)
+  ("t" edebug-x-modify-breakpoint-wrapper)
+  ("s" edebug-x-show-breakpoints)
+  ("i" edebug-x-show-instrumented)
+  ("a" edebug-x-show-data)
+  ("q" cancel-debug-on-entry)
+  ("f" debug-on-entry)
+  ("d" modi/toggle-edebug-defun))
+
+(defhydra matcha-emacs-lisp-eval (:color blue :hint nil)
+  "
+
+    Elisp Eval
+  ------------------------------------------------------------------------------
+    _e_ Last Sexp    _r_ Region    _f_ Defun    _b_ Buffer
+
+    _c_ Current Form    _s_ Current Symbol
+
+    _j_ Eval & Print    _x_ Eval & Replace
+
+"
+  ("e" eval-last-sexp)
+  ("r" eval-region)
+  ("f" eval-defun)
+  ("b" eval-buffer)
+  ("c" matcha-elisp-eval-current-form-sp)
+  ("s" matcha-elisp-eval-current-symbol-sp)
+  ("j" eval-print-last-sexp)
+  ("x" eval-last-sexp-and-replace))
+
+(defhydra matcha-emacs-lisp-mode (:color blue :hint nil)
+  "
+
+    Elisp: %s(matcha-projectile-root)
+
+        Do                ^^Find        Describe^^
+  ------------------------------------------------------------------------------
+    _e_ Eval          _l_ Library        _sy_ Syntax
+    _d_ Debug         _f_ Function       _sf_ Function
+    _m_ Macrostep     _v_ Variable       _sv_ Variable
+                                     ^^^^_ss_ Symbol
+                                     ^^^^_sc_ Categories
+
+
+        Compile                  References         Misc
+  ------------------------------------------------------------------------------
+     _u_ Byte Compile            _rf_ Functions     _x_ Scratch
+     _U_ Byte Compile and Load   _rm_ Macros        _z_ REPL
+    _rd_ Recompile Directory     _rc_ Special
+    _rD_ Disassemble             _rv_ Variables
+                               ^^_rs_ Symbols
+
+"
+  ("rf" elisp-refs-function)
+  ("rm" elisp-refs-macro)
+  ("rc" elisp-refs-special)
+  ("rv" elisp-refs-variable)
+  ("rs" elisp-refs-symbol)
+  ("u" emacs-lisp-byte-compile)
+  ("U" emacs-lisp-byte-compile-and-load)
+  ("rd" byte-recompile-directory)
+  ("rD" disassemble)
+  ("x" matcha-goto-scratch)
+  ("z" ielm)
+  ("sf" describe-function)
+  ("sv" describe-variable)
+  ("ss" describe-symbol)
+  ("sy" describe-syntax)
+  ("sc" describe-categories)
+
+  ("l" find-library)
+  ("f" find-function)
+  ("v" find-variable)
+  ("m" matcha-macrostep-expand-or-open-hydra)
+  ("e" matcha-emacs-lisp-eval/body)
+  ("d" matcha-emacs-lisp-debug/body))
+
 (when matcha-use-launcher-p
   (matcha-set-format-command
    :mode '(emacs-lisp-mode lisp-interaction-mode)
    :command 'matcha-indent-region-or-buffer)
   (matcha-set-debug-command
    :mode '(emacs-lisp-mode lisp-interaction-mode)
-   :command 'matcha-emacs-lisp-debug)
+   :command 'matcha-emacs-lisp-debug/body)
   (matcha-set-eval-command
    :mode '(emacs-lisp-mode lisp-interaction-mode)
-   :command 'matcha-emacs-lisp-eval)
+   :command 'matcha-emacs-lisp-eval/body)
   (matcha-set-mode-command
    :mode '(emacs-lisp-mode lisp-interaction-mode)
-   :command 'matcha-emacs-lisp-mode)
+   :command 'matcha-emacs-lisp-mode/body)
   (matcha-set-refactor-command
    :mode '(emacs-lisp-mode lisp-interaction-mode)
-   :command 'emr-show-refactor-menu))
+   :command 'emr-show-refactor-menu)
+  (when matcha-use-transient-p
+    (matcha-set-format-command
+     :mode '(emacs-lisp-mode lisp-interaction-mode)
+     :command 'matcha-indent-region-or-buffer)
+    (matcha-set-debug-command
+     :mode '(emacs-lisp-mode lisp-interaction-mode)
+     :command 'matcha-emacs-lisp-debug)
+    (matcha-set-eval-command
+     :mode '(emacs-lisp-mode lisp-interaction-mode)
+     :command 'matcha-emacs-lisp-eval)
+    (matcha-set-mode-command
+     :mode '(emacs-lisp-mode lisp-interaction-mode)
+     :command 'matcha-emacs-lisp-mode)
+    (matcha-set-refactor-command
+     :mode '(emacs-lisp-mode lisp-interaction-mode)
+     :command 'emr-show-refactor-menu)))
 
 (define-transient-command matcha-emacs-lisp-debug
   "Debug"
   [["Debug"
-    ("d" "Debug" matcha-elisp-toggle-edebug-defun)
+    ("d" "Debug" modi/toggle-edebug-defun)
     ("q" "Cancel Debug on Entry" cancel-debug-on-entry)
     ("f" "Debug on Entry" debug-on-entry)]
    ["Watch"
     ("w" "Watch" debug-watch)
-    ("W" "Cancel Watch" cancel-debug-watch)]])
+    ("W" "Cancel Watch")]])
 
 (define-transient-command matcha-emacs-lisp-eval ()
   "Eval"
@@ -176,7 +282,7 @@ Requires smartparens because all movement is done using `sp-forward-symbol'."
     ("d" "Debug" matcha-emacs-lisp-debug)
     ("c" "Compile" matcha-emacs-lisp-compile)
     ("s" "Describe" matcha-emacs-lisp-describe)
-    ("m" "Macroexpand" matcha-macrostep-expand-or-open-menu)]
+    ("m" "Macroexpand" matcha-macrostep-expand-or-open-hydra)]
    ["Find"
     ("x" "*Scratch*" matcha-goto-scratch)
     ("l" "Library" find-library)

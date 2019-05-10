@@ -1,6 +1,6 @@
 ;;; matcha.el --- Integration with Hydra. -*- lexical-binding: t -*-
 
-;; Copyright (C) 2017 James Nguyen
+;; Copyright (C) 2019 James Nguyen
 
 ;; Author: James Nguyen <james@jojojames.com>
 ;; Maintainer: James Nguyen <james@jojojames.com>
@@ -51,11 +51,6 @@
   :type 'bool
   :group 'matcha)
 
-(defcustom matcha-use-transient-p t
-  "Whether or not to use `transient' instead of `hydra'."
-  :type 'bool
-  :group 'matcha)
-
 (defcustom matcha-me-p t
   "Whether to load personal `matcha'."
   :type 'bool
@@ -93,8 +88,7 @@
     swift-mode
     tide
     term
-    web-mode
-    xcode-mode)
+    web-mode)
   "The list of modes for which a hydra will be defined."
   :type '(repeat (choice symbol sexp))
   :group 'matcha)

@@ -1,13 +1,13 @@
-;;; matcha-term.el --- Integration with Hydra. -*- lexical-binding: t -*-
+;;; matcha-term.el --- Integration with Transient. -*- lexical-binding: t -*-
 
-;; Copyright (C) 2017 James Nguyen
+;; Copyright (C) 2019 James Nguyen
 
 ;; Author: James Nguyen <james@jojojames.com>
 ;; Maintainer: James Nguyen <james@jojojames.com>
 ;; URL: https://github.com/jojojames/matcha
 ;; Version: 0.0.1
 ;; Package-Requires: ((emacs "25.1"))
-;; Keywords: hydra, emacs
+;; Keywords: transient, emacs
 ;; HomePage: https://github.com/jojojames/matcha
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,29 +24,21 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-;;; Integration with Hydra.
+;;; Integration with Transient.
 
 ;;; Code:
 (require 'matcha-base)
-(require 'term)
+(require 'term nil t)
 
-(defhydra matcha-term (:color blue :hint nil)
-  "
-
-    Term
-  ------------------------------------------------------------------------------
-    _c_ Char Mode    _l_ Line Mode
-
-"
-  ("c" term-char-mode)
-  ("m" term-char-mode)
-  ("l" term-line-mode)
-  ("j" term-line-mode)
-  ("k" term-char-mode))
+(define-transient-command matcha-term
+  "Term"
+  [["Actions"
+    ("c" "Switch to Character Mode" term-char-mode)
+    ("l" "Switch to Line Mode" term-line-mode)]])
 
 (defun matcha-term-set-launcher ()
-  "Set `hydra' launcher for `term'."
-  (matcha-set-mode-command :mode 'term-mode :command #'matcha-term/body))
+  "Set `transient' launcher for `term'."
+  (matcha-set-mode-command :mode 'term-mode :command #'matcha-term))
 
 (provide 'matcha-term)
 ;;; matcha-term.el ends here

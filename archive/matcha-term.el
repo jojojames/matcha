@@ -1,4 +1,4 @@
-;;; matcha-kotlin-mode.el --- Integration with Transient. -*- lexical-binding: t -*-
+;;; matcha-term.el --- Integration with Hydra. -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2019 James Nguyen
 
@@ -7,7 +7,7 @@
 ;; URL: https://github.com/jojojames/matcha
 ;; Version: 0.0.1
 ;; Package-Requires: ((emacs "25.1"))
-;; Keywords: transient, emacs
+;; Keywords: hydra, emacs
 ;; HomePage: https://github.com/jojojames/matcha
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,35 +24,32 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-;;; Integration with Transient.
+;;; Integration with Hydra.
 
 ;;; Code:
 (require 'matcha-base)
-(require 'kotlin-mode nil t)
+(require 'term)
 
-(define-transient-command matcha-kotlin-mode-eval
-  "Eval"
-  [["Send"
-    ("e" "Line" kotlin-send-line)
-    ("r" "Region" kotlin-send-region)
-    ("k" "Block" kotlin-send-block)
-    ("b" "Buffer" kotlin-send-buffer)]])
+(defhydra matcha-term (:color blue :hint nil)
+  "
 
-(define-transient-command matcha-kotlin-mode
-  "Kotlin"
-  [["Actions"
-    ("e" "Eval..." matcha-kotlin-mode-eval)
-    ("z" "REPL" kotlin-repl)]])
+    Term
+  ------------------------------------------------------------------------------
+    _c_ Char Mode    _l_ Line Mode
 
-(defun matcha-kotlin-mode-set-launcher ()
-  "Set up `kotlin-mode' with `transient'."
-  (matcha-set-mode-command :mode 'kotlin-mode
-                           :command 'matcha-kotlin-mode)
-  (matcha-set-eval-command :mode 'kotlin-mode
-                           :command 'matcha-kotlin-mode-eval))
+"
+  ("c" term-char-mode)
+  ("m" term-char-mode)
+  ("l" term-line-mode)
+  ("j" term-line-mode)
+  ("k" term-char-mode))
 
-(provide 'matcha-kotlin-mode)
-;;; matcha-kotlin-mode.el ends here
+(defun matcha-term-set-launcher ()
+  "Set `hydra' launcher for `term'."
+  (matcha-set-mode-command :mode 'term-mode :command #'matcha-term/body))
+
+(provide 'matcha-term)
+;;; matcha-term.el ends here
 ;; Local Variables:
 ;; byte-compile-warnings: (not free-vars unresolved noruntime cl-functions obsolete)
 ;; End:

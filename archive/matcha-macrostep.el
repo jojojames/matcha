@@ -1,13 +1,13 @@
-;;; matcha-kotlin-mode.el --- Integration with Transient. -*- lexical-binding: t -*-
+;;; matcha-macrostep.el --- Integration with Hydra. -*- lexical-binding: t -*-
 
-;; Copyright (C) 2019 James Nguyen
+;; Copyright (C) 2017 James Nguyen
 
 ;; Author: James Nguyen <james@jojojames.com>
 ;; Maintainer: James Nguyen <james@jojojames.com>
 ;; URL: https://github.com/jojojames/matcha
 ;; Version: 0.0.1
 ;; Package-Requires: ((emacs "25.1"))
-;; Keywords: transient, emacs
+;; Keywords: hydra, emacs
 ;; HomePage: https://github.com/jojojames/matcha
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,35 +24,39 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-;;; Integration with Transient.
+;;; Integration with Hydra.
 
 ;;; Code:
 (require 'matcha-base)
-(require 'kotlin-mode nil t)
+(require 'macrostep nil t)
 
-(define-transient-command matcha-kotlin-mode-eval
-  "Eval"
-  [["Send"
-    ("e" "Line" kotlin-send-line)
-    ("r" "Region" kotlin-send-region)
-    ("k" "Block" kotlin-send-block)
-    ("b" "Buffer" kotlin-send-buffer)]])
+(defun matcha-macrostep-expand-or-open-hydra ()
+  "Run `macrostep-expand' if not already. Open hydra otherwise."
+  (interactive)
+  (if (bound-and-true-p macrostep-mode)
+      (matcha-macro-step/body)
+    (macrostep-expand)))
 
-(define-transient-command matcha-kotlin-mode
-  "Kotlin"
-  [["Actions"
-    ("e" "Eval..." matcha-kotlin-mode-eval)
-    ("z" "REPL" kotlin-repl)]])
+(defhydra matcha-macro-step (:color red :hint nil)
+  "
 
-(defun matcha-kotlin-mode-set-launcher ()
-  "Set up `kotlin-mode' with `transient'."
-  (matcha-set-mode-command :mode 'kotlin-mode
-                           :command 'matcha-kotlin-mode)
-  (matcha-set-eval-command :mode 'kotlin-mode
-                           :command 'matcha-kotlin-mode-eval))
+   Macrostep: %s(matcha-projectile-root)
 
-(provide 'matcha-kotlin-mode)
-;;; matcha-kotlin-mode.el ends here
+     ^^Expand^^               ^^Navigate^^
+  ------------------------------------------------------------------------------
+    _e_: Expand         _j_: Next Macro
+    _c_: Collapse       _k_: Prev Macro
+    _C_: Collapse All
+
+"
+  ("e" macrostep-expand)
+  ("c" macrostep-collapse)
+  ("j" macrostep-next-macro)
+  ("k" macrostep-prev-macro)
+  ("C" macrostep-collapse-all))
+
+(provide 'matcha-macrostep)
+;;; matcha-macrostep.el ends here
 ;; Local Variables:
 ;; byte-compile-warnings: (not free-vars unresolved noruntime cl-functions obsolete)
 ;; End:

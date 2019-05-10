@@ -1,13 +1,13 @@
-;;; matcha-kotlin-mode.el --- Integration with Transient. -*- lexical-binding: t -*-
+;;; matcha-json-mode.el --- Integration with Hydra. -*- lexical-binding: t -*-
 
-;; Copyright (C) 2019 James Nguyen
+;; Copyright (C) 2017 James Nguyen
 
 ;; Author: James Nguyen <james@jojojames.com>
 ;; Maintainer: James Nguyen <james@jojojames.com>
 ;; URL: https://github.com/jojojames/matcha
 ;; Version: 0.0.1
 ;; Package-Requires: ((emacs "25.1"))
-;; Keywords: transient, emacs
+;; Keywords: hydra, emacs
 ;; HomePage: https://github.com/jojojames/matcha
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,35 +24,22 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-;;; Integration with Transient.
+;;; Integration with Hydra.
 
 ;;; Code:
 (require 'matcha-base)
-(require 'kotlin-mode nil t)
+;; (require 'json-mode)
 
-(define-transient-command matcha-kotlin-mode-eval
-  "Eval"
-  [["Send"
-    ("e" "Line" kotlin-send-line)
-    ("r" "Region" kotlin-send-region)
-    ("k" "Block" kotlin-send-block)
-    ("b" "Buffer" kotlin-send-buffer)]])
+(defhydra matcha-json-mode (:color blue)
+  "Json"
+  ("u" json-mode-beautify "Beautify"))
 
-(define-transient-command matcha-kotlin-mode
-  "Kotlin"
-  [["Actions"
-    ("e" "Eval..." matcha-kotlin-mode-eval)
-    ("z" "REPL" kotlin-repl)]])
+(defun matcha-json-mode-set-launcher ()
+  "Set up `hydra' launcher for `json-mode'."
+  (matcha-set-mode-command :mode 'json-mode :command #'matcha-json-mode/body))
 
-(defun matcha-kotlin-mode-set-launcher ()
-  "Set up `kotlin-mode' with `transient'."
-  (matcha-set-mode-command :mode 'kotlin-mode
-                           :command 'matcha-kotlin-mode)
-  (matcha-set-eval-command :mode 'kotlin-mode
-                           :command 'matcha-kotlin-mode-eval))
-
-(provide 'matcha-kotlin-mode)
-;;; matcha-kotlin-mode.el ends here
+(provide 'matcha-json-mode)
+;;; matcha-json-mode.el ends here
 ;; Local Variables:
 ;; byte-compile-warnings: (not free-vars unresolved noruntime cl-functions obsolete)
 ;; End:

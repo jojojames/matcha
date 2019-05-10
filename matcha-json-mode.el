@@ -1,13 +1,13 @@
-;;; matcha-json-mode.el --- Integration with Hydra. -*- lexical-binding: t -*-
+;;; matcha-json-mode.el --- Integration with Transient. -*- lexical-binding: t -*-
 
-;; Copyright (C) 2017 James Nguyen
+;; Copyright (C) 2019 James Nguyen
 
 ;; Author: James Nguyen <james@jojojames.com>
 ;; Maintainer: James Nguyen <james@jojojames.com>
 ;; URL: https://github.com/jojojames/matcha
 ;; Version: 0.0.1
 ;; Package-Requires: ((emacs "25.1"))
-;; Keywords: hydra, emacs
+;; Keywords: transient, emacs
 ;; HomePage: https://github.com/jojojames/matcha
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,19 +24,20 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-;;; Integration with Hydra.
+;;; Integration with Transient.
 
 ;;; Code:
 (require 'matcha-base)
-;; (require 'json-mode)
+(require 'json-mode nil t)
 
-(defhydra matcha-json-mode (:color blue)
-  "Json"
-  ("u" json-mode-beautify "Beautify"))
+(define-transient-command matcha-json-mode
+  "JSON"
+  [["Actions"
+    ("u" "Beautify" json-mode-beautify)]])
 
 (defun matcha-json-mode-set-launcher ()
-  "Set up `hydra' launcher for `json-mode'."
-  (matcha-set-mode-command :mode 'json-mode :command #'matcha-json-mode/body))
+  "Set up `transient' launcher for `json-mode'."
+  (matcha-set-mode-command :mode 'json-mode :command #'matcha-json-mode))
 
 (provide 'matcha-json-mode)
 ;;; matcha-json-mode.el ends here

@@ -1,13 +1,13 @@
-;;; matcha-cc-mode.el --- Integration with Transient. -*- lexical-binding: t -*-
+;;; matcha-cc-mode.el --- Integration with Hydra. -*- lexical-binding: t -*-
 
-;; Copyright (C) 2019 James Nguyen
+;; Copyright (C) 2017 James Nguyen
 
 ;; Author: James Nguyen <james@jojojames.com>
 ;; Maintainer: James Nguyen <james@jojojames.com>
 ;; URL: https://github.com/jojojames/matcha
 ;; Version: 0.0.1
 ;; Package-Requires: ((emacs "25.1"))
-;; Keywords: transient, emacs
+;; Keywords: hydra, emacs
 ;; HomePage: https://github.com/jojojames/matcha
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,13 +24,13 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-;;; Integration with Transient.
+;;; Integration with Hydra.
 
 ;;; Code:
 (require 'matcha-base)
 
 ;; https://stackoverflow.com/questions/19953924/how-do-you-run-java-codes-in-emacs
-(defun matcha-cc-mode-java-eval-nofocus ()
+(defun java-eval-nofocus ()
   "Run current program (that requires no input)."
   (interactive)
   (let* ((source (file-name-nondirectory buffer-file-name))
@@ -45,10 +45,8 @@
              (format "javac %s" source))
         (command-execute 'compile)))))
 
-(define-transient-command matcha-java-mode
-  "Java"
-  [["Actions"
-    ("u" "Eval" matcha-cc-mode-java-eval-nofocus)]])
+(defhydra matcha-java-mode (:color blue)
+  ("u" java-eval-nofocus "Eval"))
 
 (defun matcha-cc-mode-clang-format-region-or-buffer ()
   "If clang-format is not available, do the default indenting.
@@ -63,8 +61,8 @@ otherwise buffer is formatted."
     (indent-region-or-buffer)))
 
 (defun matcha-cc-mode-mode-set-launcher ()
-  "Set up `transient' launcher for `java-mode'."
-  (matcha-set-mode-command :mode 'java-mode :command #'matcha-java-mode)
+  "Set up `hydra' launcher for `java-mode'."
+  (matcha-set-mode-command :mode 'java-mode :command #'matcha-java-mode/body)
 
   (matcha-set-format-command
    :mode '(c-mode c++-mode objc-mode)

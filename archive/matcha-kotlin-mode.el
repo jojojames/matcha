@@ -1,13 +1,13 @@
-;;; matcha-kotlin-mode.el --- Integration with Transient. -*- lexical-binding: t -*-
+;;; matcha-kotlin-mode.el --- Integration with Hydra. -*- lexical-binding: t -*-
 
-;; Copyright (C) 2019 James Nguyen
+;; Copyright (C) 2018 James Nguyen
 
 ;; Author: James Nguyen <james@jojojames.com>
 ;; Maintainer: James Nguyen <james@jojojames.com>
 ;; URL: https://github.com/jojojames/matcha
 ;; Version: 0.0.1
 ;; Package-Requires: ((emacs "25.1"))
-;; Keywords: transient, emacs
+;; Keywords: hydra, emacs
 ;; HomePage: https://github.com/jojojames/matcha
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,32 +24,42 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-;;; Integration with Transient.
+;;; Integration with Hydra.
 
 ;;; Code:
 (require 'matcha-base)
 (require 'kotlin-mode nil t)
 
-(define-transient-command matcha-kotlin-mode-eval
-  "Eval"
-  [["Send"
-    ("e" "Line" kotlin-send-line)
-    ("r" "Region" kotlin-send-region)
-    ("k" "Block" kotlin-send-block)
-    ("b" "Buffer" kotlin-send-buffer)]])
+(defhydra matcha-kotlin-mode-eval (:color blue :hint nil)
+  "
 
-(define-transient-command matcha-kotlin-mode
-  "Kotlin"
-  [["Actions"
-    ("e" "Eval..." matcha-kotlin-mode-eval)
-    ("z" "REPL" kotlin-repl)]])
+    Kotlin Evaluation
+  ------------------------------------------------------------------------------
+    _e_ Line    _r_ Region    _k_ Block    _b_ Buffer
+
+"
+  ("e" kotlin-send-line)
+  ("r" kotlin-send-region)
+  ("k" kotlin-send-block)
+  ("b" kotlin-send-buffer))
+
+(defhydra matcha-kotlin-mode (:color blue :hint nil)
+  "
+
+    Kotlin: %s(matcha-projectile-root)
+  ------------------------------------------------------------------------------
+    _z_ REPL    _e_ Eval
+
+"
+  ("z" kotlin-repl)
+  ("e" matcha-kotlin-mode-eval/body))
 
 (defun matcha-kotlin-mode-set-launcher ()
-  "Set up `kotlin-mode' with `transient'."
+  "Set up `kotlin-mode' with `hydra'."
   (matcha-set-mode-command :mode 'kotlin-mode
-                           :command 'matcha-kotlin-mode)
+                           :command 'matcha-kotlin-mode/body)
   (matcha-set-eval-command :mode 'kotlin-mode
-                           :command 'matcha-kotlin-mode-eval))
+                           :command 'matcha-kotlin-mode-eval/body))
 
 (provide 'matcha-kotlin-mode)
 ;;; matcha-kotlin-mode.el ends here
