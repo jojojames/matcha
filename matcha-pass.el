@@ -1,6 +1,6 @@
 ;;; matcha-pass.el --- Integration with Transient. -*- lexical-binding: t -*-
 
-;; Copyright (C) 2017 James Nguyen
+;; Copyright (C) 2019 James Nguyen
 
 ;; Author: James Nguyen <james@jojojames.com>
 ;; Maintainer: James Nguyen <james@jojojames.com>
