@@ -56,20 +56,19 @@
     ("t" "Timestamp" org-time-stamp)
     ("T" "Inactive Timestamp" org-time-stamp-inactive)
     ("s" "Schedule Item" org-schedule)
-    ("d" "Deadline" org-deadline)]
-   ["Calendar"
+    ("d" "Deadline" org-deadline)
     ("c" "Goto Calendar" org-goto-calendar)
     ("C" "Date from Calendar" org-date-from-calendar)]
-   ["Manage"
-    ("D" "Change Date..." matcha-org-change-date)
-    ("y" "Evaluate Time Range" org-evaluate-time-range)
-    ("Z" "Custom Time Format" org-toggle-time-stamp-overlays)]
    ["Timer"
     ("0" "Start Timer" org-timer-start)
     ("9" "Stop Timer" org-timer-stop)
     ("8" "Pause/Continue Timer" org-timer-pause-or-continue)
     ("7" "Insert Timer String" org-timer)
-    ("6" "Insert Timer Item" org-timer-item)]])
+    ("6" "Insert Timer Item" org-timer-item)]
+   ["Manage"
+    ("D" "Change Date..." matcha-org-change-date)
+    ("y" "Evaluate Time Range" org-evaluate-time-range)
+    ("Z" "Custom Time Format" org-toggle-time-stamp-overlays)]])
 
 (define-transient-command matcha-org-change-date ()
   "Change Date"
