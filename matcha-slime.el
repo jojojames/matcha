@@ -1,4 +1,4 @@
-;;; matcha-slime.el --- Integration with Hydra. -*- lexical-binding: t -*-
+;;; matcha-slime.el --- Integration with Transient. -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2019 James Nguyen
 
@@ -7,7 +7,7 @@
 ;; URL: https://github.com/jojojames/matcha
 ;; Version: 0.0.1
 ;; Package-Requires: ((emacs "25.1"))
-;; Keywords: hydra, emacs
+;; Keywords: transient, emacs
 ;; HomePage: https://github.com/jojojames/matcha
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,123 +24,101 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-;;; Integration with Hydra.
+;;; Integration with Transient.
 
 ;;; Code:
 (require 'matcha-base)
 (require 'slime nil t)
+(require 'slime-repl nil t)
+(require 'slime-scratch nil t)
 
-;; TODO: Add Debug Hydra
+;; TODO: Add Debug Transient
 
-(defhydra matcha-slime-eval (:color blue :hint nil)
-  "
+(define-transient-command matcha-slime-mode-eval
+  "Eval"
+  [["Eval"
+    ("e" "Expression" slime-eval-last-expression)
+    ("r" "Region" slime-eval-region)
+    ("b" "Buffer" slime-eval-buffer)
+    ("d" "Defun" slime-eval-defun)
+    ("v" "Defvar" slime-re-evaluate-defvar)
+    ("i" "Interactively" slime-interactive-eval)
+    ("E" "Edit Value" slime-edit-value)]
+   ["Eval & Print"
+    ("j" "Expression" slime-eval-print-last-expression)
+    ("R" "Region" slime-pprint-eval-region)
+    ("J" "Pprint" slime-pprint-eval-last-expression)
+    ("I" "Eval & Inspect" slime-inspect)]
+   ["Compile"
+    ("L" "Load File" slime-load-file)
+    ("cc" "File" slime-compile-file)
+    ("cl" "Compile & Load File" slime-compile-and-load-file)
+    ("cd" "Defun" slime-compile-defun)
+    ("cr" "Region" slime-compile-region)]
+   ["Misc"
+    ("l" "Eval in REPL" slime-eval-last-expression-in-repl)
+    ("u" "Undefine Function" slime-undefine-function)
+    ("n" "Remove Notes" slime-remove-notes)
+    ("i" "Interrupt" slime-interrupt)]])
 
-    Slime Eval: %s(buffer-name)
+(define-transient-command matcha-slime-mode-connection
+  "Connections"
+  [["Connections"
+    ("n" "Next Connection" slime-next-connection)
+    ("p" "Previous Connection" slime-prev-connection)
+    ("l" "List Connections" slime-list-connections)]])
 
-    Eval                    Print                        Misc
-  ------------------------------------------------------------------------------
-    _e_ Expression     _j_ Expression          _l_ Eval Expression in REPL
-    _r_ Region         _R_ Region PPrint       _u_ Undefine Function
-    _b_ Buffer         _J_ Expression PPrint   _n_ Remove Notes
-    _d_ Defun          _I_ Eval and Inspect    _i_ Interrupt Lisp
-    _v_ Defvar
-    _i_ Interactively
-    _E_ Edit Value
+(define-transient-command matcha-slime-mode-info
+  "Info"
+  [["Apropos"
+    ("a" "Apropos" slime-apropos)
+    ("l" "Apropos All" slime-apropos-all)
+    ("p" "Apropos Package" slime-apropos-package)]
+   ["Misc"
+    ("h" "Describe Symbol" slime-describe-symbol)
+    ("d" "Disassemble Symbol" slime-disassemble-symbol)
+    ("H" "Hyperspec Lookup" slime-hyperspec-lookup)]])
 
-    Compile
-  ------------------------------------------------------------------------------
-    _cc_ Compile
-    _cl_ Compile and Load
-    _cd_ Compile Defun
-    _cr_ Compile Region
-    _L_ Load File
+(define-transient-command matcha-slime-mode-references
+  "References"
+  [["Who"
+    ("r" "References" slime-who-references)
+    ("m" "Macroexpands" slime-who-macroexpands)
+    ("l" "Specializes" slime-who-specializes)
+    ("c" "Calls" slime-who-calls)
+    ("w" "Calls Who" slime-calls-who)
+    ("b" "Binds" slime-who-binds)
+    ("s" "Sets" slime-who-sets)]
+   ["List"
+    ("C" "Callers" slime-list-callers)
+    ("E" "Callees" slime-list-callees)]])
 
-"
-  ("cc" slime-compile-file)
-  ("cl" slime-compile-and-load-file)
-  ("cd" slime-compile-defun)
-  ("cr" slime-compile-region)
-  ("L" slime-load-file)
-  ("n" slime-remove-notes)
-  ("i" slime-interrupt)
-  ("b" slime-eval-buffer)
-  ("d" slime-eval-defun)
-  ("v" slime-re-evaluate-defvar)
-  ("u" slime-undefine-function)
-  ("e" slime-eval-last-expression)
-  ("r" slime-eval-region)
-  ("R" slime-pprint-eval-region)
-  ("J" slime-pprint-eval-last-expression)
-  ("j" slime-eval-print-last-expression)
-  ("i" slime-interactive-eval)
-  ("l" slime-eval-last-expression-in-repl)
-  ("I" slime-inspect)
-  ("E" slime-edit-value))
-
-(defhydra matcha-slime-mode (:color blue :hint nil)
-  "
-
-    Slime: %s(buffer-name)
-
-    Open                 Do                          Connection
-  ------------------------------------------------------------------------------
-    _x_ Scratch       _e_ Eval                _ll_ List Connections
-    _ss_ Slime        _mo_ Macroexpand One    _ln_ Next Connection
-    _sq_ Quit         _ma_ Macroexpand All    _lp_ Previous Connection
-    _?_ Cheatsheet    _lt_ List Threads
-    _z_ REPL
-
-      Who                        Help                     Misc
-  ------------------------------------------------------------------------------
-    _wr_ References       _aa_ Apropos            _Af_ Trace Function
-    _wm_ Macroexpands     _al_ Apropos All        _Au_ Untrace All
-    _wl_ Specializes      _ap_ Apropos Package    _Af_ Toggle Fancy Trace
-    _wc_ Calls            _h_ Describe Symbol     _gn_ Next Note
-    _wb_ Binds            _H_ Hyperspec Lookup    _gp_ Previous Note
-    _ww_ Calls Who        _d_ Disassemble
-    _lc_ List Callers
-    _le_ List Callees
-
-"
-  ("z" slime-repl)
-  ("lt" slime-list-threads)
-  ("ln" slime-next-connection)
-  ("lp" slime-prev-connection)
-  ("ll" slime-list-connections)
-  ("?" slime-cheat-sheet)
-  ("gn" slime-next-note)
-  ("gp" slime-previous-note)
-  ("aa" slime-apropos)
-  ("al" slime-apropos-all)
-  ("d" slime-disassemble-symbol)
-  ("h" slime-describe-symbol)
-  ("H" slime-hyperspec-lookup)
-  ("ap" slime-apropos-package)
-  ("Af" slime-toggle-trace-fdefinition)
-  ("Au" slime-untrace-all)
-  ("wr" slime-who-references)
-  ("wm" slime-who-macroexpands)
-  ("wl" slime-who-specializes)
-  ("wc" slime-who-calls)
-  ("ww" slime-calls-who)
-  ("wb" slime-who-binds)
-  ("ws" slime-who-sets)
-  ("lc" slime-list-callers)
-  ("le" slime-list-callees)
-  ("x" slime-scratch)
-  ("ss" slime)
-  ("sq" slime-quit-lisp)
-  ("e" matcha-slime-eval/body)
-  ("ma" slime-macroexpand-all)
-  ("mo" slime-macroexpand-1)
-  ("Af" slime-toggle-fancy-trace))
+(define-transient-command matcha-slime-mode
+  "SLIME"
+  [["Actions"
+    ("e" "Eval..." matcha-slime-mode-eval)
+    ("w" "References..." matcha-slime-mode-references)
+    ("h" "Info..." matcha-slime-mode-info)
+    ("l" "Connections..." matcha-slime-mode-connection)]
+   ["Misc"
+    ("z" "REPL" slime-repl-mode)
+    ("x" "*scratch*" slime-scratch)
+    ("S" "SLIME" slime)
+    ("Q" "Quit Lisp" slime-quit-lisp)
+    ("?" "Cheat Sheet" slime-cheat-sheet)]
+   ["Macroexpand & Trace"
+    ("mo" "Macroexpand" slime-macroexpand-1)
+    ("ma" "Macroexpand All" slime-macroexpand-all)
+    ("L" "List Threads" slime-list-threads)
+    ("Af" "Toggle Trace" slime-toggle-trace-fdefinition)
+    ("Au" "Untrace All" slime-untrace-all)]])
 
 (defun matcha-slime-set-launcher ()
-  "Set `hydra' launcher for `slime'."
+  "Set `transient' launcher for `slime'."
   (matcha-set-mode-command
-   :mode 'slime-mode :command #'matcha-slime-mode/body :minor-p t)
+   :mode 'slime-mode :command #'matcha-slime-mode :minor-p t)
   (matcha-set-eval-command
-   :mode 'slime-mode :command #'matcha-slime-eval/body :minor-p t))
+   :mode 'slime-mode :command #'matcha-slime-eval :minor-p t))
 
 (provide 'matcha-slime)
 ;;; matcha-slime.el ends here
