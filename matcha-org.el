@@ -207,7 +207,11 @@
 
 (define-transient-command matcha-org-editing ()
   "Edit"
-  [["Insert"
+  [
+   :description (lambda () (propertize
+                       (format "Org: %s" (matcha-heading-current-file))
+                       'face 'org-level-1))
+   ["Insert"
     ("m" "Heading" org-meta-return)
     ("M" "Heading Under" org-insert-heading-respect-content)
     ("t" "Todo" org-insert-todo-heading)
@@ -239,19 +243,23 @@
 
 (define-transient-command matcha-org-mode ()
   "Org Mode"
-  ["Motion"
-   ("n" "Next Heading" org-next-visible-heading)
-   ("p" "Previous Heading" org-previous-visible-heading )
-   ("f" "Forward Level" org-forward-heading-same-level)
-   ("b" "Backward Level" org-backward-heading-same-level)
-   ("u" "Up Heading" outline-up-heading)
-   ("j" "Goto" org-goto)]
-  ["Misc"
-   ("e" "Editing..." matcha-org-editing)
-   ("B" "Babel..." matcha-org-babel)
-   ("t" "Time..." matcha-org-time)
-   ("l" "Links..." matcha-org-hyperlink)
-   ("r" "Reveal" org-reveal)])
+  [
+   :description (lambda () (propertize
+                       (format "Org: %s" (matcha-heading-current-file))
+                       'face 'org-level-1))
+   ["Motion"
+    ("n" "Next Heading" org-next-visible-heading t)
+    ("p" "Previous Heading" org-previous-visible-heading)
+    ("f" "Forward Level" org-forward-heading-same-level)
+    ("b" "Backward Level" org-backward-heading-same-level)
+    ("u" "Up Heading" outline-up-heading)
+    ("j" "Goto" org-goto)]
+   ["Misc"
+    ("e" "Editing..." matcha-org-editing)
+    ("B" "Babel..." matcha-org-babel)
+    ("t" "Time..." matcha-org-time)
+    ("l" "Links..." matcha-org-hyperlink)
+    ("r" "Reveal" org-reveal)]])
 
 (defun matcha-org-set-launcher ()
   "Set `hydra' launcher for `org'."
