@@ -208,9 +208,10 @@
 (define-transient-command matcha-org-editing ()
   "Edit"
   [
-   :description (lambda () (propertize
-                       (format "Org: %s" (matcha-heading-current-file))
-                       'face 'org-level-1))
+   :description
+   (lambda () (propertize
+          (format "Org: %s" (matcha-heading-current-file))
+          'face 'org-level-1))
    ["Insert"
     ("m" "Heading" org-meta-return)
     ("M" "Heading Under" org-insert-heading-respect-content)
@@ -224,8 +225,8 @@
     ("<up>" "Move Subtree Up" org-move-subtree-up)
     ("<down>" "Move Subtree Down" org-move-subtree-down)]
    ["Mark"
-    ("e" "Element" org-mark-element)
-    ("@" "Subtree" org-mark-subtree)]]
+    ("e" "Element" org-mark-element :transient t)
+    ("@" "Subtree" org-mark-subtree :transient t)]]
   [["Subtree"
     ("x" "Cut" org-cut-subtree)
     ("w" "Copy" org-copy-subtree)
@@ -244,15 +245,16 @@
 (define-transient-command matcha-org-mode ()
   "Org Mode"
   [
-   :description (lambda () (propertize
-                       (format "Org: %s" (matcha-heading-current-file))
-                       'face 'org-level-1))
+   :description
+   (lambda () (propertize
+          (format "Org: %s" (matcha-heading-current-file))
+          'face 'org-level-1))
    ["Motion"
-    ("n" "Next Heading" org-next-visible-heading t)
-    ("p" "Previous Heading" org-previous-visible-heading)
-    ("f" "Forward Level" org-forward-heading-same-level)
-    ("b" "Backward Level" org-backward-heading-same-level)
-    ("u" "Up Heading" outline-up-heading)
+    ("n" "Next Heading" org-next-visible-heading :transient t)
+    ("p" "Previous Heading" org-previous-visible-heading :transient t)
+    ("f" "Forward Level" org-forward-heading-same-level :transient t)
+    ("b" "Backward Level" org-backward-heading-same-level :transient t)
+    ("u" "Up Heading" outline-up-heading :transient t)
     ("j" "Goto" org-goto)]
    ["Misc"
     ("e" "Editing..." matcha-org-editing)
