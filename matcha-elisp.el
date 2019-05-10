@@ -176,7 +176,7 @@ Requires smartparens because all movement is done using `sp-forward-symbol'."
     ("d" "Debug" matcha-emacs-lisp-debug)
     ("c" "Compile" matcha-emacs-lisp-compile)
     ("s" "Describe" matcha-emacs-lisp-describe)
-    ("m" "Macroexpand" matcha-macrostep-expand-or-open-hydra)]
+    ("m" "Macroexpand" matcha-macrostep-expand-or-open-menu)]
    ["Find"
     ("x" "*Scratch*" matcha-goto-scratch)
     ("l" "Library" find-library)

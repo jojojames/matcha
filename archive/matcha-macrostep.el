@@ -1,13 +1,13 @@
-;;; matcha-macrostep.el --- Integration with Transient. -*- lexical-binding: t -*-
+;;; matcha-macrostep.el --- Integration with Hydra. -*- lexical-binding: t -*-
 
-;; Copyright (C) 2019 James Nguyen
+;; Copyright (C) 2017 James Nguyen
 
 ;; Author: James Nguyen <james@jojojames.com>
 ;; Maintainer: James Nguyen <james@jojojames.com>
 ;; URL: https://github.com/jojojames/matcha
 ;; Version: 0.0.1
 ;; Package-Requires: ((emacs "25.1"))
-;; Keywords: transient, emacs
+;; Keywords: hydra, emacs
 ;; HomePage: https://github.com/jojojames/matcha
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,28 +24,36 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-;;; Integration with Transient.
+;;; Integration with Hydra.
 
 ;;; Code:
 (require 'matcha-base)
 (require 'macrostep nil t)
 
-(defun matcha-macrostep-expand-or-open-menu ()
-  "Run `macrostep-expand' if not already. Open transient otherwise."
+(defun matcha-macrostep-expand-or-open-hydra ()
+  "Run `macrostep-expand' if not already. Open hydra otherwise."
   (interactive)
   (if (bound-and-true-p macrostep-mode)
-      (matcha-macrostep)
+      (matcha-macro-step/body)
     (macrostep-expand)))
 
-(define-transient-command matcha-macrostep
-  "Macrostep"
-  [["Expand"
-    ("e" "Expand" macrostep-expand)
-    ("c" "Collapse" macrostep-collapse)
-    ("C" "Collapse All" macrostep-collapse-all)]
-   ["Navigate"
-    ("j" "Next Macro" macrostep-next-macro)
-    ("k" "Previous Macro" macrostep-prev-macro)]])
+(defhydra matcha-macro-step (:color red :hint nil)
+  "
+
+   Macrostep: %s(matcha-projectile-root)
+
+     ^^Expand^^               ^^Navigate^^
+  ------------------------------------------------------------------------------
+    _e_: Expand         _j_: Next Macro
+    _c_: Collapse       _k_: Prev Macro
+    _C_: Collapse All
+
+"
+  ("e" macrostep-expand)
+  ("c" macrostep-collapse)
+  ("j" macrostep-next-macro)
+  ("k" macrostep-prev-macro)
+  ("C" macrostep-collapse-all))
 
 (provide 'matcha-macrostep)
 ;;; matcha-macrostep.el ends here
