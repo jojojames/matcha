@@ -1,4 +1,4 @@
-;;; matcha-android-mode.el --- Integration with Transient. -*- lexical-binding: t -*-
+;;; matcha-android-mode.el --- Integration with Hydra. -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2017 James Nguyen
 
@@ -7,7 +7,7 @@
 ;; URL: https://github.com/jojojames/matcha
 ;; Version: 0.0.1
 ;; Package-Requires: ((emacs "25.1"))
-;; Keywords: transient, emacs
+;; Keywords: hydra, emacs
 ;; HomePage: https://github.com/jojojames/matcha
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,32 +24,29 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-;;; Integration with Transient.
+;;; Integration with Hydra.
 
 ;;; Code:
 (require 'matcha-base)
 (require 'android-mode nil t)
 
-(define-transient-command matcha-android-mode
+(defhydra matcha-android-mode (:color blue)
   "Android"
-  [["Start"
-    ("a" "Start App" android-start-app)
-    ("d" "DDMS" android-start-ddms)
-    ("e" "Start Emulator" android-start-emulator)
-    ("l" "Logcat" android-logcat)]
-   ["Build"
-    ("C" android-build-clean "Clean")
-    ("t" android-build-test "Test")
-    ("c" android-build-debug "Debug")]
-   ["Install"
-    ("u" android-build-install "Install")
-    ("r" android-build-reinstall "Reinstall")
-    ("i" android-build-uninstall "Uninstall")]])
+  ("a" android-start-app "Start App")
+  ("d" android-start-ddms "DDMS")
+  ("e" android-start-emulator "Start Emulator")
+  ("l" android-logcat "Logcat")
+  ("C" android-build-clean "Clean")
+  ("t" android-build-test "Test")
+  ("c" android-build-debug "Debug")
+  ("u" android-build-install "Install")
+  ("r" android-build-reinstall "Reinstall")
+  ("i" android-build-uninstall "Uninstall"))
 
 (defun matcha-android-mode-set-launcher ()
-  "Set up `android-mode' with `transient'."
+  "Set up `android-mode' with `hydra'."
   (matcha-set-mode-command
-   :mode 'android-mode :command 'matcha-android-mode :minor-p t))
+   :mode 'android-mode :command 'matcha-android-mode/body :minor-p t))
 
 (provide 'matcha-android-mode)
 ;;; matcha-android-mode.el ends here
