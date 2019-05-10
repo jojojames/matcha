@@ -1,4 +1,4 @@
-;;; matcha-tide.el --- Integration with Hydra. -*- lexical-binding: t -*-
+;;; matcha-tide.el --- Integration with Transient. -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2019 James Nguyen
 
@@ -7,7 +7,7 @@
 ;; URL: https://github.com/jojojames/matcha
 ;; Version: 0.0.1
 ;; Package-Requires: ((emacs "25.1"))
-;; Keywords: hydra, emacs
+;; Keywords: transient, emacs
 ;; HomePage: https://github.com/jojojames/matcha
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,75 +24,63 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-;;; Integration with Hydra.
+;;; Integration with Transient.
 
 ;;; Code:
 (require 'matcha-base)
 (require 'matcha-mocha)
 (require 'matcha-prettier)
-;; (require 'tide nil t)
+(require 'tide nil t)
 ;; (require 'ts-comint)
 
-(defhydra matcha-tide-refactor (:color blue :hint nil)
-  "
+(define-transient-command matcha-tide-refactor
+  "Refactor"
+  [["Actions"
+    ("n" "Rename" tide-rename-symbol)
+    ("r" "Refactor" tide-refactor)
+    ("f" "Fix" tide-fix)]])
 
-    Tide Refactor
-  ------------------------------------------------------------------------------
-    _n_ Rename    _r_ Refactor    _f_ Apply Fix
+(define-transient-command matcha-tide-eval
+  "Eval"
+  [["Send"
+    ("e" "Sexp" ts-send-last-sexp)
+    ("x" "Last Sexp and Go" ts-send-last-sexp-and-go)
+    ("b" "Buffer" ts-send-buffer)
+    ("v" "Buffer and Go" ts-send-buffer-and-go)]
+   ["Misc"
+    ("l" "Load File and Go" ts-load-file-and-go)]])
 
-"
-  ("n" tide-rename-symbol)
-  ("r" tide-refactor)
-  ("f" tide-fix))
-
-(defhydra matcha-tide-eval (:color blue :columns 4)
-  "Typescript Eval"
-  ("z" run-ts "Run REPL")
-  ("e" ts-send-last-sexp "Send S-exp")
-  ("x" ts-send-last-sexp-and-go "Send Last S-exp and Go")
-  ("b" ts-send-buffer "Send Buffer")
-  ("v" ts-send-buffer-and-go "Send Buffer and Go")
-  ("l" ts-load-file-and-go "Load File and Go"))
-
-(defhydra matcha-tide-mode (:color blue :hint nil)
-  "
-
-   Typescript: %(matcha-projectile-root)
-
-    ^Do^                   ^Info^                      ^Misc^
-  ------------------------------------------------------------------------------
-    _t_ Test          _k_ Show Doc                _z_ Restart Server
-    _e_ Eval          _?_ Find References         _E_ Errors
-    _r_ Refactor      _._ GoTo Definition         _j_ Add JSDoc
-    _=_ Format        _/_ Pop Definition
-    _p_ Prettier
-
-"
-  ("p" matcha-prettier-or-indent-region-or-buffer)
-  ("t" matcha-mocha)
-  ("e" matcha-tide-eval/body)
-  ("r" matcha-tide-refactor/body)
-  ("=" tide-format)
-  ("z" tide-restart-server)
-  ("E" tide-project-errors)
-  ("k" tide-documentation-at-point)
-  ("?" tide-references)
-  ("." tide-jump-to-definition)
-  ("/" tide-jump-back)
-  ("j" tide-jsdoc-template))
+(define-transient-command matcha-tide-mode
+  "Typescript"
+  [["Actions"
+    ("e" "Eval..." matcha-tide-eval)
+    ("t" "Test..." matcha-mocha)
+    ("r" "Refactor..." matcha-tide-refactor)
+    ("=" "Format" tide-format)
+    ("p" "Prettier" matcha-prettier-or-indent-region-or-buffer)
+    ("z" "Run REPL" run-ts)]
+   ["Info"
+    ("k" "Documentation" tide-documentation-at-point)
+    ("?" "Find References" tide-references)
+    ("." "GoTo Definition" tide-jump-to-definition)
+    ("/" "Pop Definition" tide-jump-back)]
+   ["Misc"
+    ("z" "Restart Server" tide-restart-server)
+    ("E" "Project Errors" tide-project-errors)
+    ("j" "JSDoc Template" tide-jsdoc-template)]])
 
 (defun matcha-tide-set-launcher ()
-  "Set `hydra' launcher for `tide'."
+  "Set `transient' launcher for `tide'."
   (matcha-set-refactor-command
-   :mode 'tide-mode :command #'matcha-tide-refactor/body :minor-p t)
+   :mode 'tide-mode :command #'matcha-tide-refactor :minor-p t)
   (matcha-set-test-command
    :mode 'tide-mode :command #'matcha-mocha :minor-p t)
   (matcha-set-eval-command
-   :mode 'tide-mode :command #'matcha-tide-eval/body :minor-p t)
+   :mode 'tide-mode :command #'matcha-tide-eval :minor-p t)
   (matcha-set-format-command
    :mode 'tide-mode :command #'tide-format :minor-p t)
   (matcha-set-mode-command
-   :mode 'tide-mode :command #'matcha-tide-mode/body :minor-p t))
+   :mode 'tide-mode :command #'matcha-tide-mode :minor-p t))
 
 (provide 'matcha-tide)
 ;;; matcha-tide.el ends here
