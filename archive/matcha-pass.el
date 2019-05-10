@@ -1,4 +1,4 @@
-;;; matcha-pass.el --- Integration with Transient. -*- lexical-binding: t -*-
+;;; matcha-pass.el --- Integration with Hydra. -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2017 James Nguyen
 
@@ -7,7 +7,7 @@
 ;; URL: https://github.com/jojojames/matcha
 ;; Version: 0.0.1
 ;; Package-Requires: ((emacs "25.1"))
-;; Keywords: transient, emacs
+;; Keywords: hydra, emacs
 ;; HomePage: https://github.com/jojojames/matcha
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,31 +24,39 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-;;; Integration with Transient.
+;;; Integration with Hydra.
 
 ;;; Code:
 (require 'matcha-base)
 (require 'password-store nil t)
 
-(define-transient-command matcha-pass-mode
-  "Pass"
-  [["Get"
-    ("e" "Edit" password-store-edit)
-    ("y" "Copy" password-store-copy)
-    ("l" "Clear" password-store-clear)]
-   ["Manage"
-    ("i" "Insert Password" password-store-insert)
-    ("g" "Generate Password" password-store-generate)
-    ("x" "Remove Password" password-store-remove)
-    ("r" "Rename Password" password-store-rename)]
-   ["Misc"
-    ("." "URL" password-store-url)
-    ("v" "Version" password-store-version)]])
+(defhydra matcha-pass-mode (:color blue :hint nil)
+  "
+
+   Password Store:
+
+    Get                     Manage                       Misc
+  ------------------------------------------------------------------------------
+    _e_ Edit              _i_ Insert Entry           _._ Go To URL
+    _l_ Clear Password    _g_ Generate Password      _v_ Pass Version
+    _y_ Copy Password     _x_ Remove Entry
+                        ^^_r_ Rename Entry
+
+        "
+  ("e" password-store-edit)
+  ("l" password-store-clear)
+  ("y" password-store-copy)
+  ("i" password-store-insert)
+  ("g" password-store-generate)
+  ("x" password-store-remove)
+  ("r" password-store-rename)
+  ("." password-store-url)
+  ("v" password-store-version))
 
 (defun matcha-pass-set-launcher ()
-  "Set up `pass' with `transient'."
+  "Set up `pass' with `hydra'."
   (matcha-set-mode-command :mode 'pass-mode
-                           :command #'matcha-pass-mode))
+                           :command #'matcha-pass-mode/body))
 
 (provide 'matcha-pass)
 ;;; matcha-pass.el ends here
