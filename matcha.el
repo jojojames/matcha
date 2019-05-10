@@ -93,8 +93,7 @@
     swift-mode
     tide
     term
-    web-mode
-    xcode-mode)
+    web-mode)
   "The list of modes for which a hydra will be defined."
   :type '(repeat (choice symbol sexp))
   :group 'matcha)
