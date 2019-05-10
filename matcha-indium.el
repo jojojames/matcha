@@ -30,7 +30,7 @@
 
 (defhydra matcha-indium-mode (:color blue :columns 4)
   "Javascript"
-  ("t" matcha-mocha/body "Test")
+  ("t" matcha-mocha "Test")
   ("i" matcha-js-import/body "Import")
   ("x" indium-run-node "Run Node")
   ("c" indium-scratch "Scratch")

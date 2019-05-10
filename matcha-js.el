@@ -19,7 +19,7 @@
    :mode '(js-mode js2-mode rjsx-mode) :command #'matcha-indium-mode/body)
 
   (matcha-set-test-command
-   :mode '(js-mode js2-mode rjsx-mode) :command #'matcha-mocha/body)
+   :mode '(js-mode js2-mode rjsx-mode) :command #'matcha-mocha)
 
   (matcha-set-format-command
    :mode '(js-mode js2-mode rjsx-mode)

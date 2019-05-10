@@ -69,7 +69,7 @@
 
 "
   ("p" matcha-prettier-or-indent-region-or-buffer)
-  ("t" matcha-mocha/body)
+  ("t" matcha-mocha)
   ("e" matcha-tide-eval/body)
   ("r" matcha-tide-refactor/body)
   ("=" tide-format)
@@ -86,7 +86,7 @@
   (matcha-set-refactor-command
    :mode 'tide-mode :command #'matcha-tide-refactor/body :minor-p t)
   (matcha-set-test-command
-   :mode 'tide-mode :command #'matcha-mocha/body :minor-p t)
+   :mode 'tide-mode :command #'matcha-mocha :minor-p t)
   (matcha-set-eval-command
    :mode 'tide-mode :command #'matcha-tide-eval/body :minor-p t)
   (matcha-set-format-command
