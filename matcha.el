@@ -51,11 +51,6 @@
   :type 'bool
   :group 'matcha)
 
-(defcustom matcha-use-transient-p t
-  "Whether or not to use `transient' instead of `hydra'."
-  :type 'bool
-  :group 'matcha)
-
 (defcustom matcha-me-p t
   "Whether to load personal `matcha'."
   :type 'bool
