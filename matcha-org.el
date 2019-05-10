@@ -187,7 +187,7 @@
     ("c" "Goto Calendar" org-goto-calendar)
     ("C" "Date from Calendar" org-date-from-calendar)]
    ["Manage"
-    ("D" "Change Date" matcha-org-change-date)
+    ("D" "Change Date..." matcha-org-change-date)
     ("y" "Evaluate Time Range" org-evaluate-time-range)
     ("Z" "Custom Time Format" org-toggle-time-stamp-overlays)]
    ["Timer"
@@ -247,10 +247,10 @@
    ("u" "Up Heading" outline-up-heading)
    ("j" "Goto" org-goto)]
   ["Misc"
-   ("e" "Editing" matcha-org-editing)
-   ("B" "Babel" matcha-org-babel)
-   ("t" "Time" matcha-org-time)
-   ("l" "Links" matcha-org-hyperlink)
+   ("e" "Editing..." matcha-org-editing)
+   ("B" "Babel..." matcha-org-babel)
+   ("t" "Time..." matcha-org-time)
+   ("l" "Links..." matcha-org-hyperlink)
    ("r" "Reveal" org-reveal)])
 
 (defun matcha-org-set-launcher ()
