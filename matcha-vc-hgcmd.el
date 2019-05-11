@@ -28,7 +28,7 @@
 
 ;;; Code:
 (require 'matcha-base)
-(require 'vc-hgcmd)
+(require 'vc-hgcmd nil t)
 
 (defun matcha-vc-hgcmd-shelve (name)
   "Create shelve named NAME."
