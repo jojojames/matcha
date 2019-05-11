@@ -5,6 +5,7 @@
 
 (development
  (depends-on "hydra")
+ (depends-on "transient")
  (depends-on "f")
  (depends-on "package-lint")
  (depends-on "ert-runner"))
