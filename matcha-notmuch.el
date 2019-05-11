@@ -97,7 +97,7 @@
   (">" notmuch-search-last-thread "Last Thread")
   ("RET" notmuch-search-show-thread "Show Thread"))
 
-(defhydra matcha-notmuch-search-stash (:color :columns 4)
+(defhydra matcha-notmuch-search-stash (:color blue :columns 4)
   "Stash"
   ("i" notmuch-search-stash-thread-id "Stash Thread Id")
   ("q" notmuch-stash-query "Stash Query")
