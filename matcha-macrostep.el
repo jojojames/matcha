@@ -34,7 +34,7 @@
   "Run `macrostep-expand' if not already. Open transient otherwise."
   (interactive)
   (if (bound-and-true-p macrostep-mode)
-      (matcha-macrostep)
+      (call-interactively #'matcha-macrostep)
     (macrostep-expand)))
 
 (define-transient-command matcha-macrostep
