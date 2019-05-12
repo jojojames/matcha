@@ -41,3 +41,7 @@
   ("k" indium-update-script-source "Update Source"))
 
 (provide 'matcha-indium)
+;;; matcha-indium.el ends here
+;; Local Variables:
+;; byte-compile-warnings: (not free-vars unresolved noruntime cl-functions obsolete)
+;; End:
