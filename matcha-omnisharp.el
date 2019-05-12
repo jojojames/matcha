@@ -1,4 +1,4 @@
-;;; matcha-omnisharp.el --- Integration with Hydra. -*- lexical-binding: t -*-
+;;; matcha-omnisharp.el --- Integration with Transient. -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2019 James Nguyen
 
@@ -7,7 +7,7 @@
 ;; URL: https://github.com/jojojames/matcha
 ;; Version: 0.0.1
 ;; Package-Requires: ((emacs "25.1"))
-;; Keywords: hydra, emacs
+;; Keywords: transient, emacs
 ;; HomePage: https://github.com/jojojames/matcha
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,65 +24,71 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-;;; Integration with Hydra.
+;;; Integration with Transient.
 
 ;;; Code:
 (require 'matcha-base)
 ;; (require 'omnisharp)
 
-(defhydra matcha-omnisharp-project (:color blue)
+(define-transient-command matcha-omnisharp-project
   "Project"
-  ("a" omnisharp-add-to-solution-current-file "Add To Solution")
-  ("A" omnisharp-add-to-solution-dired-selected-files "Add to Solution Dired")
-  ("r" omnisharp-remove-from-project-current-file "Remove From Solution")
-  ("R" omnisharp-remove-from-project-dired-selected-files "Remove From Solution Dired")
-  ("l" omnisharp-add-reference "Add Reference"))
+  [["Project"
+    ("a" "Add To Solution" omnisharp-add-to-solution-current-file)
+    ("A" "Add to Solution Dired" omnisharp-add-to-solution-dired-selected-files)
+    ("r" "Remove From Solution" omnisharp-remove-from-project-current-file)
+    ("R" "Remove From Solution Dired" omnisharp-remove-from-project-dired-selected-files)
+    ("l" "Add Reference" omnisharp-add-reference)]])
 
-(defhydra matcha-omnisharp-refactor (:color blue)
+(define-transient-command matcha-omnisharp-refactor
   "Refactor"
-  ("m" omnisharp-rename "Rename")
-  ("i" omnisharp-rename-interactively "Rename Interactively")
-  ("r" omnisharp-run-code-action-refactoring "Code Action Refactoring"))
+  [["Refactor"
+    ("m" "Rename" omnisharp-rename)
+    ("i" "Rename Interactively" omnisharp-rename-interactively)
+    ("r" "Code Action Refactoring" omnisharp-run-code-action-refactoring)]])
 
-(defhydra matcha-omnisharp-navigation (:color blue :columns 4)
+(define-transient-command matcha-omnisharp-navigation
   "Navigation"
-  ("g" omnisharp-go-to-definition "Go To Definition")
-  ("G" omnisharp-go-to-definition-other-window "Go To Definition Other")
-  ("u" omnisharp-find-usages "Find Usages")
-  ("s" omnisharp-helm-find-symbols "Helm Find Symbols")
-  ("i" omnisharp-find-implementations "Find Implementations")
-  ("r" omnisharp-navigate-to-region "Region")
-  ("m" omnisharp-navigate-to-solution-member "Solution Member")
-  ("M" omnisharp-navigate-to-solution-member-other-window "Solution Member Other Window")
-  ("f" omnisharp-navigate-to-solution-file "Solution File")
-  ("F" omnisharp-navigate-to-solution-file-then-file-member "Solution Then File Member")
-  ("c" omnisharp-navigate-to-current-file-member "Current File Member"))
+  [["Navigation"
+    ("g" "Go To Definition" omnisharp-go-to-definition)
+    ("G" "Go To Definition Other" omnisharp-go-to-definition-other-window)
+    ("u" "Find Usages" omnisharp-find-usages)
+    ("s" "Helm Find Symbols" omnisharp-helm-find-symbols)
+    ("i" "Find Implementations" omnisharp-find-implementations)
+    ("r" "Region" omnisharp-navigate-to-region)
+    ("m" "Solution Member" omnisharp-navigate-to-solution-member)
+    ("M" "Solution Member Other Window" omnisharp-navigate-to-solution-member-other-window)
+    ("f" "Solution File" omnisharp-navigate-to-solution-file)
+    ("F" "Solution Then File Member" omnisharp-navigate-to-solution-file-then-file-member)
+    ("c" "Current File Member" omnisharp-navigate-to-current-file-member)]])
 
-(defhydra matcha-omnisharp-test (:color blue)
+(define-transient-command matcha-omnisharp-test
   "Test"
-  ("a" omnisharp-unit-test-all "All")
-  ("b" omnisharp-unit-test-fixture "Fixture")
-  ("t" omnisharp-unit-test-single "Single"))
+  [["Test"
+    ("a" "All" omnisharp-unit-test-all)
+    ("b" "Fixture" omnisharp-unit-test-fixture)
+    ("t" "Single" omnisharp-unit-test-single)]])
 
-(defhydra matcha-omnisharp-help (:color blue)
+(define-transient-command matcha-omnisharp-help
   "Help"
-  ("t" omnisharp-current-type-information "Current Type Information")
-  ("T" omnisharp-current-type-information-to-kill-ring "Current Type To Kill Ring")
-  ("s" omnisharp-start-omnisharp-server "Start Server")
-  ("S" omnisharp-stop-server "Stop Server")
-  ("r" omnisharp-reload-solution "Reload Solution"))
+  [["Help"
+    ("t" "Current Type Information" omnisharp-current-type-information)
+    ("T" "Current Type To Kill Ring" omnisharp-current-type-information-to-kill-ring)
+    ("s" "Start Server" omnisharp-start-omnisharp-server)
+    ("r" "Reload Solution" omnisharp-reload-solution)
+    ("S" "Stop Server" omnisharp-stop-server)]])
 
-(defhydra matcha-omnisharp-mode (:color blue :columns 4)
+(define-transient-command matcha-omnisharp-mode
   "CSharp"
-  ("m" omnisharp-build-in-emacs "Build")
-  ("p" matcha-omnisharp-project/body "Manage")
-  ("r" matcha-omnisharp-refactor/body "Refactor")
-  ("g" matcha-omnisharp-navigation/body "Navigate")
-  ("t" matcha-omnisharp-test/body "Test")
-  ("h" matcha-omnisharp-help/body "Help")
-  ("u" omnisharp-auto-complete-overrides "Autocomplete Overrides")
-  ("i" omnisharp-fix-usings "Fix Usings")
-  ("=" omnisharp-code-format-entire-file "Code Format"))
+  [["Actions"
+    ("m" "Build" omnisharp-build-in-emacs)
+    ("r" "Refactor..." matcha-omnisharp-refactor)
+    ("p" "Manage..." matcha-omnisharp-project)
+    ("g" "Navigate..." matcha-omnisharp-navigation)
+    ("t" "Test..." matcha-omnisharp-test)
+    ("h" "Help..." matcha-omnisharp-help)
+    ("u" "Autocomplete Overrides" omnisharp-auto-complete-overrides)
+    ("i" "Fix Usings" omnisharp-fix-usings)
+    ("=" "Code Format" omnisharp-code-format-entire-file)]])
 
 (defun matcha-omnisharp-indent-region-or-buffer ()
   "Indent a region if selected, otherwise the whole buffer."
@@ -92,13 +98,13 @@
     (omnisharp-code-format-entire-file)))
 
 (defun matcha-omnisharp-set-launcher ()
-  "Set `hydra' launcher for `omnisharp'."
+  "Set `transient' launcher for `omnisharp'."
   (matcha-set-format-command
    :mode 'csharp-mode :command #'matcha-omnisharp-indent-region-or-buffer)
   (matcha-set-test-command
-   :mode 'csharp-mode :command #'matcha-omnisharp-test/body)
+   :mode 'csharp-mode :command #'matcha-omnisharp-test)
   (matcha-set-mode-command
-   :mode 'csharp-mode :command #'matcha-omnisharp-mode/body))
+   :mode 'csharp-mode :command #'matcha-omnisharp-mode))
 
 (provide 'matcha-omnisharp)
 ;;; matcha-omnisharp.el ends here
