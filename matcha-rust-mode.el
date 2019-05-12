@@ -1,4 +1,4 @@
-;;; matcha-rust-mode.el --- Integration with Hydra. -*- lexical-binding: t -*-
+;;; matcha-rust-mode.el --- Integration with Transient. -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2018 James Nguyen
 
@@ -7,7 +7,7 @@
 ;; URL: https://github.com/jojojames/matcha
 ;; Version: 0.0.1
 ;; Package-Requires: ((emacs "25.1"))
-;; Keywords: hydra, emacs
+;; Keywords: transient, emacs
 ;; HomePage: https://github.com/jojojames/matcha
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,91 +24,62 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-;;; Integration with Hydra.
+;;; Integration with Transient.
 
 ;;; Code:
 (require 'matcha-base)
 (require 'rust-mode nil t)
 (require 'cargo nil t)
 
-(defhydra matcha-rust-mode-cargo-test (:color blue :hint nil)
-  "
+(define-transient-command matcha-rust-mode-cargo-test
+  "Cargo Test"
+  [["Test"
+    ("t" "Test" cargo-process-test)
+    ("c" "Current Test" cargo-process-current-test)
+    ("f" "Current File" cargo-process-current-file-tests)]])
 
-    Rust Cargo Test
-  ------------------------------------------------------------------------------
-    _t_ Test    _c_ Current Test    _f_ Current File
+(define-transient-command matcha-rust-mode-cargo
+  "Cargo"
+  [
+   :description (lambda () (format "Cargo: %s" (matcha-projectile-root)))
+   ["Actions"
+    ("x" "Run" cargo-process-run)
+    ("X" "Run Example" cargo-process-run-example)
+    ("v" "Check" cargo-process-check)
+    ("l" "Clippy" cargo-process-clippy)
+    ("=" "Format" rust-format-buffer)
+    ("e" "Eval..." matcha-rust-mode-eval)
+    ("t" "Test..." matcha-rust-mode-cargo-test)]
+   ["Manage"
+    ("i" "Init" cargo-process-init)
+    ("n" "New" cargo-process-new)
+    ("b" "Build" cargo-process-build)
+    ("c" "Clean" cargo-process-clean)
+    ("u" "Update" cargo-process-update)]
+   ["Doc"
+    ("d" "Doc" cargo-process-doc)
+    ("D" "Doc & Open" cargo-process-doc-open)]
+   ["Misc"
+    ("." "Repeat Cargo Process" cargo-process-repeat)
+    ("B" "Cargo Bench" cargo-process-bench)
+    ("f" "Cargo Format" cargo-process-fmt)
+    ("s" "Cargo Search" cargo-process-search)
+    ("P" "Promote Module into Directory" rust-promote-module-into-dir)]])
 
-"
-  ("f" cargo-process-current-file-tests)
-  ("c" cargo-process-current-test)
-  ("t" cargo-process-test))
-
-(defhydra matcha-rust-mode-cargo (:color blue :hint nil)
-  "
-
-    Cargo: %s(matcha-projectile-root)
-
-    Manage         Run             ^^Doc            ^^Misc
-  ------------------------------------------------------------------------------
-    _i_ Init        _x_ Run          _d_ Doc           _._ Repeat Command
-    _n_ New         _X_ Example      _D_ Doc & Open    _t_ Test
-    _b_ Build       _v_ Check                        ^^_B_ Bench
-    _c_ Clean       _l_ Clippy                       ^^_s_ Search
-    _u_ Update                                     ^^^^_f_ Fmt
-
-    Rust
-  ------------------------------------------------------------------------------
-    _e_ Eval    _P_ Promote Module    _=_ Format
-
-"
-  ;; Manage
-  ("i" cargo-process-init)
-  ("n" cargo-process-new)
-  ("b" cargo-process-build)
-  ("c" cargo-process-clean)
-  ("u" cargo-process-update)
-
-  ;; Run
-  ("x" cargo-process-run)
-  ("X" cargo-process-run-example)
-  ("v" cargo-process-check)
-  ("l" cargo-process-clippy)
-
-  ;; Doc
-  ("d" cargo-process-doc)
-  ("D" cargo-process-doc-open)
-
-  ;; Misc
-  ("." cargo-process-repeat)
-  ("t" matcha-rust-mode-cargo-test/body)
-  ("B" cargo-process-bench)
-  ("f" cargo-process-fmt)
-  ("s" cargo-process-search)
-
-  ;; Rust
-  ("e" matcha-rust-eval/body)
-  ("=" rust-format-buffer)
-  ("P" rust-promote-module-into-dir))
-
-(defhydra matcha-rust-eval (:color blue :hint nil)
-  "
-
-    Rust Evaluation
-  ------------------------------------------------------------------------------
-    _r_ Region    _b_ Buffer
-
-"
-  ("r" rust-playpen-region)
-  ("b" rust-playpen-buffer))
+(define-transient-command matcha-rust-mode-eval
+  "Eval"
+  [["Eval"
+    ("r" "Region" rust-playpen-region)
+    ("b" "Buffer" rust-playpen-buffer)]])
 
 (defun matcha-rust-mode-set-launcher ()
-  "Set up `rust-mode' with `hydra'."
+  "Set up `rust-mode' with `transient'."
   (matcha-set-test-command
-   :mode 'rust-mode :command 'matcha-rust-mode-cargo-test/body)
+   :mode 'rust-mode :command 'matcha-rust-mode-cargo-test)
   (matcha-set-mode-command
-   :mode 'rust-mode :command 'matcha-rust-mode-cargo/body)
+   :mode 'rust-mode :command 'matcha-rust-mode-cargo)
   (matcha-set-eval-command
-   :mode 'rust-mode :command 'matcha-rust-eval/body)
+   :mode 'rust-mode :command 'matcha-rust-eval)
   (matcha-set-format-command
    :mode 'rust-mode :command 'rust-format-buffer))
 
