@@ -101,8 +101,8 @@
     ("h" "Info..." matcha-slime-mode-info)
     ("l" "Connections..." matcha-slime-mode-connection)]
    ["Misc"
-    ("z" "REPL" slime-repl-mode)
     ("x" "*scratch*" slime-scratch)
+    ("z" "REPL" slime-repl-mode)
     ("S" "SLIME" slime)
     ("Q" "Quit Lisp" slime-quit-lisp)
     ("?" "Cheat Sheet" slime-cheat-sheet)]

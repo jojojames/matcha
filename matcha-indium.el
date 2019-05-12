@@ -32,8 +32,8 @@
   "Javascript"
   ("t" matcha-mocha "Test")
   ("i" matcha-js-import/body "Import")
-  ("x" indium-run-node "Run Node")
-  ("c" indium-scratch "Scratch")
+  ("R" indium-run-node "Run Node")
+  ("x" indium-scratch "Scratch")
   ("d" matcha-indium-debug/body "Debug")
   ("e" matcha-indium-eval/body "Eval")
   ("r" matcha-js2-refactor/body)

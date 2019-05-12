@@ -178,12 +178,12 @@ Requires smartparens because all movement is done using `sp-forward-symbol'."
     ("m" "Macroexpand..." matcha-macrostep-expand-or-open-menu)
     ("s" "Describe..." matcha-emacs-lisp-describe)]
    ["Find"
-    ("x" "*Scratch*" matcha-goto-scratch)
-    ("l" "Library" find-library)
-    ("f" "Function" find-function)
     ("v" "Variable" find-variable)
+    ("f" "Function" find-function)
+    ("l" "Library" find-library)
     ("r" "References..." matcha-elisp-refs)]
    ["Misc"
+    ("x" "*Scratch*" matcha-goto-scratch)
     ("z" "IELM" ielm)]])
 
 (provide 'matcha-elisp)
