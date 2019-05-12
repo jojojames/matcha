@@ -50,17 +50,17 @@
     ("n" "Sidebar" dired-sidebar-toggle-sidebar)
     ("SPC" "In Project" j|search)]
    ["Manage"
-    ("w" "Window" matcha-me-window)
-    ("g" "Git" matcha-magit)
-    ("p" "Project" matcha-projectile)
-    ("y" "System" matcha-me-system)
+    ("w" "Window..." matcha-me-window)
+    ("g" "Git..." matcha-magit)
+    ("p" "Project..." matcha-projectile)
+    ("y" "System..." matcha-me-system)
     ("U" "Undo Tree" undo-tree-visualize)]
    ["Do"
-    ("s" "Search" matcha-me-search)
+    ("s" "Search..." matcha-me-search)
     ("S" "Save all Buffers" j|save-all-buffers)
-    ("R" "Refactor" matcha-run-refactor-command)
+    ("R" "Refactor..." matcha-run-refactor-command)
     ("v" "Edit Config" matcha-me-find-init)
-    ("o" "Org" hydra-org-space/body)]
+    ("o" "Org..." hydra-org-space/body)]
    ["Mode"
     ("m" "Mode" matcha-run-mode-command)
     ("d" "Debug" matcha-run-debug-command)
@@ -113,12 +113,12 @@
     ("m" "Email" j|notmuch)
     ("w" "Passwords" pass)
     ("W" "Copy Password" password-store-copy)
-    ("b" "Bookmarks" matcha-me-bookmark)]
+    ("b" "Bookmarks..." matcha-me-bookmark)]
    ["Shell"
     ("y" "Terminal" j|open-shell)
     ("e" "Eshell" eshell)]
    ["Processes"
-    ("p" "Profiler" matcha-me-profiler)
+    ("p" "Profiler..." matcha-me-profiler)
     ("L" "List Processes" list-processes)
     ("P" "Prodigy" prodigy)]])
 

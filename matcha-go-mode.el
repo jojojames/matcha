@@ -59,15 +59,15 @@
   [
    :description (lambda () (format "Go: %s" (matcha-projectile-root)))
    ["Actions"
+    ("=" "Format" gofmt)
     ("e" "Eval..." matcha-go-mode-eval)
     ("d" "Godoc..." matcha-go-doc)
     ("m" "Guru..." matcha-go-mode-guru)
-    ("d" "GoDoctor..." matcha-go-mode-godoctor)
-    ("=" "Format" gofmt)]
+    ("d" "GoDoctor..." matcha-go-mode-godoctor)]
    ["References"
-    ("g" "Goto..."matcha-go-mode-goto)
     ("j" "GoDef Jump" godef-jump)
-    ("?" "Describe" godef-describe)]
+    ("?" "Describe" godef-describe)
+    ("g" "Goto..."matcha-go-mode-goto)]
    ["Imports"
     ("ia" "Add" go-import-add)
     ("ir" "Remove Unused" go-remove-unused-imports)]

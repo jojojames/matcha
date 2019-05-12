@@ -41,8 +41,8 @@
 (define-transient-command matcha-kotlin-mode
   "Kotlin"
   [["Actions"
-    ("e" "Eval..." matcha-kotlin-mode-eval)
-    ("z" "REPL" kotlin-repl)]])
+    ("z" "REPL" kotlin-repl)
+    ("e" "Eval..." matcha-kotlin-mode-eval)]])
 
 (defun matcha-kotlin-mode-set-launcher ()
   "Set up `kotlin-mode' with `transient'."

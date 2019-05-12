@@ -172,11 +172,11 @@ Requires smartparens because all movement is done using `sp-forward-symbol'."
 (define-transient-command matcha-emacs-lisp-mode ()
   "Emacs Lisp"
   [["Actions"
-    ("e" "Eval" matcha-emacs-lisp-eval)
-    ("d" "Debug" matcha-emacs-lisp-debug)
-    ("c" "Compile" matcha-emacs-lisp-compile)
-    ("s" "Describe" matcha-emacs-lisp-describe)
-    ("m" "Macroexpand" matcha-macrostep-expand-or-open-menu)]
+    ("c" "Compile..." matcha-emacs-lisp-compile)
+    ("d" "Debug..." matcha-emacs-lisp-debug)
+    ("e" "Eval..." matcha-emacs-lisp-eval)
+    ("m" "Macroexpand..." matcha-macrostep-expand-or-open-menu)
+    ("s" "Describe..." matcha-emacs-lisp-describe)]
    ["Find"
     ("x" "*Scratch*" matcha-goto-scratch)
     ("l" "Library" find-library)

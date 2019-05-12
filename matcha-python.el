@@ -61,11 +61,11 @@
 (define-transient-command matcha-python-mode
   "Python"
   [["Actions"
-    ("e" "Eval..." matcha-python-eval)
     ("z" "Switch to Shell" python-shell-switch-to-shell)
     ("u" "Run Python" run-python)
-    ("s" "Skeleton..." matcha-python-skeleton)
-    ("p" "Debug" pdb)]])
+    ("p" "Debug" pdb)
+    ("e" "Eval..." matcha-python-eval)
+    ("s" "Skeleton..." matcha-python-skeleton)]])
 
 (defun matcha-python-set-launcher ()
   "Set up `transient' launcher for `python'."
