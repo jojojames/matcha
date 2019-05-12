@@ -1,4 +1,4 @@
-;;; matcha-alchemist.el --- Integration with Hydra. -*- lexical-binding: t -*-
+;;; matcha-alchemist.el --- Integration with Transient. -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2019 James Nguyen
 
@@ -7,7 +7,7 @@
 ;; URL: https://github.com/jojojames/matcha
 ;; Version: 0.0.1
 ;; Package-Requires: ((emacs "25.1"))
-;; Keywords: hydra, emacs
+;; Keywords: transient, emacs
 ;; HomePage: https://github.com/jojojames/matcha
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,7 +24,7 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-;;; Integration with Hydra.
+;;; Integration with Transient.
 
 ;;; Code:
 (require 'matcha-base)
@@ -53,178 +53,121 @@ If `mix-command' is \"phoenix.server\", then the resulting `defun' will be:
 
 (matcha-define-alchemist-function "phoenix.server" "deps.get")
 
-(defhydra matcha-alchemist-iex (:color blue :hint nil)
-  "
+(define-transient-command matcha-alchemist-iex
+  "IEX"
+  [["Run"
+    ("I" "Run" alchemist-iex-run )
+    ("i" "Run Project" alchemist-iex-project-run)]
+   ["Send"
+    ("l" "Current Line" alchemist-iex-send-current-line)
+    ("L" "Current Line & Go" alchemist-iex-send-current-line-and-go)
+    ("r" "Region" alchemist-iex-send-region)
+    ("R" "Region & Go" alchemist-iex-send-region-and-go)]
+   ["Misc"
+    ("c" "Compile Buffer" alchemist-iex-compile-this-buffer)
+    ("m" "Reload Module" alchemist-iex-reload-module)]])
 
-    Alchemist IEX: %(matcha-projectile-root)
+(define-transient-command matcha-alchemist-eval
+  "Eval"
+  [["Eval"
+    ("l" "Line" alchemist-eval-current-line)
+    ("r" "Region" alchemist-eval-region)
+    ("b" "Buffer" alchemist-eval-buffer)]
+   ["Eval & Print"
+    ("L" "Line" alchemist-eval-print-current-line)
+    ("R" "Region" alchemist-eval-print-region)
+    ("B" "Buffer" alchemist-eval-print-buffer)]]
+  [["Eval (Quoted)"
+    ("j" "Line" alchemist-eval-quoted-current-line)
+    ("u" "Region" alchemist-eval-quoted-region)
+    ("v" "Buffer" alchemist-eval-quoted-buffer)]
+   ["Eval & Print (Quoted)"
+    ("J" "Line" alchemist-eval-print-quoted-current-line)
+    ("U" "Region" alchemist-eval-print-quoted-region)
+    ("V" "Buffer" alchemist-eval-print-quoted-buffer)]
+   ["IEX"
+    ("i" "IEX..." matcha-alchemist-iex)]])
 
-    Run                 Send               Loading
-  ------------------------------------------------------------------------------
-    _I_ Run            _l_ Line            _c_ Compile Buffer
-    _i_ Run Project    _L_ Line and Go     _m_ Reload Module
-                     ^^_r_ Region
-                     ^^_R_ Region and Go
+(define-transient-command matcha-alchemist-test
+  "IEX"
+  [["Test"
+    ("t" "Test" alchemist-mix-test)
+    ("S" "Stale" alchemist-mix-test-stale)
+    ("b" "Buffer" alchemist-mix-test-this-buffer)
+    ("p" "At Point" alchemist-mix-test-at-point)
+    ("f" "File" alchemist-mix-test-file)]
+   ["Navigation"
+    ("." "Next Test" alchemist-test-jump-to-next-test)
+    ("," "Previous Test" alchemist-test-jump-to-previous-test)]
+   ["Misc"
+    ("r" "Rerun Test" alchemist-mix-rerun-last-test)]])
 
-"
+(define-transient-command matcha-alchemist-mix
+  "Mix"
+  [["Mix"
+    ("m" "Mix" alchemist-mix)
+    ("c" "Compile" alchemist-mix-compile)
+    ("r" "Run" alchemist-mix-run)
+    ("h" "Help" alchemist-mix-help)]])
 
-  ("I" alchemist-iex-run )
-  ("i" alchemist-iex-project-run)
-  ("l" alchemist-iex-send-current-line)
-  ("L" alchemist-iex-send-current-line-and-go)
-  ("r" alchemist-iex-send-region)
-  ("R" alchemist-iex-send-region-and-go)
-  ("c" alchemist-iex-compile-this-buffer)
-  ("m" alchemist-iex-reload-module))
+(define-transient-command matcha-alchemist-help
+  "Help"
+  [["Help"
+    ("?" "Help" alchemist-help)
+    ("h" "At Point" alchemist-help-search-at-point)
+    ("r" "Help for Region" alchemist-help-search-marked-region)]
+   ["Misc"
+    ("l" "List Symbol Definitions" alchemist-goto-list-symbol-definitions)
+    ("m" "Mix Help" alchemist-mix-help)
+    ("H" "History Help" alchemist-help-history)]])
 
-(defhydra matcha-alchemist-eval (:color blue :hint nil)
-  "
+(define-transient-command matcha-alchemist-phoenix
+  "Phoenix"
+  [["Routes"
+    ("R" "Routes" alchemist-phoenix-routes)
+    ("r" "Router" alchemist-phoenix-router)]
+   ["Model"
+    ("c" "Controllers" alchemist-phoenix-find-controllers)
+    ("l" "Channels" alchemist-phoenix-find-channels)
+    ("m" "Models" alchemist-phoenix-find-models)]
+   ["Resources"
+    ("s" "Static" alchemist-phoenix-find-static)
+    ("t" "Templates" alchemist-phoenix-find-templates)
+    ("v" "Views" alchemist-phoenix-find-views)
+    ("w" "Web" alchemist-phoenix-find-web)]])
 
-    Alchemist Eval: %(matcha-projectile-root)
-
-    Eval                Eval & Print               IEX
-  ------------------------------------------------------------------------------
-    _l_ Line           _L_ Line                _i_ IEX
-    _r_ Region         _R_ Region
-    _b_ Buffer         _B_ Buffer
-
-    Eval (Quoted)       Eval & Print (Quoted)
-  ------------------------------------------------------------------------------
-    _j_ Line           _J_ Line
-    _u_ Region         _U_ Region
-    _v_ Buffer         _V_ Buffer
-
-"
-  ("i" matcha-alchemist-iex/body)
-  ("l" alchemist-eval-current-line)
-  ("L" alchemist-eval-print-current-line)
-  ("r" alchemist-eval-region)
-  ("R" alchemist-eval-print-region)
-  ("b" alchemist-eval-buffer)
-  ("B" alchemist-eval-print-buffer)
-  ("j" alchemist-eval-quoted-current-line)
-  ("J" alchemist-eval-print-quoted-current-line)
-  ("u" alchemist-eval-quoted-region)
-  ("U" alchemist-eval-print-quoted-region)
-  ("v" alchemist-eval-quoted-buffer)
-  ("V" alchemist-eval-print-quoted-buffer))
-
-(defhydra matcha-alchemist-test (:color blue :hint nil)
-  "
-
-    Alchemist Test: %(matcha-projectile-root)
-
-    Test                   Navigate               Rerun
-  ------------------------------------------------------------------------------
-    _t_ Test           _._ Next Test         _r_ Rerun Test
-    _S_ Stale          _,_ Previous Test
-    _b_ Buffer
-    _p_ At Point
-    _f_ File
-
-"
-  ("t" alchemist-mix-test)
-  ("S" alchemist-mix-test-stale)
-  ("b" alchemist-mix-test-this-buffer)
-  ("p" alchemist-mix-test-at-point)
-  ("f" alchemist-mix-test-file)
-  ("." alchemist-test-jump-to-next-test)
-  ("," alchemist-test-jump-to-previous-test)
-  ("r" alchemist-mix-rerun-last-test))
-
-(defhydra matcha-alchemist-mix (:color blue :hint nil)
-  "
-
-    Alchemist Mix
-  ------------------------------------------------------------------------------
-    _m_ Mix     _c_ Mix Compile    _r_ Mix Run    _h_ Mix Help
-
-"
-  ("m" alchemist-mix)
-  ("c" alchemist-mix-compile)
-  ("r" alchemist-mix-run)
-  ("h" alchemist-mix-help))
-
-(defhydra matcha-alchemist-help (:color blue :hint nil)
-  "
-
-    Alchemist Help: %(matcha-projectile-root)
-  ------------------------------------------------------------------------------
-    _:_ Help            _m_ Mix Help    _H_ History Help
-    _h_ Help at Point
-    _r_ Help for Region
-
-"
-  ("m" alchemist-mix-help)
-  (":" alchemist-help)
-  ("H" alchemist-help-history)
-  ("h" alchemist-help-search-at-point)
-  ("r" alchemist-help-search-marked-region))
-
-(defhydra matcha-alchemist-phoenix (:color blue :hint nil)
-  "
-
-   Phoenix: %(matcha-projectile-root)
-
-    ^Routes^             ^Model^              ^Resources^
-  ------------------------------------------------------------------------------
-    _r_ Routes       _c_ Controllers     _s_ Static
-    _R_ Router       _l_ Channels        _t_ Template
-                     ^^_m_ Models          _v_ View
-                                         ^^^^_w_ Web
-
-"
-  ("R" alchemist-phoenix-routes)
-  ("r" alchemist-phoenix-router)
-  ("c" alchemist-phoenix-find-controllers)
-  ("l" alchemist-phoenix-find-channels)
-  ("m" alchemist-phoenix-find-models)
-  ("s" alchemist-phoenix-find-static)
-  ("t" alchemist-phoenix-find-templates)
-  ("v" alchemist-phoenix-find-views)
-  ("w" alchemist-phoenix-find-web))
-
-(defhydra matcha-alchemist-mode (:color blue :hint nil)
-  "
-
-    Alchemist: %(matcha-projectile-root)
-
-    ^Do^             ^Run^               ^Execute^        ^Compile^
-  ------------------------------------------------------------------------------
-    _p_ Phoenix   _r_ Phx Server   _xb_ Buffer     _cb_ Buffer
-    _e_ Eval      _z_ IEX          _xf_ File       _cf_ File
-    _t_ Test                       ^^_xx_ Execute    _cc_ Compile
-    _i_ IEX
-    _m_ Mix
-    _h_ Help
-    _l_ List Definitions
-
-"
-  ("p" matcha-alchemist-phoenix/body)
-  ("e" matcha-alchemist-eval/body)
-  ("t" matcha-alchemist-test/body)
-  ("i" matcha-alchemist-iex/body)
-  ("m" matcha-alchemist-mix/body)
-  ("h" matcha-alchemist-help/body)
-  ("r" matcha-alchemist-mix-phoenix-server)
-  ("z" alchemist-iex-run)
-  ("l" alchemist-goto-list-symbol-definitions)
-  ("xb" alchemist-execute-this-buffer)
-  ("xf" alchemist-execute-file)
-  ("xx" alchemist-execute)
-  ("cb" alchemist-compile-this-buffer)
-  ("cf" alchemist-compile-file)
-  ("cc" alchemist-compile))
+(define-transient-command matcha-alchemist-mode
+  "Alchemist"
+  [["Actions"
+    ;; FIXME: Dynamically plug in the phoenix related `transients'.
+    ("p" "Phoenix..." matcha-alchemist-phoenix)
+    ("e" "Eval..." matcha-alchemist-eval)
+    ("t" "Test..." matcha-alchemist-test)
+    ("i" "Iex..." matcha-alchemist-iex)
+    ("m" "Mix..." matcha-alchemist-mix)
+    ("h" "Help..." matcha-alchemist-help)]
+   ["Run"
+    ("r" "Mix Phoenix Server" matcha-alchemist-mix-phoenix-server)
+    ("z" "Run" alchemist-iex-run)]
+   ["Execute"
+    ("xx" "Execute" alchemist-execute)
+    ("xb" "Buffer" alchemist-execute-this-buffer)
+    ("xf" "File" alchemist-execute-file)]
+   ["Compile"
+    ("cc" "Compile" alchemist-compile)
+    ("cb" "Buffer" alchemist-compile-this-buffer)
+    ("cf" "File" alchemist-compile-file)]])
 
 (defun matcha-alchemist-set-launcher ()
-  "Set up `elixir-mode' with `hydra'."
+  "Set up `elixir-mode' with `transient'."
   (matcha-set-mode-command
-   :mode 'alchemist-mode :command #'matcha-alchemist-mode/body :minor-p t)
+   :mode 'alchemist-mode :command #'matcha-alchemist-mode :minor-p t)
 
   (matcha-set-eval-command
-   :mode 'alchemist-mode :command #'matcha-alchemist-eval/body :minor-p t)
+   :mode 'alchemist-mode :command #'matcha-alchemist-eval :minor-p t)
 
   (matcha-set-test-command
-   :mode alchemist-mode :command #'matcha-alchemist-test/body :minor-p t))
+   :mode alchemist-mode :command #'matcha-alchemist-test :minor-p t))
 
 (provide 'matcha-alchemist)
 ;;; matcha-elixir-mode.el ends here
