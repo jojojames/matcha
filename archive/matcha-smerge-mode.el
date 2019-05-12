@@ -30,34 +30,44 @@
 (require 'matcha-base)
 (require 'smerge-mode)
 
-(define-transient-command matcha-smerge
-  "Smerge"
-  [
-   :description (lambda () (format "Smerge: %s" (matcha-projectile-root)))
-   ["Navigation"
-    ("n" "Next" smerge-next)
-    ("p" "Previous" smerge-prev)]
-   ["Keep"
-    ("j" "Current under Point" smerge-keep-current)
-    ("u" "Upper / Mine" smerge-keep-upper)
-    ("l" "Lower / Other" smerge-keep-lower)
-    ("c" "Combine with Next" smerge-combine-with-next)
-    ("b" "Revert to Base" smerge-keep-base)
-    ("a" "All" smerge-keep-all)]
-   ["Diff"
-    ("e" "Ediff" smerge-ediff)
-    ("=<" "Base against Upper" smerge-diff-base-upper)
-    ("=>" "Base against Lower" smerge-diff-base-lower)
-    ("==" "Uper against Lower" smerge-diff-upper-lower)]
-   ["Misc"
-    ("r" "Automatically Resolve" smerge-resolve)
-    ("h" "Highlight Conflicts" smerge-refine)]
-   ])
+(defhydra matcha-smerge-mode (:color blue :hint nil)
+  "
+
+   Smerge: %(matcha-projectile-root)
+
+    Move               Keep                         Diff
+  ------------------------------------------------------------------------------
+    _n_ Next        _j_ Current Under Point     _e_ Ediff
+    _p_ Previous    _u_ Upper / Mine            _=<_ Base against Upper
+                  ^^_l_ Lower / Other           _=>_ Base against Lower
+                  ^^_c_ Combine                 _==_ Upper against Lower
+                  ^^_b_ Revert to Base
+                  ^^_a_ All
+    Misc
+  ------------------------------------------------------------------------------
+    _r_ Automatically Resolve
+    _h_ Highlight Conflicts
+
+"
+  ("n" smerge-next)
+  ("p" smerge-prev)
+  ("j" smerge-keep-current)
+  ("u" smerge-keep-upper)
+  ("l" smerge-keep-lower)
+  ("c" smerge-combine-with-next)
+  ("b" smerge-keep-base)
+  ("a" smerge-keep-all)
+  ("r" smerge-resolve)
+  ("h" smerge-refine)
+  ("e" smerge-ediff)
+  ("=<" smerge-diff-base-upper)
+  ("=>" smerge-diff-base-lower)
+  ("==" smerge-diff-upper-lower))
 
 (defun matcha-smerge-mode-set-launcher ()
   "Set up `hydra' launcher for `smerge-mode'."
   (matcha-set-mode-command :mode 'smerge-mode
-                           :command 'matcha-smerge-mode
+                           :command 'matcha-smerge-mode/body
                            :minor-p t))
 
 (provide 'matcha-smerge-mode)
