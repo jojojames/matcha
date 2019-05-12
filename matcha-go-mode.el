@@ -1,4 +1,4 @@
-;;; matcha-go-mode.el --- Integration with Hydra. -*- lexical-binding: t -*-
+;;; matcha-go-mode.el --- Integration with Transient. -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2018 James Nguyen
 
@@ -7,7 +7,7 @@
 ;; URL: https://github.com/jojojames/matcha
 ;; Version: 0.0.1
 ;; Package-Requires: ((emacs "25.1"))
-;; Keywords: hydra, emacs
+;; Keywords: transient, emacs
 ;; HomePage: https://github.com/jojojames/matcha
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,128 +24,96 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-;;; Integration with Hydra.
+;;; Integration with Transient.
 
 ;;; Code:
 (require 'matcha-base)
 (require 'go-mode nil t)
 
-(defhydra matcha-go-mode-eval (:color blue :hint nil)
-  "
-    Go Eval
-  ------------------------------------------------------------------------------
-   _b_ Play Buffer    _r_ Play Region    _d_ Download Play
+(define-transient-command matcha-go-mode-eval
+  "Eval"
+  [["Eval"
+    ("b" "Play Buffer" go-play-buffer)
+    ("r" "Play Region" go-play-region)
+    ("d" "Download Play" go-download-play)]])
 
-"
-  ("b" go-play-buffer)
-  ("r" go-play-region)
-  ("d" go-download-play))
+(define-transient-command matcha-go-mode-goto
+  "Goto"
+  [["Goto"
+    ("a" "Arguments" go-goto-arguments)
+    ("d" "Docstring" go-goto-docstring)
+    ("f" "Function" go-goto-function)
+    ("n" "Function Name" go-goto-function-name)
+    ("i" "Imports" go-goto-imports)
+    ("r" "Return Values" go-goto-return-values)
+    ("m" "Method Receivers" go-goto-method-receivers)]])
 
-(defhydra matcha-go-mode-goto (:color blue :hint nil)
-  "
+(define-transient-command matcha-go-doc
+  "Godoc"
+  [["Actions"
+    ("d" godoc)
+    ("p" godoc-at-point)]])
 
-    Go Goto
-  ------------------------------------------------------------------------------
-    _a_ Arguments        _i_ Imports
-    _d_ Docstring        _r_ Return
-    _f_ Function         _m_ Method Receivers
-    _n_ Function Name
+(define-transient-command matcha-go-mode
+  "Go"
+  [
+   :description (lambda () (format "Go: %s" (matcha-projectile-root)))
+   ["Actions"
+    ("e" "Eval..." matcha-go-mode-eval)
+    ("d" "Godoc..." matcha-go-doc)
+    ("m" "Guru..." matcha-go-mode-guru)
+    ("d" "GoDoctor..." matcha-go-mode-godoctor)
+    ("=" "Format" gofmt)]
+   ["References"
+    ("g" "Goto..."matcha-go-mode-goto)
+    ("j" "GoDef Jump" godef-jump)
+    ("?" "Describe" godef-describe)]
+   ["Imports"
+    ("ia" "Add" go-import-add)
+    ("ir" "Remove Unused" go-remove-unused-imports)]
+   ["Misc"
+    ("c" "Coverage" go-coverage)
+    ("ps" "Set Project" go-set-project)
+    ("pR" "Reset GoPath" go-reset-gopath)]])
 
-"
-  ("a" go-goto-arguments)
-  ("d" go-goto-docstring)
-  ("f" go-goto-function)
-  ("n" go-goto-function-name)
-  ("i" go-goto-imports)
-  ("r" go-goto-return-values)
-  ("m" go-goto-method-receivers))
+(define-transient-command matcha-go-mode-guru
+  "Guru"
+  [[("d" "Describe" go-guru-describe)
+    ("f" "Free Vars" go-guru-freevars)
+    ("i" "Implements" go-guru-implements)
+    ("c" "Peers" go-guru-peers)]
+   [("r" "Referrers" go-guru-referrers)
+    ("j" "Definition" go-guru-definition)
+    ("p" "Points To" go-guru-pointsto)
+    ("s" "Callstack" go-guru-callstack)]
+   [("e" "Which Errs" go-guru-whicherrs)
+    ("<" "Callers" go-guru-callers)
+    (">" "Callees" go-guru-callees)
+    ("x" "Expand Region" go-guru-expand-region)]])
 
-(defhydra matcha-go-mode (:color blue :hint nil)
-  "
-
-    Go: %s(matcha-projectile-root)
-
-      Do                       Doc                       Misc
-  ------------------------------------------------------------------------------
-    _=_ Format             _dd_ GoDoc              _m_ Guru
-    _e_ Eval               _dp_ GoDoc at Point     _d_ Doctor
-    _ia_ Add Import
-    _ir_ Remove Imports
-
-
-    Goto                  Manage
-  ------------------------------------------------------------------------------
-    _?_ Describe      _c_ Coverage
-    _g_ Goto          _ps_ Set Project
-    _j_ GoDef Jump    _pR_ Reset GoPath
-
-"
-  ("=" gofmt)
-  ("dd" godoc)
-  ("dp" godoc-at-point)
-  ("ia" go-import-add)
-  ("e" matcha-go-mode-eval/body)
-  ("ir" go-remove-unused-imports)
-  ("?" godef-describe)
-  ("g" matcha-go-mode-goto/body)
-  ("j" godef-jump)
-  ("c" go-coverage)
-  ("ps" go-set-project)
-  ("pR" go-reset-gopath)
-  ("m" matcha-go-mode-guru/body)
-  ("d" matcha-go-mode-godoctor/body))
-
-(defhydra matcha-go-mode-guru (:color blue :hint nil)
-  "
-
-        Go Guru
-  ------------------------------------------------------------------------------
-    _d_ Describe    _f_ Free Vars    _i_ Implements    _c_ Peers
-    _r_ Referrers   _j_ Definition   _p_ Points To     _s_ Callstack
-    _e_ Errors      _<_ Callers      _>_ Callees       _x_ Expand Region
-
-"
-  ("d" go-guru-describe)
-  ("f" go-guru-freevars)
-  ("i" go-guru-implements)
-  ("c" go-guru-peers)
-  ("r" go-guru-referrers)
-  ("j" go-guru-definition)
-  ("p" go-guru-pointsto)
-  ("s" go-guru-callstack)
-  ("e" go-guru-whicherrs)
-  ("<" go-guru-callers)
-  (">" go-guru-callees)
-  ("x" go-guru-expand-region))
-
-(defhydra matcha-go-mode-godoctor (:color blue :hint nil)
-  "
-
-        Go Doctor
-  ------------------------------------------------------------------------------
-    _r_ Rename       _R_ Rename (Dry Run)      _S_ Set Scope
-    _e_ Extract      _E_ Extract (Dry Run)
-    _t_ Toggle       _T_ Toggle (Dry Run)
-    _d_ GoDoc        _D_ GoDoc (Dry Run)
-
-"
-  ("r" godoctor-rename)
-  ("R" godoctor-rename-dry-run)
-  ("e" godoctor-extract)
-  ("E" godoctor-extract-dry-run)
-  ("t" godoctor-toggle)
-  ("T" godoctor-toggle-dry-run)
-  ("d" godoctor-godoc)
-  ("D" godoctor-godoc-dry-run)
-  ("S" godoctor-set-scope))
+(define-transient-command matcha-go-mode-godoctor
+  "Doctor"
+  ;; FIXME: It might be interesting to use an `transient' argument to toggle dry run.
+  [["Doctor"
+    ("r" godoctor-rename)
+    ("e" godoctor-extract)
+    ("t" godoctor-toggle)
+    ("d" godoctor-godoc)]
+   ["DryRun Doctor"
+    ("R" godoctor-rename-dry-run)
+    ("E" godoctor-extract-dry-run)
+    ("T" godoctor-toggle-dry-run)
+    ("D" godoctor-godoc-dry-run)]
+   ["Manage"
+    ("S" godoctor-set-scope)]])
 
 (defun matcha-go-mode-set-launcher ()
-  "Set up `go-mode' with `hydra'."
+  "Set up `go-mode' with `transient'."
   (matcha-set-refactor-command
-   :mode 'go-mode :command 'matcha-go-mode-godoctor/body)
-  (matcha-set-eval-command :mode 'go-mode :command 'matcha-go-mode-eval/body)
+   :mode 'go-mode :command 'matcha-go-mode-godoctor)
+  (matcha-set-eval-command :mode 'go-mode :command 'matcha-go-mode-eval)
   (matcha-set-format-command :mode 'go-mode :command 'gofmt)
-  (matcha-set-mode-command :mode 'go-mode :command 'matcha-go-mode/body))
+  (matcha-set-mode-command :mode 'go-mode :command 'matcha-go-mode))
 
 (provide 'matcha-go-mode)
 ;;; matcha-go-mode.el ends here
