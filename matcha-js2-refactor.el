@@ -53,3 +53,7 @@
   ("wl" js2r-wrap-in-for-loop))
 
 (provide 'matcha-js2-refactor)
+;;; matcha-js2-refactor.el ends here
+;; Local Variables:
+;; byte-compile-warnings: (not free-vars unresolved noruntime cl-functions obsolete)
+;; End:
