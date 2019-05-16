@@ -40,7 +40,7 @@
       (push "-n" commands)
       (push name commands))
     (setq commands (nreverse commands)))
-  (vc-hgcmd-command commands)
+  (apply 'vc-hgcmd-command commands)
   (vc-dir-refresh))
 
 (defun matcha-vc-hgcmd-unshelve (name)
@@ -54,7 +54,7 @@
       (progn
         (push name commands)
         (setq commands (nreverse commands))
-        (vc-hgcmd-command commands)
+        (apply 'vc-hgcmd-command commands)
         (vc-dir-refresh)))))
 
 (defun matcha-vc-hgcmd-delete (name)
@@ -66,7 +66,7 @@
       (progn
         (push name commands)
         (setq commands (nreverse commands))
-        (vc-hgcmd-command commands)
+        (apply 'vc-hgcmd-command commands)
         (vc-dir-refresh)))))
 
 (define-transient-command matcha-vc-hgcmd-stash ()
