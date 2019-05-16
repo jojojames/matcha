@@ -88,6 +88,7 @@
     swift-mode
     tide
     term
+    (:file vc-hgcmd :autoloads matcha-vc-hgcmd-stash)
     web-mode)
   "The list of modes for which a hydra will be defined."
   :type '(repeat (choice symbol sexp))
