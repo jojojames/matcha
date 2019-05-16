@@ -52,9 +52,9 @@
    ["Manage"
     ("w" "Window..." matcha-me-window)
     ("g" "Git..." matcha-magit)
+    ("G" "Version Control" vc-dir)
     ("p" "Project..." matcha-projectile)
-    ("y" "System..." matcha-me-system)
-    ("U" "Undo Tree" undo-tree-visualize)]
+    ("y" "System..." matcha-me-system)]
    ["Do"
     ("s" "Search..." matcha-me-search)
     ("S" "Save all Buffers" j|save-all-buffers)
@@ -68,6 +68,7 @@
     ("t" "Test" matcha-run-test-command)
     ("=" "Format" matcha-run-format-command)]]
   [:hide (lambda () t)
+         ("U" "Undo Tree" undo-tree-visualize)
          ("-" split-window-below)
          ("|" split-window-right)
          ("\\" split-window-right)
