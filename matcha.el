@@ -70,14 +70,14 @@
     (js js2-mode rjsx-mode)
     json-mode
     lua-mode
-    (:modes magit :autoloads (matcha-magit/body matcha-magit))
+    (:file magit :autoloads matcha-magit)
     meghanada
     notmuch
     omnisharp
     org
-    (:modes p4 :autoloads matcha-p4/body)
+    (:file p4 :autoloads matcha-p4/body)
     pass
-    (:modes projectile :autoloads (matcha-projectile/body matcha-projectile))
+    (:file projectile :autoloads matcha-projectile)
     python
     restclient
     ruby-mode
@@ -104,6 +104,13 @@
   (require 'matcha-elisp)
   (dolist (entry matcha-mode-list)
     (pcase entry
+      ;; (:file a :autoloads b)
+      ;; (:file a :autoloads (a b c))
+      (`(:file ,file :autoloads ,autoloads)
+       (let ((list-autoloads (if (consp autoloads)
+                                 autoloads
+                               (list autoloads))))
+         (matcha-setup-autoloads file list-autoloads)))
       ;; '(:modes a :autoloads b)
       ;; '(:modes (a b c) :autoloads (d e f))
       (`(:modes ,modes :autoloads ,autoloads)
@@ -144,6 +151,15 @@ AUTOLOADS is a list of functions that can be autoloaded from MODE-file."
                 (when (fboundp setup-function)
                   (funcall setup-function)))))
           requires)))
+
+(defun matcha-setup-autoloads (file autoloads)
+  "Bootstrap `matcha' with FILE AUTOLOADS.
+
+This doesn't call the FILE's setup function it it has one.
+Use `matcha-require-and-setup' in that case."
+  (let ((load-file (format "matcha-%S" file)))
+    (dolist (autoload autoloads)
+      (autoload autoload load-file nil t))))
 
 (provide 'matcha)
 ;;; matcha.el ends here
