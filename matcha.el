@@ -56,6 +56,11 @@
   :type 'bool
   :group 'matcha)
 
+(defcustom matcha-use-evil-p t
+  "Whether to load custom `evil' bindings for `matcha'."
+  :type 'bool
+  :group 'matcha)
+
 (defcustom matcha-mode-list
   '(alchemist
     android-mode
@@ -103,6 +108,8 @@
   ;; Require `elisp' by default.
   ;; It contains a lot of default functions.
   (require 'matcha-elisp)
+  (when matcha-use-evil-p
+    (require 'matcha-evil))
   (dolist (entry matcha-mode-list)
     (pcase entry
       ;; (:file a :autoloads b)
