@@ -93,6 +93,7 @@
     swift-mode
     tide
     term
+    vc-dir
     (:file vc-hgcmd :autoloads matcha-vc-hgcmd-stash)
     web-mode)
   "The list of modes for which a hydra will be defined."
