@@ -139,6 +139,7 @@
     ("M" "Occur in Matching Buffers" j|multi-occur-in-this-mode)
     ("P" "Occur in Project" projectile-multi-occur)]
    ["Other"
+    ("a" "Rgrep" rgrep)
     ("d" "Deadgrep" deadgrep)]])
 
 (define-transient-command matcha-me-window ()
