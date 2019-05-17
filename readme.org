@@ -1,5 +1,8 @@
 #+TITLE: Matcha
 
+* About
+  Matcha is a package that contains a collection of [[https://github.com/magit/transient][transient]]s for various packages
+  with a consistent way to use them.
 * Quick Setup
   #+begin_src emacs-lisp :tangle yes
     (use-package matcha
@@ -9,87 +12,31 @@
       (matcha-setup))
   #+end_src
 
-  I then consume it with a *global* ~hydra~.
+#+begin_src emacs-lisp :tangle yes
 
-  #+begin_src emacs-lisp :tangle yes
-    (defhydra hydra-space (:color blue :hint nil :idle .2)
-      "
+  (use-package general
+    :ensure t
+    :init
+    (setq general-override-states '(insert
+                                    emacs
+                                    hybrid
+                                    normal
+                                    visual
+                                    motion
+                                    operator
+                                    replace))
+    (general-define-key
+     :states '(normal visual motion)
+     :keymaps 'override
+     "SPC" 'matcha-me-space))
 
-       Space: %s`default-directory
+#+end_src
+* Screenshots
+  Projectile Matcha
+  [[./screenshots/projectile.png]]
 
-        Find              Manage             Do                Mode
-      ------------------------------------------------------------------------------
-        _f_ File       _w_ Window      _s_ Search           _m_ Mode
-        _b_ Buffer     _g_ Git         _R_ Refactor         _d_ Debug
-        _r_ Recent     _p_ Project     _v_ Edit Init.el     _e_ Eval
-        _n_ Sidebar    _y_ System      _o_ Org              _t_ Test
-        _SPC_ Any      _U_ Undo        _u_ Universal Arg..  _=_ Format
+  Elisp Matcha
+  [[./screenshots/elisp.png]]
 
-    "
-      ("1" digit-argument)
-      ("2" digit-argument)
-      ("3" digit-argument)
-      ("4" digit-argument)
-      ("5" digit-argument)
-      ("6" digit-argument)
-      ("7" digit-argument)
-      ("8" digit-argument)
-      ("9" digit-argument)
-      ("0" digit-argument)
-      ("u" universal-argument)
-      ("f" +find-file-dwim)
-      ("b" +buffers-dwim)
-      ("r" +recentf-dwim)
-      ("w" hydra-window/body)
-      ("-" split-window-below)
-      ("|" split-window-right)
-      ("\\" split-window-right)
-      ("h" evil-window-left)
-      ("l" evil-window-right)
-      ("k" evil-window-up)
-      ("j" evil-window-down)
-      ("." evil-next-buffer)
-      (">" evil-prev-buffer :color red)
-      ("," evil-prev-buffer)
-      ("<" evil-prev-buffer :color red)
-      ("<backspace>" delete-window)
-      ("DEL" delete-window) ;; For terminals.
-      ("s" hydra-search/body)
-      ("v" (lambda () (interactive) (find-file "~/.emacs.d/init.el")))
-      ("U" undo-tree-visualize)
-      ("x" kill-buffer)
-      ("y" hydra-system/body)
-      ("n" dired-sidebar-toggle-sidebar)
-      ("p" matcha-projectile/body)
-      ("g" +show-vc-hydra)
-      ("SPC" counsel-fzf)
-      ("RET" quickrun)
-      (";" counsel-M-x)
-      (":" eval-expression)
-      ("o" hydra-org-space/body)
-      ("S" +save-all-buffers)
-      ("R" matcha-run-refactor-command)
-      ("=" matcha-run-format-command)
-      ("d" matcha-run-debug-command)
-      ("m" matcha-run-mode-command)
-      ("e" matcha-run-eval-command)
-      ("t" matcha-run-test-command))
-
-    (use-package general
-      :ensure t
-      :config
-      (setq general-override-states '(insert
-                                      emacs
-                                      hybrid
-                                      normal
-                                      visual
-                                      motion
-                                      operator
-                                      replace))
-      (general-override-mode)
-      (general-define-key
-       :states '(normal visual motion evilified)
-       :keymaps 'override
-       "SPC" 'hydra-space/body))
-
-  #+end_src
+  VC Matcha
+  [[./screenshots/vcdir.png]]
