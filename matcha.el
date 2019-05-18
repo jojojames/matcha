@@ -74,6 +74,7 @@
     gud-lldb
     (js js2-mode rjsx-mode)
     json-mode
+    log-edit
     lua-mode
     (:file magit :autoloads matcha-magit)
     meghanada
@@ -94,6 +95,7 @@
     tide
     term
     vc-dir
+    vc-git
     (:file vc-hgcmd :autoloads matcha-vc-hgcmd-stash)
     web-mode)
   "The list of modes for which a hydra will be defined."
