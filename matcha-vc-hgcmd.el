@@ -39,9 +39,9 @@
     (when (not (string-equal name ""))
       (push "-n" commands)
       (push name commands))
-    (setq commands (nreverse commands)))
-  (apply 'vc-hgcmd-command commands)
-  (vc-dir-refresh))
+    (setq commands (nreverse commands))
+    (apply 'vc-hgcmd-command commands)
+    (vc-dir-refresh)))
 
 (defun matcha-vc-hgcmd-unshelve (name)
   "Restore a shelve named NAME."
