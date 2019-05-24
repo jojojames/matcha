@@ -157,6 +157,7 @@ one specified by listing header."
 
 (defun matcha-dired-set-launcher ()
   "Set up `dired' with `transient'."
+  (matcha-set-mode-command :mode 'dired-sidebar-mode :command #'matcha-dired-mode)
   (matcha-set-mode-command :mode 'dired-mode :command #'matcha-dired-mode))
 
 (provide 'matcha-dired)
