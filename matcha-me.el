@@ -41,6 +41,17 @@
   (interactive)
   (find-file "~/.emacs.d/init.el"))
 
+(define-transient-command matcha-org-space
+  "Org"
+  [["Org"
+    ("a" "Agenda" org-agenda)
+    ("c" "Capture" org-capture)
+    ("r" "Refile" org-refile)
+    ("o" "Todo" org-todo)]
+   ["Links"
+    ("l" "Store" org-store-link)
+    ("i" "Insert" org-insert-link)]])
+
 (define-transient-command matcha-me-space ()
   "Space"
   [["Find"
@@ -60,7 +71,7 @@
     ("S" "Save all Buffers" j|save-all-buffers)
     ("R" "Refactor..." matcha-run-refactor-command)
     ("v" "Edit Config" matcha-me-find-init)
-    ("o" "Org..." hydra-org-space/body)]
+    ("o" "Org..." matcha-org-space)]
    ["Mode"
     ("m" "Mode" matcha-run-mode-command)
     ("d" "Debug" matcha-run-debug-command)
