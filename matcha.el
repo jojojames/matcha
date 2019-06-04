@@ -96,7 +96,7 @@
     term
     vc-dir
     vc-git
-    (:file vc-hgcmd :autoloads matcha-vc-hgcmd-stash)
+    vc-hgcmd
     web-mode)
   "The list of modes for which a hydra will be defined."
   :type '(repeat (choice symbol sexp))

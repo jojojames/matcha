@@ -1,4 +1,4 @@
-;;; matcha-vc-hgcmd.el --- Integration with Hydra. -*- lexical-binding: t -*-
+;;; matcha-vc-hgcmd.el --- Integration with Transient. -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2019 James Nguyen
 
@@ -7,7 +7,7 @@
 ;; URL: https://github.com/jojojames/matcha
 ;; Version: 0.0.1
 ;; Package-Requires: ((emacs "25.1"))
-;; Keywords: hydra, emacs, vc-hgcmd
+;; Keywords: transient, emacs, vc-hgcmd
 ;; HomePage: https://github.com/jojojames/matcha
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,7 +24,7 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-;;; Integration with Hydra.
+;;; Integration with Transient.
 
 ;;; Code:
 (require 'matcha-base)
@@ -40,12 +40,12 @@
       (push "-n" commands)
       (push name commands))
     (setq commands (nreverse commands))
-    (apply 'vc-hgcmd-command commands)
-    (vc-dir-refresh)))
+    (vc-hgcmd-runcommand (mapconcat (lambda (x) x) commands " "))))
 
 (defun matcha-vc-hgcmd-unshelve (name)
   "Restore a shelve named NAME."
-  (interactive "sShelve name: ")
+  (interactive
+   (list (completing-read "Shelve: " (vc-hgcmd-shelve-list))))
   (let ((commands '("unshelve")))
     (when (member "--keep" (transient-args))
       (push "--keep" commands))
@@ -54,20 +54,19 @@
       (progn
         (push name commands)
         (setq commands (nreverse commands))
-        (apply 'vc-hgcmd-command commands)
-        (vc-dir-refresh)))))
+        (vc-hgcmd-runcommand (mapconcat (lambda (x) x) commands " "))))))
 
 (defun matcha-vc-hgcmd-delete (name)
   "Delete a shelve named NAMED."
-  (interactive "sShelve name: ")
+  (interactive
+   (list (completing-read "Shelve: " (vc-hgcmd-shelve-list))))
   (let ((commands '("--delete" "shelve")))
     (if (string-equal name "")
         (message "No shelve name...")
       (progn
         (push name commands)
         (setq commands (nreverse commands))
-        (apply 'vc-hgcmd-command commands)
-        (vc-dir-refresh)))))
+        (vc-hgcmd-runcommand (mapconcat (lambda (x) x) commands " "))))))
 
 (define-transient-command matcha-vc-hgcmd-stash ()
   "Stash uncommited changes."
@@ -78,6 +77,19 @@
     ("z" "Shelve" matcha-vc-hgcmd-shelve)
     ("r" "Restore" matcha-vc-hgcmd-unshelve)
     ("x" "Delete" matcha-vc-hgcmd-delete)]])
+
+(defvar matcha-vc-hgcmd-stash-evil-stash
+  '(menu-item "" nil :filter (lambda (&optional _)
+                               (when (eq vc-dir-backend 'Hgcmd)
+                                 #'matcha-vc-hgcmd-stash))))
+
+(defun matcha-vc-hgcmd-set-launcher ()
+  "Set up `transient' launcher for `vc-git'."
+  (when matcha-use-evil-p
+    (with-eval-after-load 'evil
+      (evil-define-key 'normal vc-dir-mode-map
+        "z" matcha-vc-hgcmd-stash-evil-stash)))
+  (matcha-set-mode-command :mode 'vc-dir-mode :command #'matcha-vc-dir))
 
 (provide 'matcha-vc-hgcmd)
 ;;; matcha-vc-hgcmd.el ends here
