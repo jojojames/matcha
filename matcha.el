@@ -111,8 +111,6 @@
   ;; Require `elisp' by default.
   ;; It contains a lot of default functions.
   (require 'matcha-elisp)
-  (when matcha-use-evil-p
-    (require 'matcha-evil))
   (dolist (entry matcha-mode-list)
     (pcase entry
       ;; (:file a :autoloads b)
