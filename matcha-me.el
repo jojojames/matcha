@@ -41,6 +41,86 @@
   (interactive)
   (find-file "~/.emacs.d/init.el"))
 
+(defun matcha-me-vc-dir (dir &optional backend)
+  "Reimplementation of `vc-dir' without popping to another window."
+  (interactive
+   (list
+    ;; When you hit C-x v d in a visited VC file,
+    ;; the *vc-dir* buffer visits the directory under its truename;
+    ;; therefore it makes sense to always do that.
+    ;; Otherwise if you do C-x v d -> C-x C-f -> C-c v d
+    ;; you may get a new *vc-dir* buffer, different from the original
+    (file-truename (read-directory-name "VC status for directory: "
+                                        (vc-root-dir) nil t
+                                        nil))
+    (if current-prefix-arg
+        (intern
+         (completing-read
+          "Use VC backend: "
+          (mapcar (lambda (b) (list (symbol-name b)))
+                  vc-handled-backends)
+          nil t nil nil)))))
+  (unless backend
+    (setq backend (vc-responsible-backend dir)))
+  (switch-to-buffer
+   (vc-dir-prepare-status-buffer "*vc-dir*" dir backend))
+  (if (derived-mode-p 'vc-dir-mode)
+      (vc-dir-refresh)
+    (defvar use-vc-backend)
+    (let ((use-vc-backend backend))
+      (ignore use-vc-backend)
+      (vc-dir-mode))))
+
+(defun matcha-me-find-file-dwim ()
+  "Find file DWIM."
+  (interactive)
+  (cond
+   ((or (eq major-mode 'dired-mode)
+        (eq major-mode 'dired-sidebar-mode))
+    (let ((default-directory (dired-current-directory)))
+      (call-interactively #'find-file)))
+   ((derived-mode-p 'magit-mode)
+    (let ((magit-file (magit-file-at-point)))
+      (if magit-file
+          (let ((default-directory
+                  (file-name-directory
+                   (concat (magit-toplevel) magit-file))))
+            (call-interactively #'find-file))
+        (call-interactively #'find-file))))
+   (:default
+    (call-interactively #'find-file))))
+
+(defun matcha-me-recentf-dwim ()
+  "Find recent files DWIM."
+  (interactive)
+  (cond
+   ((bound-and-true-p ivy-mode)
+    (counsel-recentf))
+   ((bound-and-true-p helm-mode)
+    (helm-recentf))
+   ((bound-and-true-p ido-mode)
+    (ido-recentf-open))
+   (:else
+    (recentf-open-files))))
+
+(defun matcha-me-buffers-dwim ()
+  "List buffers DWIM."
+  (interactive)
+  (cond
+   ((bound-and-true-p ivy-mode)
+    (ivy-switch-buffer))
+   ((bound-and-true-p helm-mode)
+    (helm-buffers-list))
+   ((bound-and-true-p ido-mode)
+    (ido-switch-buffer))
+   (:else
+    (call-interactively #'switch-to-buffer))))
+
+(defun matcha-me-save-all-buffers ()
+  "Save all buffers without confirming."
+  (interactive)
+  (save-some-buffers :all-buffers-no-confirm))
+
 (define-transient-command matcha-org-space
   "Org"
   [["Org"
@@ -55,20 +135,20 @@
 (define-transient-command matcha-me-space ()
   "Space"
   [["Find"
-    ("f" "File" j|find-file-dwim)
-    ("b" "Buffer" j|buffers-dwim)
-    ("r" "Recent" j|recentf-dwim)
+    ("f" "File" matcha-me-find-file-dwim)
+    ("b" "Buffer" matcha-me-buffers-dwim)
+    ("r" "Recent" matcha-me-recentf-dwim)
     ("n" "Sidebar" dired-sidebar-toggle-sidebar)
     ("SPC" "In Project" j|search)]
    ["Manage"
     ("w" "Window..." matcha-me-window)
     ("g" "Git..." matcha-magit)
-    ("G" "Version Control" vc-dir)
+    ("G" "Version Control" matcha-me-vc-dir)
     ("p" "Project..." matcha-projectile)
     ("y" "System..." matcha-me-system)]
    ["Do"
     ("s" "Search..." matcha-me-search)
-    ("S" "Save all Buffers" j|save-all-buffers)
+    ("S" "Save all Buffers" matcha-me-save-all-buffers)
     ("R" "Refactor..." matcha-run-refactor-command)
     ("v" "Edit Config" matcha-me-find-init)
     ("o" "Org..." matcha-org-space)]
