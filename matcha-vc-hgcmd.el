@@ -28,6 +28,7 @@
 
 ;;; Code:
 (require 'matcha-base)
+(require 'matcha-hg-histedit nil t)
 (require 'vc-hgcmd nil t)
 
 (defun matcha-vc-hgcmd-shelve (name)
@@ -83,10 +84,21 @@
                                (when (eq vc-dir-backend 'Hgcmd)
                                  #'matcha-vc-hgcmd-stash))))
 
+(defvar matcha-vc-hgcmd-histedit
+  '(menu-item "" nil :filter (lambda (&optional _)
+                               (when (or (eq vc-dir-backend 'Hgcmd)
+                                         (eq major-mode 'vc-hgcmd-log-view-mode))
+                                 #'matcha-hg-histedit))))
+
 (defun matcha-vc-hgcmd-set-launcher ()
   "Set up `transient' launcher for `vc-git'."
   (when matcha-use-evil-p
     (with-eval-after-load 'evil
+      (with-eval-after-load 'hg-histedit
+        (evil-define-key 'normal vc-hgcmd-log-view-mode-map
+          "r" matcha-vc-hgcmd-histedit)
+        (evil-define-key 'normal vc-dir-mode-map
+          "r" matcha-vc-hgcmd-histedit))
       (evil-define-key 'normal vc-dir-mode-map
         "z" matcha-vc-hgcmd-stash-evil-stash)))
   (matcha-set-mode-command :mode 'vc-dir-mode :command #'matcha-vc-dir))
