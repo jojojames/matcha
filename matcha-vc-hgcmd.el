@@ -33,40 +33,40 @@
 (defun matcha-vc-hgcmd-shelve (name)
   "Create shelve named NAME."
   (interactive "sShelve name: ")
-  (let ((commands '("shelve")))
-    (when (member "--unknown" (transient-args))
-      (push "--unknown" commands))
-    (when (not (string-equal name ""))
-      (push "-n" commands)
-      (push name commands))
-    (setq commands (nreverse commands))
-    (vc-hgcmd-runcommand (mapconcat (lambda (x) x) commands " "))))
+  (let ((command
+         (concat "shelve"
+                 (when (member "--unknown" (transient-args)) " --unknown")
+                 (if (string-equal name "")
+                     (user-error "Shelve name should not be empty")
+                   (concat " -n " name)))))
+    (message (format "Running: hg %s..." command))
+    (vc-hgcmd-runcommand command)))
 
 (defun matcha-vc-hgcmd-unshelve (name)
   "Restore a shelve named NAME."
   (interactive
    (list (completing-read "Shelve: " (vc-hgcmd-shelve-list))))
-  (let ((commands '("unshelve")))
-    (when (member "--keep" (transient-args))
-      (push "--keep" commands))
-    (if (string-equal name "")
-        (message "No shelve name...")
-      (progn
-        (push name commands)
-        (setq commands (nreverse commands))
-        (vc-hgcmd-runcommand (mapconcat (lambda (x) x) commands " "))))))
+  (let ((command
+         (concat "unshelve"
+                 (when (member "--keep" (transient-args))
+                   " --keep")
+                 (if (string-equal name "")
+                     (user-error "Shelve name should not be empty")
+                   (concat " " name)))))
+    (message (format "Running: hg %s..." command))
+    (vc-hgcmd-runcommand command)))
 
 (defun matcha-vc-hgcmd-delete (name)
   "Delete a shelve named NAMED."
   (interactive
    (list (completing-read "Shelve: " (vc-hgcmd-shelve-list))))
-  (let ((commands '("--delete" "shelve")))
-    (if (string-equal name "")
-        (message "No shelve name...")
-      (progn
-        (push name commands)
-        (setq commands (nreverse commands))
-        (vc-hgcmd-runcommand (mapconcat (lambda (x) x) commands " "))))))
+  (let ((command
+         (concat "shelve --delete"
+                 (if (string-equal name "")
+                     (user-error "Shelve name should not be empty")
+                   (concat " " name)))))
+    (message (format "Running: hg %s..." command))
+    (vc-hgcmd-runcommand command)))
 
 (define-transient-command matcha-vc-hgcmd-stash ()
   "Stash uncommited changes."
