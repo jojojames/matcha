@@ -139,7 +139,7 @@
     ("b" "Buffer" matcha-me-buffers-dwim)
     ("r" "Recent" matcha-me-recentf-dwim)
     ("n" "Sidebar" dired-sidebar-toggle-sidebar)
-    ("SPC" "In Project" j|search)]
+    ("SPC" "In Project" j-search)]
    ["Manage"
     ("w" "Window..." matcha-me-window)
     ("g" "Git..." matcha-magit)
@@ -199,15 +199,15 @@
 (define-transient-command matcha-me-system ()
   "System"
   [["System"
-    ("f" "Finder" j|explorer-finder)
-    ("t" "Open Terminal" j|open-terminal)
-    ("i" "IRC" j|start-irc)
-    ("m" "Email" j|notmuch)
+    ("f" "Finder" j-explorer-finder)
+    ("t" "Open Terminal" j-open-terminal)
+    ("i" "IRC" j-start-irc)
+    ("m" "Email" j-notmuch)
     ("w" "Passwords" pass)
     ("W" "Copy Password" password-store-copy)
     ("b" "Bookmarks..." matcha-me-bookmark)]
    ["Shell"
-    ("y" "Terminal" j|open-shell)
+    ("y" "Terminal" j-open-shell)
     ("e" "Eshell" eshell)]
    ["Processes"
     ("p" "Profiler..." matcha-me-profiler)
@@ -218,7 +218,7 @@
   "Search"
   [["Counsel"
     ("r" "Ripgrep" counsel-rg)
-    ("R" "Ripgrep at Point" j|counsel-rg)
+    ("R" "Ripgrep at Point" j-counsel-rg)
     ("s" "Swiper" swiper)
     ("S" "Swiper All" swiper-all)
     ("f" "Find File" counsel-find-file)
@@ -226,8 +226,8 @@
    ["Occur"
     ("o" "Occur" occur)
     ("O" "Multi Occur" multi-occur)
-    ("m" "Occur in Same Modes" j|multi-occur-in-this-mode)
-    ("M" "Occur in Matching Buffers" j|multi-occur-in-this-mode)
+    ("m" "Occur in Same Modes" j-multi-occur-in-this-mode)
+    ("M" "Occur in Matching Buffers" j-multi-occur-in-this-mode)
     ("P" "Occur in Project" projectile-multi-occur)]
    ["Other"
     ("a" "Rgrep" rgrep)
@@ -255,7 +255,7 @@
     ("o" "Other Frame" other-frame)]
    ["Window"
     ("=" "Balance" balance-windows)
-    ("r" "Resize Windows" j|resize-window)
+    ("r" "Resize Windows" j-resize-window)
     ("s" "Toggle Window Split" toggle-window-split)
     ("t" "Rotate Windows" rotate-windows)]
    ["Resize"
