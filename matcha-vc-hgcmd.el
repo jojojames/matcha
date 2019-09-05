@@ -36,7 +36,9 @@
   (interactive "sShelve name: ")
   (let ((command
          (concat "shelve"
-                 (when (member "--unknown" (transient-args)) " --unknown")
+                 (when (member "--unknown"
+                               (transient-args 'matcha-vc-hgcmd-stash))
+                   " --unknown")
                  (if (string-equal name "")
                      (user-error "Shelve name should not be empty")
                    (concat " -n " name)))))
@@ -49,7 +51,7 @@
    (list (completing-read "Shelve: " (vc-hgcmd-shelve-list))))
   (let ((command
          (concat "unshelve"
-                 (when (member "--keep" (transient-args))
+                 (when (member "--keep" (transient-args 'matcha-vc-hgcmd-stash))
                    " --keep")
                  (if (string-equal name "")
                      (user-error "Shelve name should not be empty")
