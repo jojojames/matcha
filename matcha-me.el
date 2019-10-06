@@ -174,8 +174,7 @@
          ("'" eval-expression)
          ("<backspace>" delete-window)
          ("DEL" delete-window) ;; For terminals.
-         ("x" kill-buffer)
-         ("c" matcha-evil-mc/body)]
+         ("x" kill-buffer)]
   (interactive)
   (let ((transient-show-popup -.2))
     (transient-setup 'matcha-me-space)))
