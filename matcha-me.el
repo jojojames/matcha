@@ -221,8 +221,8 @@
     ("s" "Swiper" swiper)
     ("S" "Swiper All" swiper-all)
     ("f" "Find File" counsel-find-file)
-    ("g" "Git" counsel-git)
-    ("o" "Google" counsel-google)]
+    ("i" "Git" counsel-git)
+    ("g" "Google" counsel-google)]
    ["Occur"
     ("o" "Occur" occur)
     ("O" "Multi Occur" multi-occur)
