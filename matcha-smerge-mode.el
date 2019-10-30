@@ -30,7 +30,7 @@
 (require 'matcha-base)
 (require 'smerge-mode)
 
-(define-transient-command matcha-smerge
+(define-transient-command matcha-smerge-mode
   "Smerge"
   [
    :description (lambda () (format "Smerge: %s" (matcha-projectile-root)))
