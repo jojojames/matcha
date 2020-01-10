@@ -40,8 +40,8 @@
     ("ip" "Introduce parameter" js2r-introduce-parameter)
     ("lp" "Localize parameter" js2r-localize-parameter)
     ("ao" "Arguments to object" js2r-arguments-to-object)
-    ("tf" "Toggle fun expr and decl" js2r-toggle-function-expression-and-declaration)
-    ("ta" "Toggle fun expr and =>" js2r-toggle-arrow-function-and-expression)
+    ("tf" "Toggle fun expr / decl" js2r-toggle-function-expression-and-declaration)
+    ("ta" "Toggle fun expr / =>" js2r-toggle-arrow-function-and-expression)
     ("ts" "Toggle fun async" js2r-toggle-function-async)]
    ["Variables"
     ("ee" "Expand node" js2r-expand-node-at-point)
@@ -52,12 +52,12 @@
     ("iv" "Inline variable" js2r-inline-var)
     ("rv" "Rename variable" js2r-rename-var)
     ("vt" "var to this" js2r-var-to-this)
-    ("sv" "Split var decleration" js2r-split-var-declaration)]
+    ("sv" "Split var decl" js2r-split-var-declaration)]
    ["Expressions"
     ("ti" "Ternary to if" js2r-ternary-to-if)
     ("wl" "Wrap in for loop" js2r-wrap-in-for-loop)
     ("ss" "Split string" js2r-split-string)
-    ("st" "String to template" js2r-string-to-template)
+    ("st" "String to templ" js2r-string-to-template)
     ("uw" "Unwrap" js2r-unwrap)
     ("k" "JS2 Kill" js2r-kill)
     ("sl" "Forward slurp" js2r-forward-slurp)
@@ -65,7 +65,7 @@
    ["File / Debug"
     ("wi" "Wrap buffer in iife" js2r-wrap-buffer-in-iife)
     ("ig" "Inject global in iife" js2r-inject-global-in-iife)
-    ("ag" "Add to globals annotation" js2r-add-to-globals-annotation)
+    ("ag" "Add to globals annot" js2r-add-to-globals-annotation)
     ("lt" "Log this" js2r-log-this)
     ("dt" "Debug this" js2r-debug-this)]])
 
