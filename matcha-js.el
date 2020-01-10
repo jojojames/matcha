@@ -8,7 +8,7 @@
 (defun matcha-js-set-launcher ()
   "Set `hydra' launcher for `js'."
   (matcha-set-refactor-command
-   :mode '(js-mode js2-mode rjsx-mode) :command #'matcha-js2-refactor/body)
+   :mode '(js-mode js2-mode rjsx-mode) :command #'matcha-js2-refactor)
   (matcha-set-debug-command
    :mode '(js-mode js2-mode rjsx-mode) :command #'matcha-indium-debug/body)
 
