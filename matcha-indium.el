@@ -36,7 +36,7 @@
   ("x" indium-scratch "Scratch")
   ("d" matcha-indium-debug/body "Debug")
   ("e" matcha-indium-eval/body "Eval")
-  ("r" matcha-js2-refactor/body)
+  ("r" matcha-js2-refactor "Refactor")
   ("z" indium-switch-to-repl-buffer "Switch to REPL")
   ("k" indium-update-script-source "Update Source"))
 

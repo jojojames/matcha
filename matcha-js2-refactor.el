@@ -1,56 +1,73 @@
+;;; matcha-js2-refactor.el --- Integration with Transient. -*- lexical-binding: t -*-
+
+;; Copyright (C) 2018 James Nguyen
+
+;; Author: James Nguyen <james@jojojames.com>
+;; Maintainer: James Nguyen <james@jojojames.com>
+;; URL: https://github.com/jojojames/matcha
+;; Version: 0.0.1
+;; Package-Requires: ((emacs "25.1"))
+;; Keywords: transient, emacs
+;; HomePage: https://github.com/jojojames/matcha
+
+;; This program is free software; you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation, either version 3 of the License, or
+;; (at your option) any later version.
+
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+;;; Commentary:
+;;; Integration with Transient.
+
+;;; Code:
 (require 'matcha-base)
 ;; (require 'js2-refactor nil t)
 
-(defhydra matcha-js2-refactor (:color blue :hint nil)
-  "
-    Javascript Refactor: %(matcha-heading-current-file)
-
-    ^Functions^                    ^Variables                  ^Debugging^
-  ------------------------------------------------------------------------------
-    _lp_ Localize Parameter        _ev_ Extract variable     _lt_ Log this
-    _ef_ Extract function          _iv_ Inline variable      _dt_ Debug this
-    _ip_ Introduce parameter       _rv_ Rename variable
-    _em_ Extract method            _vt_ Var to this
-    _ao_ Arguments to object       _sv_ Split var decl.
-    _tf_ Toggle fun exp and decl   _ag_ Add var to globals
-    _ta_ Toggle fun expr and =>    _ti_ Ternary to if
-                                 ^^_wl_ Wrap in For Loop
-
-    ^Sexp^                   ^Buffer^
-  ------------------------------------------------------------------------------
-    _k_  JS2 Kill          _wi_ Wrap buffer in IIFE
-    _ss_ Split String      _ig_ Inject global in IIFE
-    _sl_ Forward Slurp     _ee_ Expand node at point
-    _ba_ Forward Barf      _cc_ Contract node at point
-                         ^^_uw_ Unwrap
-
-"
-  ("ee" js2r-expand-node-at-point)
-  ("cc" js2r-contract-node-at-point)
-  ("ef" js2r-extract-function)
-  ("em" js2r-extract-method)
-  ("tf" js2r-toggle-function-expression-and-declaration)
-  ("ta" js2r-toggle-arrow-function-and-expression)
-  ("ip" js2r-introduce-parameter)
-  ("lp" js2r-localize-parameter)
-  ("wi" js2r-wrap-buffer-in-iife)
-  ("ig" js2r-inject-global-in-iife)
-  ("ag" js2r-add-to-globals-annotation)
-  ("ev" js2r-extract-var)
-  ("iv" js2r-inline-var)
-  ("rv" js2r-rename-var)
-  ("vt" js2r-var-to-this)
-  ("ao" js2r-arguments-to-object)
-  ("ti" js2r-ternary-to-if)
-  ("sv" js2r-split-var-declaration)
-  ("ss" js2r-split-string)
-  ("uw" js2r-unwrap)
-  ("lt" js2r-log-this)
-  ("dt" js2r-debug-this)
-  ("sl" js2r-forward-slurp)
-  ("ba" js2r-forward-barf)
-  ("k" js2r-kill)
-  ("wl" js2r-wrap-in-for-loop))
+(define-transient-command matcha-js2-refactor
+  "JS2 Refactor"
+  [
+   :description (lambda () (format "Javascript Refactor: %s" (matcha-heading-current-file)))
+   ["Functions"
+    ("ef" "Extract Function" js2r-extract-function)
+    ("em" "Extract Method" js2r-extract-method)
+    ("ip" "Introduce parameter" js2r-introduce-parameter)
+    ("lp" "Localize parameter" js2r-localize-parameter)
+    ("ao" "Arguments to object" js2r-arguments-to-object)
+    ("tf" "Toggle fun expr and decl" js2r-toggle-function-expression-and-declaration)
+    ("ta" "Toggle fun expr and =>" js2r-toggle-arrow-function-and-expression)
+    ("ts" "Toggle fun async" js2r-toggle-function-async)]
+   ["Variables"
+    ("ee" "Expand node" js2r-expand-node-at-point)
+    ("cc" "Contract node" js2r-contract-node-at-point)
+    ("ev" "Extract var" js2r-extract-var)
+    ("el" "Extract let" js2r-extract-let)
+    ("ec" "Extract const" js2r-extract-const)
+    ("iv" "Inline variable" js2r-inline-var)
+    ("rv" "Rename variable" js2r-rename-var)
+    ("vt" "var to this" js2r-var-to-this)
+    ("sv" "Split var decleration" js2r-split-var-declaration)]
+   ["Expressions"
+    ("ti" "Ternary to if" js2r-ternary-to-if)
+    ("wl" "Wrap in for loop" js2r-wrap-in-for-loop)
+    ("ss" "Split string" js2r-split-string)
+    ("st" "String to template" js2r-string-to-template)
+    ("uw" "Unwrap" js2r-unwrap)
+    ("k" "JS2 Kill" js2r-kill)
+    ("sl" "Forward slurp" js2r-forward-slurp)
+    ("ba" "Forward barf" js2r-forward-barf)]
+   ["File / Debug"
+    ("wi" "Wrap buffer in iife" js2r-wrap-buffer-in-iife)
+    ("ig" "Inject global in iife" js2r-inject-global-in-iife)
+    ("ag" "Add to globals annotation" js2r-add-to-globals-annotation)
+    ("lt" "Log this" js2r-log-this)
+    ("dt" "Debug this" js2r-debug-this)]])
 
 (provide 'matcha-js2-refactor)
 ;;; matcha-js2-refactor.el ends here
