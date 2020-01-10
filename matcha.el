@@ -68,7 +68,6 @@
     cider
     dired
     erlang
-    evil-mc
     geiser
     go-mode
     gud-lldb
