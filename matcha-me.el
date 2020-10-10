@@ -159,7 +159,6 @@
     ("t" "Test" matcha-run-test-command)
     ("=" "Format" matcha-run-format-command)]]
   [:hide (lambda () t)
-         ("U" "Undo Tree" undo-tree-visualize)
          ("-" split-window-below)
          ("|" split-window-right)
          ("\\" split-window-right)
