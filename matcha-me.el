@@ -121,6 +121,96 @@
   (interactive)
   (save-some-buffers :all-buffers-no-confirm))
 
+;; File Related
+
+(defun matcha-copy-current-filename-to-clipboard ()
+  "Copy `buffer-file-name' to system clipboard."
+  (interactive)
+  (if (not buffer-file-name)
+      (message "Not a file...")
+    (message (format "Copying %s to clipboard..." buffer-file-name))
+    (kill-new buffer-file-name)))
+
+(defalias 'matcha-copy-current-filename-to-clipboard 'copy-current-filename-to-clipboard)
+
+(defun matcha-revert-all-file-buffers ()
+  "Refresh all open file buffers without confirmation.
+Buffers in modified (not yet saved) state in emacs will not be reverted. They
+will be reverted though if they were modified outside emacs.
+Buffers visiting files which do not exist any more or are no longer readable
+will be killed.
+
+https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-ignore-errors"
+  (interactive)
+  (dolist (buf (buffer-list))
+    (let ((filename (buffer-file-name buf)))
+      ;; Revert only buffers containing files, which are not modified;
+      ;; do not try to revert non-file buffers like *Messages*.
+      (when (and filename
+                 (not (buffer-modified-p buf)))
+        (when (file-readable-p filename)
+          ;; If the file exists and is readable, revert the buffer.
+          (with-current-buffer buf
+            (revert-buffer :ignore-auto :noconfirm :preserve-modes))))))
+  (message "Finished reverting buffers containing unmodified files."))
+
+(defalias 'matcha-revert-all-file-buffers 'revert-all-file-buffers)
+
+(defvar matcha-saved-files-file "~/.emacs.d/saved-files")
+
+(defun matcha-save-files-to-saved-files-list ()
+  "Save list of open files in Emacs to `matcha-saved-files-file'."
+  (interactive)
+  (let ((text-to-write ""))
+    (dolist (buffer (buffer-list))
+      (when-let* ((buffer-name (buffer-file-name buffer)))
+        (setq text-to-write (concat text-to-write buffer-name "\n"))))
+    (unless (string-equal text-to-write "")
+      (message (format "Writing to %s..." matcha-saved-files-file))
+      (delete-file matcha-saved-files-file)
+      (write-region text-to-write nil matcha-saved-files-file))))
+
+(defalias 'matcha-save-files-to-saved-files-list 'save-files-to-saved-files-list)
+
+(defun matcha-open-files-from-saved-files-list ()
+  "Open saved files stored at `matcha-saved-files-file'."
+  (interactive)
+  (let ((files (with-temp-buffer
+                 (insert-file-contents matcha-saved-files-file)
+                 (split-string (buffer-string) "\n" t))))
+    (message (format "Reading from %s..." matcha-saved-files-file))
+    (mapc (lambda (file)
+            (if (file-exists-p file)
+                (ignore-errors
+                  (message (format "Finding file %s..." file))
+                  (find-file file))
+              (message (format "File %s doesn't exist anymore." file))))
+          files)
+    (message "Finish opening saved files.")))
+
+(defalias 'matcha-open-files-from-saved-files-list 'open-files-from-saved-files-list)
+
+(defun matcha-rename-current-buffer-file ()
+  "Renames current buffer and file it is visiting."
+  (interactive)
+  (let ((name (buffer-name))
+        (filename (buffer-file-name)))
+    (if (not (and filename (file-exists-p filename)))
+        (error "Buffer '%s' is not visiting a file!" name)
+      (let ((new-name (read-file-name "New name: " filename)))
+        (if (get-buffer new-name)
+            (error "A buffer named '%s' already exists!" new-name)
+          (rename-file filename new-name 1)
+          (rename-buffer new-name)
+          (set-visited-file-name new-name)
+          (set-buffer-modified-p nil)
+          (message "File '%s' successfully renamed to '%s'"
+                   name (file-name-nondirectory new-name)))))))
+
+(defalias 'matcha-rename-current-buffer-file 'rename-current-buffer-file)
+
+;; Transients
+
 (define-transient-command matcha-org-space
   "Org"
   [["Org"
@@ -139,7 +229,8 @@
     ("b" "Buffer" matcha-me-buffers-dwim)
     ("r" "Recent" matcha-me-recentf-dwim)
     ("n" "Sidebar" dired-sidebar-toggle-sidebar)
-    ("SPC" "In Project" j-search)]
+    ("SPC" "In Project" j-search)
+    ("F" "Files" matcha-me-files)]
    ["Manage"
     ("w" "Window..." matcha-me-window)
     ("g" "Git..." matcha-magit)
@@ -266,6 +357,16 @@
          ("-" split-window-below)
          ("|" split-window-right)
          ("\\" split-window-right)])
+
+(define-transient-command matcha-me-files ()
+  "Files"
+  [["Current File"
+    ("y" "Copy Filename to Clipboard" matcha-copy-current-filename-to-clipboard)
+    ("r" "Rename Current File" matcha-rename-current-buffer-file)]
+   ["All Files"
+    ("S" "Save All to SavedFile" matcha-save-files-to-saved-files-list)
+    ("O" "Open All from SavedFile" matcha-open-files-from-saved-files-list)
+    ("R" "Revert/Refresh All" matcha-revert-all-file-buffers)]])
 
 (provide 'matcha-me)
 ;;; matcha-me.el ends here
