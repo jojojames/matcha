@@ -67,6 +67,7 @@
     cc-mode ;; `java-mode'
     cider
     dired
+    eglot
     erlang
     geiser
     go-mode
