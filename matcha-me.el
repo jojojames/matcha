@@ -131,7 +131,7 @@
     (message (format "Copying %s to clipboard..." buffer-file-name))
     (kill-new buffer-file-name)))
 
-(defalias 'matcha-copy-current-filename-to-clipboard 'copy-current-filename-to-clipboard)
+(defalias 'copy-current-filename-to-clipboard 'matcha-copy-current-filename-to-clipboard)
 
 (defun matcha-revert-all-file-buffers ()
   "Refresh all open file buffers without confirmation.
@@ -154,7 +154,7 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
             (revert-buffer :ignore-auto :noconfirm :preserve-modes))))))
   (message "Finished reverting buffers containing unmodified files."))
 
-(defalias 'matcha-revert-all-file-buffers 'revert-all-file-buffers)
+(defalias 'revert-all-file-buffers 'matcha-revert-all-file-buffers)
 
 (defvar matcha-saved-files-file "~/.emacs.d/saved-files")
 
@@ -170,7 +170,7 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
       (delete-file matcha-saved-files-file)
       (write-region text-to-write nil matcha-saved-files-file))))
 
-(defalias 'matcha-save-files-to-saved-files-list 'save-files-to-saved-files-list)
+(defalias 'save-files-to-saved-files-list 'matcha-save-files-to-saved-files-list)
 
 (defun matcha-open-files-from-saved-files-list ()
   "Open saved files stored at `matcha-saved-files-file'."
@@ -188,7 +188,7 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
           files)
     (message "Finish opening saved files.")))
 
-(defalias 'matcha-open-files-from-saved-files-list 'open-files-from-saved-files-list)
+(defalias 'open-files-from-saved-files-list 'matcha-open-files-from-saved-files-list)
 
 (defun matcha-rename-current-buffer-file ()
   "Renames current buffer and file it is visiting."
@@ -207,7 +207,7 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
           (message "File '%s' successfully renamed to '%s'"
                    name (file-name-nondirectory new-name)))))))
 
-(defalias 'matcha-rename-current-buffer-file 'rename-current-buffer-file)
+(defalias 'rename-current-buffer-file 'matcha-rename-current-buffer-file)
 
 ;; Transients
 
