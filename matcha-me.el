@@ -78,17 +78,18 @@
    ((or (eq major-mode 'dired-mode)
         (eq major-mode 'dired-sidebar-mode))
     (let ((default-directory (dired-current-directory)))
-      (call-interactively #'find-file)))
+      (call-interactively 'matcha-me-file)))
    ((derived-mode-p 'magit-mode)
     (let ((magit-file (magit-file-at-point)))
       (if magit-file
           (let ((default-directory
                   (file-name-directory
                    (concat (magit-toplevel) magit-file))))
-            (call-interactively #'find-file))
-        (call-interactively #'find-file))))
+            (call-interactively 'matcha-me-file))
+        (call-interactively 'matcha-me-file)
+        )))
    (:default
-    (call-interactively #'find-file))))
+    (call-interactively 'matcha-me-file))))
 
 (defcustom matcha-project-pkg-list
   '(
