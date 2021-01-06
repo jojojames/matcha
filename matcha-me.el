@@ -90,31 +90,80 @@
    (:default
     (call-interactively #'find-file))))
 
-(defun matcha-me-recentf-dwim ()
-  "Find recent files DWIM."
-  (interactive)
-  (cond
-   ((bound-and-true-p ivy-mode)
-    (counsel-recentf))
-   ((bound-and-true-p helm-mode)
-    (helm-recentf))
-   ((bound-and-true-p ido-mode)
-    (ido-recentf-open))
-   (:else
-    (recentf-open-files))))
+(defcustom matcha-project-pkg-list
+  '(
+    ((mode . ivy-mode)
+     (file . counsel-find-file)
+     (recent . counsel-recentf)
+     (buffer . ivy-switch-buffer)
+     (rg . counsel-rg)
+     (mx . counsel-M-x)
+     (swiper . swiper)
+     (swiper-all . swiper-all)
+     (git-grep . counsel-git-grep))
 
-(defun matcha-me-buffers-dwim ()
-  "List buffers DWIM."
-  (interactive)
-  (cond
-   ((bound-and-true-p ivy-mode)
-    (ivy-switch-buffer))
-   ((bound-and-true-p helm-mode)
-    (helm-buffers-list))
-   ((bound-and-true-p ido-mode)
-    (ido-switch-buffer))
-   (:else
-    (call-interactively #'switch-to-buffer))))
+    ((mode . selectrum-mode)
+     (file . find-file)
+     (recent . consult-recent-file)
+     (buffer . consult-buffer)
+     (rg . consult-ripgrep)
+     (mx . execute-extended-command)
+     (swiper . consult-line)
+     (swiper-all . swiper-all) ;; Not sure if this exists yet...
+     (git-grep . consult-git-grep))
+
+    ((mode . helm-mode)
+     (find . helm-find-files)
+     (recent . helm-recentf)
+     (buffer . helm-buffers-list)
+     (mx . helm-M-x)
+     (swiper . helm-swoop)
+     (git-grep . helm-grep-do-git-grep))
+
+    ((mode . ido-mode)
+     (file . ido-find-file)
+     (recent . ido-recentf-open)
+     (buffer . ido-switch-buffer))
+
+    ((fallback . t)
+     (file . find-file)
+     (recent . recentf-open-files)
+     (buffer . switch-to-buffer)
+     (mx . execute-extended-command)
+     (git-grep . vc-git-grep))
+    )
+  "List of alists of common commands that different packages provide."
+  :type 'list
+  :group 'matcha)
+
+(defmacro matcha-create-project-actions (&rest actions)
+  "Create a function to run a project action.
+
+ACTIONS has to be a key in `matcha-project-pkg-list' that's not :mode or :fallback."
+  `(progn
+     ,@(cl-loop
+        for action in actions
+        appending
+        (let ((func-name (intern (format "matcha-me-%S" action))))
+          `((defun ,func-name ()
+              ,(format "Run %S in editor." action)
+              (interactive)
+              (catch 'done
+                (dolist (pkg matcha-project-pkg-list)
+                  (if (alist-get 'fallback pkg)
+                      (let ((fn (alist-get ',action pkg)))
+                        (when fn
+                          (call-interactively fn)
+                          (throw 'done fn)))
+                    (let ((mode (alist-get 'mode pkg))
+                          (fn (alist-get ',action pkg)))
+                      (when (and (boundp mode) (symbol-value mode))
+                        (when fn
+                          (call-interactively fn)
+                          (throw 'done fn)))))))))))))
+
+(matcha-create-project-actions
+ file recent buffer rg mx swiper swiper-all git-grep)
 
 (defun matcha-me-save-all-buffers ()
   "Save all buffers without confirming."
@@ -226,8 +275,8 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
   "Space"
   [["Find"
     ("f" "File" matcha-me-find-file-dwim)
-    ("b" "Buffer" matcha-me-buffers-dwim)
-    ("r" "Recent" matcha-me-recentf-dwim)
+    ("b" "Buffer" matcha-me-buffer)
+    ("r" "Recent" matcha-me-recent)
     ("n" "Sidebar" dired-sidebar-toggle-sidebar)
     ("SPC" "In Project" j-search)
     ("F" "Files" matcha-me-files)]
@@ -259,7 +308,7 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
          ("j" evil-window-down)
          ("." evil-next-buffer)
          ("," evil-prev-buffer)
-         (";" counsel-M-x)
+         (";" matcha-me-mx)
          (":" eval-expression)
          ("'" eval-expression)
          ("<backspace>" delete-window)
@@ -305,14 +354,12 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
 
 (define-transient-command matcha-me-search ()
   "Search"
-  [["Counsel"
-    ("r" "Ripgrep" counsel-rg)
-    ("R" "Ripgrep at Point" j-counsel-rg)
-    ("s" "Swiper" swiper)
-    ("S" "Swiper All" swiper-all)
-    ("f" "Find File" counsel-find-file)
-    ("i" "Git" counsel-git)
-    ("g" "Google" counsel-google)]
+  [["Search"
+    ("r" "Ripgrep" matcha-me-rg)
+    ("s" "Swiper" matcha-me-swiper)
+    ("S" "Swiper All" matcha-me-swiper-all)
+    ("f" "Find File" matcha-me-file)
+    ("i" "Git Grep" matcha-me-git-grep)]
    ["Occur"
     ("o" "Occur" occur)
     ("O" "Multi Occur" multi-occur)
