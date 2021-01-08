@@ -119,6 +119,7 @@
      (buffer . helm-buffers-list)
      (mx . helm-M-x)
      (swiper . helm-swoop)
+     (swiper-all . helm-multi-swoop)
      (git-grep . helm-grep-do-git-grep))
 
     ((mode . ido-mode)
