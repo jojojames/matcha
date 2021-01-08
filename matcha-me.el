@@ -145,8 +145,10 @@ ACTIONS has to be a key in `matcha-project-pkg-list' that's not :mode or :fallba
      ,@(cl-loop
         for action in actions
         appending
-        (let ((func-name (intern (format "matcha-me-%S" action))))
-          `((defun ,func-name ()
+        (let ((last-func (intern (format "matcha-me-%S-last-used" action)))
+              (func-name (intern (format "matcha-me-%S" action))))
+          `((defvar ,last-func nil)
+            (defun ,func-name ()
               ,(format "Run %S in editor." action)
               (interactive)
               (catch 'done
@@ -159,6 +161,10 @@ ACTIONS has to be a key in `matcha-project-pkg-list' that's not :mode or :fallba
                     (let ((mode (alist-get 'mode pkg))
                           (fn (alist-get ',action pkg)))
                       (when (and (boundp mode) (symbol-value mode))
+                        (when (and ,last-func
+                                   (not (eq fn ,last-func)))
+                          (apply mode '(1)))
+                        (setq ,last-func fn)
                         (when fn
                           (call-interactively fn)
                           (throw 'done fn)))))))))))))
