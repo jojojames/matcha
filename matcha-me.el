@@ -86,8 +86,7 @@
                   (file-name-directory
                    (concat (magit-toplevel) magit-file))))
             (call-interactively 'matcha-me-file))
-        (call-interactively 'matcha-me-file)
-        )))
+        (call-interactively 'matcha-me-file))))
    (:default
     (call-interactively 'matcha-me-file))))
 
