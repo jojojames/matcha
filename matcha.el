@@ -77,7 +77,6 @@
     log-edit
     lua-mode
     (:file magit :autoloads matcha-magit)
-    meghanada
     notmuch
     omnisharp
     org
@@ -86,7 +85,6 @@
     (:file projectile :autoloads matcha-projectile)
     python
     restclient
-    ruby-mode
     rust-mode
     rtags
     slime
