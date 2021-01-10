@@ -278,13 +278,21 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
     ("l" "Store" org-store-link)
     ("i" "Insert" org-insert-link)]])
 
+(defmacro matcha-create-deferred-fn (fn)
+  "Return a new function symbol for FN."
+  `(defun ,(intern (format "matcha-%S" fn)) nil
+     (interactive)
+     (funcall ',fn)))
+
+(matcha-create-deferred-fn dired-sidebar-toggle-sidebar)
+
 (define-transient-command matcha-me-space ()
   "Space"
   [["Find"
     ("f" "File" matcha-me-find-file-dwim)
     ("b" "Buffer" matcha-me-buffer)
     ("r" "Recent" matcha-me-recent)
-    ("n" "Sidebar" dired-sidebar-toggle-sidebar)
+    ("n" "Sidebar" matcha-dired-sidebar-toggle-sidebar)
     ("SPC" "In Project" j-search)
     ("F" "Files" matcha-me-files)]
    ["Manage"
