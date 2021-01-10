@@ -28,20 +28,28 @@
 
 ;;; Code:
 (require 'matcha-base)
-(require 'matcha-log-edit)
 (require 'vc-git nil t)
 (require 'vc-dir nil t)
+
+(defvar matcha-vc-git-init-p nil "Variable tracking init state.")
 
 (defun matcha-vc-git-log-edit-mode-p ()
   "Return t if current mode is `vc-git-log-edit-mode'."
   (eq major-mode 'vc-git-log-edit-mode))
 
+(defun matcha-set-up-log-edit-transients ()
+  "Set up `transient's for `matcha-log-edit'."
+  (unless matcha-vc-git-init-p
+    (setq matcha-vc-git-init-p t)
+    (require 'matcha-log-edit)
+    (transient-append-suffix 'matcha-log-edit "?"
+      '("S" "Signoff" vc-git-log-edit-toggle-signoff :if matcha-vc-git-log-edit-mode-p))
+    (transient-append-suffix 'matcha-log-edit "S"
+      '("A" "Amend Commit" vc-git-log-edit-toggle-amend :if matcha-vc-git-log-edit-mode-p))))
+
 (defun matcha-vc-git-set-launcher ()
   "Set up `transient' launcher for `vc-git'."
-  (transient-append-suffix 'matcha-log-edit "?"
-    '("S" "Signoff" vc-git-log-edit-toggle-signoff :if matcha-vc-git-log-edit-mode-p))
-  (transient-append-suffix 'matcha-log-edit "S"
-    '("A" "Amend Commit" vc-git-log-edit-toggle-amend :if matcha-vc-git-log-edit-mode-p))
+  (add-hook 'vc-dir-mode-hook 'matcha-set-up-log-edit-transients)
   (matcha-set-mode-command :mode 'vc-git-log-edit-mode :command #'matcha-log-edit)
   (matcha-set-mode-command :mode 'vc-dir-mode :command #'matcha-vc-dir))
 
