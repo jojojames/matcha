@@ -60,6 +60,7 @@
    ["Buffers & Directories"
     ("b" "Buffer" projectile-switch-to-buffer)
     ("B" "Buffer Other Window" projectile-switch-to-buffer-other-window)
+    ("K" "Kill Project Buffers" projectile-kill-buffers)
     ("d" "Directory" projectile-find-dir)
     ("D" "Directory Other Window" projectile-find-dir-other-window)]
    ["Actions"
@@ -82,7 +83,6 @@
    ["Manage"
     ("p" "Switch Project" projectile-switch-project)
     ("I" "Project Info" projectile-project-info)
-    ("K" "Kill Project Buffers" projectile-kill-buffers)
     ("k" "Cache..." matcha-projectile-cache)
     ("P" "Commander" projectile-commander)]])
 
