@@ -92,16 +92,6 @@
 
 (defcustom matcha-project-pkg-list
   '(
-    ((mode . ivy-mode)
-     (file . counsel-find-file)
-     (recent . counsel-recentf)
-     (buffer . ivy-switch-buffer)
-     (rg . counsel-rg)
-     (mx . counsel-M-x)
-     (swiper . swiper)
-     (swiper-all . swiper-all)
-     (git-grep . counsel-git-grep))
-
     ((mode . selectrum-mode)
      (file . find-file)
      (recent . consult-recent-file)
@@ -111,6 +101,16 @@
      (swiper . consult-line)
      (swiper-all . swiper-all) ;; Not sure if this exists yet...
      (git-grep . consult-git-grep))
+
+    ((mode . ivy-mode)
+     (file . counsel-find-file)
+     (recent . counsel-recentf)
+     (buffer . ivy-switch-buffer)
+     (rg . counsel-rg)
+     (mx . counsel-M-x)
+     (swiper . swiper)
+     (swiper-all . swiper-all)
+     (git-grep . counsel-git-grep))
 
     ((mode . helm-mode)
      (find . helm-find-files)
