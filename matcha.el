@@ -82,6 +82,7 @@
     org
     (:file p4 :autoloads matcha-p4/body)
     pass
+    (:file project :autoloads matcha-project)
     (:file projectile :autoloads matcha-projectile)
     python
     restclient
