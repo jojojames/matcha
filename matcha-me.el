@@ -355,8 +355,6 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
   [["System"
     ("f" "Finder" j-explorer-finder)
     ("t" "Open Terminal" j-open-terminal)
-    ("i" "IRC" j-start-irc)
-    ("m" "Email" j-notmuch)
     ("w" "Passwords" pass)
     ("W" "Copy Password" password-store-copy)
     ("b" "Bookmarks..." matcha-me-bookmark)]
@@ -365,8 +363,7 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
     ("e" "Eshell" eshell)]
    ["Processes"
     ("p" "Profiler..." matcha-me-profiler)
-    ("L" "List Processes" list-processes)
-    ("P" "Prodigy" prodigy)]])
+    ("L" "List Processes" list-processes)]])
 
 (define-transient-command matcha-me-search ()
   "Search"
