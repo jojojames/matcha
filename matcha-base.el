@@ -1,4 +1,4 @@
-;;; matcha-base.el --- Integration with Hydra. -*- lexical-binding: t -*-
+;;; matcha-base.el --- Integration with Transient. -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2019 James Nguyen
 
@@ -7,7 +7,7 @@
 ;; URL: https://github.com/jojojames/matcha
 ;; Version: 0.0.1
 ;; Package-Requires: ((emacs "25.1"))
-;; Keywords: hydra, emacs
+;; Keywords: transient, emacs
 ;; HomePage: https://github.com/jojojames/matcha
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,11 +24,10 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-;;; Integration with Hydra.
+;;; Integration with Transient.
 
 ;;; Code:
 (eval-when-compile (require 'subr-x))
-(require 'hydra)
 (require 'transient)
 
 (defun matcha-projectile-root ()
@@ -40,11 +39,11 @@
     "Not in Project"))
 
 (defun matcha-heading-current-file ()
-  "Return current file for use with `hydra' heading."
+  "Return current file for use with `transient' heading."
   buffer-file-name)
 
 (defun matcha-heading-current-directory ()
-  "Return path to `default-directory' for use with `hydra' heading."
+  "Return path to `default-directory' for use with `transient' heading."
   default-directory)
 
 (defun matcha-indent-region-or-buffer ()
@@ -130,7 +129,7 @@ If MINOR-P is t, COMMAND will be added to `%S'."
                       (funcall
                        (matcha-normalized-title-to-matcha-command
                         (completing-read
-                         "Which Hydra? "
+                         "Which Transient? "
                          (mapcar
                           (lambda (command)
                             (matcha-command-to-normalized-title command))
@@ -154,18 +153,18 @@ If MINOR-P is t, COMMAND will be added to `%S'."
           "/body"))))
 
 (defun matcha-normalized-title-to-matcha-command (title)
-  "Takes in a string and returns a `hydra' function symbol.
+  "Takes in a string and returns a `transient' function symbol.
 
 Elisp Mode -> `matcha-elisp-mode/body'."
   (let* ((downcase (downcase title))
          (tokens (split-string downcase " "))
          (base-f (mapconcat (lambda (token)
                               token) tokens "-"))
-         (f-hydra (intern (format (concat "matcha-" base-f "/body"))))
+         (f-transient (intern (format (concat "matcha-" base-f "/body"))))
          (f-func (intern (format (concat "matcha-" base-f)))))
-    ;; Handle commands added that aren't hydras.
+    ;; Handle commands added that aren't transients.
     ;; For example, `matcha-prettier-or-indent-region-or-buffer'.
-    (if (fboundp f-hydra) f-hydra f-func)))
+    (if (fboundp f-transient) f-transient f-func)))
 
 (matcha-make debug eval format mode refactor test)
 
