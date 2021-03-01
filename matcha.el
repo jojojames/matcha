@@ -75,7 +75,6 @@
     (js js2-mode rjsx-mode)
     json-mode
     log-edit
-    lua-mode
     (:file magit :autoloads matcha-magit)
     notmuch
     omnisharp
