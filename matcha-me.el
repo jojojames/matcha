@@ -95,7 +95,7 @@
     ((mode . selectrum-mode)
      (file . find-file)
      (recent . consult-recent-file)
-     (buffer . consult-buffer)
+     (buffer . switch-to-buffer)
      (rg . consult-ripgrep)
      (mx . execute-extended-command)
      (swiper . consult-line)
