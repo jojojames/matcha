@@ -6,8 +6,8 @@
 ;; Maintainer: James Nguyen <james@jojojames.com>
 ;; URL: https://github.com/jojojames/matcha
 ;; Version: 0.0.1
-;; Package-Requires: ((emacs "25.1"))
-;; Keywords: hydra, emacs
+;; Package-Requires: ((emacs "25.1") (transient "20200601"))
+;; Keywords: emacs, transient
 ;; HomePage: https://github.com/jojojames/matcha
 
 ;; This program is free software; you can redistribute it and/or modify
