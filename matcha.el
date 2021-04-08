@@ -65,21 +65,16 @@
   '(alchemist
     android-mode
     cc-mode ;; `java-mode'
-    cider
     dired
     eglot
-    erlang
-    geiser
     go-mode
     gud-lldb
     (js js2-mode rjsx-mode)
     json-mode
     log-edit
     (:file magit :autoloads matcha-magit)
-    notmuch
     omnisharp
     org
-    (:file p4 :autoloads matcha-p4/body)
     pass
     (:file project :autoloads matcha-project)
     (:file projectile :autoloads matcha-projectile)

@@ -28,7 +28,6 @@
 
 ;;; Code:
 (require 'matcha-base)
-(require 'matcha-clj-refactor)
 (require 'cider nil t)
 
 ;; https://gist.github.com/ddellacosta/4967694b765b91e9d687
