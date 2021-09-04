@@ -68,7 +68,6 @@
     dired
     eglot
     go-mode
-    gud-lldb
     (js js2-mode rjsx-mode)
     json-mode
     log-edit
@@ -81,16 +80,14 @@
     python
     restclient
     rust-mode
-    rtags
     slime
     smerge-mode
     swift-mode
-    tide
     term
+    tide
     vc-dir
     vc-git
-    vc-hgcmd
-    web-mode)
+    vc-hgcmd)
   "The list of modes for which a hydra will be defined."
   :type '(repeat (choice symbol sexp))
   :group 'matcha)
