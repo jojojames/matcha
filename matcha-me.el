@@ -376,8 +376,6 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
    ["Occur"
     ("o" "Occur" occur)
     ("O" "Multi Occur" multi-occur)
-    ("m" "Occur in Same Modes" j-multi-occur-in-this-mode)
-    ("M" "Occur in Matching Buffers" j-multi-occur-in-this-mode)
     ("P" "Occur in Project" projectile-multi-occur)]
    ["Other"
     ("a" "Rgrep" rgrep)
