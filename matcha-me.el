@@ -160,7 +160,7 @@ ACTIONS has to be a key in `matcha-project-pkg-list' that's not :mode or :fallba
                           (throw 'done fn)))
                     (let ((mode (alist-get 'mode pkg))
                           (fn (alist-get ',action pkg)))
-                      (when (and (boundp mode) (symbol-value mode))
+                      (when (boundp mode)
                         (when (and ,last-func
                                    (not (eq fn ,last-func)))
                           (apply mode '(1)))
