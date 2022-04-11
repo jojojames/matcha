@@ -99,7 +99,7 @@
      (rg . consult-ripgrep)
      (mx . execute-extended-command)
      (swiper . consult-line)
-     (swiper-all . swiper-all) ;; Not sure if this exists yet...
+     (swiper-all . consult-line-multi)
      (git-grep . consult-git-grep))
 
     ((mode . ivy-mode)
