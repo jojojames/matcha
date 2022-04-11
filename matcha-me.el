@@ -92,6 +92,16 @@
 
 (defcustom matcha-project-pkg-list
   '(
+    ((mode . vertico-mode)
+     (file . find-file)
+     (recent . consult-recent-file)
+     (buffer . switch-to-buffer)
+     (rg . consult-ripgrep)
+     (mx . execute-extended-command)
+     (swiper . consult-line)
+     (swiper-all . consult-line-multi)
+     (git-grep . consult-git-grep))
+
     ((mode . selectrum-mode)
      (file . find-file)
      (recent . consult-recent-file)
