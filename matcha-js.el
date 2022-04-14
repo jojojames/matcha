@@ -5,7 +5,7 @@
 (require 'rjsx-mode nil t)
 
 (defun matcha-js-set-launcher ()
-  "Set `hydra' launcher for `js'."
+  "Set `transient' launcher for `js'."
   (matcha-set-refactor-command
    :mode '(js-mode js2-mode rjsx-mode) :command #'matcha-js2-refactor)
 

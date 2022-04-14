@@ -1,4 +1,4 @@
-;;; matcha-smerge-mode.el --- Integration with Hydra. -*- lexical-binding: t -*-
+;;; matcha-smerge-mode.el --- Integration with Transient. -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2019 James Nguyen
 
@@ -7,7 +7,7 @@
 ;; URL: https://github.com/jojojames/matcha
 ;; Version: 0.0.1
 ;; Package-Requires: ((emacs "25.1"))
-;; Keywords: hydra, emacs
+;; Keywords: transient, emacs
 ;; HomePage: https://github.com/jojojames/matcha
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,7 +24,7 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-;;; Integration with Hydra.
+;;; Integration with Transient.
 
 ;;; Code:
 (require 'matcha-base)
@@ -55,7 +55,7 @@
    ])
 
 (defun matcha-smerge-mode-set-launcher ()
-  "Set up `hydra' launcher for `smerge-mode'."
+  "Set up `transient' launcher for `smerge-mode'."
   (matcha-set-mode-command :mode 'smerge-mode
                            :command 'matcha-smerge-mode
                            :minor-p t))

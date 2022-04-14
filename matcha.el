@@ -1,4 +1,4 @@
-;;; matcha.el --- Integration with Hydra. -*- lexical-binding: t -*-
+;;; matcha.el --- Integration with Transient. -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2019 James Nguyen
 
@@ -24,7 +24,7 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-;;; Integration with Hydra.
+;;; Integration with Transient.
 
 ;;; Code:
 (require 'matcha-base)
@@ -42,12 +42,12 @@
       (defalias 'matcha-when-let* #'when-let*))))
 
 (defgroup matcha nil
-  "Collection of hydras and a common way to launch them."
+  "Collection of transients and a common way to launch them."
   :group 'tools
   :group 'convenience)
 
 (defcustom matcha-use-launcher-p t
-  "Whether or not to use hydra launcher."
+  "Whether or not to use transient launcher."
   :type 'bool
   :group 'matcha)
 
@@ -88,13 +88,13 @@
     vc-dir
     vc-git
     vc-hgcmd)
-  "The list of modes for which a hydra will be defined."
+  "The list of modes for which a transient will be defined."
   :type '(repeat (choice symbol sexp))
   :group 'matcha)
 
 ;;;###autoload
 (defun matcha-setup ()
-  "Set up hydras."
+  "Set up transients."
   (interactive)
   (when matcha-me-p
     (require 'matcha-me))
@@ -129,7 +129,7 @@
        (matcha-require-and-setup mode (list mode))))))
 
 (defun matcha-require-and-setup (mode requires &optional autoloads)
-  "Bootstrap `matcha' `hydra' using MODE as key.
+  "Bootstrap `matcha' `transient' using MODE as key.
 
 MODE is used to derived where the file/require exists as well as the setup
 function to call.

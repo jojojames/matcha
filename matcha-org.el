@@ -137,7 +137,7 @@
     ("r" "Reveal" org-reveal)]])
 
 (defun matcha-org-set-launcher ()
-  "Set `hydra' launcher for `org'."
+  "Set `transient' launcher for `org'."
   (matcha-set-mode-command :mode 'org-mode :command #'matcha-org-mode)
   (matcha-set-eval-command :mode 'org-mode :command #'matcha-org-editing))
 
