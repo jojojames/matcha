@@ -97,11 +97,11 @@
   (when matcha-use-evil-p
     (with-eval-after-load 'evil
       (with-eval-after-load 'hg-histedit
-        (evil-define-key 'normal vc-hgcmd-log-view-mode-map
+        (evil-define-key* 'normal vc-hgcmd-log-view-mode-map
           "r" matcha-vc-hgcmd-histedit)
-        (evil-define-key 'normal vc-dir-mode-map
+        (evil-define-key* 'normal vc-dir-mode-map
           "r" matcha-vc-hgcmd-histedit))
-      (evil-define-key 'normal vc-dir-mode-map
+      (evil-define-key* 'normal vc-dir-mode-map
         "z" matcha-vc-hgcmd-stash-evil-stash)))
   (matcha-set-mode-command :mode 'vc-dir-mode :command #'matcha-vc-dir))
 
