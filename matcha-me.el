@@ -95,7 +95,7 @@
     ((mode . vertico-mode)
      (file . find-file)
      (recent . consult-recent-file)
-     (buffer . switch-to-buffer)
+     (buffer . consult-buffer)
      (rg . consult-ripgrep)
      (mx . execute-extended-command)
      (swiper . consult-line)
