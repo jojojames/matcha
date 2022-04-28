@@ -286,7 +286,11 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
     ("o" "Todo" org-todo)]
    ["Links"
     ("l" "Store" org-store-link)
-    ("i" "Insert" org-insert-link)]])
+    ("i" "Insert" org-insert-link)]
+   ["Roam"
+    ("L" "Show Buffer" org-roam-buffer-toggle)
+    ("f" "Find Node" org-roam-node-find)
+    ("n" "Insert Node" org-roam-node-insert)]])
 
 (defmacro matcha-create-deferred-fn (fn)
   "Return a new function symbol for FN."
