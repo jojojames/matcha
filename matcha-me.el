@@ -321,7 +321,8 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
     ("S" "Save all Buffers" matcha-me-save-all-buffers)
     ("R" "Refactor..." matcha-run-refactor-command)
     ("v" "Edit Config" matcha-me-find-init)
-    ("o" "Org..." matcha-org-space)]
+    ("o" "Org..." matcha-org-space)
+    ("F" "Flymake" matcha-me-flymake)]
    ["Mode"
     ("m" "Mode" matcha-run-mode-command)
     ("d" "Debug" matcha-run-debug-command)
@@ -439,6 +440,23 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
     ("S" "Save All to SavedFile" matcha-save-files-to-saved-files-list)
     ("O" "Open All from SavedFile" matcha-open-files-from-saved-files-list)
     ("R" "Revert/Refresh All" matcha-revert-all-file-buffers)]])
+
+(define-transient-command matcha-me-flymake ()
+  "Flymake"
+  [["Diagnostics"
+    ("l" "Go to log buffer" flymake-switch-to-log-buffer)
+    ("d" "Show Diagnostic" flymake-show-diagnostic)
+    ("g" "Go to Diagnostic" flymake-goto-diagnostic )
+    ("b" "Show Buffer Diagnostics" flymake-show-buffer-diagnostics)
+    ("p" "Show Project Diagnostics" flymake-show-project-diagnostics)]
+   ["Backends"
+    ("B" "Display Running Backends" flymake-running-backends)
+    ("D" "Display Disabled Backends" flymake-disabled-backends)
+    ("R" "Display Reporting Backends" flymake-reporting-backends)
+    ]
+   ["Navigate"
+    ("j" "Next Error" flymake-goto-next-error)
+    ("k" "Previous Error" flymake-goto-prev-error)]])
 
 (provide 'matcha-me)
 ;;; matcha-me.el ends here
