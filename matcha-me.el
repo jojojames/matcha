@@ -330,6 +330,7 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
     ("t" "Test" matcha-run-test-command)
     ("=" "Format" matcha-run-format-command)]]
   [:hide (lambda () t)
+         ("/" matcha-me-swiper)
          ("-" split-window-below)
          ("|" split-window-right)
          ("\\" split-window-right)
@@ -382,12 +383,13 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
 
 (define-transient-command matcha-me-search ()
   "Search"
-  [["Search"
-    ("r" "Ripgrep" matcha-me-rg)
+  [["Buffer"
     ("s" "Swiper" matcha-me-swiper)
-    ("S" "Swiper All" matcha-me-swiper-all)
+    ("S" "Swiper Open Buffers" matcha-me-swiper-all)]
+   ["Files"
     ("f" "Find File" matcha-me-file)
-    ("i" "Git Grep" matcha-me-git-grep)]
+    ("i" "Git Grep" matcha-me-git-grep)
+    ("r" "Ripgrep" matcha-me-rg)]
    ["Occur"
     ("o" "Occur" occur)
     ("O" "Multi Occur" multi-occur)
