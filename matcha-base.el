@@ -86,9 +86,11 @@ pointed at COMMAND.
 
 MODE may be a single symbol or a list of symbols.
 
-Add it to `%S' or `%S'.
+Add it to `%S'\
+or `%S'.
 
-If MINOR-P is t, COMMAND will be added to `%S'."
+If MINOR-P is t, COMMAND will be added to\
+`%S'."
                        minor-mode-fn-alist
                        major-mode-fn-alist
                        minor-mode-fn-alist)
