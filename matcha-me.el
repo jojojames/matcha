@@ -90,13 +90,24 @@
    (:default
     (call-interactively 'matcha-me-file))))
 
+(defun matcha-me-consult-ripgrep-default-directory ()
+  "Run `consult-ripgrep' with `default-directory'."
+  (interactive)
+  (consult-ripgrep default-directory))
+
+(defun matcha-me-counsel-rg-default-directory ()
+  "Run `counsel-rg' with `default-directory'."
+  (interactive)
+  (counsel-rg nil default-directory))
+
 (defcustom matcha-project-pkg-list
   '(
     ((mode . vertico-mode)
      (file . find-file)
      (recent . consult-recent-file)
      (buffer . consult-buffer)
-     (rg . consult-ripgrep)
+     (rg . matcha-me-consult-ripgrep-default-directory)
+     (rg-project . consult-ripgrep)
      (mx . execute-extended-command)
      (swiper . consult-line)
      (swiper-all . consult-line-multi)
@@ -106,7 +117,8 @@
      (file . find-file)
      (recent . consult-recent-file)
      (buffer . switch-to-buffer)
-     (rg . consult-ripgrep)
+     (rg . matcha-me-consult-ripgrep-default-directory)
+     (rg-project . consult-ripgrep)
      (mx . execute-extended-command)
      (swiper . consult-line)
      (swiper-all . consult-line-multi)
@@ -116,7 +128,8 @@
      (file . counsel-find-file)
      (recent . counsel-recentf)
      (buffer . ivy-switch-buffer)
-     (rg . counsel-rg)
+     (rg . matcha-me-counsel-rg-default-directory)
+     (rg-project . counsel-rg)
      (mx . counsel-M-x)
      (swiper . swiper)
      (swiper-all . swiper-all)
@@ -180,7 +193,15 @@ ACTIONS has to be a key in `matcha-project-pkg-list' that's not :mode or :fallba
                           (throw 'done fn)))))))))))))
 
 (matcha-create-project-actions
- file recent buffer rg mx swiper swiper-all git-grep)
+ file
+ recent
+ buffer
+ rg
+ rg-project
+ mx
+ swiper
+ swiper-all
+ git-grep)
 
 (defun matcha-me-save-all-buffers ()
   "Save all buffers without confirming."
@@ -388,15 +409,17 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
     ("S" "Swiper Open Buffers" matcha-me-swiper-all)]
    ["Files"
     ("f" "Find File" matcha-me-file)
-    ("i" "Git Grep" matcha-me-git-grep)
-    ("r" "Ripgrep" matcha-me-rg)]
+    ("i" "Git Grep" matcha-me-git-grep)]
    ["Occur"
     ("o" "Occur" occur)
     ("O" "Multi Occur" multi-occur)
     ("P" "Occur in Project" projectile-multi-occur)]
+   ["Ripgrep"
+    ("r" "Ripgrep in Directory" matcha-me-rg)
+    ("R" "Ripgrep in Project" matcha-me-rg-project)
+    ("d" "Deadgrep" deadgrep)]
    ["Other"
-    ("a" "Rgrep" rgrep)
-    ("d" "Deadgrep" deadgrep)]])
+    ("a" "Rgrep" rgrep)]])
 
 (define-transient-command matcha-me-window ()
   "Window"
