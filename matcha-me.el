@@ -100,6 +100,11 @@
   (interactive)
   (counsel-rg nil default-directory))
 
+(defun matcha-me-deadgrep-default-directory ()
+  "Run `deadgrep' with `default-directory'."
+  (interactive)
+  (deadgrep (deadgrep--read-search-term) default-directory))
+
 (defcustom matcha-project-pkg-list
   '(
     ((mode . vertico-mode)
@@ -417,7 +422,8 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
    ["Ripgrep"
     ("r" "Ripgrep in Directory" matcha-me-rg)
     ("R" "Ripgrep in Project" matcha-me-rg-project)
-    ("d" "Deadgrep" deadgrep)]
+    ("d" "Deadgrep in Directory" matcha-me-deadgrep-default-directory)
+    ("D" "Deadgrep in Project" deadgrep)]
    ["Other"
     ("a" "Rgrep" rgrep)]])
 
