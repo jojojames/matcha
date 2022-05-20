@@ -110,7 +110,7 @@
     ((mode . vertico-mode)
      (file . find-file)
      (recent . consult-recent-file)
-     (buffer . consult-buffer)
+     (buffer . switch-to-buffer)
      (rg . matcha-me-consult-ripgrep-default-directory)
      (rg-project . consult-ripgrep)
      (mx . execute-extended-command)
