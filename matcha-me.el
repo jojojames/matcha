@@ -301,6 +301,13 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
 
 (defalias 'rename-current-buffer-file 'matcha-rename-current-buffer-file)
 
+(defvar org-directory)
+(defun matcha-me-org-find-file ()
+  "Find file in `org-directory'."
+  (interactive)
+  (let ((default-directory (concat org-directory "/")))
+    (call-interactively 'find-file)))
+
 ;; Transients
 
 (define-transient-command matcha-org-space
@@ -313,10 +320,8 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
    ["Links"
     ("l" "Store" org-store-link)
     ("i" "Insert" org-insert-link)]
-   ["Roam"
-    ("L" "Show Buffer" org-roam-buffer-toggle)
-    ("f" "Find Node" org-roam-node-find)
-    ("n" "Insert Node" org-roam-node-insert)]])
+   ["Wiki"
+    ("f" "Find Note" matcha-me-org-find-file)]])
 
 (defmacro matcha-create-deferred-fn (fn)
   "Return a new function symbol for FN."
