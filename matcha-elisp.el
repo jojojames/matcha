@@ -182,6 +182,12 @@ Requires smartparens because all movement is done using `sp-forward-symbol'."
     ("f" "Function" find-function)
     ("l" "Library" find-library)
     ("r" "References..." matcha-elisp-refs)]
+   ["PP"
+    ("pm" " Macroexpand Expression..." pp-macroexpand-expression)
+    ("pl" " Macroexpand Last S-exp..." pp-macroexpand-last-sexp)
+    ("pb" "Prettify Current Buffer" pp-buffer)
+    ("pe" "Eval Last Sexp" pp-eval-last-sexp)
+    ("ps" "Prettify Expression" pp-eval-expression)]
    ["Misc"
     ("x" "*Scratch*" matcha-goto-scratch)
     ("z" "IELM" ielm)]])
