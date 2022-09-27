@@ -42,19 +42,6 @@
   (let ((current-prefix-arg '(4))) ; C-u
     (call-interactively 'magit-status)))
 
-(defun matcha-magit-status-or-switch-buffer ()
-  "Switch to existing `magit-status' without updating or run `magit-status'.
-If `magit' is not yet loaded yet, just call `magit-status' directly."
-  (interactive)
-  (if (not (featurep 'magit))
-      (magit-status-internal default-directory)
-    (if-let (magit-buffer
-             (magit-mode-get-buffer
-              #'magit-status-mode nil nil
-              (magit-buffer-lock-value #'magit-status-mode nil)))
-        (switch-to-buffer magit-buffer)
-      (magit-status-internal default-directory))))
-
 (define-transient-command matcha-magit-log ()
   "Log"
   [["File"
@@ -87,7 +74,7 @@ If `magit' is not yet loaded yet, just call `magit-status' directly."
   "Magit"
   [["Repository"
     ("s" "Status" magit-status)
-    ("g" "Status (Cached)" matcha-magit-status-or-switch-buffer)
+    ("g" "Status (Cached)" magit-status-quick)
     ("c" "Clone" magit-clone)
     ("r" "Pick Repository" matcha-magit-status-pick-repository)
     ("L" "List Repositories" magit-list-repositories)
