@@ -310,13 +310,28 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
 
 ;; Transients
 
+(defun matcha-org-sort-keep-selection ()
+  "Keep current selected row during sorting."
+  (interactive)
+  (let ((first  (org-table-get nil 1))
+        (second (org-table-get nil 2))
+        (column (current-column))
+        (result (org-table-sort-lines nil ?N)))
+    (org-table-goto-line 1)
+    (search-forward-regexp (format "%s.*%s" first second))
+    (beginning-of-line)
+    (forward-char column)
+    result))
+
 (define-transient-command matcha-org-space
   "Org"
   [["Org"
     ("a" "Agenda" org-agenda)
     ("c" "Capture" org-capture)
     ("r" "Refile" org-refile)
-    ("o" "Todo" org-todo)]
+    ("t" "Todo" org-todo)]
+   ["Table"
+    ("o" "Sort" matcha-org-sort-keep-selection)]
    ["Links"
     ("l" "Store" org-store-link)
     ("i" "Insert" org-insert-link)]
