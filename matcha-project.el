@@ -65,7 +65,7 @@ With a prefix argument, show NLINES of context."
                  (car (occur-read-primary-args))
                  nlines)))
 
-(define-transient-command matcha-project ()
+(transient-define-prefix matcha-project ()
   "Project"
   [["Find"
     ("f" "File" project-find-file)

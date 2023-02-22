@@ -30,7 +30,7 @@
 (require 'matcha-base)
 (require 'restclient nil t)
 
-(define-transient-command matcha-restclient-mode
+(transient-define-prefix matcha-restclient-mode ()
   "Restclient"
   [["Query (Under Cursor)"
     ("e" "Run Query" restclient-http-send-current)

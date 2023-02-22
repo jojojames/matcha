@@ -30,7 +30,7 @@
 (require 'matcha-base)
 (require 'log-edit nil t)
 
-(define-transient-command matcha-log-edit
+(transient-define-prefix matcha-log-edit ()
   "Log Edit"
   [["Actions"
     ("c" "Done" log-edit-done)

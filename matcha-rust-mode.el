@@ -31,14 +31,14 @@
 (require 'rust-mode nil t)
 (require 'cargo nil t)
 
-(define-transient-command matcha-rust-mode-cargo-test
+(transient-define-prefix matcha-rust-mode-cargo-test ()
   "Cargo Test"
   [["Test"
     ("t" "Test" cargo-process-test)
     ("c" "Current Test" cargo-process-current-test)
     ("f" "Current File" cargo-process-current-file-tests)]])
 
-(define-transient-command matcha-rust-mode-cargo
+(transient-define-prefix matcha-rust-mode-cargo ()
   "Cargo"
   [
    :description (lambda () (format "Cargo: %s" (matcha-projectile-root)))
@@ -66,7 +66,7 @@
     ("s" "Cargo Search" cargo-process-search)
     ("P" "Promote Module into Directory" rust-promote-module-into-dir)]])
 
-(define-transient-command matcha-rust-mode-eval
+(transient-define-prefix matcha-rust-mode-eval ()
   "Eval"
   [["Eval"
     ("r" "Region" rust-playpen-region)

@@ -30,7 +30,7 @@
 (require 'matcha-base)
 (require 'android-mode nil t)
 
-(define-transient-command matcha-android-mode
+(transient-define-prefix matcha-android-mode ()
   "Android"
   [["Start"
     ("a" "Start App" android-start-app)

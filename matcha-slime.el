@@ -34,7 +34,7 @@
 
 ;; TODO: Add Debug Transient
 
-(define-transient-command matcha-slime-mode-eval
+(transient-define-prefix matcha-slime-mode-eval ()
   "Eval"
   [["Eval"
     ("e" "Expression" slime-eval-last-expression)
@@ -61,14 +61,14 @@
     ("n" "Remove Notes" slime-remove-notes)
     ("i" "Interrupt" slime-interrupt)]])
 
-(define-transient-command matcha-slime-mode-connection
+(transient-define-prefix matcha-slime-mode-connection ()
   "Connections"
   [["Connections"
     ("n" "Next Connection" slime-next-connection)
     ("p" "Previous Connection" slime-prev-connection)
     ("l" "List Connections" slime-list-connections)]])
 
-(define-transient-command matcha-slime-mode-info
+(transient-define-prefix matcha-slime-mode-info ()
   "Info"
   [["Apropos"
     ("a" "Apropos" slime-apropos)
@@ -79,7 +79,7 @@
     ("d" "Disassemble Symbol" slime-disassemble-symbol)
     ("H" "Hyperspec Lookup" slime-hyperspec-lookup)]])
 
-(define-transient-command matcha-slime-mode-references
+(transient-define-prefix matcha-slime-mode-references ()
   "References"
   [["Who"
     ("r" "References" slime-who-references)
@@ -93,7 +93,7 @@
     ("C" "Callers" slime-list-callers)
     ("E" "Callees" slime-list-callees)]])
 
-(define-transient-command matcha-slime-mode
+(transient-define-prefix matcha-slime-mode ()
   "SLIME"
   [["Actions"
     ("e" "Eval..." matcha-slime-mode-eval)

@@ -30,7 +30,7 @@
 (require 'matcha-base)
 (require 'hg-histedit nil t)
 
-(define-transient-command matcha-hg-histedit ()
+(transient-define-prefix matcha-hg-histedit ()
   "Histedit"
   [["Histedit"
     ("e" "Histedit at Point" hg-histedit-edit-at-point

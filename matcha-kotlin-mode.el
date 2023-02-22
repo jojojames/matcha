@@ -30,7 +30,7 @@
 (require 'matcha-base)
 (require 'kotlin-mode nil t)
 
-(define-transient-command matcha-kotlin-mode-eval
+(transient-define-prefix matcha-kotlin-mode-eval ()
   "Eval"
   [["Send"
     ("e" "Line" kotlin-send-line)
@@ -38,7 +38,7 @@
     ("k" "Block" kotlin-send-block)
     ("b" "Buffer" kotlin-send-buffer)]])
 
-(define-transient-command matcha-kotlin-mode
+(transient-define-prefix matcha-kotlin-mode ()
   "Kotlin"
   [["Actions"
     ("z" "REPL" kotlin-repl)

@@ -120,7 +120,7 @@ Requires smartparens because all movement is done using `sp-forward-symbol'."
    :mode '(emacs-lisp-mode lisp-interaction-mode)
    :command 'emr-show-refactor-menu))
 
-(define-transient-command matcha-emacs-lisp-debug
+(transient-define-prefix matcha-emacs-lisp-debug ()
   "Debug"
   [["Debug"
     ("d" "Debug" matcha-elisp-toggle-edebug-defun)
@@ -130,7 +130,7 @@ Requires smartparens because all movement is done using `sp-forward-symbol'."
     ("w" "Watch" debug-watch)
     ("W" "Cancel Watch" cancel-debug-watch)]])
 
-(define-transient-command matcha-emacs-lisp-eval ()
+(transient-define-prefix matcha-emacs-lisp-eval ()
   "Eval"
   [["Eval"
     ("e" "Last" eval-last-sexp)
@@ -143,7 +143,7 @@ Requires smartparens because all movement is done using `sp-forward-symbol'."
    ["Misc"
     ("j" "Eval and Print" eval-print-last-sexp)]])
 
-(define-transient-command matcha-elisp-refs ()
+(transient-define-prefix matcha-elisp-refs ()
   "References"
   [["References"
     ("f" "Function" elisp-refs-function)
@@ -152,7 +152,7 @@ Requires smartparens because all movement is done using `sp-forward-symbol'."
     ("v" "Variable" elisp-refs-variable)
     ("s" "Symbol" elisp-refs-symbol)]])
 
-(define-transient-command matcha-emacs-lisp-compile ()
+(transient-define-prefix matcha-emacs-lisp-compile ()
   "Compile"
   [["Compile"
     ("c" "Compile" emacs-lisp-byte-compile)
@@ -160,7 +160,7 @@ Requires smartparens because all movement is done using `sp-forward-symbol'."
     ("r" "Byte Recompile Directory" byte-recompile-directory)
     ("x" "Disassemble" disassemble)]])
 
-(define-transient-command matcha-emacs-lisp-describe ()
+(transient-define-prefix matcha-emacs-lisp-describe ()
   "Describe"
   [["Describe"
     ("f" "Function" describe-function)
@@ -169,7 +169,7 @@ Requires smartparens because all movement is done using `sp-forward-symbol'."
     ("y" "Syntax" describe-syntax)
     ("c" "Categories" describe-categories)]])
 
-(define-transient-command matcha-emacs-lisp-mode ()
+(transient-define-prefix matcha-emacs-lisp-mode ()
   "Emacs Lisp"
   [["Actions"
     ("c" "Compile..." matcha-emacs-lisp-compile)

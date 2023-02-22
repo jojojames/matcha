@@ -71,7 +71,7 @@
     (message (format "Running: hg %s..." command))
     (vc-hgcmd-runcommand command)))
 
-(define-transient-command matcha-vc-hgcmd-stash ()
+(transient-define-prefix matcha-vc-hgcmd-stash ()
   "Stash uncommited changes."
   ["Arguments"
    ("-u" "Store unknown files in the shelve" ("-u" "--unknown"))

@@ -28,7 +28,7 @@
 (require 'matcha-base)
 (require 'mocha nil t)
 
-(define-transient-command matcha-mocha
+(transient-define-prefix matcha-mocha ()
   "Mocha"
   [["Test"
     ("f" "File" mocha-test-file)

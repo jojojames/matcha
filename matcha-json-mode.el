@@ -30,7 +30,7 @@
 (require 'matcha-base)
 (require 'json-mode nil t)
 
-(define-transient-command matcha-json-mode
+(transient-define-prefix matcha-json-mode ()
   "JSON"
   [["Actions"
     ("u" "Beautify" json-mode-beautify)]])

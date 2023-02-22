@@ -30,7 +30,7 @@
 (require 'matcha-base)
 (require 'swift-mode nil t)
 
-(define-transient-command matcha-swift-mode
+(transient-define-prefix matcha-swift-mode ()
   "Swift"
   [["Actions"
     ("z" "Run REPL" swift-mode:run-repl)

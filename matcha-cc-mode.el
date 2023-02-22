@@ -45,7 +45,7 @@
              (format "javac %s" source))
         (command-execute 'compile)))))
 
-(define-transient-command matcha-java-mode
+(transient-define-prefix matcha-java-mode ()
   "Java"
   [["Actions"
     ("u" "Eval" matcha-cc-mode-java-eval-nofocus)]])

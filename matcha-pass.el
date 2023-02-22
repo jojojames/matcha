@@ -30,7 +30,7 @@
 (require 'matcha-base)
 (require 'password-store nil t)
 
-(define-transient-command matcha-pass-mode
+(transient-define-prefix matcha-pass-mode ()
   "Pass"
   [["Get"
     ("e" "Edit" password-store-edit)

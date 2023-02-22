@@ -42,7 +42,7 @@
   (let ((current-prefix-arg '(4))) ; C-u
     (call-interactively 'magit-status)))
 
-(define-transient-command matcha-magit-log ()
+(transient-define-prefix matcha-magit-log ()
   "Log"
   [["File"
     ("f" "Current" magit-log-buffer-file)
@@ -60,7 +60,7 @@
     ("C" "Current" magit-reflog-current)
     ("H" "Head" magit-reflog-head)]])
 
-(define-transient-command matcha-ediff ()
+(transient-define-prefix matcha-ediff ()
   "Ediff"
   [["Actions"
     ("f" "Files" ediff-files)
@@ -70,7 +70,7 @@
     ("d" "Directories" ediff-directories)
     ("D" "Directories - (3 Way)" ediff-directories3)]])
 
-(define-transient-command matcha-magit ()
+(transient-define-prefix matcha-magit ()
   "Magit"
   [["Repository"
     ("s" "Status" magit-status)
