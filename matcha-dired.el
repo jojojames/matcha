@@ -37,7 +37,7 @@ one specified by listing header."
   (let ((default-directory (dired-current-directory)))
     (call-interactively #'find-file)))
 
-(define-transient-command matcha-dired-mode
+(transient-define-prefix matcha-dired-mode ()
   "Dired"
   [["Actions"
     ("f" "Find File" matcha-dired-find-file)
@@ -55,7 +55,7 @@ one specified by listing header."
     ("Q" "Exit Wdired" wdired-finish-edit)
     ("R" "Query Replace" dired-do-query-replace-regexp)]])
 
-(define-transient-command matcha-dired-operate
+(transient-define-prefix matcha-dired-operate ()
   "Operate"
   [["Actions"
     ("d" "Delete" dired-do-delete)
@@ -91,7 +91,7 @@ one specified by listing header."
     ("h" "Hardlink" dired-do-hardlink)
     ("l" "Symlink" dired-do-symlink)]])
 
-(define-transient-command matcha-dired-mark
+(transient-define-prefix matcha-dired-mark ()
   "Mark"
   [["Mark"
     ("m" "Mark" dired-mark)
@@ -113,7 +113,7 @@ one specified by listing header."
     ("[" "Previous" dired-prev-marked-file)
     ("]" "Next" dired-next-marked-file)]])
 
-(define-transient-command matcha-dired-regexp
+(transient-define-prefix matcha-dired-regexp ()
   "Regexp"
   [["Mark"
     ("*" "Mark for Regexp" dired-mark-files-regexp)
@@ -129,7 +129,7 @@ one specified by listing header."
     ("h" "Hardlink" dired-do-hardlink-regexp)
     ("s" "Symlink" dired-do-symlink-regexp)]])
 
-(define-transient-command matcha-dired-immediate
+(transient-define-prefix matcha-dired-immediate ()
   "Immediate"
   [["Find"
     ("ff" "Find" find-file)

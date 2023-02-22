@@ -30,7 +30,7 @@
 (require 'matcha-base)
 (require 'term nil t)
 
-(define-transient-command matcha-term
+(transient-define-prefix matcha-term ()
   "Term"
   [["Actions"
     ("c" "Switch to Character Mode" term-char-mode)

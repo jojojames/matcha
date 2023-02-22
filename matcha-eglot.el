@@ -30,7 +30,7 @@
 (require 'matcha-base)
 (require 'eglot nil t)
 
-(define-transient-command matcha-eglot
+(transient-define-prefix matcha-eglot ()
   "Eglot"
   [["Find"
     ("d" "Declaration" eglot-find-declaration)
@@ -46,13 +46,13 @@
     ("C" "Reconnect" eglot-reconnect)
     ("E" "Display Events Buffer" eglot-events-buffer)]])
 
-(define-transient-command matcha-eglot-format
+(transient-define-prefix matcha-eglot-format ()
   "Eglot Format"
   [["Format"
     ("=" "Format Buffer" eglot-format-buffer)
     ("R" "Format Region" eglot-format)]])
 
-(define-transient-command matcha-eglot-refactor
+(transient-define-prefix matcha-eglot-refactor ()
   "Eglot Refactor"
   [["Refactor"
     ("r" "Rename" eglot-rename)

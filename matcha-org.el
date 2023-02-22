@@ -30,13 +30,13 @@
 (require 'matcha-base)
 (require 'org)
 
-(define-transient-command matcha-org-babel ()
+(transient-define-prefix matcha-org-babel ()
   "Babel"
   ["Babel"
    ("e" "Execute Source Block" org-babel-execute-src-block )
    ("'" "Edit Source" org-edit-src-code )])
 
-(define-transient-command matcha-org-hyperlink ()
+(transient-define-prefix matcha-org-hyperlink ()
   "Org Links"
   [["Navigate"
     ("g" "Follow Link" org-open-at-point)
@@ -50,7 +50,7 @@
   [:hide (lambda () t)
          ("s" org-store-link)])
 
-(define-transient-command matcha-org-time ()
+(transient-define-prefix matcha-org-time ()
   "Time"
   [["Insert"
     ("t" "Timestamp" org-time-stamp)
@@ -70,7 +70,7 @@
     ("y" "Evaluate Time Range" org-evaluate-time-range)
     ("Z" "Custom Time Format" org-toggle-time-stamp-overlays)]])
 
-(define-transient-command matcha-org-change-date ()
+(transient-define-prefix matcha-org-change-date ()
   "Change Date"
   ["Change Date"
    ("l" "1 Day Later" org-shiftright)
@@ -78,7 +78,7 @@
    ("k" "1 ... Later" org-shiftup)
    ("j" "1 ... Before" org-shiftdown)])
 
-(define-transient-command matcha-org-editing ()
+(transient-define-prefix matcha-org-editing ()
   "Edit"
   [
    :description
@@ -115,7 +115,7 @@
     ("nb" "Narrow to Block" org-narrow-to-block)
     ("nw" "Widen" widen)]])
 
-(define-transient-command matcha-org-mode ()
+(transient-define-prefix matcha-org-mode ()
   "Org Mode"
   [
    :description

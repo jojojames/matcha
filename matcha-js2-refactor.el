@@ -30,7 +30,7 @@
 (require 'matcha-base)
 ;; (require 'js2-refactor nil t)
 
-(define-transient-command matcha-js2-refactor
+(transient-define-prefix matcha-js2-refactor ()
   "JS2 Refactor"
   [
    :description (lambda () (format "Javascript Refactor: %s" (matcha-heading-current-file)))

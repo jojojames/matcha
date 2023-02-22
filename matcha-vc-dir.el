@@ -30,7 +30,7 @@
 (require 'matcha-base)
 (require 'vc-dir nil t)
 
-(define-transient-command matcha-vc-dir-log
+(transient-define-prefix matcha-vc-dir-log ()
   "Log"
   [["Log"
     ("l" "Log" vc-print-log)
@@ -38,14 +38,14 @@
     ("i" "Log Incoming" vc-log-incoming)
     ("o" "Log Outgoing" vc-log-outgoing)]])
 
-(define-transient-command matcha-vc-dir-branch
+(transient-define-prefix matcha-vc-dir-branch ()
   "Branch"
   [["Branch"
     ("c" "Create" vc-create-tag)
     ("l" "Print Log" vc-print-branch-log)
     ("s" "Retrieve" vc-retrieve-tag)]])
 
-(define-transient-command matcha-vc-dir
+(transient-define-prefix matcha-vc-dir ()
   "VC"
   [["Actions"
     ("c" "Next Action" vc-next-action)

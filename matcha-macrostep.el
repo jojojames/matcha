@@ -37,7 +37,7 @@
       (call-interactively #'matcha-macrostep)
     (macrostep-expand)))
 
-(define-transient-command matcha-macrostep
+(transient-define-prefix matcha-macrostep ()
   "Macrostep"
   [["Expand"
     ("e" "Expand" macrostep-expand)

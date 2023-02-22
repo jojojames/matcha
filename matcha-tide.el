@@ -33,14 +33,14 @@
 (require 'tide nil t)
 ;; (require 'ts-comint)
 
-(define-transient-command matcha-tide-refactor
+(transient-define-prefix matcha-tide-refactor ()
   "Refactor"
   [["Actions"
     ("n" "Rename" tide-rename-symbol)
     ("r" "Refactor" tide-refactor)
     ("f" "Fix" tide-fix)]])
 
-(define-transient-command matcha-tide-eval
+(transient-define-prefix matcha-tide-eval ()
   "Eval"
   [["Send"
     ("e" "Sexp" ts-send-last-sexp)
@@ -50,7 +50,7 @@
    ["Misc"
     ("l" "Load File and Go" ts-load-file-and-go)]])
 
-(define-transient-command matcha-tide-mode
+(transient-define-prefix matcha-tide-mode ()
   "Typescript"
   [["Actions"
     ("e" "Eval..." matcha-tide-eval)

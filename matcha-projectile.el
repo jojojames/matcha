@@ -38,7 +38,7 @@
         (file-name-directory (projectile-project-root))))
     "Not in Project"))
 
-(define-transient-command matcha-projectile-cache ()
+(transient-define-prefix matcha-projectile-cache ()
   "Cache"
   [["Cache"
     ("c" "Invalidate" projectile-invalidate-cache)
@@ -46,7 +46,7 @@
     ("k" "Cache Current File" projectile-cache-current-file)
     ("s" "Cleanup Known Projects" projectile-cleanup-known-projects)]])
 
-(define-transient-command matcha-projectile ()
+(transient-define-prefix matcha-projectile ()
   "Projectile"
   [["Find"
     ("f" "File" projectile-find-file)

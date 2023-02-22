@@ -30,7 +30,7 @@
 (require 'matcha-base)
 ;; (require 'omnisharp)
 
-(define-transient-command matcha-omnisharp-project
+(transient-define-prefix matcha-omnisharp-project ()
   "Project"
   [["Project"
     ("a" "Add To Solution" omnisharp-add-to-solution-current-file)
@@ -39,14 +39,14 @@
     ("R" "Remove From Solution Dired" omnisharp-remove-from-project-dired-selected-files)
     ("l" "Add Reference" omnisharp-add-reference)]])
 
-(define-transient-command matcha-omnisharp-refactor
+(transient-define-prefix matcha-omnisharp-refactor ()
   "Refactor"
   [["Refactor"
     ("m" "Rename" omnisharp-rename)
     ("i" "Rename Interactively" omnisharp-rename-interactively)
     ("r" "Code Action Refactoring" omnisharp-run-code-action-refactoring)]])
 
-(define-transient-command matcha-omnisharp-navigation
+(transient-define-prefix matcha-omnisharp-navigation ()
   "Navigation"
   [["Navigation"
     ("g" "Go To Definition" omnisharp-go-to-definition)
@@ -61,14 +61,14 @@
     ("F" "Solution Then File Member" omnisharp-navigate-to-solution-file-then-file-member)
     ("c" "Current File Member" omnisharp-navigate-to-current-file-member)]])
 
-(define-transient-command matcha-omnisharp-test
+(transient-define-prefix matcha-omnisharp-test ()
   "Test"
   [["Test"
     ("a" "All" omnisharp-unit-test-all)
     ("b" "Fixture" omnisharp-unit-test-fixture)
     ("t" "Single" omnisharp-unit-test-single)]])
 
-(define-transient-command matcha-omnisharp-help
+(transient-define-prefix matcha-omnisharp-help ()
   "Help"
   [["Help"
     ("t" "Current Type Information" omnisharp-current-type-information)
@@ -77,7 +77,7 @@
     ("r" "Reload Solution" omnisharp-reload-solution)
     ("S" "Stop Server" omnisharp-stop-server)]])
 
-(define-transient-command matcha-omnisharp-mode
+(transient-define-prefix matcha-omnisharp-mode ()
   "CSharp"
   [["Actions"
     ("m" "Build" omnisharp-build-in-emacs)

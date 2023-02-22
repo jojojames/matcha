@@ -33,7 +33,7 @@
 (declare-function 'lispy-eval "lispy")
 (declare-function 'lispy-eval-and-insert "lispy")
 
-(define-transient-command matcha-python-skeleton
+(transient-define-prefix matcha-python-skeleton ()
   "Skeleton"
   [["Template"
     ("i" "If" python-skeleton-if)
@@ -44,7 +44,7 @@
     ("d" "Def" python-skeleton-def)
     ("I" "Import" python-skeleton-import)]])
 
-(define-transient-command matcha-python-eval
+(transient-define-prefix matcha-python-eval ()
   "Eval"
   [["Send"
     ("r" "Region" python-shell-send-region)
@@ -58,7 +58,7 @@
     ("e" lispy-eval)
     ("i" lispy-eval-and-insert)]])
 
-(define-transient-command matcha-python-mode
+(transient-define-prefix matcha-python-mode ()
   "Python"
   [["Actions"
     ("z" "Switch to Shell" python-shell-switch-to-shell)

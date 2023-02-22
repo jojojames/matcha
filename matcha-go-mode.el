@@ -30,14 +30,14 @@
 (require 'matcha-base)
 (require 'go-mode nil t)
 
-(define-transient-command matcha-go-mode-eval
+(transient-define-prefix matcha-go-mode-eval ()
   "Eval"
   [["Eval"
     ("b" "Play Buffer" go-play-buffer)
     ("r" "Play Region" go-play-region)
     ("d" "Download Play" go-download-play)]])
 
-(define-transient-command matcha-go-mode-goto
+(transient-define-prefix matcha-go-mode-goto ()
   "Goto"
   [["Goto"
     ("a" "Arguments" go-goto-arguments)
@@ -48,13 +48,13 @@
     ("r" "Return Values" go-goto-return-values)
     ("m" "Method Receivers" go-goto-method-receivers)]])
 
-(define-transient-command matcha-go-doc
+(transient-define-prefix matcha-go-doc ()
   "Godoc"
   [["Actions"
     ("d" godoc)
     ("p" godoc-at-point)]])
 
-(define-transient-command matcha-go-mode
+(transient-define-prefix matcha-go-mode ()
   "Go"
   [
    :description (lambda () (format "Go: %s" (matcha-projectile-root)))
@@ -76,7 +76,7 @@
     ("ps" "Set Project" go-set-project)
     ("pR" "Reset GoPath" go-reset-gopath)]])
 
-(define-transient-command matcha-go-mode-guru
+(transient-define-prefix matcha-go-mode-guru ()
   "Guru"
   [[("d" "Describe" go-guru-describe)
     ("f" "Free Vars" go-guru-freevars)
@@ -91,7 +91,7 @@
     (">" "Callees" go-guru-callees)
     ("x" "Expand Region" go-guru-expand-region)]])
 
-(define-transient-command matcha-go-mode-godoctor
+(transient-define-prefix matcha-go-mode-godoctor ()
   "Doctor"
   ;; FIXME: It might be interesting to use an `transient' argument to toggle dry run.
   [["Doctor"

@@ -53,7 +53,7 @@ If `mix-command' is \"phoenix.server\", then the resulting `defun' will be:
 
 (matcha-define-alchemist-function "phoenix.server" "deps.get")
 
-(define-transient-command matcha-alchemist-iex
+(transient-define-prefix matcha-alchemist-iex ()
   "IEX"
   [["Run"
     ("I" "Run" alchemist-iex-run )
@@ -67,7 +67,7 @@ If `mix-command' is \"phoenix.server\", then the resulting `defun' will be:
     ("c" "Compile Buffer" alchemist-iex-compile-this-buffer)
     ("m" "Reload Module" alchemist-iex-reload-module)]])
 
-(define-transient-command matcha-alchemist-eval
+(transient-define-prefix matcha-alchemist-eval ()
   "Eval"
   [["Eval"
     ("l" "Line" alchemist-eval-current-line)
@@ -88,7 +88,7 @@ If `mix-command' is \"phoenix.server\", then the resulting `defun' will be:
    ["IEX"
     ("i" "IEX..." matcha-alchemist-iex)]])
 
-(define-transient-command matcha-alchemist-test
+(transient-define-prefix matcha-alchemist-test ()
   "IEX"
   [["Test"
     ("t" "Test" alchemist-mix-test)
@@ -102,7 +102,7 @@ If `mix-command' is \"phoenix.server\", then the resulting `defun' will be:
    ["Misc"
     ("r" "Rerun Test" alchemist-mix-rerun-last-test)]])
 
-(define-transient-command matcha-alchemist-mix
+(transient-define-prefix matcha-alchemist-mix ()
   "Mix"
   [["Mix"
     ("m" "Mix" alchemist-mix)
@@ -110,7 +110,7 @@ If `mix-command' is \"phoenix.server\", then the resulting `defun' will be:
     ("r" "Run" alchemist-mix-run)
     ("h" "Help" alchemist-mix-help)]])
 
-(define-transient-command matcha-alchemist-help
+(transient-define-prefix matcha-alchemist-help ()
   "Help"
   [["Help"
     ("?" "Help" alchemist-help)
@@ -121,7 +121,7 @@ If `mix-command' is \"phoenix.server\", then the resulting `defun' will be:
     ("m" "Mix Help" alchemist-mix-help)
     ("H" "History Help" alchemist-help-history)]])
 
-(define-transient-command matcha-alchemist-phoenix
+(transient-define-prefix matcha-alchemist-phoenix ()
   "Phoenix"
   [["Routes"
     ("R" "Routes" alchemist-phoenix-routes)
@@ -136,7 +136,7 @@ If `mix-command' is \"phoenix.server\", then the resulting `defun' will be:
     ("v" "Views" alchemist-phoenix-find-views)
     ("w" "Web" alchemist-phoenix-find-web)]])
 
-(define-transient-command matcha-alchemist-mode
+(transient-define-prefix matcha-alchemist-mode ()
   "Alchemist"
   [["Actions"
     ;; FIXME: Dynamically plug in the phoenix related `transients'.

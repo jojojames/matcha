@@ -168,7 +168,8 @@
 (defmacro matcha-create-project-actions (&rest actions)
   "Create a function to run a project action.
 
-ACTIONS has to be a key in `matcha-project-pkg-list' that's not :mode or :fallback."
+ACTIONS has to be a key in `matcha-project-pkg-list'
+that's not :mode or :fallback."
   `(progn
      ,@(cl-loop
         for action in actions
@@ -323,7 +324,7 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
     (forward-char column)
     result))
 
-(define-transient-command matcha-org-space
+(transient-define-prefix matcha-org-space ()
   "Org"
   [["Org"
     ("a" "Agenda" org-agenda)
@@ -346,7 +347,7 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
 
 (matcha-create-deferred-fn dired-sidebar-toggle-sidebar)
 
-(define-transient-command matcha-me-space ()
+(transient-define-prefix matcha-me-space ()
   "Space"
   [["Find"
     ("f" "File" matcha-me-find-file-dwim)
@@ -396,14 +397,14 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
   (let ((transient-show-popup -.2))
     (transient-setup 'matcha-me-space)))
 
-(define-transient-command matcha-me-profiler
+(transient-define-prefix matcha-me-profiler ()
   "Profiler"
   [["Profiler"
     ("s" "Start" profiler-start)
     ("r" "Report" profiler-report)
     ("x" "Stop" profiler-stop)]])
 
-(define-transient-command matcha-me-bookmark
+(transient-define-prefix matcha-me-bookmark ()
   "Bookmark"
   [["Bookmark"
     ("b" "Set" bookmark-set)
@@ -412,7 +413,7 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
     ("l" "List" bookmark-bmenu-list)
     ("s" "Save" bookmark-save)]])
 
-(define-transient-command matcha-me-system ()
+(transient-define-prefix matcha-me-system ()
   "System"
   [["System"
     ("f" "Finder" j-explorer-finder)
@@ -427,7 +428,7 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
     ("p" "Profiler..." matcha-me-profiler)
     ("L" "List Processes" list-processes)]])
 
-(define-transient-command matcha-me-search ()
+(transient-define-prefix matcha-me-search ()
   "Search"
   [["Buffer"
     ("s" "Swiper" matcha-me-swiper)
@@ -447,7 +448,7 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
    ["Other"
     ("a" "Rgrep" rgrep)]])
 
-(define-transient-command matcha-me-window ()
+(transient-define-prefix matcha-me-window ()
   "Window"
   [["Narrow/Widen"
     ("n" "Narrow" narrow-to-region)
@@ -482,7 +483,7 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
          ("|" split-window-right)
          ("\\" split-window-right)])
 
-(define-transient-command matcha-me-files ()
+(transient-define-prefix matcha-me-files ()
   "Files"
   [["Current File"
     ("y" "Copy Filename to Clipboard" matcha-copy-current-filename-to-clipboard)
@@ -492,7 +493,7 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
     ("O" "Open All from SavedFile" matcha-open-files-from-saved-files-list)
     ("R" "Revert/Refresh All" matcha-revert-all-file-buffers)]])
 
-(define-transient-command matcha-me-flymake ()
+(transient-define-prefix matcha-me-flymake ()
   "Flymake"
   [["Diagnostics"
     ("l" "Go to log buffer" flymake-switch-to-log-buffer)
