@@ -61,11 +61,11 @@
 (defun matcha-eglot-set-launcher ()
   "Set `transient' launcher for `eglot'."
   (matcha-set-refactor-command
-   :mode 'eglot-mode :command #'matcha-eglot-refactor :minor-p t)
+   :mode 'eglot--managed-mode :command #'matcha-eglot-refactor :minor-p t)
   (matcha-set-format-command
-   :mode 'eglot-mode :command #'matcha-eglot-format :minor-p t)
+   :mode 'eglot--managed-mode :command #'matcha-eglot-format :minor-p t)
   (matcha-set-mode-command
-   :mode 'eglot-mode :command #'matcha-eglot :minor-p t))
+   :mode 'eglot--managed-mode :command #'matcha-eglot :minor-p t))
 
 (provide 'matcha-eglot)
 ;;; matcha-eglot.el ends here
