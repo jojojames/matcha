@@ -30,6 +30,11 @@
 (eval-when-compile (require 'subr-x))
 (require 'transient)
 
+(defcustom matcha-dape-modes '(c-mode c++-mode objc-mode python-mode)
+  "List of modes to add `dape' to."
+  :type '(repeat symbol)
+  :group 'matcha)
+
 (defun matcha-projectile-root ()
   "Return path `matcha-projectile' can print in heading."
   (if (projectile-project-p)

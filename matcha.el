@@ -62,9 +62,10 @@
   :group 'matcha)
 
 (defcustom matcha-mode-list
-  '(alchemist
+  `(alchemist
     android-mode
     cc-mode ;; `java-mode'
+    (:modes (dape dape-mode cc-mode ,@matcha-dape-modes) :autoloads matcha-dape)
     dired
     eglot
     go-mode
