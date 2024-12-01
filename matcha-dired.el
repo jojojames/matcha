@@ -30,6 +30,9 @@
 (require 'matcha-base)
 (require 'dired)
 
+(matcha-create-0-prefixed-fn dired-copy-filename-as-kill)
+(matcha-create-universal-argument-prefixed-fn dired-copy-filename-as-kill)
+
 (defun matcha-dired-find-file ()
   "Like `find-file' but with `default-directory' set to the
 one specified by listing header."
@@ -43,7 +46,7 @@ one specified by listing header."
     ("f" "Find File" matcha-dired-find-file)
     ("d" "Delete File" dired-do-delete)
     ("r" "Rename File" dired-do-rename)
-    ("y" "Copy File" dired-do-copy)
+    ("c" "Copy File" dired-do-copy)
     ("+" "Create Directory" dired-create-directory)]
    ["Menu"
     ("m" "Mark..." matcha-dired-mark)
@@ -53,14 +56,18 @@ one specified by listing header."
    ["Misc"
     ("q" "Wdired" wdired-change-to-wdired-mode)
     ("Q" "Exit Wdired" wdired-finish-edit)
-    ("R" "Query Replace" dired-do-query-replace-regexp)]])
+    ("R" "Query Replace" dired-do-query-replace-regexp)]
+   ["Filesnames"
+    ("yy" "Copy Full Filename" matcha-zero-prefixed-dired-copy-filename-as-kill)
+    ("yY" "Copy Relative Filename" matcha-u-prefixed-dired-copy-filename-as-kill)
+    ("Y" "Copy Filename" dired-copy-filename-as-kill)]])
 
 (transient-define-prefix matcha-dired-operate ()
   "Operate"
   [["Actions"
     ("d" "Delete" dired-do-delete)
     ("r" "Rename" dired-do-rename)
-    ("y" "Copy" dired-do-copy)
+    ("c" "Copy" dired-do-copy)
     ("@" "Shell Command" dired-do-shell-command)
     ("!" "Async Shell Command" dired-do-async-shell-command)]
    ["Ownership"

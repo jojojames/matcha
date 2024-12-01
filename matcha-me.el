@@ -36,6 +36,9 @@
 ;;; Code:
 (require 'matcha-base)
 
+(matcha-create-deferred-fn dired-sidebar-toggle-sidebar)
+(matcha-create-deferred-interactive-fn toggle-window-dedicated)
+
 (defun matcha-me-find-init ()
   "Visit init file."
   (interactive)
@@ -338,14 +341,6 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
     ("i" "Insert" org-insert-link)]
    ["Wiki"
     ("f" "Find Note" matcha-me-org-find-file)]])
-
-(defmacro matcha-create-deferred-fn (fn)
-  "Return a new function symbol for FN."
-  `(defun ,(intern (format "matcha-%S" fn)) nil
-     (interactive)
-     (funcall ',fn)))
-
-(matcha-create-deferred-fn dired-sidebar-toggle-sidebar)
 
 (transient-define-prefix matcha-me-space ()
   "Space"

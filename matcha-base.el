@@ -175,6 +175,44 @@ Elisp Mode -> `matcha-elisp-mode/body'."
 
 (matcha-make debug eval format mode refactor test)
 
+(defmacro matcha-create-deferred-fn (fn)
+  "Return a new function symbol for FN."
+  `(defun ,(intern (format "matcha-%S" fn)) nil
+     (interactive)
+     (if (fboundp ',fn)
+         (funcall ',fn)
+       (message ,(format "Function: %S not bound!" `,fn)))))
+
+(defmacro matcha-create-deferred-interactive-fn (fn)
+  "Return a new function symbol for FN."
+  `(defun ,(intern (format "matcha-%S" fn)) nil
+     (interactive)
+     (if (fboundp ',fn)
+         (call-interactively ',fn)
+       (message ,(format "Function: %S not bound!" `,fn)))))
+
+(defmacro matcha-create-0-prefixed-fn (fn)
+  "Return a new function symbol for FN."
+  `(defun ,(intern (format "matcha-zero-prefixed-%S" fn)) nil
+     "Wrap FUNC and call it with PREFIX-ARG 0 as the prefix argument.
+FN is the function to call."
+     (interactive)
+     (let ((current-prefix-arg 0))
+       (if (fboundp ',fn)
+           (call-interactively ',fn)
+         (message ,(format "Function: %S not bound!" `,fn))))))
+
+(defmacro matcha-create-universal-argument-prefixed-fn (fn)
+  "Return a new function symbol for FN."
+  `(defun ,(intern (format "matcha-u-prefixed-%S" fn)) nil
+     "Wrap FUNC and call it with UNIVERSAL Argument as the prefix argument.
+FN is the function to call."
+     (interactive)
+     (let ((current-prefix-arg (universal-argument)))
+       (if (fboundp ',fn)
+           (call-interactively ',fn)
+         (message ,(format "Function: %S not bound!" `,fn))))))
+
 (provide 'matcha-base)
 ;;; matcha-base.el ends here
 ;; Local Variables:
