@@ -63,7 +63,6 @@
 
 (defun matcha-dape-set-launcher ()
   "Set `transient' launcher for `dape'."
-  (message "SET UP DAPE")
   (matcha-set-debug-command
    :mode 'dape-mode :command #'matcha-dape :minor-p t)
   (matcha-set-debug-command
