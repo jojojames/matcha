@@ -408,8 +408,8 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
     ("b" "Buffer" matcha-me-buffer)
     ("r" "Recent" matcha-me-recent)
     ("n" "Sidebar" matcha-dired-sidebar-toggle-sidebar)
-    ("SPC" "In Project" project-find-file)
-    ("F" "Files" matcha-me-files)]
+    ("SPC" "In Project" project-or-external-find-file)
+    ("F" "Manage Files" matcha-me-files)]
    ["Manage"
     ("w" "Window..." matcha-me-window)
     ("g" "Git..." matcha-magit)
