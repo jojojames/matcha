@@ -312,6 +312,65 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
   (let ((default-directory (concat org-directory "/")))
     (call-interactively 'find-file)))
 
+(defun matcha-open-terminal ()
+  "Open system terminal."
+  (interactive)
+  (cond
+   (MAC-P
+    (shell-command
+     ;; open -a Terminal doesn't allow us to open a particular directory unless
+     ;; We use --args AND -n, but -n opens an entirely new Terminal application
+     ;; instance on every call, not just a new window. Using the
+     ;; bundle here always opens the given directory in a new window.
+     (concat "open -b com.apple.terminal " default-directory) nil nil))
+   (WINDOWS-P
+    ;; https://stackoverflow.com/questions/13505113/how-to-open-the-native-cmd-exe-window-in-emacs
+    (let ((proc (start-process "cmd" nil "cmd.exe" "/C" "start" "cmd.exe")))
+      (set-process-query-on-exit-flag proc nil)))
+   (t
+    (message "Implement `matcha-open-terminal' for this OS!"))))
+
+(defun matcha-explorer-finder ()
+  "Opens up file explorer based on operating system."
+  (interactive)
+  (cond
+   ((and MAC-P
+         (fboundp #'reveal-in-osx-finder))
+    (reveal-in-osx-finder))
+   ((and WINDOWS-P
+         (fboundp #'explorer))
+    (explorer))
+   (LINUX-P
+    (if (executable-find "gio")
+        (progn
+          (shell-command (format "gio open %s" default-directory))
+          (message (format "Opened %s in file browser!" default-directory)))
+      (message "On platform Linux but executable gio not found!")))
+   (t
+    (message "Implement `explorer-finder' for this OS!"))))
+
+(defun matcha-open-shell ()
+  "Opens up a specific terminal depending on operating system."
+  (interactive)
+  (cond
+   ((or
+     BSD-P
+     MAC-P
+     LINUX-P)
+    (if (fboundp 'vterm)
+        (vterm)
+      (multi-term)))
+   (WINDOWS-P (eshell))
+   (t
+    (message "Implement `matcha-open-shell' for this OS!"))))
+
+(defun matcha-resize-window ()
+  "Resize window to fit contents."
+  (interactive)
+  (with-current-buffer (current-buffer)
+    (let ((fit-window-to-buffer-horizontally t))
+      (fit-window-to-buffer))))
+
 ;; Transients
 
 (defun matcha-org-sort-keep-selection ()
@@ -349,7 +408,7 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
     ("b" "Buffer" matcha-me-buffer)
     ("r" "Recent" matcha-me-recent)
     ("n" "Sidebar" matcha-dired-sidebar-toggle-sidebar)
-    ("SPC" "In Project" j-search)
+    ("SPC" "In Project" project-find-file)
     ("F" "Files" matcha-me-files)]
    ["Manage"
     ("w" "Window..." matcha-me-window)
@@ -411,16 +470,17 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
 (transient-define-prefix matcha-me-system ()
   "System"
   [["System"
-    ("f" "Finder" j-explorer-finder)
-    ("t" "Open Terminal" j-open-terminal)
+    ("f" "Finder" matcha-explorer-finder)
+    ("t" "Open Terminal" matcha-open-terminal)
     ("w" "Passwords" pass)
     ("W" "Copy Password" password-store-copy)
     ("b" "Bookmarks..." matcha-me-bookmark)]
    ["Shell"
-    ("y" "Terminal" j-open-shell)
+    ("y" "Terminal" matcha-open-shell)
     ("e" "Eshell" eshell)]
    ["Processes"
     ("p" "Profiler..." matcha-me-profiler)
+    ("P" "Proced" proced)
     ("L" "List Processes" list-processes)]])
 
 (transient-define-prefix matcha-me-search ()
@@ -465,7 +525,7 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
     ("o" "Other Frame" other-frame)]
    ["Window"
     ("=" "Balance" balance-windows)
-    ("r" "Resize Windows" j-resize-window)
+    ("r" "Resize Windows" matcha-resize-window)
     ("s" "Toggle Window Split" toggle-window-split)
     ("t" "Rotate Windows" rotate-windows)]
    ["Resize"
