@@ -68,17 +68,22 @@ With a prefix argument, show NLINES of context."
 (transient-define-prefix matcha-project ()
   "Project"
   [["Find"
+    ("SPC" "File or External" project-or-external-find-file)
     ("f" "File" project-find-file)
     ("F" "File or External" project-or-external-find-file)
-    ("r" "Recent File" project-recentf)]
+    ("r" "Recent File" project-recentf)
+    ("d" "Directory" project-find-dir)]
    ["Buffers"
     ("b" "Buffer" project-switch-to-buffer)
-    ("K" "Kill Project Buffers" project-kill-buffers)]
+    ("K" "Kill Project Buffers" project-kill-buffers)
+    ("l" "List Buffers" project-list-buffers)]
    ["Actions"
     ("R" "Replace Regexp" project-query-replace-regexp)
     ("m" "Compile Project" project-compile)
-    ("c" "Shell Command &" project-async-shell-command)
-    ("C" "Shell Command" project-shell-command)]]
+    ("c" "Async Shell Command" project-async-shell-command)
+    ("C" "Shell Command" project-shell-command)
+    ("x" "Execute Extended Command" project-execute-extended-command)
+    ("o" "Any Command" project-any-command)]]
   [["Modes"
     ("g" "Version Control" project-vc-dir)
     ("h" "Dired" project-dired)
