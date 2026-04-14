@@ -86,8 +86,8 @@
     (let ((magit-file (magit-file-at-point)))
       (if magit-file
           (let ((default-directory
-                  (file-name-directory
-                   (concat (magit-toplevel) magit-file))))
+                 (file-name-directory
+                  (concat (magit-toplevel) magit-file))))
             (call-interactively 'matcha-me-file))
         (call-interactively 'matcha-me-file))))
    (:default
