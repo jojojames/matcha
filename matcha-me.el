@@ -352,17 +352,11 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
 (defun matcha-open-shell ()
   "Opens up a specific terminal depending on operating system."
   (interactive)
-  (cond
-   ((or
-     BSD-P
-     MAC-P
-     LINUX-P)
-    (if (fboundp 'vterm)
-        (vterm)
-      (multi-term)))
-   (WINDOWS-P (eshell))
-   (t
-    (message "Implement `matcha-open-shell' for this OS!"))))
+  (if (memq system-type '(cygwin windows-nt ms-dos))
+      (eshell)
+    (cond ((fboundp 'ghostel) (ghostel))
+          ((fboundp 'vterm) (vterm))
+          (:default (multi-term)))))
 
 (defun matcha-resize-window ()
   "Resize window to fit contents."
