@@ -62,7 +62,8 @@
   :group 'matcha)
 
 (defcustom matcha-mode-list
-  `(alchemist
+  `(agent-shell
+    alchemist
     android-mode
     cc-mode ;; `java-mode'
     (:modes (dape dape-mode cc-mode ,@matcha-dape-modes) :autoloads matcha-dape)
