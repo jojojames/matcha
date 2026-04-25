@@ -159,7 +159,7 @@ If `mix-command' is \"phoenix.server\", then the resulting `defun' will be:
     ("cf" "File" alchemist-compile-file)]])
 
 (defun matcha-alchemist-set-launcher ()
-  "Set up `elixir-mode' with `transient'."
+  "Set up `alchelmist-mode' with `transient'."
   (matcha-set-mode-command
    :mode 'alchemist-mode :command #'matcha-alchemist-mode :minor-p t)
 
@@ -170,7 +170,7 @@ If `mix-command' is \"phoenix.server\", then the resulting `defun' will be:
    :mode alchemist-mode :command #'matcha-alchemist-test :minor-p t))
 
 (provide 'matcha-alchemist)
-;;; matcha-elixir-mode.el ends here
+;;; matcha-alchemist.el ends here
 ;; Local Variables:
 ;; byte-compile-warnings: (not free-vars unresolved noruntime cl-functions obsolete)
 ;; End:
