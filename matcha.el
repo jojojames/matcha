@@ -68,6 +68,7 @@
     cc-mode ;; `java-mode'
     (:modes (dape dape-mode cc-mode ,@matcha-dape-modes) :autoloads matcha-dape)
     dired
+    eca
     eglot
     go-mode
     (js js2-mode rjsx-mode)
