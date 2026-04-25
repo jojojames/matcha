@@ -80,6 +80,7 @@
     pass
     (:file project :autoloads matcha-project)
     (:file projectile :autoloads matcha-projectile)
+    proced
     python
     restclient
     rust-mode
