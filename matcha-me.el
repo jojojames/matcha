@@ -365,6 +365,17 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
     (let ((fit-window-to-buffer-horizontally t))
       (fit-window-to-buffer))))
 
+(defun matcha-start-agent ()
+  "Start up an agent."
+  (interactive)
+  (cond
+   ((fboundp 'agent-shell)
+    (agent-shell))
+   ((fboundp 'eca)
+    (eca))
+   (:default
+    (message "No."))))
+
 ;; Transients
 
 (defun matcha-org-sort-keep-selection ()
