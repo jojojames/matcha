@@ -486,6 +486,7 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
              (";" matcha-me-mx)
              (":" eval-expression)
              ("'" eval-expression)
+             ("<tab>" matcha-tab-bar)
              ("<backspace>" delete-window)])
 
 (defun matcha-me-space--wide ()
