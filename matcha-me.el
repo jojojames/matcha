@@ -406,55 +406,110 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
    ["Wiki"
     ("f" "Find Note" matcha-me-org-find-file)]])
 
-(transient-define-prefix matcha-me-space ()
-  "Space"
-  [["Find"
-    ("f" "File" matcha-me-find-file-dwim)
-    ("b" "Buffer" matcha-me-buffer)
-    ("r" "Recent" matcha-me-recent)
-    ("n" "Sidebar" matcha-dired-sidebar-toggle-sidebar)
-    ("SPC" "In Project" project-or-external-find-file)
-    ("F" "Manage Files" matcha-me-files)]
-   ["Manage"
-    ("w" "Window..." matcha-me-window)
-    ("g" "Git..." matcha-magit)
-    ("G" "Version Control" matcha-me-vc-dir)
-    ("p" "Project..." matcha-project)
-    ("P" "Projectile..." matcha-projectile)
-    ("y" "System..." matcha-me-system)]
-   ["Do"
-    ("s" "Search..." matcha-me-search)
-    ("S" "Save all Buffers" matcha-me-save-all-buffers)
-    ("R" "Refactor..." matcha-run-refactor-command)
-    ("v" "Edit Config" matcha-me-find-init)
-    ("o" "Org..." matcha-org-space)
-    ("F" "Flymake" matcha-me-flymake)]
-   ["Mode"
-    ("m" "Mode" matcha-run-mode-command)
-    ("d" "Debug" matcha-run-debug-command)
-    ("e" "Eval" matcha-run-eval-command)
-    ("t" "Test" matcha-run-test-command)
-    ("=" "Format" matcha-run-format-command)]]
-  [:hide (lambda () t)
-         ("/" matcha-me-swiper)
-         ("-" split-window-below)
-         ("|" split-window-right)
-         ("\\" split-window-right)
-         ("h" evil-window-left)
-         ("l" evil-window-right)
-         ("k" evil-window-up)
-         ("j" evil-window-down)
-         ("." evil-next-buffer)
-         ("," evil-prev-buffer)
-         (";" matcha-me-mx)
-         (":" eval-expression)
-         ("'" eval-expression)
-         ("<backspace>" delete-window)
-         ("DEL" delete-window) ;; For terminals.
-         ("x" kill-buffer)]
+(defvar matcha-me---find nil)
+(defvar matcha-me---manage nil)
+(defvar matcha-me---do nil)
+(defvar matcha-me---mode nil)
+(defvar matcha-me---windowing nil)
+(defvar matcha-me---extra nil)
+(defvar matcha-me---hidden-bindings nil)
+
+(setq matcha-me---find
+      ["Find"
+       ("f" "File" matcha-me-find-file-dwim)
+       ("b" "Buffer" matcha-me-buffer)
+       ("r" "Recent" matcha-me-recent)
+       ("n" "Sidebar" matcha-dired-sidebar-toggle-sidebar)
+       ("SPC" "In Project" project-or-external-find-file)])
+
+(setq matcha-me---manage
+      ["Manage"
+       ("g" "Git" matcha-magit)
+       ("G" "Version Control" matcha-me-vc-dir)
+       ("p" "Project" matcha-project)
+       ("P" "Projectile" matcha-projectile)])
+
+(setq matcha-me---do
+      ["Do"
+       ("s" "Search" matcha-me-search)
+       ("S" "Save all Buffers" matcha-me-save-all-buffers)
+       ("v" "Edit Config" matcha-me-find-init)
+       ("Y" "Flymake" matcha-me-flymake)])
+
+(setq matcha-me---mode
+      ["Mode"
+       ("m" "Mode" matcha-run-mode-command)
+       ("d" "Debug" matcha-run-debug-command)
+       ("e" "Eval" matcha-run-eval-command)
+       ("t" "Test" matcha-run-test-command)
+       ("=" "Format" matcha-run-format-command)
+       ("R" "Refactor" matcha-run-refactor-command)])
+
+(setq matcha-me---windowing
+      ["Windowing"
+       ("w" "Window" matcha-me-window)
+       ("DEL" "Delete Window" delete-window)
+       ("x" "Kill Buffer" kill-buffer)])
+
+(setq matcha-me---extra
+      ["Extra"
+       ("F" "Manage Files" matcha-me-files)
+       ("y" "System" matcha-me-system)
+       ("o" "Org" matcha-org-space)
+       ("i" "Agent" matcha-start-agent)])
+
+(setq matcha-me---hidden-bindings
+      [:hide (lambda () t)
+             ("/" matcha-me-swiper)
+             ("-" split-window-below)
+             ("|" split-window-right)
+             ("\\" split-window-right)
+             ("h" evil-window-left)
+             ("l" evil-window-right)
+             ("k" evil-window-up)
+             ("j" evil-window-down)
+             ("." evil-next-buffer)
+             ("," evil-prev-buffer)
+             (";" matcha-me-mx)
+             (":" eval-expression)
+             ("'" eval-expression)
+             ("<backspace>" delete-window)])
+
+(defun matcha-me-space--wide ()
+  (eval
+   `(transient-define-prefix matcha-me-space--wide--def ()
+      "Space"
+      :environment (lambda (fn)
+                     (let ((transient-show-menu -.2)) (funcall fn)))
+      [,matcha-me---find
+       ,matcha-me---manage
+       ,matcha-me---do
+       ,matcha-me---mode
+       ,matcha-me---windowing
+       ,matcha-me---extra]
+      ,matcha-me---hidden-bindings))
+  (call-interactively #'matcha-me-space--wide--def))
+
+(defun matcha-me-space--narrow ()
+  (eval
+   `(transient-define-prefix matcha-me-space--narrow--def ()
+      "Space"
+      :environment (lambda (fn)
+                     (let ((transient-show-menu -.2)) (funcall fn)))
+      [,matcha-me---find
+       ,matcha-me---manage
+       ,matcha-me---do]
+      [,matcha-me---mode
+       ,matcha-me---windowing
+       ,matcha-me---extra]
+      ,matcha-me---hidden-bindings))
+  (call-interactively #'matcha-me-space--narrow--def))
+
+(defun matcha-me-space ()
   (interactive)
-  (let ((transient-show-popup -.2))
-    (transient-setup 'matcha-me-space)))
+  (if (> (/ (float (frame-pixel-width)) (display-pixel-width)) 0.5)
+      (matcha-me-space--wide)
+    (matcha-me-space--narrow)))
 
 (transient-define-prefix matcha-me-profiler ()
   "Profiler"
