@@ -439,7 +439,8 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
        ("g" "Git" matcha-magit)
        ("G" "Version Control" matcha-me-vc-dir)
        ("p" "Project" matcha-project)
-       ("P" "Projectile" matcha-projectile)])
+       ("P" "Projectile" matcha-projectile)
+       ("TAB" "Tabs" matcha-tab-bar)])
 
 (setq matcha-me---do
       ["Do"
