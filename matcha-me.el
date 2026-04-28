@@ -227,7 +227,19 @@ that's not :mode or :fallback."
     (message (format "Copying %s to clipboard..." buffer-file-name))
     (kill-new buffer-file-name)))
 
+(defun matcha-copy-current-filename-base-to-clipboard ()
+  "Copy file name to system clipboard."
+  (interactive)
+  (if (not buffer-file-name)
+      (message "Not a file...")
+    (let ((file (format "%s.%s"
+                        (file-name-base buffer-file-name)
+                        (file-name-extension buffer-file-name))))
+      (message (format "Copying %s to clipboard..." file))
+      (kill-new file))))
+
 (defalias 'copy-current-filename-to-clipboard 'matcha-copy-current-filename-to-clipboard)
+(defalias 'copy-current-filename-base-to-clipboard 'matcha-copy-current-filename-base-to-clipboard)
 
 (defun matcha-revert-all-file-buffers ()
   "Refresh all open file buffers without confirmation.
@@ -601,6 +613,8 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
 (transient-define-prefix matcha-me-files ()
   "Files"
   [["Current File"
+    ("f" "Copy Filename (Base) to Clipboard"
+     matcha-copy-current-filename-base-to-clipboard)
     ("y" "Copy Filename to Clipboard" matcha-copy-current-filename-to-clipboard)
     ("r" "Rename Current File" matcha-rename-current-buffer-file)]
    ["All Files"
