@@ -165,7 +165,7 @@
      (git-grep . vc-git-grep))
     )
   "List of alists of common commands that different packages provide."
-  :type 'list
+  :type '(repeat sexp)
   :group 'matcha)
 
 (defmacro matcha-create-project-actions (&rest actions)
