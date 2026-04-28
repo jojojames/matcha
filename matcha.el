@@ -87,6 +87,7 @@
     slime
     smerge-mode
     swift-mode
+    (:file tab-bar :autoloads matcha-tab-bar)
     term
     tide
     vc-dir
