@@ -116,6 +116,9 @@ Requires smartparens because all movement is done using `sp-forward-symbol'."
   (matcha-set-mode-command
    :mode '(emacs-lisp-mode lisp-interaction-mode)
    :command 'matcha-emacs-lisp-mode)
+  (matcha-set-test-command
+   :mode '(emacs-lisp-mode)
+   :command 'ert)
   (matcha-set-refactor-command
    :mode '(emacs-lisp-mode lisp-interaction-mode)
    :command 'emr-show-refactor-menu))
