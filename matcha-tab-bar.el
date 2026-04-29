@@ -33,9 +33,9 @@
 (transient-define-prefix matcha-tab-bar ()
   "Tab Bar"
   [["New"
-    ("n" "Duplicate Tab" tab-duplicate)
-    ("N" "New Tab To" tab-new-to)
-    ("2" "New Tab" tab-new)]
+    ("N" "Duplicate Tab" tab-duplicate)
+    ("2" "New Tab To" tab-new-to)
+    ("n" "New Tab" tab-new)]
    ["Close"
     ("0" "Close Tab" tab-close)
     ("1" "Close Other Tabs" tab-close-other)
