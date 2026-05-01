@@ -33,7 +33,7 @@
 (transient-define-prefix matcha-tab-bar ()
   "Tab Bar"
   [["New"
-    ("N" "Duplicate Tab" tab-duplicate)
+    ("c" "Clone Tab" tab-duplicate)
     ("2" "New Tab To" tab-new-to)
     ("n" "New Tab" tab-new)]
    ["Close"
@@ -41,8 +41,8 @@
     ("1" "Close Other Tabs" tab-close-other)
     ("u" "Undo Close" tab-undo)]
    ["Navigate"
-    ("j" "Next Tab" tab-next)
-    ("k" "Previous Tab" tab-previous)
+    ("j" "Next Tab" tab-next :transient t)
+    ("k" "Previous Tab" tab-previous :transient t)
     ("RET" "Switch Tab" tab-switch)]]
   [["Move"
     ("m" "Move Tab" tab-move)
