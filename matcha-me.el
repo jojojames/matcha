@@ -366,7 +366,8 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
   (interactive)
   (if (memq system-type '(cygwin windows-nt ms-dos))
       (eshell)
-    (cond ((fboundp 'ghostel) (ghostel))
+    (cond ((fboundp 'ghostel)
+           (ghostel 'new))
           ((fboundp 'vterm) (vterm))
           (:default (multi-term)))))
 
