@@ -47,6 +47,13 @@
     ("R" "Rg" fzf-async-rg)
     ("A" "Ag" fzf-async-ag)
     ("u" "Ugrep" fzf-async-ugrep)]
+   ["Shell"
+    ("c" "Shell Command" fzf-async-shell-command)
+    ("C" "Project Shell Command" fzf-async-project-shell-command)]
+   ["Emacs"
+    ("b" "Buffer" fzf-async-buffer)
+    ("B" "Bookmark" fzf-async-bookmark)
+    ("e" "Recent File" fzf-async-recent-file)]
    ["Search"
     ("l" "Locate" fzf-async-locate)
     ("s" "Spotlight" fzf-async-spotlight)
@@ -54,7 +61,10 @@
     ("t" "Tramp" fzf-async-tramp)]
    ["Swiper"
     ("w" "Swiper" fzf-async-swiper)
-    ("W" "Swiper All" fzf-async-swiper-all)]])
+    ("W" "Swiper All" fzf-async-swiper-all)]
+   ["Hungry"
+    ("n" "Find Hungry" fzf-async-find-hungry)
+    ("N" "Swiper Hungry" fzf-async-swiper-hungry)]])
 
 (provide 'matcha-fzf-async)
 ;;; matcha-fzf-async.el ends here
