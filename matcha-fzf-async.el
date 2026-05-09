@@ -66,6 +66,7 @@
     ("l" "Locate" fzf-async-locate)
     ("s" "Spotlight" fzf-async-spotlight)
     ("S" "Spotlight Apps" fzf-async-spotlight-apps)
+    ("m" "Spotlight Audio" fzf-async-spotlight-audio)
     ("t" "Tramp" fzf-async-tramp)]
    ["Swiper"
     ("w" "Swiper" fzf-async-swiper)
