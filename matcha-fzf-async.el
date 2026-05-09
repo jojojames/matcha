@@ -30,6 +30,12 @@
 (require 'matcha-base)
 (require 'fzf-async nil t)
 
+(defun matcha-fzf-async-rg-current ()
+  "Call `fzf-async-rg' with current directory."
+  (interactive)
+  (let ((fzf-async-directory default-directory))
+    (fzf-async-rg)))
+
 (transient-define-prefix matcha-fzf-async ()
   "fzf-async"
   [["Find Files"

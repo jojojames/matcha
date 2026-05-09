@@ -110,6 +110,19 @@
 
 (defcustom matcha-project-pkg-list
   '(
+
+    ((mode . vertico-mode)
+     (file . find-file)
+     (recent . fzf-async-recent-file)
+     (buffer . switch-to-buffer)
+     (rg . fzf-async-rg)
+     (rg . matcha-fzf-async-rg-current)
+     (rg-project . fzf-async-rg)
+     (mx . execute-extended-command)
+     (swiper . fzf-async-swiper)
+     (swiper-all . fzf-async-swiper-hungry)
+     (git-grep . fzf-async-git-grep))
+
     ((mode . vertico-mode)
      (file . find-file)
      (recent . consult-recent-file)
