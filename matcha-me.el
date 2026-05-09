@@ -433,7 +433,7 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
        ("b" "Buffer" matcha-me-buffer)
        ("r" "Recent" matcha-me-recent)
        ("n" "Sidebar" matcha-dired-sidebar-toggle-sidebar)
-       ("SPC" "In Project" project-or-external-find-file)])
+       ("SPC" "FZF" matcha-fzf-async)])
 
 (setq matcha-me---manage
       ["Manage"
