@@ -30,6 +30,8 @@
 (require 'matcha-base)
 (require 'fzf-async nil t)
 
+(defvar fzf-async-directory)
+
 (defun matcha-fzf-async-rg-current ()
   "Call `fzf-async-rg' with current directory."
   (interactive)

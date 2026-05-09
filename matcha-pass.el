@@ -28,7 +28,7 @@
 
 ;;; Code:
 (require 'matcha-base)
-(require 'password-store nil t)
+(ignore-errors (require 'password-store))
 
 (transient-define-prefix matcha-pass-mode ()
   "Pass"
