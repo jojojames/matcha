@@ -48,17 +48,17 @@
 
 (defcustom matcha-use-launcher-p t
   "Whether or not to use transient launcher."
-  :type 'bool
+  :type 'boolean
   :group 'matcha)
 
 (defcustom matcha-me-p t
   "Whether to load personal `matcha'."
-  :type 'bool
+  :type 'boolean
   :group 'matcha)
 
 (defcustom matcha-use-evil-p t
   "Whether to load custom `evil' bindings for `matcha'."
-  :type 'bool
+  :type 'boolean
   :group 'matcha)
 
 (defcustom matcha-mode-list

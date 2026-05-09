@@ -1,3 +1,4 @@
+;; matcha-js.el --- Integration with Transient. -*- lexical-binding: t -*-
 (require 'matcha-base)
 (require 'matcha-mocha)
 (require 'matcha-prettier)

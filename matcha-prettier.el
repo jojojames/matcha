@@ -1,3 +1,4 @@
+;; matcha-prettier.el --- Integration with Transient. -*- lexical-binding: t -*-
 (require 'matcha-base)
 ;; (require 'prettier-js)
 

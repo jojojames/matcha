@@ -77,9 +77,9 @@
                (minor-mode-fn-alist
                 (intern (format "matcha-local-minor-%s-fns" cmd-name))))
           `((defvar ,major-mode-fn-alist nil
-              (format "Alist of major commands for %s." ,cmd-name))
+              ,(format "Alist of major commands for %s." cmd-name))
             (defvar ,minor-mode-fn-alist nil
-              (format "Alist of minor commands for %s." ,cmd-name))
+              ,(format "Alist of minor commands for %s." cmd-name))
 
             (cl-defun ,(intern (format "matcha-set-%s-command" cmd-name))
                 (&key
