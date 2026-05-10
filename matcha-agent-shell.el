@@ -30,10 +30,29 @@
 (require 'matcha-base)
 (require 'agent-shell nil t)
 
+(transient-define-prefix matcha-agent-shell-help-menu ()
+  "Transient menu for `agent-shell' commands."
+  [["Navigation"
+    ("<tab>" "Next item" agent-shell-next-item)
+    ("<backtab>" "Previous item" agent-shell-previous-item)]
+   ["Insert"
+    ("!" "Shell command" agent-shell-insert-shell-command-output)
+    ("@" "File" agent-shell-insert-file)
+    ("d" "Dwim" agent-shell-send-dwim)]
+   ["Session"
+    ("m" "Cycle modes" agent-shell-cycle-session-mode)
+    ("o" "Set mode" agent-shell-set-session-mode) ;; M -> o
+    ("v" "Set model" agent-shell-set-session-model)
+    ("C" "Interrupt" agent-shell-interrupt)]
+   ["Shell"
+    ("b" "Toggle" agent-shell-toggle)
+    ("n" "New shell" agent-shell-new-shell) ;; N -> n
+    ("?" "Canonical Menu" agent-shell-help-menu)]])
+
 (defun matcha-agent-shell-set-launcher ()
   "Set up `agent-shell-mode' with `transient'."
   (matcha-set-mode-command
-   :mode 'agent-shell-mode :command 'agent-shell-help-menu))
+   :mode 'agent-shell-mode :command 'matcha-agent-shell-help-menu))
 
 (provide 'matcha-agent-shell)
 ;;; matcha-agent-shell.el ends here
