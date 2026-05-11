@@ -38,6 +38,7 @@
   (let ((fzf-async-directory default-directory))
     (fzf-async-rg)))
 
+(defvar matcha-fzf-async---multi nil)
 (defvar matcha-fzf-async---find-files nil)
 (defvar matcha-fzf-async---git nil)
 (defvar matcha-fzf-async---grep nil)
@@ -46,6 +47,10 @@
 (defvar matcha-fzf-async---search nil)
 (defvar matcha-fzf-async---swiper nil)
 (defvar matcha-fzf-async---hungry nil)
+
+(setq matcha-fzf-async---multi
+      ["Multi"
+       ("SPC" "Find Any" fzf-async-find-any)])
 
 (setq matcha-fzf-async---find-files
       ["Find Files"
@@ -101,7 +106,8 @@
   (eval
    `(transient-define-prefix matcha-fzf-async--wide--def ()
       "fzf-async"
-      [,matcha-fzf-async---find-files
+      [,matcha-fzf-async---multi
+       ,matcha-fzf-async---find-files
        ,matcha-fzf-async---git
        ,matcha-fzf-async---grep
        ,matcha-fzf-async---shell
@@ -115,7 +121,8 @@
   (eval
    `(transient-define-prefix matcha-fzf-async--narrow--def ()
       "fzf-async"
-      [,matcha-fzf-async---find-files
+      [,matcha-fzf-async---multi
+       ,matcha-fzf-async---find-files
        ,matcha-fzf-async---grep
        ,matcha-fzf-async---emacs
        ,matcha-fzf-async---search]
