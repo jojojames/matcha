@@ -185,34 +185,30 @@
   "Create a function to run a project action.
 
 ACTIONS has to be a key in `matcha-project-pkg-list'
-that's not :mode or :fallback."
+that's not :mode or :fallback.
+
+Each generated function walks `matcha-project-pkg-list' and selects
+the first entry whose `mode' is currently enabled (i.e. the mode
+variable is bound and non-nil).  If no enabled mode matches, the
+`fallback' entry is used."
   `(progn
      ,@(cl-loop
         for action in actions
-        appending
-        (let ((last-func (intern (format "matcha-me-%S-last-used" action)))
-              (func-name (intern (format "matcha-me-%S" action))))
-          `((defvar ,last-func nil)
-            (defun ,func-name ()
-              ,(format "Run %S in editor." action)
-              (interactive)
-              (catch 'done
-                (dolist (pkg matcha-project-pkg-list)
-                  (if (alist-get 'fallback pkg)
-                      (let ((fn (alist-get ',action pkg)))
-                        (when fn
-                          (call-interactively fn)
-                          (throw 'done fn)))
-                    (let ((mode (alist-get 'mode pkg))
-                          (fn (alist-get ',action pkg)))
-                      (when (boundp mode)
-                        (when (and ,last-func
-                                   (not (eq fn ,last-func)))
-                          (apply mode '(1)))
-                        (setq ,last-func fn)
-                        (when fn
-                          (call-interactively fn)
-                          (throw 'done fn)))))))))))))
+        collect
+        (let ((func-name (intern (format "matcha-me-%S" action))))
+          `(defun ,func-name ()
+             ,(format "Run %S in editor." action)
+             (interactive)
+             (catch 'done
+               (dolist (pkg matcha-project-pkg-list)
+                 (let ((mode (alist-get 'mode pkg))
+                       (fallback (alist-get 'fallback pkg))
+                       (fn (alist-get ',action pkg)))
+                   (when (and fn
+                              (or fallback
+                                  (and (boundp mode) (symbol-value mode))))
+                     (call-interactively fn)
+                     (throw 'done fn))))))))))
 
 (matcha-create-project-actions
  file
