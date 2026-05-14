@@ -46,11 +46,13 @@
 (defvar matcha-fzf-async---emacs nil)
 (defvar matcha-fzf-async---search nil)
 (defvar matcha-fzf-async---swiper nil)
+(defvar matcha-fzf-async---imenu nil)
 (defvar matcha-fzf-async---hungry nil)
 
 (setq matcha-fzf-async---multi
       ["Multi"
-       ("SPC" "Find Any" fzf-async-find-any)])
+       ("SPC" "Find Any" fzf-async-find-any)
+       ("/" "Find Some" fzf-async-find-some)])
 
 (setq matcha-fzf-async---find-files
       ["Find Files"
@@ -76,13 +78,16 @@
 (setq matcha-fzf-async---shell
       ["Shell"
        ("c" "Shell Command" fzf-async-shell-command)
-       ("C" "Project Shell Command" fzf-async-project-shell-command)])
+       ("C" "Project Shell Command" fzf-async-project-shell-command)
+       ("H" "Shell History" fzf-async-shell-history)])
 
 (setq matcha-fzf-async---emacs
       ["Emacs"
        ("b" "Buffer" fzf-async-buffer)
        ("B" "Bookmark" fzf-async-bookmark)
-       ("e" "Recent File" fzf-async-recent-file)])
+       ("e" "Recent File" fzf-async-recent-file)
+       ("y" "Yank Pop" fzf-async-yank-pop)
+       ("T" "Theme" fzf-async-theme)])
 
 (setq matcha-fzf-async---search
       ["Search"
@@ -96,6 +101,12 @@
       ["Swiper"
        ("w" "Swiper" fzf-async-swiper)
        ("W" "Swiper All" fzf-async-swiper-all)])
+
+(setq matcha-fzf-async---imenu
+      ["Imenu"
+       ("i" "Imenu" fzf-async-imenu)
+       ("I" "Imenu All" fzf-async-imenu-all)
+       ("o" "Imenu Others" fzf-async-imenu-all-but-current)])
 
 (setq matcha-fzf-async---hungry
       ["Hungry"
@@ -114,6 +125,7 @@
        ,matcha-fzf-async---emacs
        ,matcha-fzf-async---search
        ,matcha-fzf-async---swiper
+       ,matcha-fzf-async---imenu
        ,matcha-fzf-async---hungry]))
   (call-interactively #'matcha-fzf-async--wide--def))
 
@@ -129,6 +141,7 @@
       [,matcha-fzf-async---git
        ,matcha-fzf-async---shell
        ,matcha-fzf-async---swiper
+       ,matcha-fzf-async---imenu
        ,matcha-fzf-async---hungry]))
   (call-interactively #'matcha-fzf-async--narrow--def))
 

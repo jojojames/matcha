@@ -39,6 +39,7 @@
 (matcha-create-deferred-fn dired-sidebar-toggle-sidebar)
 (matcha-create-deferred-interactive-fn toggle-window-dedicated)
 (matcha-create-deferred-fn fzf-async-find-any)
+(matcha-create-deferred-fn fzf-async-find-some)
 
 (defun matcha-me-find-init ()
   "Visit init file."
@@ -479,7 +480,7 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
 
 (setq matcha-me---find
       ["Find"
-       ("/" "Anything" matcha-fzf-async-find-any)
+       ("/" "Some" matcha-fzf-async-find-some)
        ("f" "File" matcha-me-find-file-dwim)
        ("b" "Buffer" matcha-me-buffer)
        ("r" "Recent" matcha-me-recent)
