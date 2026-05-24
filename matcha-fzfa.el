@@ -135,8 +135,8 @@
        ,matcha-fzfa---git
        ,matcha-fzfa---grep
        ,matcha-fzfa---shell
-       ,matcha-fzfa---emacs
-       ,matcha-fzfa---search
+       ,matcha-fzfa---emacs]
+      [,matcha-fzfa---search
        ,matcha-fzfa---swiper
        ,matcha-fzfa---imenu
        ,matcha-fzfa---hungry
@@ -151,12 +151,12 @@
       [,matcha-fzfa---multi
        ,matcha-fzfa---find-files
        ,matcha-fzfa---grep
-       ,matcha-fzfa---emacs
-       ,matcha-fzfa---search
-       ,matcha-fzfa---passwords]
-      [,matcha-fzfa---git
-       ,matcha-fzfa---shell
-       ,matcha-fzfa---swiper
+       ,matcha-fzfa---emacs]
+      [,matcha-fzfa---search
+       ,matcha-fzfa---passwords
+       ,matcha-fzfa---git
+       ,matcha-fzfa---shell]
+      [,matcha-fzfa---swiper
        ,matcha-fzfa---imenu
        ,matcha-fzfa---hungry
        ,matcha-fzfa---chrome]))
