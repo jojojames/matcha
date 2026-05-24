@@ -48,6 +48,8 @@
 (defvar matcha-fzf-async---swiper nil)
 (defvar matcha-fzf-async---imenu nil)
 (defvar matcha-fzf-async---hungry nil)
+(defvar matcha-fzf-async---chrome nil)
+(defvar matcha-fzf-async---passwords nil)
 
 (setq matcha-fzf-async---multi
       ["Multi"
@@ -113,6 +115,17 @@
        ("n" "Find Hungry" fzf-async-find-hungry)
        ("N" "Swiper Hungry" fzf-async-swiper-hungry)])
 
+(setq matcha-fzf-async---chrome
+      ["Chrome"
+       ("k" "Bookmark" fzf-async-chrome-bookmarks)
+       ("K" "Edit Bookmark" fzf-async-chrome-edit)])
+
+(setq matcha-fzf-async---passwords
+      ["Passwords"
+       ("p" "Pass" fzf-async-pass)
+       ("P" "Chrome Pass" fzf-async-chrome-pass)
+       ("M-p" "All Passwords" fzf-async-passwords)])
+
 (defun matcha-fzf-async--wide ()
   (eval
    `(transient-define-prefix matcha-fzf-async--wide--def ()
@@ -126,7 +139,9 @@
        ,matcha-fzf-async---search
        ,matcha-fzf-async---swiper
        ,matcha-fzf-async---imenu
-       ,matcha-fzf-async---hungry]))
+       ,matcha-fzf-async---hungry
+       ,matcha-fzf-async---chrome
+       ,matcha-fzf-async---passwords]))
   (call-interactively #'matcha-fzf-async--wide--def))
 
 (defun matcha-fzf-async--narrow ()
@@ -137,12 +152,14 @@
        ,matcha-fzf-async---find-files
        ,matcha-fzf-async---grep
        ,matcha-fzf-async---emacs
-       ,matcha-fzf-async---search]
+       ,matcha-fzf-async---search
+       ,matcha-fzf-async---passwords]
       [,matcha-fzf-async---git
        ,matcha-fzf-async---shell
        ,matcha-fzf-async---swiper
        ,matcha-fzf-async---imenu
-       ,matcha-fzf-async---hungry]))
+       ,matcha-fzf-async---hungry
+       ,matcha-fzf-async---chrome]))
   (call-interactively #'matcha-fzf-async--narrow--def))
 
 (defun matcha-fzf-async ()
