@@ -112,8 +112,8 @@
 
 (setq matcha-fzfa---hungry
       ["Hungry"
-       ("n" "Find Hungry" fzfa-find-hungry)
-       ("N" "Swiper Hungry" fzfa-swiper-hungry)])
+       ("n" "Find Hungry" fzfa-hungry-find)
+       ("N" "Swiper Hungry" fzfa-hungry-swiper)])
 
 (setq matcha-fzfa---chrome
       ["Chrome"

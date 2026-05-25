@@ -121,7 +121,7 @@
      (rg-project . fzfa-rg)
      (mx . execute-extended-command)
      (swiper . fzfa-swiper)
-     (swiper-all . fzfa-swiper-hungry)
+     (swiper-all . fzfa-hungry-swiper)
      (git-grep . fzfa-git-grep))
 
     ((mode . vertico-mode)
@@ -176,7 +176,7 @@
      (rg-project . fzfa-rg)
      (mx . execute-extended-command)
      (swiper . fzfa-swiper)
-     (swiper-all . fzfa-swiper-hungry)
+     (swiper-all . fzfa-hungry-swiper)
      (git-grep . fzfa-git-grep))
 
     ((mode . fido-mode)
@@ -187,7 +187,7 @@
      (rg-project . fzfa-rg)
      (mx . execute-extended-command)
      (swiper . fzfa-swiper)
-     (swiper-all . fzfa-swiper-hungry)
+     (swiper-all . fzfa-hungry-swiper)
      (git-grep . fzfa-git-grep))
 
     ((mode . icomplete-vertical-mode)
@@ -198,7 +198,7 @@
      (rg-project . fzfa-rg)
      (mx . execute-extended-command)
      (swiper . fzfa-swiper)
-     (swiper-all . fzfa-swiper-hungry)
+     (swiper-all . fzfa-hungry-swiper)
      (git-grep . fzfa-git-grep))
 
     ((mode . mct-minibuffer-mode)
@@ -209,7 +209,7 @@
      (rg-project . fzfa-rg)
      (mx . execute-extended-command)
      (swiper . fzfa-swiper)
-     (swiper-all . fzfa-swiper-hungry)
+     (swiper-all . fzfa-hungry-swiper)
      (git-grep . fzfa-git-grep))
 
     ((fallback . t)
