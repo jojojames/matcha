@@ -80,7 +80,7 @@
 (setq matcha-fzfa---shell
       ["Shell"
        ("c" "Shell Command" fzfa-shell-command)
-       ("C" "Project Shell Command" fzfa-project-shell-command)
+       ("C" "Project Shell Command" fzfa-shell-project-command)
        ("H" "Shell History" fzfa-shell-history)])
 
 (setq matcha-fzfa---emacs
