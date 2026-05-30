@@ -47,14 +47,15 @@
 (defvar matcha-fzfa---search nil)
 (defvar matcha-fzfa---swiper nil)
 (defvar matcha-fzfa---imenu nil)
-(defvar matcha-fzfa---hungry nil)
 (defvar matcha-fzfa---chrome nil)
 (defvar matcha-fzfa---passwords nil)
+(defvar matcha-fzfa---flymake nil)
 
 (setq matcha-fzfa---multi
       ["Multi"
        ("SPC" "Find Any" fzfa-find-any)
-       ("/" "Find Some" fzfa-find-some)])
+       ("/" "Find Some" fzfa-find-some)
+       ("v" "Evil Any" fzfa-evil-any)])
 
 (setq matcha-fzfa---find-files
       ["Find Files"
@@ -62,7 +63,8 @@
        ("d" "Fd" fzfa-fd)
        ("r" "Rg Files" fzfa-rg-files)
        ("a" "Ag Files" fzfa-ag-files)
-       ("h" "Hg Files" fzfa-hg-files)])
+       ("h" "Hg Files" fzfa-hg-files)
+       ("n" "Hungry Find" fzfa-hungry-find)])
 
 (setq matcha-fzfa---git
       ["Git"
@@ -89,7 +91,9 @@
        ("B" "Bookmark" fzfa-bookmark)
        ("e" "Recent File" fzfa-recent-file)
        ("y" "Yank Pop" fzfa-yank-pop)
-       ("T" "Theme" fzfa-theme)])
+       ("T" "Theme" fzfa-theme)
+       ("x" "M-x" fzfa-M-x)
+       ("X" "M-x (mode)" fzfa-M-x-for-buffer)])
 
 (setq matcha-fzfa---search
       ["Search"
@@ -102,18 +106,14 @@
 (setq matcha-fzfa---swiper
       ["Swiper"
        ("w" "Swiper" fzfa-swiper)
-       ("W" "Swiper All" fzfa-swiper-all)])
+       ("W" "Swiper All" fzfa-swiper-all)
+       ("N" "Hungry Swiper" fzfa-hungry-swiper)])
 
 (setq matcha-fzfa---imenu
       ["Imenu"
        ("i" "Imenu" fzfa-imenu)
        ("I" "Imenu All" fzfa-imenu-all)
        ("o" "Imenu Others" fzfa-imenu-all-but-current)])
-
-(setq matcha-fzfa---hungry
-      ["Hungry"
-       ("n" "Find Hungry" fzfa-hungry-find)
-       ("N" "Swiper Hungry" fzfa-hungry-swiper)])
 
 (setq matcha-fzfa---chrome
       ["Chrome"
@@ -125,6 +125,11 @@
        ("p" "Pass" fzfa-pass)
        ("P" "Chrome Pass" fzfa-chrome-pass)
        ("M-p" "All Passwords" fzfa-passwords)])
+
+(setq matcha-fzfa---flymake
+      ["Flymake"
+       ("z" "Diagnostics" fzfa-flymake)
+       ("Z" "Diagnostics (Project)" fzfa-flymake-project)])
 
 (defun matcha-fzfa--wide ()
   (eval
@@ -139,9 +144,9 @@
       [,matcha-fzfa---search
        ,matcha-fzfa---swiper
        ,matcha-fzfa---imenu
-       ,matcha-fzfa---hungry
        ,matcha-fzfa---chrome
-       ,matcha-fzfa---passwords]))
+       ,matcha-fzfa---passwords
+       ,matcha-fzfa---flymake]))
   (call-interactively #'matcha-fzfa--wide--def))
 
 (defun matcha-fzfa--narrow ()
@@ -158,8 +163,8 @@
        ,matcha-fzfa---shell]
       [,matcha-fzfa---swiper
        ,matcha-fzfa---imenu
-       ,matcha-fzfa---hungry
-       ,matcha-fzfa---chrome]))
+       ,matcha-fzfa---chrome
+       ,matcha-fzfa---flymake]))
   (call-interactively #'matcha-fzfa--narrow--def))
 
 (defun matcha-fzfa ()
