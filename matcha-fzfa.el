@@ -69,7 +69,8 @@
 (setq matcha-fzfa---git
       ["Git"
        ("g" "Git Ls-Files" fzfa-git-ls-files)
-       ("G" "Git Grep" fzfa-git-grep)])
+       ("G" "Git Grep" fzfa-git-grep)
+       ("L" "Git Log Grep" fzfa-git-log-grep)])
 
 (setq matcha-fzfa---grep
       ["Grep"
@@ -83,7 +84,8 @@
       ["Shell"
        ("c" "Shell Command" fzfa-shell-command)
        ("C" "Project Shell Command" fzfa-shell-project-command)
-       ("H" "Shell History" fzfa-shell-history)])
+       ("H" "Shell History" fzfa-shell-history)
+       ("M" "Make" fzfa-make)])
 
 (setq matcha-fzfa---emacs
       ["Emacs"
