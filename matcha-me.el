@@ -480,11 +480,11 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
 
 (setq matcha-me---find
       ["Find"
+       ("z" "Any" matcha-fzfa-find-any)
        ("/" "Some" matcha-fzfa-find-some)
        ("f" "File" matcha-me-find-file-dwim)
        ("b" "Buffer" matcha-me-buffer)
        ("r" "Recent" matcha-me-recent)
-       ("n" "Sidebar" matcha-dired-sidebar-toggle-sidebar)
        ("SPC" "FZF" matcha-fzfa)])
 
 (setq matcha-me---manage
@@ -519,6 +519,7 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
 
 (setq matcha-me---extra
       ["Extra"
+       ("n" "Sidebar" matcha-dired-sidebar-toggle-sidebar)
        ("F" "Manage Files" matcha-me-files)
        ("y" "System" matcha-me-system)
        ("o" "Org" matcha-org-space)
