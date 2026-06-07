@@ -124,7 +124,7 @@
      (git-grep . fzfa-git-grep))
 
     ((mode . ivy-mode)
-     (file . fzfa-smart-find)
+     (file . find-file)
      (recent . fzfa-recent-file)
      (buffer . fzfa-buffer)
      (rg . matcha-fzfa-rg-current)
@@ -135,7 +135,7 @@
      (git-grep . fzfa-git-grep))
 
     ((mode . helm-mode)
-     (file . fzfa-smart-find)
+     (file . find-file)
      (recent . fzfa-recent-file)
      (buffer . fzfa-buffer)
      (rg . matcha-fzfa-rg-current)
@@ -212,7 +212,7 @@
      (git-grep . fzfa-git-grep))
 
     ((mode . icomplete-vertical-mode)
-     (file . fzfa-smart-find)
+     (file . find-file)
      (recent . fzfa-recent-file)
      (buffer . fzfa-buffer)
      (rg . matcha-fzfa-rg-current)
