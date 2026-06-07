@@ -210,7 +210,7 @@ which dispatches via `fzfa-vc-*' (uses `vc-responsible-backend')."
        ("h" "In HEAD"          matcha-fzfa--vcs-in-head)
        ("G" "Git Grep"         fzfa-git-grep)
        ("L" "Git Log Grep"     fzfa-git-log-grep)
-       ("v" "VCS Any"          fzfa-vcs-any)])
+       ("v" "VCS Any"          fzfa-vc-any)])
 
 (setq matcha-fzfa---vcs-options
       ["Options"
@@ -344,7 +344,7 @@ which dispatches via `fzfa-vc-*' (uses `vc-responsible-backend')."
       ["Multi"
        ("SPC" "Find Any"      fzfa-find-any)
        ("/"   "Find Some"     fzfa-find-some)
-       ("v"   "VCS Any"       fzfa-vcs-any)
+       ("v"   "VCS Any"       fzfa-vc-any)
        ("e"   "Evil Any"      fzfa-evil-any)
        ("E"   "Evil »"        matcha-fzfa-evil)
        ("M-p" "All Passwords" fzfa-passwords)])
