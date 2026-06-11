@@ -135,7 +135,7 @@
      (git-grep . fzfa-git-grep))
 
     ((mode . helm-mode)
-     (file . find-file)
+     (file . helm-find-files)
      (recent . fzfa-recent-file)
      (buffer . fzfa-buffer)
      (rg . matcha-fzfa-rg-current)
