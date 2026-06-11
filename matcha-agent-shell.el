@@ -34,16 +34,24 @@
   "Transient menu for `agent-shell' commands."
   [["Navigation"
     ("<tab>" "Next item" agent-shell-next-item)
-    ("<backtab>" "Previous item" agent-shell-previous-item)]
+    ("<backtab>" "Previous item" agent-shell-previous-item)
+    ("z" "Toggle Fragment" agent-shell-ui-toggle-fragment)
+    ("Z" "Toggle All" agent-shell-ui-toggle-all-fragments)]
    ["Insert"
     ("!" "Shell command" agent-shell-insert-shell-command-output)
-    ("@" "File" agent-shell-insert-file)
-    ("d" "Dwim" agent-shell-send-dwim)]
-   ["Session"
+    ("@" "Send File" agent-shell-insert-file)
+    ("d" "Send Dwim" agent-shell-send-dwim)
+    ("t" "Send to" agent-shell-send-region-to)]
+   ["Set"
     ("m" "Cycle modes" agent-shell-cycle-session-mode)
     ("o" "Set mode" agent-shell-set-session-mode) ;; M -> o
-    ("v" "Set model" agent-shell-set-session-model)
-    ("C" "Interrupt" agent-shell-interrupt)]
+    ("v" "Set model" agent-shell-set-session-model)]
+   ["Session"
+    ("u" "Resume Session" agent-shell-resume-session)
+    ("C" "Interrupt" agent-shell-interrupt)
+    ("f" "Fork" agent-shell-fork)
+    ("R" "Restart (drop history)" agent-shell-restart)
+    ("r" "Reload (keep history)" agent-shell-reload)]
    ["Shell"
     ("b" "Toggle" agent-shell-toggle)
     ("n" "New shell" agent-shell-new-shell) ;; N -> n
