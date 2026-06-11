@@ -147,6 +147,8 @@ which dispatches via `fzfa-vc-*' (uses `vc-responsible-backend')."
 (defvar matcha-fzfa---spotify nil)
 (defvar matcha-fzfa---evil nil)
 (defvar matcha-fzfa---chrome nil)
+(defvar matcha-fzfa---firefox nil)
+(defvar matcha-fzfa---safari nil)
 (defvar matcha-fzfa---passwords-pass nil)
 (defvar matcha-fzfa---passwords-chrome nil)
 (defvar matcha-fzfa---passwords-multi nil)
@@ -257,9 +259,10 @@ which dispatches via `fzfa-vc-*' (uses `vc-responsible-backend')."
 
 (setq matcha-fzfa---code-imenu
       ["Imenu"
-       ("i" "Imenu"        fzfa-imenu)
-       ("I" "Imenu (All)"  fzfa-imenu-all)
-       ("o" "Imenu Others" fzfa-imenu-all-but-current)])
+       ("i" "Imenu"         fzfa-imenu)
+       ("I" "Imenu (All)"   fzfa-imenu-all)
+       ("o" "Imenu Others"  fzfa-imenu-all-but-current)
+       ("e" "Eglot Symbols" fzfa-eglot-symbols)])
 
 (setq matcha-fzfa---code-misc
       ["Outline / Errors / Info"
@@ -313,10 +316,28 @@ which dispatches via `fzfa-vc-*' (uses `vc-responsible-backend')."
 
 (setq matcha-fzfa---chrome
       ["Chrome"
-       ("b" "Bookmarks"     fzfa-chrome-bookmarks)
-       ("e" "Edit Bookmark" fzfa-chrome-edit)
-       ("c" "Copy URL"      fzfa-chrome-copy-url)
-       ("R" "Refresh"       fzfa-chrome-refresh)])
+       ("b" "Bookmarks"          fzfa-chrome-bookmarks)
+       ("e" "Edit Bookmark"      fzfa-chrome-edit)
+       ("c" "Copy Bookmark URL"  fzfa-chrome-bookmark-copy-url)
+       ("h" "History"            fzfa-chrome-history)
+       ("H" "Copy History URL"   fzfa-chrome-history-copy-url)
+       ("R" "Refresh"            fzfa-chrome-refresh)])
+
+(setq matcha-fzfa---firefox
+      ["Firefox"
+       ("b" "Bookmarks"          fzfa-firefox-bookmarks)
+       ("c" "Copy Bookmark URL"  fzfa-firefox-bookmark-copy-url)
+       ("h" "History"            fzfa-firefox-history)
+       ("H" "Copy History URL"   fzfa-firefox-history-copy-url)
+       ("R" "Refresh"            fzfa-firefox-refresh)])
+
+(setq matcha-fzfa---safari
+      ["Safari"
+       ("b" "Bookmarks"          fzfa-safari-bookmarks)
+       ("c" "Copy Bookmark URL"  fzfa-safari-bookmark-copy-url)
+       ("h" "History"            fzfa-safari-history)
+       ("H" "Copy History URL"   fzfa-safari-history-copy-url)
+       ("R" "Refresh"            fzfa-safari-refresh)])
 
 (setq matcha-fzfa---passwords-pass
       ["Pass"
@@ -383,7 +404,8 @@ which dispatches via `fzfa-vc-*' (uses `vc-responsible-backend')."
       ["Swiper"
        ("w" "Swiper"        fzfa-swiper)
        ("W" "Swiper All"    fzfa-swiper-all)
-       ("n" "Hungry Swiper" fzfa-hungry-swiper)])
+       ("n" "Hungry Swiper" fzfa-hungry-swiper)
+       ("R" "Regexp"        fzfa-regexp)])
 
 (setq matcha-fzfa---code
       ["Code"
@@ -392,8 +414,10 @@ which dispatches via `fzfa-vc-*' (uses `vc-responsible-backend')."
 
 (setq matcha-fzfa---web
       ["Web"
-       ("C" "Chrome »"    matcha-fzfa-chrome)
-       ("P" "Passwords »" matcha-fzfa-passwords)])
+       ("C"   "Chrome »"    matcha-fzfa-chrome)
+       ("M-f" "Firefox »"   matcha-fzfa-firefox)
+       ("M-s" "Safari »"    matcha-fzfa-safari)
+       ("P"   "Passwords »" matcha-fzfa-passwords)])
 
 (setq matcha-fzfa---flymake
       ["Flymake / Info"
@@ -526,6 +550,22 @@ which dispatches via `fzfa-vc-*' (uses `vc-responsible-backend')."
       "Chrome."
       [,matcha-fzfa---chrome]))
   (call-interactively #'matcha-fzfa-chrome--def))
+
+(defun matcha-fzfa-firefox ()
+  (interactive)
+  (eval
+   `(transient-define-prefix matcha-fzfa-firefox--def ()
+      "Firefox."
+      [,matcha-fzfa---firefox]))
+  (call-interactively #'matcha-fzfa-firefox--def))
+
+(defun matcha-fzfa-safari ()
+  (interactive)
+  (eval
+   `(transient-define-prefix matcha-fzfa-safari--def ()
+      "Safari."
+      [,matcha-fzfa---safari]))
+  (call-interactively #'matcha-fzfa-safari--def))
 
 (defun matcha-fzfa-passwords ()
   (interactive)
