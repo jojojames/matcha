@@ -368,6 +368,33 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
           files)
     (message "Finish opening saved files.")))
 
+(defun matcha-frame-snap-left (&optional frame)
+  "Resize FRAME to occupy the left half of its monitor's workarea."
+  (interactive)
+  (let* ((frame (or frame (selected-frame)))
+         (wa (alist-get 'workarea (frame-monitor-attributes frame)))
+         (x (nth 0 wa))
+         (y (nth 1 wa))
+         (w (nth 2 wa))
+         (h (nth 3 wa)))
+    (set-frame-parameter frame 'fullscreen nil)
+    (set-frame-position frame x y)
+    (set-frame-size frame (/ w 2) h t)))
+
+(defun matcha-frame-snap-right (&optional frame)
+  "Resize FRAME to occupy the right half of its monitor's workarea."
+  (interactive)
+  (let* ((frame (or frame (selected-frame)))
+         (wa (alist-get 'workarea (frame-monitor-attributes frame)))
+         (x (nth 0 wa))
+         (y (nth 1 wa))
+         (w (nth 2 wa))
+         (h (nth 3 wa))
+         (half (/ w 2)))
+    (set-frame-parameter frame 'fullscreen nil)
+    (set-frame-position frame (+ x half) y)
+    (set-frame-size frame half h t)))
+
 (defalias 'open-files-from-saved-files-list 'matcha-open-files-from-saved-files-list)
 
 (defun matcha-rename-current-buffer-file ()
@@ -667,6 +694,8 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
   [["Frame"
     ("m" "Maximize" toggle-frame-maximized)
     ("F" "Toggle Fullscreen" toggle-frame-fullscreen)
+    (">" "Snap Right" matcha-frame-snap-right)
+    ("<" "Snap Left" matcha-frame-snap-right)
     ("0" "Delete Frame" delete-frame)
     ("1" "Delete other Frames" delete-other-frames)
     ("2" "Make Frame" make-frame-command)
@@ -677,10 +706,10 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
     ("s" "Toggle Window Split" toggle-window-split)
     ("t" "Rotate Windows" rotate-windows)]
    ["Resize"
-    ("<right>" "->" shrink-window-horizontally)
-    ("<left>" "<-" enlarge-window-horizontally)
-    ("<down>" "Down" shrink-window)
-    ("<up>" "Up" enlarge-window)]]
+    ("<right>" "->" shrink-window-horizontally :transient t)
+    ("<left>" "<-" enlarge-window-horizontally :transient t)
+    ("<down>" "Down" shrink-window :transient t)
+    ("<up>" "Up" enlarge-window :transient t)]]
   [:hide (lambda () t)
          ("-" split-window-below)
          ("|" split-window-right)
