@@ -41,8 +41,8 @@
     ("1" "Close Other Tabs" tab-close-other)
     ("u" "Undo Close" tab-undo)]
    ["Navigate"
-    ("j" "Next Tab" tab-next :transient t)
-    ("k" "Previous Tab" tab-previous :transient t)
+    ("j" "Next Tab" tab-next)
+    ("k" "Previous Tab" tab-previous)
     ("RET" "Switch Tab" tab-switch)]]
   [["Move"
     ("m" "Move Tab" tab-move)
