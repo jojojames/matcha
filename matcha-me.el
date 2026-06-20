@@ -540,7 +540,6 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
        ("g" "Git" matcha-magit)
        ("G" "Version Control" matcha-me-vc-dir)
        ("p" "Project" matcha-project)
-       ("P" "Projectile" matcha-projectile)
        ("TAB" "Tabs" matcha-tab-bar)])
 
 (setq matcha-me---do
@@ -668,8 +667,7 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
     ("i" "Git Grep" matcha-me-git-grep)]
    ["Occur"
     ("o" "Occur" occur)
-    ("O" "Multi Occur" multi-occur)
-    ("P" "Occur in Project" projectile-multi-occur)]
+    ("O" "Multi Occur" multi-occur)]
    ["Ripgrep"
     ("r" "Ripgrep in Directory" matcha-me-rg)
     ("R" "Ripgrep in Project" matcha-me-rg-project)
