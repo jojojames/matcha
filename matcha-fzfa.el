@@ -39,14 +39,7 @@
     (fzfa-rg)))
 
 ;; Dispatch helpers — used by sub-prefix suffix commands to honor the
-;; active sub-prefix's --2p / --dir= / --backend= infix arguments.
-
-(defun matcha-fzfa--maybe-2p (base args)
-  "Return BASE-2p if ARGS contains \"--2p\" and the symbol is `fboundp', else BASE."
-  (if (member "--2p" args)
-      (let ((p (intern (concat (symbol-name base) "-2p"))))
-        (if (fboundp p) p base))
-    base))
+;; active sub-prefix's --dir= / --backend= infix arguments.
 
 (defun matcha-fzfa--with-dir (dir-spec fn)
   "Invoke FN with `fzfa-directory' bound per DIR-SPEC.
@@ -62,11 +55,10 @@ DIR-SPEC is \"current\", \"project\", or anything else (= no override)."
     (_ (funcall fn))))
 
 (defun matcha-fzfa--invoke (base prefix)
-  "Invoke BASE (or BASE-2p) under PREFIX's --2p / --dir= infix env."
+  "Invoke BASE under PREFIX's --dir= infix env."
   (let* ((args (transient-args prefix))
-         (cmd  (matcha-fzfa--maybe-2p base args))
          (dir  (transient-arg-value "--dir=" args)))
-    (matcha-fzfa--with-dir dir (lambda () (call-interactively cmd)))))
+    (matcha-fzfa--with-dir dir (lambda () (call-interactively base)))))
 
 (defun matcha-fzfa--vcs-cmd (op args)
   "Return the fzfa command implementing VCS OP for the --backend= in ARGS.
@@ -183,7 +175,6 @@ which dispatches via `fzfa-vc-*' (uses `vc-responsible-backend')."
 
 (setq matcha-fzfa---find-options
       ["Options"
-       ("-2" "2p mode" "--2p")
        ("-d" "Directory" "--dir="
         :choices ("current" "project" "default"))])
 
@@ -199,7 +190,6 @@ which dispatches via `fzfa-vc-*' (uses `vc-responsible-backend')."
 
 (setq matcha-fzfa---grep-options
       ["Options"
-       ("-2" "2p mode" "--2p")
        ("-d" "Directory" "--dir="
         :choices ("current" "project" "default"))])
 
