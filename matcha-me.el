@@ -38,8 +38,6 @@
 
 (matcha-create-deferred-fn dired-sidebar-toggle-sidebar)
 (matcha-create-deferred-interactive-fn toggle-window-dedicated)
-(matcha-create-deferred-fn fzfa-find-any)
-(matcha-create-deferred-fn fzfa-find-some)
 
 (defun matcha-me-find-init ()
   "Visit init file."
@@ -110,13 +108,21 @@
   (interactive)
   (deadgrep (deadgrep--read-search-term) default-directory))
 
+(defvar fzfa-directory)
+
+(defun matcha-me-fzfa-rg-default-directory ()
+  "Run `fzfa-rg' with `default-directory'."
+  (interactive)
+  (let ((fzfa-directory default-directory))
+    (fzfa-rg)))
+
 (defcustom matcha-project-pkg-list
   '(
     ((mode . vertico-mode)
      (file . find-file)
      (recent . fzfa-recent-file)
      (buffer . fzfa-buffer)
-     (rg . matcha-fzfa-rg-current)
+     (rg . matcha-me-fzfa-rg-default-directory)
      (rg-project . fzfa-rg)
      (mx . fzfa-M-x)
      (swiper . fzfa-swiper)
@@ -127,7 +133,7 @@
      (file . find-file)
      (recent . fzfa-recent-file)
      (buffer . fzfa-buffer)
-     (rg . matcha-fzfa-rg-current)
+     (rg . matcha-me-fzfa-rg-default-directory)
      (rg-project . fzfa-rg)
      (mx . fzfa-M-x)
      (swiper . fzfa-swiper)
@@ -138,7 +144,7 @@
      (file . helm-find-files)
      (recent . fzfa-recent-file)
      (buffer . fzfa-buffer)
-     (rg . matcha-fzfa-rg-current)
+     (rg . matcha-me-fzfa-rg-default-directory)
      (rg-project . fzfa-rg)
      (mx . fzfa-M-x)
      (swiper . fzfa-swiper)
@@ -171,7 +177,7 @@
      (file . helm-find-files)
      (recent . helm-recentf)
      (buffer . helm-buffers-list)
-     (rg . matcha-fzfa-rg-current)
+     (rg . matcha-me-fzfa-rg-default-directory)
      (rg-project . fzfa-rg)
      (mx . helm-M-x)
      (swiper . helm-swoop)
@@ -193,7 +199,7 @@
      (file . ido-find-file)
      (recent . ido-recentf-open)
      (buffer . ido-switch-buffer)
-     (rg . matcha-fzfa-rg-current)
+     (rg . matcha-me-fzfa-rg-default-directory)
      (rg-project . fzfa-rg)
      (mx . execute-extended-command)
      (swiper . fzfa-swiper)
@@ -204,7 +210,7 @@
      (file . find-file)
      (recent . fzfa-recent-file)
      (buffer . switch-to-buffer)
-     (rg . matcha-fzfa-rg-current)
+     (rg . matcha-me-fzfa-rg-default-directory)
      (rg-project . fzfa-rg)
      (mx . execute-extended-command)
      (swiper . fzfa-swiper)
@@ -215,7 +221,7 @@
      (file . find-file)
      (recent . fzfa-recent-file)
      (buffer . fzfa-buffer)
-     (rg . matcha-fzfa-rg-current)
+     (rg . matcha-me-fzfa-rg-default-directory)
      (rg-project . fzfa-rg)
      (mx . fzfa-M-x)
      (swiper . fzfa-swiper)
@@ -226,7 +232,7 @@
      (file . find-file)
      (recent . fzfa-recent-file)
      (buffer . switch-to-buffer)
-     (rg . matcha-fzfa-rg-current)
+     (rg . matcha-me-fzfa-rg-default-directory)
      (rg-project . fzfa-rg)
      (mx . execute-extended-command)
      (swiper . fzfa-swiper)
@@ -528,12 +534,12 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
 
 (setq matcha-me---find
       ["Find"
-       ("z" "Any" matcha-fzfa-find-any)
-       ("/" "Some" matcha-fzfa-find-some)
+       ("z" "Any" fzfa-find-any)
+       ("/" "Some" fzfa-find-some)
        ("f" "File" matcha-me-find-file-dwim)
        ("b" "Buffer" matcha-me-buffer)
        ("r" "Recent" matcha-me-recent)
-       ("SPC" "FZF" matcha-fzfa)])
+       ("SPC" "FZF" fzfa-transient)])
 
 (setq matcha-me---manage
       ["Manage"

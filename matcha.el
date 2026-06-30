@@ -74,7 +74,6 @@
     (js js2-mode rjsx-mode)
     json-mode
     log-edit
-    (:file fzfa :autoloads matcha-fzfa)
     (:file magit :autoloads matcha-magit)
     omnisharp
     org
