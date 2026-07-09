@@ -608,7 +608,8 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
        ,matcha-me---windowing
        ,matcha-me---extra]
       ,matcha-me---hidden-bindings))
-  (call-interactively #'matcha-me-space--wide--def))
+  (transient-setup 'matcha-me-space--wide--def nil nil
+                   :scope current-prefix-arg))
 
 (defun matcha-me-space--narrow ()
   (eval
@@ -623,7 +624,8 @@ https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-igno
        ,matcha-me---windowing
        ,matcha-me---extra]
       ,matcha-me---hidden-bindings))
-  (call-interactively #'matcha-me-space--narrow--def))
+  (transient-setup 'matcha-me-space--narrow--def nil nil
+                   :scope current-prefix-arg))
 
 (defun matcha-me-space ()
   (interactive)
